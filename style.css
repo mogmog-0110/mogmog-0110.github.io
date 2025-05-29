@@ -1,0 +1,184 @@
+/* 基本的なリセットや設定 */
+body {
+    margin: 20px; /* ページ全体の余白 (参考サイト風) */
+    padding: 0;
+    font-family: sans-serif; /* 最も基本的なサンセリフ体 (ゴシック体) */
+    /* font-family: serif; */ /* 明朝体にしても学術的な雰囲気に */
+    background-color: #ffffff; /* 真っ白な背景 */
+    color: #000000; /* 文字は真っ黒 */
+    font-size: 16px; /* ブラウザの標準的な文字サイズ */
+    line-height: 1.5; /* 標準的な行間 */
+}
+
+/* .site-container は、あえて指定せず、bodyの幅に任せるのも手 */
+/* もし中央揃えにしたいなら */
+/* .site-container {
+    max-width: 800px;
+    margin: 0 auto;
+} */
+
+/* ヘッダー */
+.site-header {
+    margin-bottom: 20px;
+}
+
+.site-header h1 {
+    margin: 0 0 10px 0; /* タイトルとナビの間のマージン */
+    font-size: 2em; /* h1らしい力強さ */
+    font-weight: bold; /* しっかりと太字に */
+}
+
+.site-header h1 a {
+    color: #000000; /* リンク色も黒 (下線でリンクとわかるように) */
+    text-decoration: none; /* タイトル自体の下線はなし */
+}
+
+.site-header h1 a:hover {
+    text-decoration: underline; /* ホバーで下線 */
+}
+
+/* ナビゲーション (縦並びのシンプルなリスト) */
+.global-navigation ul {
+    list-style: none; /* リストのマーカー(・)はなし */
+    padding: 0;
+    margin: 0 0 10px 0; /* ナビゲーション下部のマージン */
+}
+
+.global-navigation li {
+    margin-bottom: 3px; /* 各メニュー項目の間隔 */
+}
+
+.global-navigation a {
+    color: #0000ee; /* 標準的なリンク色 (青) */
+    text-decoration: underline; /* 常に下線を表示 */
+    font-size: 1em; /* 本文と同じサイズ */
+}
+
+.global-navigation a:visited {
+    color: #551a8b; /* 訪問済みリンク色 (紫) */
+}
+
+.global-navigation a:hover {
+    color: #ff0000; /* ホバー時の色 (赤など、ブラウザデフォルト風) */
+    /* text-decoration: none; */ /* ホバーで下線を消すのもあり */
+}
+
+hr.header-divider, hr.footer-divider { /* 区切り線 */
+    border: none;
+    border-top: 1px solid #cccccc; /* 細くて薄いグレーの線 */
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+
+/* メインコンテンツエリア */
+.main-content {
+    /* 特に指定なし */
+}
+
+.page-section {
+    margin-bottom: 25px;
+}
+
+.page-section h2 { /* 各ページの小見出し */
+    font-size: 1.5em; /* h2らしい大きさ */
+    color: #000000;
+    margin-top: 20px; /* セクションの始まりが分かりやすいように上に余白 */
+    margin-bottom: 10px;
+    font-weight: bold;
+    /* border-bottom: 1px solid #dddddd; */ /* 下線はなくても良いかも */
+}
+
+.page-section p { /* 通常の段落 */
+    margin-bottom: 1em; /* 段落間のマージン */
+}
+
+/* 作品リストや備忘録リストなども、ul, li タグでシンプルに */
+ul.item-list { /* 作品や備忘録の共通リストスタイル */
+    list-style: disc; /* 通常の黒丸マーカー */
+    padding-left: 25px; /* マーカーのためのインデント */
+}
+
+ul.item-list li {
+    margin-bottom: 8px;
+}
+
+ul.item-list h3 { /* 作品タイトルやメモのタイトル */
+    font-size: 1.1em;
+    margin: 0 0 2px 0;
+    font-weight: bold;
+}
+
+ul.item-list img { /* 作品の画像など */
+    max-width: 300px; /* あまり大きくしすぎない */
+    height: auto;
+    display: block; /* 画像の下に余白ができるのを防ぐ */
+    margin-bottom: 5px;
+    border: 1px solid #eeeeee; /* ごく薄い枠線 */
+}
+
+
+/* フッター */
+.site-footer {
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #333333; /* 少し薄めの黒 */
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+/* リンクの基本的なスタイルを再確認 */
+a {
+    color: #0000ee;
+    text-decoration: underline;
+}
+a:visited {
+    color: #551a8b;
+}
+a:hover {
+    color: #ff0000;
+}
+
+/* プロフィールテーブル用のスタイル */
+table.profile-table {
+    width: 50%; /* テーブルの幅を少しスリムに (例: 80% -> 70%) もっと小さくても良いかも */
+    /* max-width: 500px; */ /* もしくは最大幅を指定するのも手 */
+    margin-top: 15px;
+    margin-left: left; /* 中央揃えにする場合 */
+    margin-right: left; /* 中央揃えにする場合 */
+    border-collapse: collapse;
+    border: 1px solid #e0e0e0; /* 罫線を少し薄めに (例: #ddd -> #e0e0e0) */
+    font-size: 0.9em; /* テーブル内の文字を少し小さく */
+}
+
+table.profile-table th,
+table.profile-table td {
+    padding: 6px 4px; /* セル内の余白をさらに詰める (例: 8px 5px -> 6px 4px) */
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px dotted #f0f0f0; /* 各行の下の点線もさらに薄く */
+}
+
+table.profile-table tr:last-child th,
+table.profile-table tr:last-child td {
+    border-bottom: none; /* テーブルの最後の行の点線は消す */
+}
+
+table.profile-table th {
+    width: 11%; /* 項目名の幅 (10%だとかなり狭いので、少し広げてみました。お好みで調整してください) */
+    /* 例えば「好きなゲーム」という項目名が収まる程度に */
+    font-weight: bold;
+    background-color: #ebebeb; /* 背景色を少し濃く、不透明に (例1: やや濃いグレー) */
+    /* background-color: #e0e0e0; */ /* (例2: もう少し濃いグレー) */
+    /* background-color: #d0d0d0; */ /* (例3: さらにもう少し濃いグレー) */
+    /* background-color: rgba(220, 220, 220, 0.75); */ /* (例4: 半透明にするならこんな感じ) */
+    border-right: 1px solid #e0e0e0; /* 項目名と内容の間に縦線を入れると見やすいかも */
+}
+
+/* table.profile-table td ul は前回のままでOK */
+/* table.profile-table td ul {
+    margin: 0;
+    padding-left: 20px;
+} */
