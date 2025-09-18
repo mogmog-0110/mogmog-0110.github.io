@@ -1,135 +1,17 @@
-/* 基本的なリセットや設定 */
+html, body {
+    height: 100%; /* ページ全体を画面の高さに広げる設定 */
+    margin: 0;     /* ブラウザ標準の余白をなくす */
+}
+
+/* 基本的な設定 */
 body {
-    margin: 20px; /* ページ全体の余白 (参考サイト風) */
-    padding: 0;
-    font-family: sans-serif; /* 最も基本的なサンセリフ体 (ゴシック体) */
-    /* font-family: serif; */ /* 明朝体にしても学術的な雰囲気に */
-    background-color: #ffffff; /* 真っ白な背景 */
-    color: #000000; /* 文字は真っ黒 */
-    font-size: 16px; /* ブラウザの標準的な文字サイズ */
-    line-height: 1.5; /* 標準的な行間 */
+    font-family: sans-serif;
+    color: #003300;
+    font-size: 16px;
+    background: repeating-conic-gradient(#f0f0f0 0% 25%, #ffffff 0% 50%) 50% / 196px 196px;
 }
 
-/* .site-container は、あえて指定せず、bodyの幅に任せるのも手 */
-/* もし中央揃えにしたいなら */
-/* .site-container {
-    max-width: 800px;
-    margin: 0 auto;
-} */
-
-/* ヘッダー */
-.site-header {
-    margin-bottom: 20px;
-}
-
-.site-header h1 {
-    margin: 0 0 10px 0; /* タイトルとナビの間のマージン */
-    font-size: 2em; /* h1らしい力強さ */
-    font-weight: bold; /* しっかりと太字に */
-}
-
-.site-header h1 a {
-    color: #000000; /* リンク色も黒 (下線でリンクとわかるように) */
-    text-decoration: none; /* タイトル自体の下線はなし */
-}
-
-.site-header h1 a:hover {
-    text-decoration: underline; /* ホバーで下線 */
-}
-
-/* ナビゲーション (縦並びのシンプルなリスト) */
-.global-navigation ul {
-    list-style: none; /* リストのマーカー(・)はなし */
-    padding: 0;
-    margin: 0 0 10px 0; /* ナビゲーション下部のマージン */
-}
-
-.global-navigation li {
-    margin-bottom: 3px; /* 各メニュー項目の間隔 */
-}
-
-.global-navigation a {
-    color: #0000ee; /* 標準的なリンク色 (青) */
-    text-decoration: underline; /* 常に下線を表示 */
-    font-size: 1em; /* 本文と同じサイズ */
-}
-
-.global-navigation a:visited {
-    color: #551a8b; /* 訪問済みリンク色 (紫) */
-}
-
-.global-navigation a:hover {
-    color: #ff0000; /* ホバー時の色 (赤など、ブラウザデフォルト風) */
-    /* text-decoration: none; */ /* ホバーで下線を消すのもあり */
-}
-
-hr.header-divider, hr.footer-divider { /* 区切り線 */
-    border: none;
-    border-top: 1px solid #cccccc; /* 細くて薄いグレーの線 */
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-
-/* メインコンテンツエリア */
-.main-content {
-    /* 特に指定なし */
-}
-
-.page-section {
-    margin-bottom: 25px;
-}
-
-.page-section h2 { /* 各ページの小見出し */
-    font-size: 1.5em; /* h2らしい大きさ */
-    color: #000000;
-    margin-top: 20px; /* セクションの始まりが分かりやすいように上に余白 */
-    margin-bottom: 10px;
-    font-weight: bold;
-    /* border-bottom: 1px solid #dddddd; */ /* 下線はなくても良いかも */
-}
-
-.page-section p { /* 通常の段落 */
-    margin-bottom: 1em; /* 段落間のマージン */
-}
-
-/* 作品リストや備忘録リストなども、ul, li タグでシンプルに */
-ul.item-list { /* 作品や備忘録の共通リストスタイル */
-    list-style: disc; /* 通常の黒丸マーカー */
-    padding-left: 25px; /* マーカーのためのインデント */
-}
-
-ul.item-list li {
-    margin-bottom: 8px;
-}
-
-ul.item-list h3 { /* 作品タイトルやメモのタイトル */
-    font-size: 1.1em;
-    margin: 0 0 2px 0;
-    font-weight: bold;
-}
-
-ul.item-list img { /* 作品の画像など */
-    max-width: 300px; /* あまり大きくしすぎない */
-    height: auto;
-    display: block; /* 画像の下に余白ができるのを防ぐ */
-    margin-bottom: 5px;
-    border: 1px solid #eeeeee; /* ごく薄い枠線 */
-}
-
-
-/* フッター */
-.site-footer {
-    margin-top: 30px;
-    font-size: 0.9em;
-    color: #333333; /* 少し薄めの黒 */
-}
-
-.site-footer p {
-    margin: 0;
-}
-
-/* リンクの基本的なスタイルを再確認 */
+/* リンク文字の色 */
 a {
     color: #0000ee;
     text-decoration: underline;
@@ -141,44 +23,219 @@ a:hover {
     color: #ff0000;
 }
 
-/* プロフィールテーブル用のスタイル */
-table.profile-table {
-    width: 50%; /* テーブルの幅を少しスリムに (例: 80% -> 70%) もっと小さくても良いかも */
-    /* max-width: 500px; */ /* もしくは最大幅を指定するのも手 */
-    margin-top: 15px;
-    margin-left: left; /* 中央揃えにする場合 */
-    margin-right: left; /* 中央揃えにする場合 */
-    border-collapse: collapse;
-    border: 1px solid #e0e0e0; /* 罫線を少し薄めに (例: #ddd -> #e0e0e0) */
-    font-size: 0.9em; /* テーブル内の文字を少し小さく */
+/* サイト全体のレイアウト用テーブル */
+.site-layout {
+    width: 100%;
+    height: 100%; /* テーブル自体も画面の高さに広げる */
+    border-spacing: 0;
 }
-
-table.profile-table th,
-table.profile-table td {
-    padding: 6px 4px; /* セル内の余白をさらに詰める (例: 8px 5px -> 6px 4px) */
-    text-align: left;
+.site-layout td {
     vertical-align: top;
-    border-bottom: 1px dotted #f0f0f0; /* 各行の下の点線もさらに薄く */
 }
 
-table.profile-table tr:last-child th,
-table.profile-table tr:last-child td {
-    border-bottom: none; /* テーブルの最後の行の点線は消す */
+/* 左側: ナビゲーションメニューが入るセルのスタイル */
+.navigation-cell {
+    width: 160px;
+    padding: 10px;
+    background-color: #f0f8ff;
+    border-right: 1px solid #aaaaaa;
 }
 
-table.profile-table th {
-    width: 11%; /* 項目名の幅 (10%だとかなり狭いので、少し広げてみました。お好みで調整してください) */
-    /* 例えば「好きなゲーム」という項目名が収まる程度に */
-    font-weight: bold;
-    background-color: #ebebeb; /* 背景色を少し濃く、不透明に (例1: やや濃いグレー) */
-    /* background-color: #e0e0e0; */ /* (例2: もう少し濃いグレー) */
-    /* background-color: #d0d0d0; */ /* (例3: さらにもう少し濃いグレー) */
-    /* background-color: rgba(220, 220, 220, 0.75); */ /* (例4: 半透明にするならこんな感じ) */
-    border-right: 1px solid #e0e0e0; /* 項目名と内容の間に縦線を入れると見やすいかも */
-}
-
-/* table.profile-table td ul は前回のままでOK */
-/* table.profile-table td ul {
+/* 左側のナビゲーションメニュー */
+.side-navigation {
+    padding: 0;
     margin: 0;
-    padding-left: 20px;
-} */
+    list-style: none;
+}
+.side-navigation li {
+    margin-bottom: 5px;
+}
+.side-navigation span {
+    margin-right: 5px;
+}
+/* メニューの●の色 */
+.color-pink { color: #ff99cc; }
+.color-green { color: #33cc33; }
+.color-blue { color: #6666ff; }
+.color-purple { color: #cc66ff; }
+.color-orange { color: #ff9933; }
+
+
+/* 右側のメインコンテンツ */
+.main-content {
+    padding: 8px 40px; /* 上下の余白と、左右の余白（間隔を広げました） */
+}
+
+/* サイトのタイトル */
+/* Google Fontsから丸ゴシック体のフォントを読み込む */
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@800&display=swap');
+
+h1 {
+  /* フォントの指定 */
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    
+    /* 文字のグラデーション */
+    background: linear-gradient(to right, #63abff, #a97cff, #c16aff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    /* 影と立体感をtext-shadowで表現 */
+    text-shadow: 
+        /* ぷっくりした内側のハイライト（白） */
+        1px 1px 0px rgba(255, 255, 255, 0.5),
+        /* ぷっくりした内側の影（暗い紫） */
+        -1px -1px 0px rgba(0, 0, 0, 0.2),
+        /* 全体のドロップシャドウ（濃いグレー） */
+        3px 3px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* 見出し */
+h2 {
+    font-size: 20px;
+    font-weight: normal;
+    border: none;
+}
+
+/* 情報表示用のテーブル (プロフィールやポートフォリオで使う) */
+.info-table {
+    border: 1px solid #003300;
+    border-collapse: collapse;
+    background-color: #ffffff; /* テーブルの背景を白にする */
+}
+.info-table th, .info-table td {
+    border: 1px solid #003300;
+    padding: 5px 8px;
+    text-align: left;
+}
+.info-table th {
+    background-color: #e0f0e0;
+    font-weight: normal;
+}
+
+/* ポートフォリオの作品画像ギャラリーのスタイル */
+.project-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.project-images img {
+    /* 画像の最大幅を300pxに固定 */
+    max-width: 300px;
+    
+    /* コンテナの幅に合わせて伸縮するように設定 */
+    width: 100%;
+    
+    /* 画像の縦横比を維持 */
+    height: auto;
+    
+    /* 見栄えを良くするために、薄い枠線を追加 */
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    padding: 2px;
+}
+
+/* フッター */
+.footer {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+/* 創作ページのイラスト表示用スタイル */
+.project-images > a { 
+    display: block; /* aタグをブロック要素にする */
+    width: calc(50% - 10px);
+    max-width: 350px;
+    margin: 0;
+}
+
+.project-images figure img {
+    /* 親要素いっぱいに広がるように設定 */
+    width: 100%;
+    height: auto;
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    padding: 2px;
+}
+
+.project-images figcaption {
+    font-size: 14px;
+    margin-top: 5px;
+    color: #333333; /* 文字色を少し調整 */
+}
+
+/* 創作ページの小説リスト用スタイル */
+.novel-list {
+    list-style: none; /* リストの点(・)を消す */
+    padding: 0;
+}
+
+.novel-list li {
+    margin-bottom: 25px; /* 作品ごとの間隔 */
+    border-bottom: 1px dotted #cccccc; /* 作品の下に区切り線 */
+    padding-bottom: 15px;
+}
+
+.novel-list h4 {
+    margin: 0 0 8px 0; /* タイトルと説明の間隔 */
+}
+
+.novel-list p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* 創作ページ「その他」の作品レイアウト用スタイル */
+.other-work-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.work-image {
+    flex-shrink: 0;
+    width: 200px;
+}
+
+.work-image img {
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+.work-description {
+    flex-grow: 1;
+}
+
+.work-description h4 {
+    margin-top: 0;
+}
+
+/* 研究ページの画像表示用スタイル */
+.research-images {
+    display: flex;
+    justify-content: center; /* 画像を中央に寄せる */
+    align-items: flex-start; /* 上揃えにする */
+    flex-wrap: wrap;
+    gap: 20px;               /* 画像と画像の間のすき間 */
+    margin: 20px 0;
+}
+
+.research-images img {
+    /* 横幅をコンテナの45%までに制限して、2枚が確実に並ぶようにします */
+    max-width: 45%;
+    
+    height: auto; /* 画像の縦横比を維持*/
+    
+    /* 見栄えを良くする設定 */
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    padding: 2px;
+}
