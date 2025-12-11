@@ -1,561 +1,350 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" style="background-color: #050508;">
 <head>
     <meta charset="UTF-8">
-    <title>ポートフォリオ - 川村優弥のホームページ</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050508">
+    <title>Portfolio | Shiggy</title>
+    <meta name="description" content="川村優弥のポートフォリオ - これまでに制作したゲームやソフトウェア">
+
+    <!-- Prevent white flash during page transition -->
+    <style>
+        html, body {
+            background-color: #050508 !important;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body data-page="portfolio">
+    <!-- WebGL Canvas -->
+    <div id="cosmic-canvas"></div>
 
-    <table class="site-layout">
-        <tr>
-            <td class="navigation-cell">
-                <ul class="side-navigation">
-                    <li><a href="index.html"><span class="color-pink">●</span>トップ</a></li>
-                    <li><a href="portfolio.html"><span class="color-green">●</span>ポートフォリオ</a></li>
-                    <li><a href="research.html"><span class="color-blue">●</span>研究</a></li>
-                    <li><a href="creation.html"><span class="color-purple">●</span>創作</a></li>
-                    <li><a href="skills.html"><span class="color-orange">●</span>スキル</a></li>
-                </ul>
-            </td>
+    <!-- UI Overlay -->
+    <div class="ui-overlay">
+        <!-- Navigation -->
+        <nav>
+            <div class="nav-logo">
+                <a href="index.html">Shiggy</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="creation.html">Creation</a></li>
+                <li><a href="skills.html">Skills</a></li>
+            </ul>
+        </nav>
 
-            <td>
-                <div class="main-content">
-                    <h1>川村優弥のホームページ</h1>
-                    <hr>
-                
-                    <h2>ポートフォリオ</h2>
-                    <p>これまでに制作したゲームやソフトウェアです。大学入学時から現在までの作品を時系列順にまとめています。一部の作品はタイトルをクリックすることで、作品を遊んだり、コードを見ることが可能です</p>
+        <!-- Content Area -->
+        <main class="page-content">
+            <h1 class="page-title">Portfolio</h1>
 
-                    <div class="project-item">
-                        <h3>Down into...(2022夏)</h3>
+            <p style="margin-bottom: 2rem; padding: 1rem; background: rgba(139, 32, 32, 0.2); border-left: 3px solid var(--washer-red); border-radius: 4px; font-size: 0.9rem; color: var(--text-dim);">
+                ※一部の作品はチーム制作したもので、チームメンバーから許諾を得ていないため、遊べないものもあります。
+            </p>
 
-                        <div class="project-images">
-                            <img src="images/down_1.png" alt="画像1">
-                            <img src="images/down_2.png" alt="画像2">
-                            <img src="images/down_3.png" alt="画像3">
-                            <img src="images/down_4.png" alt="画像4">
-                        </div>
-                        <br>
-                        <table class="info-table">
-                            <tr>
-                                <th style="width: 20%;">ジャンル</th>
-                                <td>怪物から逃げながら塔の脱出を目指す倉庫番系パズル</td>
-                            </tr>
-                            <tr>
-                                <th>開発期間</th>
-                                <td>2か月</td>
-                            </tr>
-                            <tr>
-                                <th>開発人数</th>
-                                <td>5人</td>
-                            </tr>
-                            <tr>
-                                <th>開発環境</th>
-                                <td>C++, Siv3D</td>
-                            </tr>
-                            <tr>
-                                <th>担当箇所</th>
-                                <td>ストーリー考案 シナリオ プログラマ（マップやグラフィックに関する部分）ステージ制作 ドット絵</td>
-                            </tr>
-                            <tr>
-                                <th>備考</th>
-                                <td>会津大学の企画開発部というゲーム制作サークルにてチーム開発。会津大学の学園祭・蒼翔祭2022にて展示・無料頒布。コミックマーケット101にて無料頒布</td>
-                            </tr>
-                        </table>
-                        
-                        <div style="margin-top: 15px;">
-                            <p>
-                                <strong>【この作品について】</strong><br>
-                                c++（Siv3D）を用いた最初のゲーム、チーム開発<br>
-                                先輩方にc++の作法や、バージョン管理方法（Git、Github）を学ぶ<br>
-                                囚われた女の子が塔からの脱出を目指す倉庫番（物を押したりしてゴールを目指す）系パズル<br>
-                                スイッチを押して通れない針山を無効化したり、三回踏んだら穴になる壊れかけた地面、追ってくる敵など多数のギミックあり。難易度に定評あり
-                            </p>
+            <div class="cards-container">
+                <!-- Down into... -->
+                <article class="card">
+                    <div class="card-image">
+                        <img src="images/down_1.png" alt="Down into...">
+                    </div>
+                    <div class="card-content">
+                        <h2>Down into...</h2>
+                        <p class="card-meta">2022年夏 | チーム開発（5人）| 2ヶ月</p>
+                        <p class="card-description">
+                            怪物から逃げながら塔の脱出を目指す倉庫番系パズル。C++とSiv3Dを使った初めてのチーム開発作品。会津大学・蒼翔祭2022、コミックマーケット101にて無料頒布。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">Siv3D</span>
+                            <span class="tag">Puzzle</span>
                         </div>
                     </div>
-                    <hr style="margin: 40px 0;">
+                </article>
 
-                    <div class="project-item">
-                        <a href="https://drive.google.com/drive/folders/1dFSFwuPCTnQW0YqZxIDM-JfFe8dWzBm9?usp=sharing"><h3>ハトを育てよう(2023春)</a></h3>
-
-                        <div class="project-images">
-                            <img src="images/hato_1.png" alt="画像1">
-                            <img src="images/hato_2.png" alt="画像2">
-                            <img src="images/hato_3.png" alt="画像3">
-                            <img src="images/hato_4.png" alt="画像4">
+                <!-- ハトを育てよう -->
+                <article class="card">
+                    <div class="card-image">
+                        <img src="images/hato_1.png" alt="ハトを育てよう">
+                    </div>
+                    <div class="card-content">
+                        <h2>ハトを育てよう</h2>
+                        <p class="card-meta">2023年春 | 個人開発 | 2日</p>
+                        <p class="card-description">
+                            ハトを育てるマルチエンディング育成ゲーム。TyranoScriptを使用したノベルゲームエンジンの育成ゲーム実装例。蒼翔祭2023にて展示。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">TyranoScript</span>
+                            <span class="tag">Visual Novel</span>
                         </div>
-                        <br>
-                        <table class="info-table">
-                            <tr>
-                                <th style="width: 20%;">ジャンル</th>
-                                <td>ハトを育てるマルチエンディング育成ゲーム</td>
-                            </tr>
-                            <tr>
-                                <th>開発期間</th>
-                                <td>2日</td>
-                            </tr>
-                            <tr>
-                                <th>開発人数</th>
-                                <td>1人</td>
-                            </tr>
-                            <tr>
-                                <th>開発環境</th>
-                                <td>TyranoScript</td>
-                            </tr>
-                            <tr>
-                                <th>担当箇所</th>
-                                <td>全部</td>
-                            </tr>
-                            <tr>
-                                <th>備考</th>
-                                <td>会津大学の企画開発部というゲーム制作サークルにて、新入生向けのシナリオ勉強会で使用したサンプルゲーム。蒼翔祭2023にて展示</td>
-                            </tr>
-                        </table>
-                        
-                        <div style="margin-top: 15px;">
-                            <p>
-                                <strong>【この作品について】</strong><br>
-                                TyranoScriptを用いた育成ゲーム<br>
-                                ノベルゲームエンジンだが、育成ゲームも作れるということを説明するためのサンプルゲーム<br>
-                                野生のハトを捕まえて、育成するというわかりやすいストーリーで、現役部員問わず、学祭に来てくださった一般参加者にも好評だった（特に子供たちに）<br>
-                            </p>
+                        <a href="https://drive.google.com/drive/folders/1dFSFwuPCTnQW0YqZxIDM-JfFe8dWzBm9?usp=sharing"
+                           class="card-link" target="_blank" rel="noopener">
+                            ダウンロード →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 416 -->
+                <article class="card">
+                    <div class="card-image">
+                        <img src="images/416_1.png" alt="416">
+                    </div>
+                    <div class="card-content">
+                        <h2>416</h2>
+                        <p class="card-meta">2023年夏 | チーム開発（2人）| 2ヶ月</p>
+                        <p class="card-description">
+                            たくさんの迫りくる化け物を倒すヴァンサバ風ローグライク。初めてのプロジェクトリーダー経験。蒼翔祭2023、コミックマーケット103にて無料頒布。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">Siv3D</span>
+                            <span class="tag">Roguelike</span>
                         </div>
                     </div>
-                    <hr style="margin: 40px 0;">
+                </article>
 
-                    <div class="project-item">
-                        <h3>416(2023夏)</h3>
-
-                        <div class="project-images">
-                            <img src="images/416_1.png" alt="画像1">
-                            <img src="images/416_2.png" alt="画像2">
-                            <img src="images/416_3.png" alt="画像3">
-                            <img src="images/416_4.png" alt="画像4">
-                        </div>
-                        <br>
-                        <table class="info-table">
-                            <tr>
-                                <th style="width: 20%;">ジャンル</th>
-                                <td>たくさんの迫りくる化け物を倒すヴァンサバ風ローグライク</td>
-                            </tr>
-                            <tr>
-                                <th>開発期間</th>
-                                <td>2か月</td>
-                            </tr>
-                            <tr>
-                                <th>開発人数</th>
-                                <td>2人</td>
-                            </tr>
-                            <tr>
-                                <th>開発環境</th>
-                                <td>C++, Siv3D</td>
-                            </tr>
-                            <tr>
-                                <th>担当箇所</th>
-                                <td>プロジェクトリーダー シナリオ プログラミング全般(設計, プレイヤー, 各種武器 オブジェクトの生成管理) グラフィック全般(ドット絵、エフェクト、UI)</td>
-                            </tr>
-                            <tr>
-                                <th>備考</th>
-                                <td>会津大学の企画開発部というゲーム制作サークルにてチーム開発。会津大学の学園祭・蒼翔祭2023にて展示・無料頒布。コミックマーケット103にて無料頒布</td>
-                            </tr>
-                        </table>
-                        
-                        <div style="margin-top: 15px;">
-                            <p>
-                                <strong>【この作品について】</strong><br>
-                                初めてプロジェクトリーダーとして関わった作品<br>
-                                設計もわからないなりにメンバーと相談しながら、制作した。設計の大事さを学び、以降デザインパターンの本や、メモリ管理に特に気を遣うようになる<br>
-                                チームメンバーと活発に遊んでいたヴァンパイアサバイバーに触発され、作ってみるという流れになった。Down into...の世界から数百年後、という裏設定がある<br>
-                            </p>
+                <!-- ぐるぐる☆しゅがーふぁくとりー -->
+                <article class="card">
+                    <div class="card-image">
+                        <img src="images/shugar_1.png" alt="ぐるぐる☆しゅがーふぁくとりー">
+                    </div>
+                    <div class="card-content">
+                        <h2>ぐるぐる☆しゅがーふぁくとりー</h2>
+                        <p class="card-meta">2024年春 | チーム開発（3人）| 2ヶ月</p>
+                        <p class="card-description">
+                            落ちてくる飴玉を回転するドーナツを使ってくっつける落ちものパズル。初めてのUnity開発。蒼翔祭2024にて展示。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">C#</span>
+                            <span class="tag">Unity</span>
+                            <span class="tag">Puzzle</span>
                         </div>
                     </div>
-                    <hr style="margin: 40px 0;">
+                </article>
 
-                    <div class="project-item">
-                        <h3>ぐるぐる☆しゅがーふぁくとりー(2024春)</h3>
-
-                        <div class="project-images">
-                            <img src="images/shugar_1.png" alt="画像1">
-                            <img src="images/sugar_2.png" alt="画像2">
-                            <img src="images/sugar_3.png" alt="画像3">
-                            <img src="images/sugar_4.png" alt="画像4">
+                <!-- VoronoiShortestPathSolver -->
+                <article class="card">
+                    <div class="card-image">
+                        <img src="images/vs_1.png" alt="VoronoiShortestPathSolver" onerror="this.parentElement.innerHTML='<div style=\'background: linear-gradient(135deg, rgba(139, 32, 32, 0.4), rgba(139, 32, 32, 0.2)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.7); font-size: 3rem;\'>📐</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h2>VoronoiShortestPathSolver</h2>
+                        <p class="card-meta">2024年春 | 個人開発 | 1週間</p>
+                        <p class="card-description">
+                            ボロノイ図を用いた最短経路探索シミュレーション。ビジュアルコンピューティングのための幾何学という授業で得た知見をもとに作成。点（母点）がいくつか与えられたとき、どの点に一番近いかによって平面を分割したものをボロノイ図といい、それを用いて最短経路を探索する試み。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">Siv3D</span>
+                            <span class="tag">OpenCV</span>
                         </div>
-                        <br>
-                        <table class="info-table">
-                            <tr>
-                                <th style="width: 20%;">ジャンル</th>
-                                <td>落ちてくる飴玉を回転するドーナツを使ってくっつける集める落ちものパズル</td>
-                            </tr>
-                            <tr>
-                                <th>開発期間</th>
-                                <td>2か月</td>
-                            </tr>
-                            <tr>
-                                <th>開発人数</th>
-                                <td>3人</td>
-                            </tr>
-                            <tr>
-                                <th>開発環境</th>
-                                <td>C#, Unity</td>
-                            </tr>
-                            <tr>
-                                <th>担当箇所</th>
-                                <td>プログラミング全般（パズルのシステム、オブジェクトの生成管理） グラフィック全般(キャラクター、背景、オブジェクト)</td>
-                            </tr>
-                            <tr>
-                                <th>備考</th>
-                                <td>会津大学の企画開発部というゲーム制作サークルにてチーム開発。新入生歓迎会にて展示。コミックマーケット104にて無料頒布</td>
-                            </tr>
-                        </table>
-                        
-                        <div style="margin-top: 15px;">
-                            <p>
-                                <strong>【この作品について】</strong><br>
-                                Unityを使ったチーム開発で制作した作品<br>
-                                落ちてくるランダムな色の飴玉をくっつけて消していき高スコアを競うパズル<br>
-                                コンパクトな仕上がりと、わかりやすいルール、愛らしいビジュアルで好評を得た
-                            </p>
+                        <a href="https://github.com/mogmog-0110/VoronoiShortestPathSolver"
+                           class="card-link" target="_blank" rel="noopener">
+                            GitHub →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 劇場版ぱんドドド―ド・ドードド デストロイ オブ アイヅ ゆにばーしてぃ the ファイナル -->
+                <article class="card">
+                    <div class="card-image">
+                        <img src="images/dodo_1.png" alt="劇場版ぱんドドド―ド・ドードド" onerror="this.src='images/pan_1.png'">
+                    </div>
+                    <div class="card-content">
+                        <h2>劇場版ぱんドドド―ド</h2>
+                        <p class="card-meta">2024年夏 | チーム開発（6人）| 2ヶ月</p>
+                        <p class="card-description">
+                            キャラクターを育成して、アクションに挑む新感覚おばか育成アクション。プロジェクトリーダーとしてチームメンバーのサポートをしながら開発。Unityのようなコンポーネントシステムを参考に設計し、ステージ制作ツールを別途作成。モンスターに支配された会津大学を企画開発部のマスコットキャラクター「ぱんどど」を育成し、モンスター退治をするというストーリー。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">Siv3D</span>
+                            <span class="tag">Action</span>
                         </div>
                     </div>
-                    <hr style="margin: 40px 0;">
+                </article>
 
-                    <div class="project-item">
-                        <a href="https://github.com/mogmog-0110/VoronoiShortestPathSolver"><h3>VoronoiShortestPathSolver(2024春)</a></h3>
-                        <div class="project-images">
-                            <img src="images/vs_1.png" alt="画像1">
-                            <img src="images/vs_2.png" alt="画像2">
-                            <img src="images/vs_3.png" alt="画像3">
-                            <img src="images/vs_4.png" alt="画像4">
+                <!-- Vimove -->
+                <article class="card">
+                    <div class="card-image">
+                        <img src="images/vimove_1.png" alt="Vimove" onerror="this.parentElement.innerHTML='<div style=\'background: linear-gradient(135deg, rgba(139, 32, 32, 0.4), rgba(139, 32, 32, 0.2)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.7); font-size: 3rem;\'>📝</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h2>Vimove</h2>
+                        <p class="card-meta">2024年冬 | 個人開発 | 1週間</p>
+                        <p class="card-description">
+                            Vimの操作方法でクリアを目指す迷路ゲーム。Vimの上下左右移動（h, j, k, l）で迷路をクリアするゲーム。Vimの操作感に慣れるために作成。あらかじめ用意した数十ステージと、全ステージクリア後に開放されるエンドレスモード（ランダムで迷路を生成）で遊べる。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">Siv3D</span>
+                            <span class="tag">Game</span>
                         </div>
-                        <br>
-                        <table class="info-table">
-                            <tr>
-                                <th style="width: 20%;">ジャンル</th>
-                                <td>ボロノイ図を用いた最短経路探索シミュレーション</td>
-                            </tr>
-                            <tr>
-                                <th>開発期間</th>
-                                <td>1週間</td>
-                            </tr>
-                            <tr>
-                                <th>開発人数</th>
-                                <td>1人</td>
-                            </tr>
-                            <tr>
-                                <th>開発環境</th>
-                                <td>C++, Siv3D, OpenCV</td>
-                            </tr>
-                            <tr>
-                                <th>担当箇所</th>
-                                <td>全部</td>
-                            </tr>
-                            <tr>
-                                <th>備考</th>
-                                <td></td>
-                            </tr>
-                        </table>
-                        
-                        <div style="margin-top: 15px;">
-                            <p>
-                                <strong>【この作品について】</strong><br>
-                                ビジュアルコンピューティングのための幾何学という授業で得た知見をもとに作成<br>
-                                点（母点）がいくつか与えられたとき，どの点に一番近いかによって平面を分割したものをボロノイ図（高校数学の美しい物語より）というが、それを用いて最短経路を探索すると面白いのではないかという試み<br>
-                                OpenCVはSiv3D内に存在するため、こちらを使用した。
-                            </p>
+                        <a href="downloads/Vimove.zip"
+                           class="card-link">
+                            ダウンロード →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- GraphWalker -->
+                <article class="card">
+                    <div class="card-image">
+                        <img src="images/gw_1.png" alt="GraphWalker" onerror="this.parentElement.innerHTML='<div style=\'background: linear-gradient(135deg, rgba(139, 32, 32, 0.4), rgba(139, 32, 32, 0.2)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.7); font-size: 3rem;\'>🕸️</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h2>GraphWalker</h2>
+                        <p class="card-meta">2025年春 | 個人開発 | 1週間</p>
+                        <p class="card-description">
+                            数式を打ち込んでグラフを作成し、ゴールを目指すパズルアクション。Siv3Dの数式パース機能を利用して、当たり判定のあるグラフを作成し、ゴールを目指す。数学が苦手な後輩を見て発案。グラフをもっと身近なものにしようという意図でアクションゲームにした。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">Siv3D</span>
+                            <span class="tag">Educational</span>
+                        </div>
+                        <a href="https://github.com/mogmog-0110/GraphWalker"
+                           class="card-link" target="_blank" rel="noopener">
+                            GitHub →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- かえるクレープへようこそ -->
+                <article class="card">
+                    <div class="card-image">
+                        <img src="images/kc_1.png" alt="かえるクレープへようこそ" onerror="this.parentElement.innerHTML='<div style=\'background: linear-gradient(135deg, rgba(139, 32, 32, 0.4), rgba(139, 32, 32, 0.2)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.7); font-size: 3rem;\'>🐸</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h2>かえるクレープへようこそ</h2>
+                        <p class="card-meta">2025年夏～ | チーム開発（2人）| 開発中（4ヶ月）</p>
+                        <p class="card-description">
+                            落ちぶれたクレープ屋の再建を目指す美少女ゲーム。大学在学中に美少女ゲームを作りたいという目標を叶えるために作成。慣れ親しんだSiv3DやUnityを使わず、マルチプラットフォームや収益化の面を考慮してGodot Engineで作成。コミックマーケット106にて体験版を無料頒布。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">GDScript</span>
+                            <span class="tag">Godot</span>
+                            <span class="tag">WIP</span>
+                        </div>
+                        <a href="https://drive.google.com/drive/folders/1dFSFwuPCTnQW0YqZxIDM-JfFe8dWzBm9?usp=sharing"
+                           class="card-link" target="_blank" rel="noopener">
+                            詳細 →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- VisualResourceLinkerForSiv3D -->
+                <article class="card">
+                    <div class="card-image">
+                        <img src="images/res_1.png" alt="VisualResourceLinkerForSiv3D" onerror="this.parentElement.innerHTML='<div style=\'background: linear-gradient(135deg, rgba(139, 32, 32, 0.4), rgba(139, 32, 32, 0.2)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.7); font-size: 3rem;\'>🔗</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h2>VisualResourceLinkerForSiv3D</h2>
+                        <p class="card-meta">2025年夏 | 個人開発 | 2日</p>
+                        <p class="card-description">
+                            Siv3Dのリソース管理をGUI上で自動的に行うツール。ウェブ上で配布されていた類似ツールがリンク切れしていたので自作。より一般的なソフトウェアとして扱えるよう、初めての試みとしてGUIをImGUIで作成。機能追加を視野に設計はMVC（Model, View, Controller）を採用。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">Siv3D</span>
+                            <span class="tag">ImGUI</span>
+                        </div>
+                        <a href="https://github.com/mogmog-0110/VisualResourceLinkerForSiv3D"
+                           class="card-link" target="_blank" rel="noopener">
+                            GitHub →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 脱出ゲーム（仮） -->
+                <article class="card">
+                    <div class="card-image">
+                        <img src="images/minge2025_1.png" alt="脱出ゲーム（仮）" onerror="this.parentElement.innerHTML='<div style=\'background: linear-gradient(135deg, rgba(139, 32, 32, 0.4), rgba(139, 32, 32, 0.2)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.7); font-size: 3rem;\'>🚪</div>'">
+                    </div>
+                    <div class="card-content">
+                        <h2>脱出ゲーム（仮）</h2>
+                        <p class="card-meta">2025年夏～ | チーム開発（3人）| 開発中（1ヶ月）</p>
+                        <p class="card-description">
+                            ループするサークル部室から脱出を目指すミステリーゲーム。最も直近で行っているチーム開発。シェーダーを用いてゲーム画面をCRTモニター風に演出している。見た目、ゲームシステム、シナリオにこだわった作品を目指し、現在鋭意制作中。会津大学の学園祭・蒼翔祭2024にて展示・無料頒布予定。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">Siv3D</span>
+                            <span class="tag">WIP</span>
                         </div>
                     </div>
-                    <hr style="margin: 40px 0;">
+                </article>
 
-                    <div class="project-item">
-                        <h3>劇場版ぱんドドド―ド・ドードド デストロイ オブ アイヅ ゆにばーしてぃ the ファイナル(2024夏)</h3>
-                        <div class="project-images">
-                            <img src="images/dodo_1.png" alt="画像1">
-                            <img src="images/dodo_2.png" alt="画像2">
-                            <img src="images/dodo_3.png" alt="画像3">
-                            <img src="images/dodo_4.png" alt="画像4">
-                        </div>
-                        <br>
-                        <table class="info-table">
-                            <tr>
-                                <th style="width: 20%;">ジャンル</th>
-                                <td>キャラクターを育成して、アクションに挑む新感覚おばか育成アクション</td>
-                            </tr>
-                            <tr>
-                                <th>開発期間</th>
-                                <td>2ヶ月</td>
-                            </tr>
-                            <tr>
-                                <th>開発人数</th>
-                                <td>6人</td>
-                            </tr>
-                            <tr>
-                                <th>開発環境</th>
-                                <td>C++, Siv3D</td>
-                            </tr>
-                            <tr>
-                                <th>担当箇所</th>
-                                <td>プロジェクトリーダー プログラミング全般（設計、マップ作製ツールなどなど）</td>
-                            </tr>
-                            <tr>
-                                <th>備考</th>
-                                <td>会津大学の企画開発部というゲーム制作サークルにてチーム開発。会津大学の学園祭・蒼翔祭2024にて展示・無料頒布。コミックマーケット105にて無料頒布</td>
-                            </tr>
-                        </table>
-                        
-                        <div style="margin-top: 15px;">
-                            <p>
-                                <strong>【この作品について】</strong><br>
-                                プロジェクトリーダーとして、チームメンバのサポートをしながら開発<br>
-                                夏のゲーム開発はゲーム開発初心者の参加も多く、どうやったら初心者がドロップアウトせず、継続的にプログラミングを行えるかをとにかく重視した<br>
-                                オブジェクト同士の縦の繋がり（継承）は複雑になりやすいので、横の繋がり（委譲）をメインに設計。Unityのようなコンポーネントシステムを参考に、アクションパートのブロックや敵やプレイヤーはすべて特定の機能を委譲させるだけで動くようにした。<br>
-                                またステージ制作などにはステージ制作用のツールを別途で作成し、誰でも参加できる土壌を作ることに注力した。<br>
-                                モンスターに支配された会津大学を企画開発部のマスコットキャラクターのぱんどどちゃんを育成し、モンスター退治をするというストーリー。基本的にはバカゲー<br>
-                            </p>
-                        </div>
+                <!-- AthenaRenderer -->
+                <article class="card">
+                    <div class="card-image">
+                        <div style="background: linear-gradient(135deg, rgba(139, 32, 32, 0.4), rgba(139, 32, 32, 0.2)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.7); font-size: 3rem;">🎨</div>
                     </div>
-                    <hr style="margin: 40px 0;">
-
-                    <div class="project-item">
-                        <a href="downloads/Vimove.zip"><h3>Vimove(2024冬)</a></h3>
-                        <div class="project-images">
-                            <img src="images/vimove_ 1.png" alt="画像1">
-                            <img src="images/vimove_2.png" alt="画像2">
-                            <img src="images/vimove_3.png" alt="画像3">
-                            <img src="images/vimove_4.png" alt="画像4">
+                    <div class="card-content">
+                        <h2>AthenaRenderer</h2>
+                        <p class="card-meta">個人開発 | レンダラー開発プロジェクト</p>
+                        <p class="card-description">
+                            DirectXを使用した自作レンダラー。レンダリングパイプラインの理解を深めるために作成。基本的なシェーディング、ライティング、テクスチャマッピングなどの機能を実装し、グラフィックスプログラミングの基礎を学習。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">DirectX</span>
+                            <span class="tag">Graphics</span>
                         </div>
-                        <br>
-                        <table class="info-table">
-                            <tr>
-                                <th style="width: 20%;">ジャンル</th>
-                                <td>Vimの操作方法でクリアを目指す迷路ゲ―</td>
-                            </tr>
-                            <tr>
-                                <th>開発期間</th>
-                                <td>1週間</td>
-                            </tr>
-                            <tr>
-                                <th>開発人数</th>
-                                <td>1人</td>
-                            </tr>
-                            <tr>
-                                <th>開発環境</th>
-                                <td>C++, Siv3D</td>
-                            </tr>
-                            <tr>
-                                <th>担当箇所</th>
-                                <td>全部</td>
-                            </tr>
-                            <tr>
-                                <th>備考</th>
-                                <td></td>
-                            </tr>
-                        </table>
-                        
-                        <div style="margin-top: 15px;">
-                            <p>
-                                <strong>【この作品について】</strong><br>
-                                Vimの上下左右移動（h, j, k, l）で迷路をクリアするだけのゲーム<br>
-                                Vimの操作感に慣れるにはどうすればいいかを考えた結果、ゲームを作ることにした<br>
-                                あらかじめ用意した数１０ステージと、全ステージクリア後に開放されるエンドレスモード（ランダムで迷路を生成する）で遊べる<br>
-                            </p>
-                        </div>
+                        <a href="https://github.com/mogmog-0110/AthenaRenderer"
+                           class="card-link" target="_blank" rel="noopener">
+                            GitHub →
+                        </a>
                     </div>
-                    <hr style="margin: 40px 0;">
+                </article>
 
-                    <div class="project-item">
-                        <a href="https://github.com/mogmog-0110/GraphWalker"><h3>GraphWalker(2025春)</a></h3>
-                        <div class="project-images">
-                            <img src="images/gw_1.png" alt="画像1">
-                            <img src="images/gw_2.png" alt="画像2">
-                            <img src="images/gw_4.png" alt="画像3">
-                            <img src="images/gw_3.png" alt="画像4">
-                        </div>
-                        <br>
-                        <table class="info-table">
-                            <tr>
-                                <th style="width: 20%;">ジャンル</th>
-                                <td>数式を打ち込んでグラフを作成し、ゴールを目指すパズルアクション</td>
-                            </tr>
-                            <tr>
-                                <th>開発期間</th>
-                                <td>1週間</td>
-                            </tr>
-                            <tr>
-                                <th>開発人数</th>
-                                <td>1人</td>
-                            </tr>
-                            <tr>
-                                <th>開発環境</th>
-                                <td>C++, Siv3D</td>
-                            </tr>
-                            <tr>
-                                <th>担当箇所</th>
-                                <td>全部</td>
-                            </tr>
-                            <tr>
-                                <th>備考</th>
-                                <td></td>
-                            </tr>
-                        </table>
-                        
-                        <div style="margin-top: 15px;">
-                            <p>
-                                <strong>【この作品について】</strong><br>
-                                Siv3Dの数式パース機能を利用して、当たり判定のあるグラフを作成し、ゴールを目指す<br>
-                                数学が苦手な後輩を見て、発案。グラフをもっと身近なものにしようという意図でアクションゲームにした。
-                                ステージ数は少ないながらも、高難易度ステージでは部員同士の議論によって、なんとか答えを導き出した。<br>
-                                
-                            </p>
-                        </div>
+                <!-- mser-cpp -->
+                <article class="card">
+                    <div class="card-image">
+                        <div style="background: linear-gradient(135deg, rgba(139, 32, 32, 0.4), rgba(139, 32, 32, 0.2)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.7); font-size: 3rem;">📊</div>
                     </div>
-                    <hr style="margin: 40px 0;">
-
-                    <div class="project-item">
-                        <a href="https://drive.google.com/drive/folders/1dFSFwuPCTnQW0YqZxIDM-JfFe8dWzBm9?usp=sharing"><h3>かえるクレープへようこそ(2025夏～)</a></h3>
-                        <div class="project-images">
-                            <img src="images/kc_1.png" alt="画像1">
-                            <img src="images/kc_2.png" alt="画像2">
-                            <img src="images/kc_3.png" alt="画像3">
-                            <img src="images/kc_4.png" alt="画像4">
+                    <div class="card-content">
+                        <h2>mser-cpp</h2>
+                        <p class="card-meta">個人開発 | 研究用ツール</p>
+                        <p class="card-description">
+                            研究に用いた定常状態検知アルゴリズムの実装。MSER（Marginal Standard Error Rule）をC++で実装。シミュレーションや計算プロセスが定常状態に達したかを統計的に判定するアルゴリズムで、研究データの解析に使用。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">Algorithm</span>
+                            <span class="tag">Research</span>
                         </div>
-                        <br>
-                        <table class="info-table">
-                            <tr>
-                                <th style="width: 20%;">ジャンル</th>
-                                <td>落ちぶれたクレープ屋の再建を目指す美少女ゲーム</td>
-                            </tr>
-                            <tr>
-                                <th>開発期間</th>
-                                <td>4か月</td>
-                            </tr>
-                            <tr>
-                                <th>開発人数</th>
-                                <td>2人</td>
-                            </tr>
-                            <tr>
-                                <th>開発環境</th>
-                                <td>GDScript, Godot Engine</td>
-                            </tr>
-                            <tr>
-                                <th>担当箇所</th>
-                                <td>企画 シナリオ プログラミング全般</td>
-                            </tr>
-                            <tr>
-                                <th>備考</th>
-                                <td>コミックマーケット106にて体験版を無料頒布</td>
-                            </tr>
-                        </table>
-                        
-                        <div style="margin-top: 15px;">
-                            <p>
-                                <strong>【この作品について】</strong><br>
-                                大学在学中に美少女ゲームを作りたいという目標を叶えるために作成している<br>
-                                慣れ親しんだSiv3DやUnityを使わなかったのはマルチプラットフォームや収益化の面で不利だと思ったので、Godot Engineで作成<br>
-                                現在まで至るまで作成しており、今年のコミックマーケット106にて体験版を配布した。目標は製品版をコミケや各種配信サイトにて配布すること<br>
-                                <br>
-                            </p>
-                        </div>
+                        <a href="https://github.com/mogmog-0110/mser-cpp"
+                           class="card-link" target="_blank" rel="noopener">
+                            GitHub →
+                        </a>
                     </div>
-                    <hr style="margin: 40px 0;">
+                </article>
+            </div>
+        </main>
+    </div>
 
-                    <div class="project-item">
-                        <a href="https://github.com/mogmog-0110/VisualResourceLinkerForSiv3D"><h3>VisualResourceLinkerForSiv3D(2025夏)</a></h3>
-                        <div class="project-images">
-                            <img src="images/res_1.png" alt="画像1">
-                            <img src="images/res_2.png" alt="画像2">
-                        </div>
-                        <br>
-                        <table class="info-table">
-                            <tr>
-                                <th style="width: 20%;">ジャンル</th>
-                                <td>Siv3Dのリソース管理をGUI上で自動的に行うツール</td>
-                            </tr>
-                            <tr>
-                                <th>開発期間</th>
-                                <td>2日</td>
-                            </tr>
-                            <tr>
-                                <th>開発人数</th>
-                                <td>1人</td>
-                            </tr>
-                            <tr>
-                                <th>開発環境</th>
-                                <td>C++, Siv3D, ImGUI</td>
-                            </tr>
-                            <tr>
-                                <th>担当箇所</th>
-                                <td>全部</td>
-                            </tr>
-                            <tr>
-                                <th>備考</th>
-                                <td></td>
-                            </tr>
-                        </table>
-                        
-                        <div style="margin-top: 15px;">
-                            <p>
-                                <strong>【この作品について】</strong><br>
-                                ウェブ上で配布されていたこんな感じのツールがリンク切れしていたので、自分で作成した<br>
-                                より一般的なソフトウェアとして扱えるように、初めての試みといて、GUIをImGUIで作成している<br>
-                                機能の追加を視野に入れて、設計はMVC(Model, View, Controller)を使った。それぞれはデータの処理、ユーザが直接触れる見た目の部分、ModelとView間でデータの引き渡しや機能の呼び出しを行っている
-                            </p>
-                        </div>
-                    </div>
-                    <hr style="margin: 40px 0;">
+    <!-- Three.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
 
-                    <div class="project-item">
-                        <h3>脱出ゲーム（仮）(2025夏～)</h3>
-                        <div class="project-images">
-                            <img src="images/minge2025_1.png" alt="画像1">
-                            <img src="images/minge2025_2.png" alt="画像2">
-                        </div>
-                        <br>
-                        <table class="info-table">
-                            <tr>
-                                <th style="width: 20%;">ジャンル</th>
-                                <td>ループするサークル部室から脱出を目指すミステリーゲーム</td>
-                            </tr>
-                            <tr>
-                                <th>開発期間</th>
-                                <td>1か月</td>
-                            </tr>
-                            <tr>
-                                <th>開発人数</th>
-                                <td>3人</td>
-                            </tr>
-                            <tr>
-                                <th>開発環境</th>
-                                <td>C++, Siv3D</td> 
-                            </tr>
-                            <tr>
-                                <th>担当箇所</th>
-                                <td>シナリオ プログラミング全般(UIデザイン、データ管理などなど)</td>
-                            </tr>
-                            <tr>
-                                <th>備考</th>
-                                <td>会津大学の企画開発部というゲーム制作サークルにてチーム開発途中。会津大学の学園祭・蒼翔祭2024にて展示・無料頒布予定。</td>
-                            </tr>
-                        </table>
-                        
-                        <div style="margin-top: 15px;">
-                            <p>
-                                <strong>【この作品について】</strong><br>
-                                最も直近で行っているチーム開発<br>
-                                現在、シェーダーを用いて、ゲーム画面をCRTモニター風に演出している。見た目と、ゲームシステム、シナリオにこだわった作品したい<br>
-                                鋭意制作中<br>
-                            </p>
-                        </div>
-                    </div>
-                    <hr style="margin: 40px 0;">
+    <!-- Three.js Postprocessing -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/ShaderPass.js"></script>
 
-                    <div class="footer">
-                        <p>&copy; Shiggy</p>
-                    </div>
-                </div>
-            </td>
-        </tr>
-    </table>
-
+    <!-- Custom Scripts -->
+    <script src="assets/js/CRTEffect.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/CoinLaundryMachine.js"></script>
+    <script src="assets/js/page-scene.js"></script>
 </body>
 </html>

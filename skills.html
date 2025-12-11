@@ -1,138 +1,244 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" style="background-color: #050508;">
 <head>
     <meta charset="UTF-8">
-    <title>スキル - 川村優弥のホームページ</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050508">
+    <title>Skills | Shiggy</title>
+    <meta name="description" content="川村優弥のスキル">
+
+    <!-- Prevent white flash during page transition -->
+    <style>
+        html, body {
+            background-color: #050508 !important;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body data-page="skills">
+    <!-- WebGL Canvas -->
+    <div id="cosmic-canvas"></div>
 
-    <table class="site-layout">
-        <tr>
-            <td class="navigation-cell">
-                <ul class="side-navigation">
-                    <li><a href="index.html"><span class="color-pink">●</span>トップ</a></li>
-                    <li><a href="portfolio.html"><span class="color-green">●</span>ポートフォリオ</a></li>
-                    <li><a href="research.html"><span class="color-blue">●</span>研究</a></li>
-                    <li><a href="creation.html"><span class="color-purple">●</span>創作</a></li>
-                    <li><a href="skills.html"><span class="color-orange">●</span>スキル</a></li>
-                </ul>
-            </td>
+    <!-- UI Overlay -->
+    <div class="ui-overlay">
+        <!-- Navigation -->
+        <nav>
+            <div class="nav-logo">
+                <a href="index.html">Shiggy</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="creation.html">Creation</a></li>
+                <li><a href="skills.html" class="active">Skills</a></li>
+            </ul>
+        </nav>
 
-            <td>
-                <div class="main-content">
-                    <h1>川村優弥のホームページ</h1>
-                    <hr>
+        <!-- Content Area -->
+        <main class="page-content">
+            <h1 class="page-title">Skills</h1>
 
-                    <h2>スキル</h2>
-                    <p>これまでに触れてきた技術やツールについてです。習熟度は自己評価によるものです。</p>
-                    
-                    <h3>プログラミング言語</h3>
-                    <table class="info-table">
-                        <tr>
-                            <th style="width: 25%;">技術名</th>
-                            <th style="width: 25%;">習熟度</th>
-                            <th>コメント</th>
-                        </tr>
-                        <tr>
-                            <td>C++</td>
-                            <td>★★★★☆</td>
-                            <td>大学の授業に加え、Siv3Dを用いた複数のチーム開発・個人開発でメイン言語として使用。オブジェクト指向やメモリ管理を意識した設計を心がけています。</td>
-                        </tr>
-                        <tr>
-                            <td>C#</td>
-                            <td>★★☆☆☆</td>
-                            <td>Unityを用いたチーム開発で使用。基本的な文法を理解し、コンポーネントベースのゲーム制作が可能です。</td>
-                        </tr>
-                        
-                        <tr>
-                            <td>JavaScript</td>
-                            <td>★★★☆☆</td>
-                            <td>会津大学で毎年夏に開催されるコンピュータサイエンスサマーキャンプというイベントのプロジェクトリーダーを二年連続で務めており、その際、全国の高校生にJavaScriptを用いたゲーム開発を教えています。
-                            </td>
-                        </tr>
-                    </table>
+            <div class="section-block">
+                <h2>プログラミング言語</h2>
+                <p style="margin-bottom: 1.5rem; font-size: 0.9rem;">大学での学習とプロジェクト開発を通じて習得した言語です。</p>
 
-                    <h3>フレームワーク・エンジン</h3>
-                    <table class="info-table">
-                        <tr>
-                            <th style="width: 25%;">技術名</th>
-                            <th style="width: 25%;">習熟度</th>
-                            <th>コメント</th>
-                        </tr>
-                        <tr>
-                            <td>Siv3D</td>
-                            <td>★★★★☆</td>
-                            <td>複数の作品でメインのフレームワークとして使用。2D描画、サウンド、GUIなど幅広い機能を扱うことができます。</td>
-                        </tr>
-                        <tr>
-                            <td>Unity</td>
-                            <td>★★☆☆☆</td>
-                            <td>チーム開発での制作経験があります。基本的なコンポーネントやアセットの管理が可能です。</td>
-                        </tr>
-                        <tr>
-                            <td>Godot Engine</td>
-                            <td>★★☆☆☆</td>
-                            <td>現在、ゲームの制作で学習・使用中です。ノードシステムやGDScriptの基本的な使い方を理解しています。</td>
-                        </tr>
-                    </table>
-
-                    <h3>ライブラリ・API</h3>
-                    <table class="info-table">
-                        <tr>
-                            <th style="width: 25%;">技術名</th>
-                            <th style="width: 25%;">習熟度</th>
-                            <th>コメント</th>
-                        </tr>
-                        <tr>
-                            <td>ImGUI</td>
-                            <td>★★☆☆☆</td>
-                            <td>自作ツールのGUI実装で使用しました。基本的なUI部品を配置し、インタラクティブな画面を作成できます。</td>
-                        </tr>
-                        <tr>
-                            <td>OpenCV</td>
-                            <td>★☆☆☆☆</td>
-                            <td>Siv3D経由で利用。基礎的な画像処理の概念に触れました。</td>
-                        </tr>
-                        <tr>
-                            <td>DirectX</td>
-                            <td>★★☆☆☆</td>
-                            <td>現在学習中で、将来的にはゲームエンジンの自作も考えています。</td>
-                        </tr>
-                        <tr>
-                            <td>OpenGL</td>
-                            <td>★★★☆☆</td>
-                            <td>大学のCG論にて、TAとして受講生に教えた経験があります。CGやシェーダーなどの基本的な概念を理解しています</td> </tr>
-                    </table>
-
-                    <h3>ツール・その他</h3>
-                    <table class="info-table">
-                        <tr>
-                            <th style="width: 25%;">技術名</th>
-                            <th style="width: 25%;">習熟度</th>
-                            <th>コメント</th>
-                        </tr>
-                        <tr>
-                            <td>Git / GitHub</td>
-                            <td>★★★☆☆</td>
-                            <td>チーム開発でのバージョン管理に必須ツールとして使用。基本的なコマンド(commit, push, pull, branch, merge)を扱えます。</td>
-                        </tr>
-                        <tr>
-                            <td>プロジェクトリーダー経験</td>
-                            <td>★★★☆☆</td>
-                            <td>複数回のチーム開発でリーダーを担当。タスク管理、進捗確認、メンバーのサポート、設計方針の決定などを行いました。昨年度は会津大学の企画開発部というゲーム制作サークルで部長を務めていました。</td>
-                        </tr>
-                    </table>
-                    
-                    <hr>
-                    
-                    <div class="footer">
-                        <p>&copy; Shiggy</p>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>C++</span>
+                        <span class="skill-level">★★★★☆</span>
                     </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 85%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
+                        Siv3Dを用いた複数のチーム・個人開発でメイン言語として使用。オブジェクト指向やメモリ管理を意識した設計を心がけています。
+                    </p>
                 </div>
-            </td>
-        </tr>
-    </table>
 
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>JavaScript</span>
+                        <span class="skill-level">★★★☆☆</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 70%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
+                        会津大学で毎年夏に開催されるコンピュータサイエンスサマーキャンプのプロジェクトリーダーを二年連続で務め、全国の高校生にJavaScriptを用いたゲーム開発を指導しています。
+                    </p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>C#</span>
+                        <span class="skill-level">★★☆☆☆</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 55%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
+                        Unityを用いたチーム開発で使用。基本的な文法とコンポーネントベースのゲーム制作が可能です。
+                    </p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Python</span>
+                        <span class="skill-level">★★☆☆☆</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 50%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
+                        研究やゲーム開発時の開発支援ツール、可視化ツールでよく用いる。データ分析や簡易スクリプト作成に活用。
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-block">
+                <h2>フレームワーク・ゲームエンジン</h2>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Siv3D</span>
+                        <span class="skill-level">★★★★☆</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 80%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
+                        複数の作品でメインフレームワークとして使用。2D描画、サウンド、GUI、物理演算など幅広い機能を扱えます。
+                    </p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Unity</span>
+                        <span class="skill-level">★★☆☆☆</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 55%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
+                        チーム開発での制作経験あり。コンポーネント、アセット管理、シーン遷移などの基本を習得。
+                    </p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Godot Engine</span>
+                        <span class="skill-level">★★☆☆☆</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 50%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
+                        現在学習中。ノードシステムとGDScriptの基本的な使い方を理解しています。
+                    </p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Three.js / WebGL</span>
+                        <span class="skill-level">★☆☆☆☆</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 30%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
+                        このポートフォリオサイトで使用。基本的な3Dレンダリング、シェーダー、ポストプロセッシングを実装。
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-block">
+                <h2>ライブラリ・API</h2>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>ImGUI</span>
+                        <span class="skill-level">★★☆☆☆</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 55%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
+                        自作ツールのGUI実装で使用。基本的なUI部品を配置し、インタラクティブな画面を作成できます。
+                    </p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>DirectX</span>
+                        <span class="skill-level">★★★☆☆</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 65%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
+                        レンダラーの開発で使用。基本的なレンダリングパイプラインとシェーダーの実装が可能です。
+                    </p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>OpenGL</span>
+                        <span class="skill-level">★★☆☆☆</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" style="width: 50%;"></div>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
+                        計算幾何学プロジェクトで使用。基本的な3D描画とシェーダーの実装が可能です。
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-block">
+                <h2>開発ツール</h2>
+                <ul style="line-height: 2;">
+                    <li><strong>Git / GitHub</strong> - バージョン管理、チーム開発での使用経験多数</li>
+                    <li><strong>Visual Studio / VS Code</strong> - メイン開発環境として日常的に使用</li>
+                    <li><strong>CMake</strong> - C++プロジェクトのビルド管理</li>
+                    <li><strong>Aseprite</strong> - ドット絵作成、ゲーム用グラフィック制作</li>
+                    <li><strong>Vim / Neovim</strong> - テキスト編集、設定ファイルのカスタマイズ</li>
+                </ul>
+            </div>
+
+            <div class="section-block">
+                <h2>その他のスキル</h2>
+                <ul style="line-height: 2;">
+                    <li><strong>リーダー経験</strong> - 会津大学のゲーム開発サークル「企画開発部」の部長を務め、プロジェクトリーダーとして複数のチーム開発をマネジメント</li>
+                    <li><strong>教育・指導</strong> - 会津大学で毎年夏に開催されるコンピュータサイエンスサマーキャンプのプロジェクトリーダーを二年連続で務め、全国の高校生にJavaScriptを用いたゲーム開発を指導。また、大学の演習授業（Computer Graphics、Operating System、Software Engineering）でティーチングアシスタントを経験</li>
+                    <li><strong>シナリオ執筆</strong> - ゲームストーリーやキャラクター設定の作成</li>
+                    <li><strong>UI/UXデザイン</strong> - ゲーム内UIの設計と実装</li>
+                    <li><strong>ドット絵制作</strong> - キャラクター、背景、アイテムなどの作成</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <!-- Three.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+
+    <!-- Three.js Postprocessing -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/ShaderPass.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="assets/js/CRTEffect.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/CoinLaundryMachine.js"></script>
+    <script src="assets/js/page-scene.js"></script>
 </body>
 </html>

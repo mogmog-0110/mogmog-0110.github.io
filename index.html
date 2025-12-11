@@ -1,61 +1,158 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" style="background-color: #050508;">
 <head>
     <meta charset="UTF-8">
-    <title>川村優弥のホームページ</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050508">
+    <title>Shiggy's Portfolio</title>
+    <meta name="description" content="川村優弥のポートフォリオサイト - ソフトウェアエンジニア / 研究者">
+    <meta name="author" content="川村優弥 (Shiggy)">
+
+    <!-- Prevent white flash during page transition -->
+    <style>
+        html, body {
+            background-color: #050508 !important;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader">
+            <div class="washing-loader"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
 
-    <table class="site-layout">
-        <tr>
-            <td class="navigation-cell">
-                <ul class="side-navigation">
-                    <li><a href="index.html"><span class="color-pink">●</span>トップ</a></li>
-                    <li><a href="portfolio.html"><span class="color-green">●</span>ポートフォリオ</a></li>
-                    <li><a href="research.html"><span class="color-blue">●</span>研究</a></li>
-                    <li><a href="creation.html"><span class="color-purple">●</span>創作</a></li>
-                    <li><a href="skills.html"><span class="color-orange">●</span>スキル</a></li>
-                </ul>
-            </td>
+    <!-- UI Overlay -->
+    <div class="ui-overlay">
+        <!-- Navigation -->
+        <nav>
+            <div class="nav-logo">
+                <a href="index.html">Shiggy</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="creation.html">Creation</a></li>
+                <li><a href="skills.html">Skills</a></li>
+            </ul>
+        </nav>
 
-            <td>
-                <div class="main-content" style="padding: 0 20px;"> <h1>川村優弥のホームページ</h1>
-                    <hr>
-                
-                    <h2>ごあいさつ</h2>
-                    <p>
-                        こんにちは。川村優弥の個人サイトへようこそ。<br>
-                        このサイトは、これまでに制作したソフトウェアや、大学での研究、趣味の創作活動などを記録する場所です。
-                    </p>
-                    <table class="info-table">
-                        <tr>
-                            <th>名前</th>
-                            <td>川村優弥</td> 
-                        </tr>
-                        <tr>
-                            <th>よく使うハンドルネーム</th>
-                            <td>Shiggy</td>
-                        </tr>
-                        <tr>
-                            <th>所属</th>
-                            <td>会津大学 コンピュータ理工学部・コンピュータ理工学科</td>
-                        </tr>
-                        <tr>
-                            <th>GitHub</th>
-                            <td><a href="https://github.com/mogmog-0110" target="_blank">mogmog-0110</a></td>
-                        </tr>
-                        </table>
-                
-                    <hr>
-                
-                    <div class="footer">
-                        <p>&copy; Shiggy</p>
-                    </div>
+        <!-- Hero Content -->
+        <main class="hero-text">
+            <h1>Shiggy's Portfolio</h1>
+            <p class="subtitle">Welcome to my space</p>
+        </main>
+    </div>
+
+    <!-- WebGL Canvas -->
+    <div id="cosmic-canvas"></div>
+
+    <!-- About Section (revealed on scroll) -->
+    <div class="about-section">
+        <div class="about-content">
+            <h2>About Me</h2>
+            <p>
+                こんにちは。川村優弥の個人サイトへようこそ。<br>
+                このサイトは、これまでに制作したソフトウェアや、大学での研究、趣味の創作活動などを記録する場所です。
+            </p>
+            <div class="about-info">
+                <div class="info-item">
+                    <span class="info-label">名前</span>
+                    <span class="info-value">
+                        <a href="#about-detail" style="color: var(--text-light); text-decoration: none; cursor: pointer; border-bottom: 1px dotted var(--washer-red);" onclick="document.getElementById('about-detail-modal').style.display='flex'; return false;">川村優弥</a>
+                    </span>
                 </div>
-            </td>
-        </tr>
-    </table>
+                <div class="info-item">
+                    <span class="info-label">性別</span>
+                    <span class="info-value">♂</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">ハンドルネーム</span>
+                    <span class="info-value">Shiggy</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">所属</span>
+                    <span class="info-value">会津大学 コンピュータ理工学部</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">GitHub</span>
+                    <span class="info-value">
+                        <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">mogmog-0110</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- About Detail Modal -->
+    <div id="about-detail-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 8, 0.95); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(10px);" onclick="this.style.display='none'">
+        <div style="background: rgba(20, 20, 30, 0.9); border: 1px solid rgba(139, 32, 32, 0.5); border-radius: 12px; padding: 2rem; max-width: 600px; margin: 2rem; max-height: 80vh; overflow-y: auto;" onclick="event.stopPropagation()">
+            <h2 style="color: var(--text-light); margin-bottom: 1.5rem; border-bottom: 2px solid rgba(139, 32, 32, 0.5); padding-bottom: 0.75rem;">川村優弥について</h2>
+
+            <div style="margin-bottom: 1.5rem;">
+                <h3 style="color: var(--washer-red); font-size: 1.1rem; margin-bottom: 0.5rem;">趣味</h3>
+                <p style="color: var(--text-dim); line-height: 1.8;">小説を読む、書く</p>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <h3 style="color: var(--washer-red); font-size: 1.1rem; margin-bottom: 0.5rem;">好きな本</h3>
+                <ul style="color: var(--text-dim); line-height: 1.8; margin-left: 1.5rem;">
+                    <li>ハムレット（シェイクスピア）</li>
+                    <li>愛人-AIREN-（田中ユタカ）</li>
+                    <li>官能小説用語辞典</li>
+                </ul>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <h3 style="color: var(--washer-red); font-size: 1.1rem; margin-bottom: 0.5rem;">好きなゲーム</h3>
+                <ul style="color: var(--text-dim); line-height: 1.8; margin-left: 1.5rem;">
+                    <li>グリザイアの果実</li>
+                    <li>この世の果てで恋を唄う少女~YUNO~</li>
+                    <li>オプーナ</li>
+                    <li>ゼノギアス</li>
+                </ul>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <h3 style="color: var(--washer-red); font-size: 1.1rem; margin-bottom: 0.5rem;">はまってること</h3>
+                <ul style="color: var(--text-dim); line-height: 1.8; margin-left: 1.5rem;">
+                    <li>東方の同人CDを集めて聴く</li>
+                    <li>研究室から朝帰りする</li>
+                    <li>Beatboxを聴く</li>
+                </ul>
+            </div>
+
+            <button onclick="document.getElementById('about-detail-modal').style.display='none'" style="background: rgba(139, 32, 32, 0.8); border: 1px solid rgba(139, 32, 32, 1); color: var(--text-light); padding: 0.75rem 2rem; border-radius: 8px; cursor: pointer; font-size: 1rem; margin-top: 1rem; transition: background 0.3s ease;" onmouseover="this.style.background='rgba(139, 32, 32, 1)'" onmouseout="this.style.background='rgba(139, 32, 32, 0.8)'">
+                閉じる
+            </button>
+        </div>
+    </div>
+
+    <!-- Three.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+
+    <!-- Three.js Postprocessing (for CRT effect) -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/ShaderPass.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="assets/js/CRTEffect.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/CoinLaundryMachine.js"></script>
+    <script src="assets/js/cosmic-scene.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
