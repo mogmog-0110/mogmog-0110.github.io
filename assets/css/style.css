@@ -92,6 +92,12 @@ body {
     -webkit-overflow-scrolling: touch;  /* Smooth scrolling on iOS */
 }
 
+/* Enable pointer events for pages with content (portfolio, research, creation, skills) */
+body[data-page] .ui-overlay {
+    pointer-events: auto;
+    touch-action: pan-y;
+}
+
 /* Navigation */
 nav,
 .nav-links a {
