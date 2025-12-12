@@ -5,6 +5,20 @@ let cosmicScene;
 let particleSystem;
 let coinLaundryMachine;
 
+// Update washing machine position based on device width
+function updateWashingMachinePosition() {
+    if (!coinLaundryMachine) return;
+
+    const isMobile = window.innerWidth <= 1024;
+    if (isMobile) {
+        // Center the washing machine on mobile/tablet
+        coinLaundryMachine.position.set(0, 0.5, 0);
+    } else {
+        // Move to the left on desktop
+        coinLaundryMachine.position.set(-4.2, 0, 0);
+    }
+}
+
 function init() {
     // Show loading screen
     const loadingScreen = document.getElementById('loading-screen');
@@ -26,9 +40,12 @@ function init() {
 
         // Create coin laundry machine
         coinLaundryMachine = new CoinLaundryMachine();
-        // Position washing machine to the left
-        coinLaundryMachine.position.set(-4.2, 0, 0);  // Move to the left
+        // Position washing machine based on device width
+        updateWashingMachinePosition();
         cosmicScene.addWashingMachine(coinLaundryMachine);
+
+        // Update position on resize
+        window.addEventListener('resize', updateWashingMachinePosition);
 
         // Hide loading screen after a short delay
         setTimeout(() => {

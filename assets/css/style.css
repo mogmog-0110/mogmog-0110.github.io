@@ -89,6 +89,7 @@ body {
     z-index: 10;
     overflow-y: auto;  /* Enable scrolling */
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;  /* Smooth scrolling on iOS */
 }
 
 /* Navigation */
@@ -280,6 +281,7 @@ nav {
     padding-top: 6rem;
     min-height: calc(100vh + 100px);  /* Ensure content is taller than viewport */
     pointer-events: auto;
+    touch-action: pan-y;  /* Enable vertical touch scrolling */
 }
 
 .page-title {
@@ -494,6 +496,7 @@ nav {
 @media (max-width: 1024px) {
     .hero-text {
         right: 5%;
+        top: 60%;  /* Move title down on tablets */
     }
 
     .hero-text h1 {
@@ -512,6 +515,11 @@ nav {
     .page-title {
         font-size: 2rem;
     }
+
+    /* Enable touch scrolling for tablets */
+    .ui-overlay {
+        touch-action: pan-y;
+    }
 }
 
 @media (max-width: 768px) {
@@ -529,6 +537,7 @@ nav {
 
     .hero-text {
         right: 50%;
+        top: 65%;  /* Move title further down on mobile */
         transform: translate(50%, -50%);
         text-align: center;
     }
@@ -574,6 +583,11 @@ nav {
 
     .section-block h2 {
         font-size: 1.3rem;
+    }
+
+    /* Enable touch scrolling for mobile */
+    .ui-overlay {
+        touch-action: pan-y;
     }
 }
 
