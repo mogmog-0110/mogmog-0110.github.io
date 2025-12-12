@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>研究 - 川村優弥のホームページ</title>
+    <link rel="stylesheet" href="style.old.css">
+</head>
+<body>
+
+    <table class="site-layout">
+        <tr>
+            <td class="navigation-cell">
+                <ul class="side-navigation">
+                    <li><a href="index.html"><span class="color-pink">●</span>トップ</a></li>
+                    <li><a href="portfolio.html"><span class="color-green">●</span>ポートフォリオ</a></li>
+                    <li><a href="research.html"><span class="color-blue">●</span>研究</a></li>
+                    <li><a href="creation.html"><span class="color-purple">●</span>創作</a></li>
+                    <li><a href="skills.html"><span class="color-orange">●</span>スキル</a></li>
+                </ul>
+            </td>
+
+            <td>
+                <div class="main-content">
+                    <h1>川村優弥のホームページ</h1>
+                    <hr>
+
+                    <h2>研究</h2>
+                    
+                    <h3>研究テーマ：自己組織化による環状化合物の選択的生成に関するシミュレーション</h3>
+                    
+                    <div class="research-images">
+                        <img src="images/research1.png" alt="研究内容の画像1">
+                        <img src="images/research2.png" alt="研究内容の画像2">
+                    </div>
+
+                    <div style="margin-top: 15px;">
+                        <h4>研究の背景・目的</h4>
+                        <p>
+                            特定の分子が自発的に集まり、秩序だった構造を形成する「自己組織化」という現象がある。この研究では、ある化学反応において、なぜ完璧な選択性で四角形の環状化合物だけが生成するのか、その不思議な現象の起源を明らかにすることを目指している。
+                        </p>
+
+                        <ul>
+                            <li>なぜ直線やその他の構造ではなく、四角形だけが選択的に作られるのか。</li>
+                            <li>なぜ原料の濃度を高くしても、選択性が落ちずに効率よく反応が進むのか。</li>
+                        </ul>
+
+                        <p>
+                            <strong>※選択性とは？</strong><br>
+                            化学反応における「選択性」とは、いくつかの反応が起こりうる状況で、特定の化合物だけが優先的に作られる性質のことである。
+                        </p>
+
+                        <h4>アプローチ</h4>
+                        <p>
+                            この研究における私の役割は、この化学現象を再現するためのシミュレーションモデルを設計し、C++と物理演算ライブラリ「PhysX」を用いて実行・分析することである。
+                            この複雑な化学反応のメカニズムを解明するため、現実の分子を単純なモデルに置き換え、それらが空間内でどのように振る舞うかをシミュレーションで観察する。<br>
+                            このシミュレーションには、C++で利用できる物理演算ライブラリ「PhysX」を用いて、ユニット同士の相互作用や構造形成の過程を追跡していく計画である。
+                            具体的には、現実の分子を単純なモデルに置き換え、いくつかの物理的な制約（ルール）を与えた状態でシミュレーションを行う。
+                        </p>
+
+                        <h4>このシミュレーションで分かること</h4>
+                        <p>
+                            このシミュレーションの重要な点は、「単純なルールだけで、現実世界で観測されるような高い選択性が再現できるか」を検証することにある。もし、シンプルなモデルでも四角形構造が優先的に生成されれば、その完璧な選択性は、分子の複雑な化学的性質ではなく、基本的な「形」と「結合ルール」に起因するという強力な証拠になる。<br>
+                            また、シミュレーション空間内のユニットの密度を変化させることで、「高濃度でも選択性が落ちない理由」についても、物理的な観点から明らかにできると期待している。
+                        </p>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="footer">
+                        <p>&copy; Shiggy</p>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
