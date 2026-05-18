@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#050508">
     <title>Skills | Shiggy</title>
-    <meta name="description" content="川村優弥のスキル">
+    <meta name="description" content="川村優弥のスキル。各技術に実際の作品・リポジトリへのリンクを付けています。">
 
-    <!-- Prevent white flash during page transition -->
     <style>
         html, body {
             background-color: #050508 !important;
@@ -16,226 +15,231 @@
         }
     </style>
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body data-page="skills">
-    <!-- WebGL Canvas -->
     <div id="cosmic-canvas"></div>
 
-    <!-- UI Overlay -->
     <div class="ui-overlay">
-        <!-- Navigation -->
         <nav>
             <div class="nav-logo">
                 <a href="index.html">Shiggy</a>
             </div>
             <ul class="nav-links">
                 <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="engine.html">Engine</a></li>
                 <li><a href="research.html">Research</a></li>
                 <li><a href="creation.html">Creation</a></li>
                 <li><a href="skills.html" class="active">Skills</a></li>
             </ul>
         </nav>
 
-        <!-- Content Area -->
         <main class="page-content">
             <h1 class="page-title">Skills</h1>
 
             <div class="section-block">
+                <p style="line-height: 1.9;">
+                    ★ではなくて、その技術で実際に何を作ったかを並べてあります。各技術に、見てもらえる作品・リポジトリ・論文へのリンクを付けています。
+                </p>
+            </div>
+
+            <!-- Languages -->
+            <div class="section-block">
                 <h2>プログラミング言語</h2>
-                <p style="margin-bottom: 1.5rem; font-size: 0.9rem;">大学での学習とプロジェクト開発を通じて習得した言語です。</p>
 
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>C++</span>
-                        <span class="skill-level">★★★★☆</span>
+                <div class="evidence-item">
+                    <div class="evidence-tech">C++ (C++20)</div>
+                    <div class="evidence-body">
+                        自作ゲームエンジン <a href="engine.html">MitiruEngine</a>（header-only / 47 モジュール / 700+ ヘッダ）、自作レンダラー <a href="https://github.com/mogmog-0110/AthenaRenderer" target="_blank" rel="noopener">AthenaRenderer</a>、Siv3D を用いた複数のチーム・個人開発でメイン言語として使用。BDA 2025 投稿論文（<a href="research.html">研究ページ</a>）の物理シミュレーションも C++ + PhysX。
                     </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar-fill" style="width: 85%;"></div>
-                    </div>
-                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
-                        Siv3Dを用いた複数のチーム・個人開発でメイン言語として使用。オブジェクト指向やメモリ管理を意識した設計を心がけています。
-                    </p>
                 </div>
 
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>JavaScript</span>
-                        <span class="skill-level">★★★☆☆</span>
+                <div class="evidence-item">
+                    <div class="evidence-tech">GDScript</div>
+                    <div class="evidence-body">
+                        現在進行中の本気作品 <a href="kaerucrape.html">かえるクレープへようこそ</a> を Godot 4 で実装中。シナリオ進行、UI 構築、セーブ／ロードまで一通り。
                     </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar-fill" style="width: 70%;"></div>
-                    </div>
-                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
-                        会津大学で毎年夏に開催されるコンピュータサイエンスサマーキャンプのプロジェクトリーダーを二年連続で務め、全国の高校生にJavaScriptを用いたゲーム開発を指導しています。
-                    </p>
                 </div>
 
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>C#</span>
-                        <span class="skill-level">★★☆☆☆</span>
+                <div class="evidence-item">
+                    <div class="evidence-tech">JavaScript</div>
+                    <div class="evidence-body">
+                        会津大学・コンピュータサイエンスサマーキャンプの<strong>プロジェクトリーダーを 2 年連続で担当</strong>、全国の高校生に JavaScript を用いたゲーム開発を指導。本ポートフォリオサイトの WebGL / Three.js / ポストプロセシングも JavaScript。
                     </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar-fill" style="width: 55%;"></div>
-                    </div>
-                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
-                        Unityを用いたチーム開発で使用。基本的な文法とコンポーネントベースのゲーム制作が可能です。
-                    </p>
                 </div>
 
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Python</span>
-                        <span class="skill-level">★★☆☆☆</span>
+                <div class="evidence-item">
+                    <div class="evidence-tech">C#</div>
+                    <div class="evidence-body">
+                        Unity でのチーム制作（<em>ぐるぐる☆しゅがーふぁくとりー</em>）。コンポーネント設計とシーン管理を担当。
                     </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar-fill" style="width: 50%;"></div>
+                </div>
+
+                <div class="evidence-item">
+                    <div class="evidence-tech">Python</div>
+                    <div class="evidence-body">
+                        研究データの解析・可視化、ゲーム開発時の補助スクリプトで日常使用。MitiruEngine では API カタログ自動生成・モジュール依存解析・スタイル lint・高速コンパイルチェックなどの<a href="https://github.com/mogmog-0110/MitiruEngine/tree/main/tools" target="_blank" rel="noopener">ツール群</a>を Python で書いている。
                     </div>
-                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
-                        研究やゲーム開発時の開発支援ツール、可視化ツールでよく用いる。データ分析や簡易スクリプト作成に活用。
-                    </p>
+                </div>
+
+                <div class="evidence-item">
+                    <div class="evidence-tech">GLSL / HLSL</div>
+                    <div class="evidence-body">
+                        制作中の脱出ゲームで CRT モニター風シェーダー、本ポートフォリオの宇宙背景・CRT エフェクトを実装。AthenaRenderer のシェーディング・ライティングも自前実装。
+                    </div>
                 </div>
             </div>
 
+            <!-- Engines & Frameworks -->
             <div class="section-block">
-                <h2>フレームワーク・ゲームエンジン</h2>
+                <h2>ゲームエンジン・フレームワーク</h2>
 
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Siv3D</span>
-                        <span class="skill-level">★★★★☆</span>
+                <div class="evidence-item">
+                    <div class="evidence-tech">Siv3D</div>
+                    <div class="evidence-body">
+                        <em>Down into...</em> / <em>416</em> / <em>劇場版ぱんドドド</em> / <em>Vimove</em> / <em>GraphWalker</em> / <em>VoronoiShortestPathSolver</em> 等、複数の作品でメイン採用。2D 描画、サウンド、GUI、物理、数式パース まで活用。
                     </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar-fill" style="width: 80%;"></div>
-                    </div>
-                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
-                        複数の作品でメインフレームワークとして使用。2D描画、サウンド、GUI、物理演算など幅広い機能を扱えます。
-                    </p>
                 </div>
 
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Unity</span>
-                        <span class="skill-level">★★☆☆☆</span>
+                <div class="evidence-item">
+                    <div class="evidence-tech">Godot Engine</div>
+                    <div class="evidence-body">
+                        <a href="kaerucrape.html">かえるクレープ</a>を実装中。マルチプラットフォーム書き出しと商用利用のしやすさから採用。
                     </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar-fill" style="width: 55%;"></div>
-                    </div>
-                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
-                        チーム開発での制作経験あり。コンポーネント、アセット管理、シーン遷移などの基本を習得。
-                    </p>
                 </div>
 
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Godot Engine</span>
-                        <span class="skill-level">★★☆☆☆</span>
+                <div class="evidence-item">
+                    <div class="evidence-tech">Unity</div>
+                    <div class="evidence-body">
+                        <em>ぐるぐる☆しゅがーふぁくとりー</em>（チーム3人 / 2ヶ月）。コンポーネント・アセット管理・シーン遷移までの基本を経験。
                     </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar-fill" style="width: 50%;"></div>
-                    </div>
-                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
-                        現在学習中。ノードシステムとGDScriptの基本的な使い方を理解しています。
-                    </p>
                 </div>
 
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Three.js / WebGL</span>
-                        <span class="skill-level">★☆☆☆☆</span>
+                <div class="evidence-item">
+                    <div class="evidence-tech">Three.js / WebGL</div>
+                    <div class="evidence-body">
+                        本ポートフォリオサイトの宇宙背景・パーティクル・CRT ポストプロセシング・洗濯機モデル など、全て自前実装。
                     </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar-fill" style="width: 30%;"></div>
-                    </div>
-                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
-                        このポートフォリオサイトで使用。基本的な3Dレンダリング、シェーダー、ポストプロセッシングを実装。
-                    </p>
                 </div>
             </div>
 
+            <!-- Graphics & Systems -->
             <div class="section-block">
-                <h2>ライブラリ・API</h2>
+                <h2>グラフィックス・システムプログラミング</h2>
 
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>ImGUI</span>
-                        <span class="skill-level">★★☆☆☆</span>
+                <div class="evidence-item">
+                    <div class="evidence-tech">DirectX (DX11 / DX12)</div>
+                    <div class="evidence-body">
+                        <a href="https://github.com/mogmog-0110/AthenaRenderer" target="_blank" rel="noopener">AthenaRenderer</a> でレンダリングパイプライン・シェーディング・ライティング・テクスチャマッピングを実装。MitiruEngine の DX11 / DX12 バックエンドも自作。
                     </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar-fill" style="width: 55%;"></div>
-                    </div>
-                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
-                        自作ツールのGUI実装で使用。基本的なUI部品を配置し、インタラクティブな画面を作成できます。
-                    </p>
                 </div>
 
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>DirectX</span>
-                        <span class="skill-level">★★★☆☆</span>
+                <div class="evidence-item">
+                    <div class="evidence-tech">Vulkan / OpenGL / WebGL</div>
+                    <div class="evidence-body">
+                        MitiruEngine で <code>IDevice</code> 抽象の裏に Vulkan / OpenGL / WebGL バックエンドを実装。プラットフォームに応じてランタイムで切り替える設計。
                     </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar-fill" style="width: 65%;"></div>
-                    </div>
-                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
-                        レンダラーの開発で使用。基本的なレンダリングパイプラインとシェーダーの実装が可能です。
-                    </p>
                 </div>
 
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>OpenGL</span>
-                        <span class="skill-level">★★☆☆☆</span>
+                <div class="evidence-item">
+                    <div class="evidence-tech">PhysX</div>
+                    <div class="evidence-body">
+                        BDA 2025 投稿論文の<a href="research.html">剛体物理シミュレーション</a>を PhysX + C++ で実装。剛体・衝突・拘束・統計解析まで。
                     </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar-fill" style="width: 50%;"></div>
+                </div>
+
+                <div class="evidence-item">
+                    <div class="evidence-tech">CEF (Chromium Embedded Framework)</div>
+                    <div class="evidence-body">
+                        MitiruEngine の Mode B で C++ 本体と CEF + JS UI の signal-only bridge を設計・実装。
                     </div>
-                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-dim);">
-                        計算幾何学プロジェクトで使用。基本的な3D描画とシェーダーの実装が可能です。
-                    </p>
+                </div>
+
+                <div class="evidence-item">
+                    <div class="evidence-tech">ImGUI</div>
+                    <div class="evidence-body">
+                        <a href="https://github.com/mogmog-0110/VisualResourceLinkerForSiv3D" target="_blank" rel="noopener">VisualResourceLinkerForSiv3D</a> の GUI を ImGUI で実装。設計は MVC 採用。
+                    </div>
                 </div>
             </div>
 
+            <!-- Tooling -->
             <div class="section-block">
-                <h2>開発ツール</h2>
-                <ul style="line-height: 2;">
-                    <li><strong>Git / GitHub</strong> - バージョン管理、チーム開発での使用経験多数</li>
-                    <li><strong>Visual Studio / VS Code</strong> - メイン開発環境として日常的に使用</li>
-                    <li><strong>CMake</strong> - C++プロジェクトのビルド管理</li>
-                    <li><strong>Aseprite</strong> - ドット絵作成、ゲーム用グラフィック制作</li>
-                    <li><strong>Vim / Neovim</strong> - テキスト編集、設定ファイルのカスタマイズ</li>
-                </ul>
+                <h2>開発ツール・ワークフロー</h2>
+
+                <div class="evidence-item">
+                    <div class="evidence-tech">CMake</div>
+                    <div class="evidence-body">
+                        MitiruEngine の CMake は <code>FetchContent</code> 配布、プリセット、Embed Asset、submodule 統合まで含む実用設計。
+                    </div>
+                </div>
+
+                <div class="evidence-item">
+                    <div class="evidence-tech">Git / GitHub Actions</div>
+                    <div class="evidence-body">
+                        複数リポジトリで CI を運用（MitiruEngine は緑バッジ運用中）。チーム開発で git も日常使用。
+                    </div>
+                </div>
+
+                <div class="evidence-item">
+                    <div class="evidence-tech">Vim / Neovim</div>
+                    <div class="evidence-body">
+                        日常使用。Vim 操作習熟のためのゲーム <em>Vimove</em> を自分で書いた。
+                    </div>
+                </div>
+
+                <div class="evidence-item">
+                    <div class="evidence-tech">Aseprite</div>
+                    <div class="evidence-body">
+                        ゲーム用ドット絵・キャラクター・背景・アイテム制作。<a href="creation.html">創作ページ</a>に作例。
+                    </div>
+                </div>
             </div>
 
+            <!-- Beyond Code -->
             <div class="section-block">
-                <h2>その他のスキル</h2>
-                <ul style="line-height: 2;">
-                    <li><strong>リーダー経験</strong> - 会津大学のゲーム開発サークル「企画開発部」の部長を務め、プロジェクトリーダーとして複数のチーム開発をマネジメント</li>
-                    <li><strong>教育・指導</strong> - 会津大学で毎年夏に開催されるコンピュータサイエンスサマーキャンプのプロジェクトリーダーを二年連続で務め、全国の高校生にJavaScriptを用いたゲーム開発を指導。また、大学の演習授業（Computer Graphics、Operating System、Software Engineering）でティーチングアシスタントを経験</li>
-                    <li><strong>シナリオ執筆</strong> - ゲームストーリーやキャラクター設定の作成</li>
-                    <li><strong>UI/UXデザイン</strong> - ゲーム内UIの設計と実装</li>
-                    <li><strong>ドット絵制作</strong> - キャラクター、背景、アイテムなどの作成</li>
-                </ul>
+                <h2>コード以外のスキル</h2>
+
+                <div class="evidence-item">
+                    <div class="evidence-tech">リーダー経験</div>
+                    <div class="evidence-body">
+                        会津大学ゲーム開発サークル「企画開発部」の部長。複数チーム開発のプロジェクトリーダー（<em>416</em>、<em>劇場版ぱんドドド</em> 他）。
+                    </div>
+                </div>
+
+                <div class="evidence-item">
+                    <div class="evidence-tech">教育・指導</div>
+                    <div class="evidence-body">
+                        会津大学コンピュータサイエンスサマーキャンプのプロジェクトリーダーを 2 年連続。大学演習授業（Computer Graphics / Operating System / Software Engineering）の TA を経験。
+                    </div>
+                </div>
+
+                <div class="evidence-item">
+                    <div class="evidence-tech">シナリオ・キャラクターデザイン</div>
+                    <div class="evidence-body">
+                        <a href="kaerucrape.html">かえるクレープ</a>の企画・シナリオを担当。<a href="creation.html">創作ページ</a>に短編小説、Live2D、イラストの作例。
+                    </div>
+                </div>
+
+                <div class="evidence-item">
+                    <div class="evidence-tech">研究・論文執筆</div>
+                    <div class="evidence-body">
+                        Springer LNCS 査読付き国際会議論文（<a href="research.html">BDA 2025</a>）を第一著者として執筆・発表。
+                    </div>
+                </div>
             </div>
         </main>
     </div>
 
-    <!-- Three.js Library -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
-
-    <!-- Three.js Postprocessing -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/EffectComposer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/RenderPass.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/ShaderPass.js"></script>
 
-    <!-- Custom Scripts -->
     <script src="assets/js/CRTEffect.js"></script>
     <script src="assets/js/particles.js"></script>
     <script src="assets/js/CoinLaundryMachine.js"></script>

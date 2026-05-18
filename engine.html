@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja" style="background-color: #050508;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050508">
+    <title>MitiruEngine | Shiggy</title>
+    <meta name="description" content="MitiruEngine。C++20 で書いている header-only の自作ゲームエンジン。">
+
+    <style>
+        html, body {
+            background-color: #050508 !important;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="engine">
+    <div id="cosmic-canvas"></div>
+
+    <div class="ui-overlay">
+        <nav>
+            <div class="nav-logo">
+                <a href="index.html">Shiggy</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="engine.html" class="active">Engine</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="creation.html">Creation</a></li>
+                <li><a href="skills.html">Skills</a></li>
+            </ul>
+        </nav>
+
+        <main class="page-content">
+            <h1 class="page-title">MitiruEngine</h1>
+
+            <!-- TL;DR -->
+            <div class="section-block">
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+                    <span class="pub-badge">In Development</span>
+                    <span class="pub-badge muted">C++20</span>
+                    <span class="pub-badge muted">Header-only</span>
+                    <span class="pub-badge muted">MIT</span>
+                    <span class="pub-badge muted">Public on GitHub</span>
+                </div>
+
+                <p style="font-size: 1.1rem; line-height: 1.9;">
+                    ゲームを作っているうちに、エンジンの仕組みを自分の手で確かめたくなって書き始めた C++20 ゲームエンジンです。
+                </p>
+                <p style="color: var(--text-dim); line-height: 1.9;">
+                    header-only で配布するつもりで作っていて、使う側は CMake の <code>FetchContent</code> でリンクするだけで動かせます。動かしかたは 2 つあって、純 C++ だけの Native と、CEF + HTML/CSS/JS で UI を組む Hybrid。両方を残す方針です。
+                </p>
+            </div>
+
+            <!-- Numbers -->
+            <div class="section-block">
+                <h2>数字で見る</h2>
+                <div class="stats-row">
+                    <div class="stat-cell">
+                        <div class="stat-number">47</div>
+                        <div class="stat-label">Modules</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-number">700+</div>
+                        <div class="stat-label">Headers</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-number">730+</div>
+                        <div class="stat-label">Commits</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">GPU Backends</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Platforms</div>
+                    </div>
+                </div>
+                <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: 0.5rem;">
+                    数値は 2026 年 5 月時点。
+                </p>
+            </div>
+
+            <!-- Why -->
+            <div class="section-block">
+                <h2>なぜ自分でエンジンを書くのか</h2>
+                <p>
+                    Unity も Godot も Unreal も Siv3D も、ゲームを作るだけなら困らないくらいよくできています。それでも自分で書いているのは、ゲームが画面に出るまでに何がどう動いているのかを、使う側ではなく書く側から知っておきたかったからです。
+                </p>
+                <p>
+                    エンジン開発が目的ではなくて、ゲームを深く作れる人間でいるための足場として書いています。ゲーム制作はゲーム制作で別に進めていて、そこで詰まったことがあると、こちらに書き戻すこともあります。
+                </p>
+            </div>
+
+            <!-- Architecture -->
+            <div class="section-block">
+                <h2>アーキテクチャ</h2>
+                <p>レイヤースタックは以下のとおりです。Native（Mode A）と Hybrid（Mode B）は同じ C++ ランタイムを共有していて、Hybrid はその上に CEF と JS ランタイムが乗ります。</p>
+
+<pre><code>+----------------------------------------------------------+
+|  CEF / WEB RUNTIME  (Mode B only)                        |
+|  web/mitiru_runtime/*.js  -- mitiru.audio / .save / ...  |
+|  HTML / CSS / JS gameplay loaded by CefStartUrl          |
++----------------------------------------------------------+
+|  CEF HOST + JS BRIDGES  (Mode B only)                    |
+|  mitiru::cef::*  -- MitiruCefContext, AudioBridge, ...   |
++----------------------------------------------------------+
+|  APPLICATION LAYER     User Games (Game subclass)        |
++----------------------------------------------------------+
+|  ENGINE / SCENE / ECS  Engine, Clock, GameLoop, Screen,  |
+|                        SceneManager, GameWorld           |
++----------------------------------------------------------+
+|  SUBSYSTEM   Input, Audio, Physics, Network, Render,     |
+|              Resource, Asset, Data, Control, Observe     |
++----------------------------------------------------------+
+|  PLATFORM    Win32Window | GlfwWindow | Sdl2Window       |
+|              | EmscriptenWindow                          |
++----------------------------------------------------------+
+|  GRAPHICS    IDevice 抽象の裏で                          |
+|              DX11 | DX12 | Vulkan | OpenGL | WebGL | Null|
++----------------------------------------------------------+</code></pre>
+
+                <p style="margin-top: 1.5rem;">
+                    GPU バックエンドは全部 <code>IDevice</code> という同じインターフェイスの裏に隠してあります。GPU が無い CI 環境では <code>NullDevice</code> に自動で落とすので、テストはそのまま緑で回ります。
+                </p>
+            </div>
+
+            <!-- Highlights -->
+            <div class="section-block">
+                <h2>技術的なハイライト</h2>
+
+                <h3>Native / Hybrid の 2 つの動かしかた</h3>
+                <p>
+                    純 C++ だけで動く Native（コンソールやモバイル、ヘッドレスを視野に）と、CEF + JS で UI を書ける Hybrid（デスクトップ向け、ノベルや経営シミュレーション系）。両方を残す方針で書いていて、その判断は <code>docs/SCOPE.md</code> に書いてあります。
+                </p>
+
+                <h3>マルチバックエンドの GPU 抽象</h3>
+                <p>
+                    Windows なら DX11、Linux/macOS なら Vulkan、Web なら WebGL2、というふうに <code>IDevice</code> の裏でランタイム選択するようにしています。バックエンドを足しても引いても、上のアプリケーションコードは触らずに済みます。
+                </p>
+
+                <h3>Header-only と CMake FetchContent での配布</h3>
+                <p>
+                    使う側は CMake で <code>FetchContent_Declare</code> して <code>Mitiru::mitiru</code> をリンクするだけ。ビルド済みバイナリを配る必要がないので、複数プロジェクトから同じエンジンを使い回しやすくしています。
+                </p>
+
+                <h3>専用 CLI (<code>mitiru</code>)</h3>
+                <p>
+                    Go で書いた <code>mitiru</code> CLI が、プロジェクトの雛形生成からビルド、実行までを一通り面倒見ます。使う側は CMake の作法を覚えずにゲームを書き始められます。
+                </p>
+
+                <h3>付随する道具</h3>
+                <ul style="margin: 1rem 0 1rem 2rem; line-height: 2;">
+                    <li>API カタログの自動生成（<code>tools/generate_api_catalog.py</code>）</li>
+                    <li>モジュール依存グラフの自動生成（<code>tools/generate_module_map.py</code>）</li>
+                    <li>編集ファイルだけ高速にコンパイルチェック（<code>tools/quick_compile.py</code>）</li>
+                    <li>GitHub Actions による CI</li>
+                    <li>専用のデザインシステム（<code>DESIGN.md</code>）と UI トークン</li>
+                </ul>
+            </div>
+
+            <!-- Status -->
+            <div class="section-block">
+                <h2>現状とこれから</h2>
+                <p>
+                    エンジン本体は使える段階まで来ていますが、まだこれで作ったゲームを完成版として出したことはありません。今の正直なところです。
+                </p>
+                <p>
+                    今は <a href="kaerucrape.html" style="color: var(--washer-red);">かえるクレープへようこそ</a> を Godot で作っていて、MitiruEngine を使うのはその次のタイトルから。エンジンとゲームを同時に書き続けていきます。
+                </p>
+            </div>
+
+            <!-- Links -->
+            <div class="section-block">
+                <h2>リンク</h2>
+                <div class="pub-links" style="margin-top: 1rem;">
+                    <a href="https://github.com/mogmog-0110/MitiruEngine" target="_blank" rel="noopener">GitHub →</a>
+                    <a href="https://github.com/mogmog-0110/MitiruEngine/actions/workflows/build.yml" target="_blank" rel="noopener">CI →</a>
+                    <a href="https://github.com/mogmog-0110/MitiruEngine/blob/main/LICENSE" target="_blank" rel="noopener">License (MIT) →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/ShaderPass.js"></script>
+
+    <script src="assets/js/CRTEffect.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/CoinLaundryMachine.js"></script>
+    <script src="assets/js/page-scene.js"></script>
+</body>
+</html>

@@ -37,6 +37,7 @@
             </div>
             <ul class="nav-links">
                 <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="engine.html">Engine</a></li>
                 <li><a href="research.html">Research</a></li>
                 <li><a href="creation.html">Creation</a></li>
                 <li><a href="skills.html">Skills</a></li>
@@ -50,6 +51,45 @@
             <p style="margin-bottom: 2rem; padding: 1rem; background: rgba(139, 32, 32, 0.2); border-left: 3px solid var(--washer-red); border-radius: 4px; font-size: 0.9rem; color: var(--text-dim);">
                 ※一部の作品はチーム制作したもので、チームメンバーから許諾を得ていないため、遊べないものもあります。
             </p>
+
+            <!-- ============================================== -->
+            <!-- Featured                                       -->
+            <!-- ============================================== -->
+            <div class="section-heading">
+                <h2>Featured</h2>
+                <p>今いちばん力を入れている作品です。</p>
+            </div>
+
+            <div class="cards-container">
+                <article class="card featured">
+                    <div class="card-image">
+                        <img src="images/kc_1.png" alt="かえるクレープへようこそ">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-status in-development">In Development</span>
+                        <h2>かえるクレープへようこそ</h2>
+                        <p class="card-meta">2025年夏〜 | チーム開発（2人）| Godot Engine</p>
+                        <p class="card-description">
+                            落ちぶれたクレープ屋の再建を目指す美少女ゲーム。コミックマーケット 106 で体験版を無料配布しました。詳細ページに進捗、技術選定の理由、体験版のリンクをまとめてあります。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">GDScript</span>
+                            <span class="tag">Godot</span>
+                            <span class="tag">Visual Novel</span>
+                            <span class="tag">Management</span>
+                        </div>
+                        <a href="kaerucrape.html" class="card-link">詳細を見る →</a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- ============================================== -->
+            <!-- Other Games                                    -->
+            <!-- ============================================== -->
+            <div class="section-heading">
+                <h2>Other Games</h2>
+                <p>大学で作ってきた個人・チーム制作です。プロジェクトリーダーとして関わったものを含みます。</p>
+            </div>
 
             <div class="cards-container">
                 <!-- Down into... -->
@@ -219,51 +259,6 @@
                     </div>
                 </article>
 
-                <!-- かえるクレープへようこそ -->
-                <article class="card">
-                    <div class="card-image">
-                        <img src="images/kc_1.png" alt="かえるクレープへようこそ" onerror="this.parentElement.innerHTML='<div style=\'background: linear-gradient(135deg, rgba(139, 32, 32, 0.4), rgba(139, 32, 32, 0.2)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.7); font-size: 3rem;\'>🐸</div>'">
-                    </div>
-                    <div class="card-content">
-                        <h2>かえるクレープへようこそ</h2>
-                        <p class="card-meta">2025年夏～ | チーム開発（2人）| 開発中（4ヶ月）</p>
-                        <p class="card-description">
-                            落ちぶれたクレープ屋の再建を目指す美少女ゲーム。大学在学中に美少女ゲームを作りたいという目標を叶えるために作成。慣れ親しんだSiv3DやUnityを使わず、マルチプラットフォームや収益化の面を考慮してGodot Engineで作成。コミックマーケット106にて体験版を無料頒布。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">GDScript</span>
-                            <span class="tag">Godot</span>
-                            <span class="tag">WIP</span>
-                        </div>
-                        <a href="https://drive.google.com/drive/folders/1dFSFwuPCTnQW0YqZxIDM-JfFe8dWzBm9?usp=sharing"
-                           class="card-link" target="_blank" rel="noopener">
-                            詳細 →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- VisualResourceLinkerForSiv3D -->
-                <article class="card">
-                    <div class="card-image">
-                        <img src="images/res_1.png" alt="VisualResourceLinkerForSiv3D" onerror="this.parentElement.innerHTML='<div style=\'background: linear-gradient(135deg, rgba(139, 32, 32, 0.4), rgba(139, 32, 32, 0.2)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.7); font-size: 3rem;\'>🔗</div>'">
-                    </div>
-                    <div class="card-content">
-                        <h2>VisualResourceLinkerForSiv3D</h2>
-                        <p class="card-meta">2025年夏 | 個人開発 | 2日</p>
-                        <p class="card-description">
-                            Siv3Dのリソース管理をGUI上で自動的に行うツール。ウェブ上で配布されていた類似ツールがリンク切れしていたので自作。より一般的なソフトウェアとして扱えるよう、初めての試みとしてGUIをImGUIで作成。機能追加を視野に設計はMVC（Model, View, Controller）を採用。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">Siv3D</span>
-                            <span class="tag">ImGUI</span>
-                        </div>
-                        <a href="https://github.com/mogmog-0110/VisualResourceLinkerForSiv3D"
-                           class="card-link" target="_blank" rel="noopener">
-                            GitHub →
-                        </a>
-                    </div>
-                </article>
 
                 <!-- 脱出ゲーム（仮） -->
                 <article class="card">
@@ -271,16 +266,53 @@
                         <img src="images/minge2025_1.png" alt="脱出ゲーム（仮）" onerror="this.parentElement.innerHTML='<div style=\'background: linear-gradient(135deg, rgba(139, 32, 32, 0.4), rgba(139, 32, 32, 0.2)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.7); font-size: 3rem;\'>🚪</div>'">
                     </div>
                     <div class="card-content">
+                        <span class="card-status in-development">In Development</span>
                         <h2>脱出ゲーム（仮）</h2>
-                        <p class="card-meta">2025年夏～ | チーム開発（3人）| 開発中（1ヶ月）</p>
+                        <p class="card-meta">2025年夏〜 | チーム開発（3人）| 開発中</p>
                         <p class="card-description">
-                            ループするサークル部室から脱出を目指すミステリーゲーム。最も直近で行っているチーム開発。シェーダーを用いてゲーム画面をCRTモニター風に演出している。見た目、ゲームシステム、シナリオにこだわった作品を目指し、現在鋭意制作中。会津大学の学園祭・蒼翔祭2024にて展示・無料頒布予定。
+                            ループするサークル部室から脱出を目指すミステリーゲーム。シェーダーでゲーム画面を CRT モニター風に演出している。見た目、ゲームシステム、シナリオにこだわった作品を目指し、制作中。会津大学・蒼翔祭2026 にて展示予定。
                         </p>
                         <div class="card-tags">
                             <span class="tag">C++</span>
                             <span class="tag">Siv3D</span>
+                            <span class="tag">Shader</span>
                             <span class="tag">WIP</span>
                         </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- ============================================== -->
+            <!-- Tools / Engines                                -->
+            <!-- ============================================== -->
+            <div class="section-heading">
+                <h2>Tools &amp; Engines</h2>
+                <p>必要な道具がないときは自分で作ります。レンダラー、エンジン、リソース管理ツール、研究用のアルゴリズムなど。</p>
+            </div>
+
+            <div class="cards-container">
+                <!-- MitiruEngine (Featured tool) -->
+                <article class="card featured">
+                    <div class="card-image">
+                        <div style="background: linear-gradient(135deg, rgba(139, 32, 32, 0.5), rgba(40, 25, 25, 0.4)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.85); font-size: 2.2rem; letter-spacing: 0.15em; font-weight: 300;">MitiruEngine</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-status in-development">In Development</span>
+                        <h2>MitiruEngine</h2>
+                        <p class="card-meta">個人開発 | C++20 header-only ゲームエンジン | MIT</p>
+                        <p class="card-description">
+                            自作の C++20 ゲームエンジン。header-only で、CMake の FetchContent でリンクするだけで使えるように作っています。47 モジュール、700+ ヘッダ、730+ commits。DX11 / DX12 / Vulkan / OpenGL / WebGL の複数バックエンド、Win32 / GLFW / SDL2 / Emscripten の複数窓、純 C++ と CEF + JS UI の 2 種類の動かしかた、自前 CLI まで一通り。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">C++20</span>
+                            <span class="tag">Header-only</span>
+                            <span class="tag">CMake</span>
+                            <span class="tag">DirectX</span>
+                            <span class="tag">Vulkan</span>
+                            <span class="tag">CEF</span>
+                        </div>
+                        <a href="engine.html" class="card-link">詳細を見る →</a>
                     </div>
                 </article>
 
@@ -290,10 +322,11 @@
                         <div style="background: linear-gradient(135deg, rgba(139, 32, 32, 0.4), rgba(139, 32, 32, 0.2)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.7); font-size: 3rem;">🎨</div>
                     </div>
                     <div class="card-content">
+                        <span class="card-status tool">Tool</span>
                         <h2>AthenaRenderer</h2>
-                        <p class="card-meta">個人開発 | レンダラー開発プロジェクト</p>
+                        <p class="card-meta">個人開発 | DirectX 自作レンダラー</p>
                         <p class="card-description">
-                            DirectXを使用した自作レンダラー。レンダリングパイプラインの理解を深めるために作成。基本的なシェーディング、ライティング、テクスチャマッピングなどの機能を実装し、グラフィックスプログラミングの基礎を学習。
+                            DirectX を使用した自作レンダラー。レンダリングパイプラインの理解を深めるために作成。基本的なシェーディング、ライティング、テクスチャマッピングを実装し、グラフィックスプログラミングの基礎を学習。
                         </p>
                         <div class="card-tags">
                             <span class="tag">C++</span>
@@ -307,16 +340,41 @@
                     </div>
                 </article>
 
+                <!-- VisualResourceLinkerForSiv3D -->
+                <article class="card">
+                    <div class="card-image">
+                        <img src="images/res_1.png" alt="VisualResourceLinkerForSiv3D" onerror="this.parentElement.innerHTML='<div style=\'background: linear-gradient(135deg, rgba(139, 32, 32, 0.4), rgba(139, 32, 32, 0.2)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.7); font-size: 3rem;\'>🔗</div>'">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-status tool">Tool</span>
+                        <h2>VisualResourceLinkerForSiv3D</h2>
+                        <p class="card-meta">2025年夏 | 個人開発 | 2日</p>
+                        <p class="card-description">
+                            Siv3D のリソース管理を GUI 上で自動的に行うツール。ウェブ上で配布されていた類似ツールがリンク切れしていたので自作。GUI は ImGUI、設計は MVC を採用。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">Siv3D</span>
+                            <span class="tag">ImGUI</span>
+                        </div>
+                        <a href="https://github.com/mogmog-0110/VisualResourceLinkerForSiv3D"
+                           class="card-link" target="_blank" rel="noopener">
+                            GitHub →
+                        </a>
+                    </div>
+                </article>
+
                 <!-- mser-cpp -->
                 <article class="card">
                     <div class="card-image">
                         <div style="background: linear-gradient(135deg, rgba(139, 32, 32, 0.4), rgba(139, 32, 32, 0.2)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.7); font-size: 3rem;">📊</div>
                     </div>
                     <div class="card-content">
+                        <span class="card-status tool">Tool</span>
                         <h2>mser-cpp</h2>
-                        <p class="card-meta">個人開発 | 研究用ツール</p>
+                        <p class="card-meta">個人開発 | 研究用アルゴリズム実装</p>
                         <p class="card-description">
-                            研究に用いた定常状態検知アルゴリズムの実装。MSER（Marginal Standard Error Rule）をC++で実装。シミュレーションや計算プロセスが定常状態に達したかを統計的に判定するアルゴリズムで、研究データの解析に使用。
+                            シミュレーションが定常状態に達したかを統計的に判定するアルゴリズム MSER の C++ 実装。BDA 2025 投稿論文での解析に使用。
                         </p>
                         <div class="card-tags">
                             <span class="tag">C++</span>

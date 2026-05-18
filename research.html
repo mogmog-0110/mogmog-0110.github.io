@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#050508">
     <title>Research | Shiggy</title>
-    <meta name="description" content="川村優弥の研究内容">
+    <meta name="description" content="川村優弥の研究：剛体物理シミュレーションを用いた環状化合物の選択性解析（BDA 2025 / Springer LNCS）">
 
-    <!-- Prevent white flash during page transition -->
     <style>
         html, body {
             background-color: #050508 !important;
@@ -16,52 +15,98 @@
         }
     </style>
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body data-page="research">
-    <!-- WebGL Canvas -->
     <div id="cosmic-canvas"></div>
 
-    <!-- UI Overlay -->
     <div class="ui-overlay">
-        <!-- Navigation -->
         <nav>
             <div class="nav-logo">
                 <a href="index.html">Shiggy</a>
             </div>
             <ul class="nav-links">
                 <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="engine.html">Engine</a></li>
                 <li><a href="research.html" class="active">Research</a></li>
                 <li><a href="creation.html">Creation</a></li>
                 <li><a href="skills.html">Skills</a></li>
             </ul>
         </nav>
 
-        <!-- Content Area -->
         <main class="page-content">
             <h1 class="page-title">Research</h1>
 
-            <div class="section-block">
-                <h2>研究テーマ：自己組織化による環状化合物の選択的生成に関するシミュレーション</h2>
+            <!-- ============================================== -->
+            <!-- Publications                                   -->
+            <!-- ============================================== -->
+            <div class="section-heading">
+                <h2>Publications</h2>
+                <p>査読付き国際会議で発表した論文。</p>
+            </div>
+
+            <div style="max-width: 1000px; margin: 0 auto;">
+
+                <article class="publication-card featured">
+                    <div class="pub-badges">
+                        <span class="pub-badge">Peer-reviewed</span>
+                        <span class="pub-badge">First Author</span>
+                        <span class="pub-badge">LNCS</span>
+                        <span class="pub-badge muted">International</span>
+                        <span class="pub-badge muted">Full Paper (17 pp.)</span>
+                    </div>
+
+                    <h3>Geometry-Driven Selectivity in Macrocyclization via Rigid-Body Simulation</h3>
+
+                    <p class="pub-authors">
+                        <strong>Yuya Kawamura</strong>, Takahiro Iwamoto, Yohei Nishidate
+                    </p>
+
+                    <p class="pub-venue">
+                        In <em>Big Data Analytics in Astronomy, Science, and Engineering</em>
+                        (BDA 2025, Aizu, Japan, Dec 15–17, 2025),
+                        Lecture Notes in Computer Science, Springer Nature Switzerland, 2026, pp. 55–71.
+                    </p>
+
+                    <p class="pub-summary">
+                        環状化合物の自己組織化で、なぜ完璧な選択性で四角形だけが生成するのか。分子を単純な剛体モデルに置き換えて、形と結合ルールだけから現象が再現できるかを剛体物理シミュレーションで検証しました。実装、シミュレーション、解析、論文執筆を主に自分が担当しました。
+                    </p>
+
+                    <p class="pub-bridge">
+                        剛体物理を組み立てて挙動を観察する作業は、ゲームの物理演算・衝突・拘束・群衆 AI を設計する作業と、ほとんど同じ思考を要求されます。「単純なルールから複雑な振る舞いが生まれる」というテーマも、プロシージャル生成やゲーム AI と重なる部分が多いです。
+                    </p>
+
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.1007/978-3-032-23241-0_4" target="_blank" rel="noopener">DOI →</a>
+                        <a href="https://link.springer.com/chapter/10.1007/978-3-032-23241-0_4" target="_blank" rel="noopener">Springer Link →</a>
+                        <a href="https://github.com/mogmog-0110/mser-cpp" target="_blank" rel="noopener">Code: mser-cpp →</a>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- ============================================== -->
+            <!-- Research Topic Detail                          -->
+            <!-- ============================================== -->
+            <div class="section-block" style="margin-top: 3rem;">
+                <h2>研究テーマ：自己組織化による環状化合物の選択的生成のシミュレーション</h2>
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
                     <a href="images/research1.png" target="_blank">
-                        <img src="images/research1.png" alt="研究内容の画像1" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
+                        <img src="images/research1.png" alt="シミュレーション画像1" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
                     </a>
                     <a href="images/research2.png" target="_blank">
-                        <img src="images/research2.png" alt="研究内容の画像2" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
+                        <img src="images/research2.png" alt="シミュレーション画像2" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
                     </a>
                 </div>
 
                 <h3>研究の背景・目的</h3>
                 <p>
-                    特定の分子が自発的に集まり、秩序だった構造を形成する「自己組織化」という現象がある。この研究では、ある化学反応において、なぜ完璧な選択性で四角形の環状化合物だけが生成するのか、その不思議な現象の起源を明らかにすることを目指している。
+                    特定の分子が自発的に集まり、秩序だった構造を形成する「自己組織化」という現象がある。本研究では、ある化学反応において、なぜ完璧な選択性で四角形の環状化合物だけが生成するのか、その起源を明らかにすることを目指している。
                 </p>
 
                 <ul style="margin: 1rem 0 1rem 2rem; line-height: 2;">
@@ -76,34 +121,44 @@
 
                 <h3>アプローチ</h3>
                 <p>
-                    この研究における私の役割は、この化学現象を再現するためのシミュレーションモデルを設計し、C++と物理演算ライブラリ「PhysX」を用いて実行・分析することである。
-                    この複雑な化学反応のメカニズムを解明するため、現実の分子を単純なモデルに置き換え、それらが空間内でどのように振る舞うかをシミュレーションで観察する。
+                    本研究における私の役割は、この化学現象を再現するためのシミュレーションモデルを設計し、C++ と物理演算ライブラリ PhysX を用いて実行・分析することである。複雑な化学反応のメカニズムを解明するため、現実の分子を単純な剛体モデルに置き換え、それらが空間内でどのように振る舞うかをシミュレーションで観察する。
                 </p>
                 <p>
-                    このシミュレーションには、C++で利用できる物理演算ライブラリ「PhysX」を用いて、ユニット同士の相互作用や構造形成の過程を追跡していく計画である。
-                    具体的には、現実の分子を単純なモデルに置き換え、いくつかの物理的な制約（ルール）を与えた状態でシミュレーションを行う。
+                    具体的には、現実の分子を単純なモデルに置き換え、いくつかの物理的な制約（ルール）を与えた状態でシミュレーションを行う。ユニット同士の相互作用と構造形成の過程を追跡することで、化学的な詳細ではなく「形」と「結合ルール」だけから何が再現できるかを切り分けている。
                 </p>
 
                 <h3>このシミュレーションで分かること</h3>
                 <p>
-                    このシミュレーションの重要な点は、「単純なルールだけで、現実世界で観測されるような高い選択性が再現できるか」を検証することにある。もし、シンプルなモデルでも四角形構造が優先的に生成されれば、その完璧な選択性は、分子の複雑な化学的性質ではなく、基本的な「形」と「結合ルール」に起因するという強力な証拠になる。
+                    本シミュレーションの重要な点は、「単純なルールだけで、現実世界で観測されるような高い選択性が再現できるか」を検証することにある。シンプルなモデルでも四角形構造が優先的に生成されれば、完璧な選択性は分子の複雑な化学的性質ではなく、基本的な「形」と「結合ルール」に起因するという強力な証拠になる。
                 </p>
                 <p>
                     また、シミュレーション空間内のユニットの密度を変化させることで、「高濃度でも選択性が落ちない理由」についても、物理的な観点から明らかにできると期待している。
                 </p>
             </div>
+
+            <!-- ============================================== -->
+            <!-- Software From Research                         -->
+            <!-- ============================================== -->
+            <div class="section-block">
+                <h2>研究で開発したソフトウェア</h2>
+                <p>研究遂行の過程で書いた、公開可能な範囲のツール群。</p>
+
+                <h3>mser-cpp</h3>
+                <p>
+                    シミュレーションが定常状態に達したかを統計的に判定するためのアルゴリズム MSER（Marginal Standard Error Rule）の C++ 実装。長時間の物理シミュレーションを安定して扱うためには、過渡状態を捨てて定常区間だけを集計する必要があり、その判定を自動化している。
+                </p>
+                <p>
+                    <a href="https://github.com/mogmog-0110/mser-cpp" target="_blank" rel="noopener" style="color: var(--washer-red);">GitHub: mogmog-0110/mser-cpp →</a>
+                </p>
+            </div>
         </main>
     </div>
 
-    <!-- Three.js Library -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
-
-    <!-- Three.js Postprocessing -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/EffectComposer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/RenderPass.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/ShaderPass.js"></script>
 
-    <!-- Custom Scripts -->
     <script src="assets/js/CRTEffect.js"></script>
     <script src="assets/js/particles.js"></script>
     <script src="assets/js/CoinLaundryMachine.js"></script>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja" style="background-color: #050508;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050508">
+    <title>かえるクレープへようこそ | Shiggy</title>
+    <meta name="description" content="落ちぶれたクレープ屋の再建を目指す美少女ゲーム。Godot で開発中。コミックマーケット106にて体験版を無料頒布。">
+
+    <style>
+        html, body {
+            background-color: #050508 !important;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="kaerucrape">
+    <div id="cosmic-canvas"></div>
+
+    <div class="ui-overlay">
+        <nav>
+            <div class="nav-logo">
+                <a href="index.html">Shiggy</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="engine.html">Engine</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="creation.html">Creation</a></li>
+                <li><a href="skills.html">Skills</a></li>
+            </ul>
+        </nav>
+
+        <main class="page-content">
+            <h1 class="page-title">かえるクレープへようこそ</h1>
+
+            <!-- TL;DR -->
+            <div class="section-block">
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+                    <span class="pub-badge">In Development</span>
+                    <span class="pub-badge muted">Godot 4</span>
+                    <span class="pub-badge muted">GDScript</span>
+                    <span class="pub-badge muted">Team (2人)</span>
+                    <span class="pub-badge muted">2025年夏〜</span>
+                </div>
+
+                <p style="font-size: 1.1rem; line-height: 1.9;">
+                    落ちぶれたクレープ屋の再建を目指す美少女ゲームです。Godot で作っています。<strong>コミックマーケット 106 で体験版を無料配布しました</strong>。完成までまだ時間はかかりますが、学生のうちに自分が面白いと思うゲームを一本仕上げたくて、書き続けています。
+                </p>
+
+                <div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem;">
+                    <a href="https://drive.google.com/drive/folders/1dFSFwuPCTnQW0YqZxIDM-JfFe8dWzBm9?usp=sharing"
+                       target="_blank" rel="noopener"
+                       style="display: inline-block; padding: 0.6rem 1.2rem; background: rgba(139, 32, 32, 0.8); color: var(--text-light); text-decoration: none; border-radius: 6px; font-size: 0.95rem;">
+                        体験版ダウンロード →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Screenshots -->
+            <div class="section-block">
+                <h2>プレイ画面</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                    <a href="images/kc_1.png" target="_blank">
+                        <img src="images/kc_1.png" alt="かえるクレープ screenshot 1" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
+                    </a>
+                    <a href="images/kc_2.png" target="_blank">
+                        <img src="images/kc_2.png" alt="かえるクレープ screenshot 2" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
+                    </a>
+                    <a href="images/kc_3.png" target="_blank">
+                        <img src="images/kc_3.png" alt="かえるクレープ screenshot 3" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
+                    </a>
+                    <a href="images/kc_4.png" target="_blank">
+                        <img src="images/kc_4.png" alt="かえるクレープ screenshot 4" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Concept -->
+            <div class="section-block">
+                <h2>なぜこのゲームか</h2>
+                <p>
+                    学生のうちに美少女ゲームを一本仕上げたい、というのが個人的な目標でした。シナリオもシステムも、自分が「面白い」と思えるところまで一人で詰めるための作品です。
+                </p>
+                <p>
+                    題材は「落ちぶれた店の再建」。日常を回しながら関係を深めて店を立て直していく、という構造で、ノベルゲームと経営シミュレーションをキャラクターを軸に繋げたかったのが出発点です。
+                </p>
+            </div>
+
+            <!-- Tech Selection -->
+            <div class="section-block">
+                <h2>なぜ Godot を選んだか</h2>
+                <p>
+                    過去作で慣れていた Siv3D や Unity を使う選択肢もありましたが、今作では Godot にしました。理由は次のとおりです。
+                </p>
+                <ul style="margin: 1rem 0 1rem 2rem; line-height: 2;">
+                    <li>Windows / macOS / Linux / Web まで 1 プロジェクトで書き出せること。完成版を広く届けるために大きい。</li>
+                    <li>MIT 寄りのライセンスで、商用利用に追加コストがかからないこと。</li>
+                    <li>Unity のコンポーネントとも Siv3D のクラス設計とも違う、Godot のノード構造を実装する側から理解したかったこと。</li>
+                    <li>GDScript の書き味。C++ ほど堅くなく、書き捨ても効くがクラスも組める塩梅が、シナリオ進行のコードと相性が良いこと。</li>
+                </ul>
+            </div>
+
+            <!-- Progress -->
+            <div class="section-block">
+                <h2>現在地</h2>
+                <p>今できていること、残っていること、次にやることを並べておきます。</p>
+
+                <div class="progress-grid">
+                    <div class="progress-column done">
+                        <h4>できていること</h4>
+                        <ul>
+                            <li>シナリオの進行（選択肢・分岐含む）</li>
+                            <li>キャラクター立ち絵と差分の表示</li>
+                            <li>UI（タイトル / ノベル / 経営）</li>
+                            <li>セーブとロード</li>
+                            <li>コミケ 106 で体験版を配布</li>
+                        </ul>
+                    </div>
+
+                    <div class="progress-column remaining">
+                        <h4>残っていること</h4>
+                        <ul>
+                            <li>経営シミュレーションの数値バランス</li>
+                            <li>シナリオ後半の執筆</li>
+                            <li>BGM と SE の差し替え</li>
+                            <li>エンディング分岐の最終決定</li>
+                            <li>Web 書き出しと itch.io 配布</li>
+                        </ul>
+                    </div>
+
+                    <div class="progress-column next">
+                        <h4>次にやること</h4>
+                        <ul>
+                            <li>2026 年内にシナリオ全文の初稿を完成させる</li>
+                            <li>身内テストを回す</li>
+                            <li>完成版は蒼翔祭 2026 で展示する予定</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team -->
+            <div class="section-block">
+                <h2>制作チーム</h2>
+                <p>2 人で進めているチーム開発です。役割分担は次のとおり。</p>
+                <ul style="margin: 1rem 0 1rem 2rem; line-height: 2;">
+                    <li>川村優弥（自分） — 企画、シナリオ、システム実装、UI、進行管理</li>
+                    <li>もう一名 — キャラクターデザインとイラスト（メンバーの許諾の都合上、ここでは詳細は伏せています）</li>
+                </ul>
+            </div>
+
+            <!-- Future link to engine -->
+            <div class="section-block">
+                <h2>次の作品について</h2>
+                <p>
+                    この作品を仕上げたら、次は自作の <a href="engine.html" style="color: var(--washer-red);">MitiruEngine</a> で作る予定です。Godot で一本、自作エンジンで一本、と書き継いでいきます。
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/ShaderPass.js"></script>
+
+    <script src="assets/js/CRTEffect.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/CoinLaundryMachine.js"></script>
+    <script src="assets/js/page-scene.js"></script>
+</body>
+</html>
