@@ -910,6 +910,196 @@ pre code {
 }
 
 /* ================================================== */
+/* Contact / CTA buttons (index hero)                */
+/* ================================================== */
+
+.cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    font-size: 0.92rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    border: 1px solid;
+}
+
+.cta-button.primary {
+    background: rgba(139, 32, 32, 0.85);
+    border-color: rgba(139, 32, 32, 1);
+    color: var(--text-light);
+}
+
+.cta-button.primary:hover {
+    background: rgba(139, 32, 32, 1);
+}
+
+.cta-button.ghost {
+    background: transparent;
+    border-color: rgba(232, 232, 232, 0.25);
+    color: var(--text-light);
+}
+
+.cta-button.ghost:hover {
+    border-color: rgba(232, 232, 232, 0.55);
+    background: rgba(232, 232, 232, 0.06);
+}
+
+/* ================================================== */
+/* Career Timeline (index page)                       */
+/* ================================================== */
+
+.timeline-section {
+    position: relative;
+    z-index: 10;
+    padding: 4rem 2rem 6rem;
+    background: linear-gradient(to bottom, rgba(5, 5, 8, 0.95), rgba(5, 5, 8, 1));
+}
+
+.timeline-content {
+    max-width: 880px;
+    margin: 0 auto;
+}
+
+.timeline-content > h2 {
+    font-size: 2rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid var(--washer-red);
+    padding-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.timeline-content > p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin-bottom: 2.5rem;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(139, 32, 32, 0.35);
+}
+
+.timeline-row {
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+.timeline-row::before {
+    content: '';
+    position: absolute;
+    left: -1.6rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(139, 32, 32, 0.9);
+    border: 2px solid var(--space-black);
+    box-shadow: 0 0 0 1px rgba(139, 32, 32, 0.5);
+}
+
+.timeline-date {
+    font-size: 0.82rem;
+    color: var(--washer-red);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-body {
+    color: var(--text-dim);
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.timeline-body strong {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+/* ================================================== */
+/* Footer / Contact strip                             */
+/* ================================================== */
+
+.site-footer {
+    position: relative;
+    z-index: 10;
+    padding: 2.5rem 2rem 3rem;
+    background: rgba(5, 5, 8, 1);
+    border-top: 1px solid rgba(232, 232, 232, 0.08);
+    text-align: center;
+}
+
+.site-footer p {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+}
+
+.site-footer a {
+    color: var(--washer-red);
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    color: var(--text-light);
+}
+
+/* ================================================== */
+/* Back to top button                                 */
+/* ================================================== */
+
+.back-to-top {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(139, 32, 32, 0.85);
+    border: 1px solid rgba(139, 32, 32, 1);
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, background 0.3s ease;
+    z-index: 100;
+    line-height: 1;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.back-to-top:hover {
+    background: rgba(139, 32, 32, 1);
+}
+
+/* ================================================== */
 /* Responsive Design                                  */
 /* ================================================== */
 

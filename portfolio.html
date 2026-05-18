@@ -16,6 +16,20 @@
         }
     </style>
 
+    <!-- meta:social -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shiggy's Portfolio">
+    <meta property="og:title" content="Portfolio | Shiggy">
+    <meta property="og:description" content="川村優弥のゲーム作品とツール。MitiruEngine、かえるクレープ、ハトを育てよう（リメイク）など。">
+    <meta property="og:url" content="https://mogmog-0110.github.io/portfolio.html">
+    <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Portfolio | Shiggy">
+    <meta name="twitter:description" content="川村優弥のゲーム作品とツール。MitiruEngine、かえるクレープ、ハトを育てよう（リメイク）など。">
+    <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -219,7 +233,7 @@
                 <!-- 劇場版ぱんドドド―ド・ドードド デストロイ オブ アイヅ ゆにばーしてぃ the ファイナル -->
                 <article class="card">
                     <div class="card-image">
-                        <img loading="lazy" decoding="async" src="images/dodo_1.webp" alt="劇場版ぱんドドド―ド・ドードド" onerror="this.src='images/pan_1.webp'">
+                        <img loading="lazy" decoding="async" src="images/dodo_1.webp" alt="劇場版ぱんドドド―ド・ドードド">
                     </div>
                     <div class="card-content">
                         <h2>劇場版ぱんドドド―ド</h2>
@@ -483,6 +497,78 @@
                     </div>
                 </article>
 
+                <!-- NeonVector -->
+                <article class="card">
+                    <div class="card-image">
+                        <div style="background: linear-gradient(135deg, rgba(255, 80, 200, 0.25), rgba(40, 20, 60, 0.5)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.9); font-family: 'Courier New', monospace; font-size: 1.4rem; letter-spacing: 0.15em;">VECTOR_SCAN</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-status tool">Tool</span>
+                        <h2>NeonVector</h2>
+                        <p class="card-meta">個人開発 | C++ + DirectX 12 | ベクタースキャン再現</p>
+                        <p class="card-description">
+                            <em>Asteroids</em> や <em>Tempest</em> など 1970-80 年代アーケードゲームのベクタースキャン技術を、DirectX 12 を用いて現代的に再現するプロジェクト。ライン主体の表示と発光効果の再構築。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">DirectX 12</span>
+                            <span class="tag">Retro</span>
+                        </div>
+                        <a href="https://github.com/mogmog-0110/NeonVector"
+                           class="card-link" target="_blank" rel="noopener">
+                            GitHub →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- DimensionEditor -->
+                <article class="card">
+                    <div class="card-image">
+                        <div style="background: linear-gradient(135deg, rgba(80, 140, 200, 0.3), rgba(30, 40, 70, 0.5)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.85); font-family: 'Courier New', monospace; font-size: 1.4rem; letter-spacing: 0.12em;">DimEd</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-status tool">Tool</span>
+                        <h2>DimensionEditor</h2>
+                        <p class="card-meta">個人開発 | C++ + GLSL / HLSL | グラフィックツール</p>
+                        <p class="card-description">
+                            C++ をベースに、GLSL と HLSL の両方のシェーダーを扱うクロスプラットフォームのグラフィック / 描画ツール。シェーダー記述の比較と検証用に作成。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">GLSL</span>
+                            <span class="tag">HLSL</span>
+                        </div>
+                        <a href="https://github.com/mogmog-0110/DimensionEditor"
+                           class="card-link" target="_blank" rel="noopener">
+                            GitHub →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- CSSC2025 -->
+                <article class="card">
+                    <div class="card-image">
+                        <div style="background: linear-gradient(135deg, rgba(168, 212, 196, 0.3), rgba(40, 60, 60, 0.5)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.85); font-family: 'Courier New', monospace; font-size: 1.4rem; letter-spacing: 0.12em;">CSSC 2025</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-status tool">Education</span>
+                        <h2>CSSC 2025</h2>
+                        <p class="card-meta">教材 + ワークショップ | プロジェクトリーダー</p>
+                        <p class="card-description">
+                            会津大学・コンピュータサイエンスサマーキャンプ 2025 の教材リポジトリ。CreateJS（JS トラック）と grasp3d（CG トラック）の 2 部構成。全国の高校生にゲーム開発を指導する際の課題・テンプレート・Git/GitHub の使い方ガイドを提供。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">CreateJS</span>
+                            <span class="tag">Education</span>
+                        </div>
+                        <a href="https://github.com/mogmog-0110/CSSC2025"
+                           class="card-link" target="_blank" rel="noopener">
+                            GitHub →
+                        </a>
+                    </div>
+                </article>
+
                 <!-- mser-cpp -->
                 <article class="card">
                     <div class="card-image">
@@ -523,5 +609,6 @@
     <script src="assets/js/particles.js"></script>
     <script src="assets/js/CoinLaundryMachine.js"></script>
     <script src="assets/js/page-scene.js"></script>
+    <script src="assets/js/back-to-top.js"></script>
 </body>
 </html>
