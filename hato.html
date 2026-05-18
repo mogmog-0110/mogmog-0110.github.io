@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja" style="background-color: #050508;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050508">
+    <title>ハトを育てよう (MitiruEngine リメイク) | Shiggy</title>
+    <meta name="description" content="TyranoScript で書いた『ハトを育てよう』を、自作の MitiruEngine 上で完全移植 + 追加要素を入れたリメイク版。">
+
+    <style>
+        html, body {
+            background-color: #050508 !important;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="hato">
+    <div id="cosmic-canvas"></div>
+
+    <div class="ui-overlay">
+        <nav>
+            <div class="nav-logo">
+                <a href="index.html">Shiggy</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="engine.html">Engine</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="creation.html">Creation</a></li>
+                <li><a href="skills.html">Skills</a></li>
+            </ul>
+        </nav>
+
+        <main class="page-content">
+            <h1 class="page-title">ハトを育てよう（MitiruEngine リメイク）</h1>
+
+            <!-- TL;DR -->
+            <div class="section-block">
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+                    <span class="pub-badge">Released (Remake)</span>
+                    <span class="pub-badge muted">MitiruEngine</span>
+                    <span class="pub-badge muted">CEF Hybrid</span>
+                    <span class="pub-badge muted">mitiru.novel</span>
+                </div>
+
+                <p style="font-size: 1.1rem; line-height: 1.9;">
+                    2023 年に TyranoScript で書いた『ハトを育てよう』を、自作の <a href="engine.html" style="color: var(--washer-red);">MitiruEngine</a> 上で<strong>完全移植 + 追加要素</strong>を入れたリメイク版です。MitiruEngine が「実際にゲームを出せる道具」であることの実証作品でもあります。
+                </p>
+            </div>
+
+            <!-- Screenshots -->
+            <div class="section-block">
+                <h2>プレイ画面</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                    <a href="images/hato_1.png" target="_blank">
+                        <img src="images/hato_1.png" alt="ハトを育てよう screenshot 1" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
+                    </a>
+                    <a href="images/hato_2.png" target="_blank">
+                        <img src="images/hato_2.png" alt="ハトを育てよう screenshot 2" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
+                    </a>
+                    <a href="images/hato_3.png" target="_blank">
+                        <img src="images/hato_3.png" alt="ハトを育てよう screenshot 3" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
+                    </a>
+                    <a href="images/hato_4.png" target="_blank">
+                        <img src="images/hato_4.png" alt="ハトを育てよう screenshot 4" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Why a remake -->
+            <div class="section-block">
+                <h2>なぜリメイクしたか</h2>
+                <p>
+                    オリジナルは 2023 年に 2 日で作った TyranoScript 製のノベルゲームです。ゲームとしては成立していたものの、エンジンの中身を自分で書ける状態ではなかったので、改造や流用が利きませんでした。MitiruEngine の <code>mitiru.novel</code>（JSON 駆動のノベル VM）の最初の実利用先として、原作をそのまま再現することにしました。
+                </p>
+                <p>
+                    「自作エンジンで何が作れるか」を確かめるのに、見知った仕様のゲームを再現するのはちょうど良いベンチマークでした。
+                </p>
+            </div>
+
+            <!-- What was reproduced -->
+            <div class="section-block">
+                <h2>再現したもの</h2>
+                <ul style="margin: 1rem 0 1rem 2rem; line-height: 2;">
+                    <li>解像度 1280×720（原作座標準拠）</li>
+                    <li>パラメータ系: day / stress / yaruki / tinou / kinniku / taijuu / val / score</li>
+                    <li>5 種類のアクション: あそぶ / 勉強 / ごはん / 筋トレ / 叱る（原作 <code>.ks</code> のロジックを完全再現）</li>
+                    <li>立ち絵切替: normal / angry / tokeru / hutoru / garigari（stress / yaruki / taijuu に連動）</li>
+                    <li>5 エンディング: 逃亡 / 死亡 / ふくろう / ムキムキ / ふつう</li>
+                    <li>スコア計算式: <code>tinou*1000 + kinniku*1000 − stress*100 + yaruki*100 (+2000 end3/end4)</code></li>
+                    <li>BGM の <code>music.ogg</code> ループ再生</li>
+                </ul>
+            </div>
+
+            <!-- What was added -->
+            <div class="section-block">
+                <h2>追加した要素</h2>
+                <p>原作にはなかった、エンジン側の機能を活かした追加分。</p>
+                <ul style="margin: 1rem 0 1rem 2rem; line-height: 2;">
+                    <li>バックログ（履歴ボタン / L キー）</li>
+                    <li>既読管理と既読スキップ</li>
+                    <li>セーブとロード（<code>novel.save(slot)</code> / <code>novel.restore(slot)</code>）</li>
+                    <li>タイプライター演出（<code>mitiru.novel</code> 組込、CPS 40）</li>
+                    <li>背景の 400ms クロスフェード</li>
+                </ul>
+            </div>
+
+            <!-- Tech -->
+            <div class="section-block">
+                <h2>技術構成</h2>
+                <p>
+                    MitiruEngine の Hybrid 動作（CEF + JS）で動かしています。シナリオは JSON（<code>web/data/novels/*.json</code>）に外出しして、<code>mitiru.novel</code> という VM が解釈する設計です。
+                </p>
+
+<pre><code>原作 .ks の機能           →  MitiruEngine 側の対応
+─────────────────────────────────────────────────
+#キャラ名 + テキスト       →  { speaker, text }
+@bg storage=...            →  { type: 'bg', path }
+[wait time=N]              →  { type: 'wait', ms }
+[delay speed=10]           →  mitiru.novel 組込（CPS 40）
+[button role="skip"]       →  novel.setSkipMode('all')</code></pre>
+
+                <p style="margin-top: 1.5rem;">
+                    ブラウザでも CEF ネイティブでも同じデータで動きます。状態依存のアクションシーン（stress / yaruki / taijuu の値で分岐するもの）は、ランタイムで JSON を動的生成しています。
+                </p>
+            </div>
+
+            <!-- Position -->
+            <div class="section-block">
+                <h2>このプロジェクトの位置づけ</h2>
+                <p>
+                    MitiruEngine にとって、最初の「外に出せる完成形のゲーム」です。自作エンジンが「動く」だけでなく、「実際にプレイ可能なゲームをまるごと載せられる」段階に来ていることを示しています。
+                </p>
+                <p>
+                    クレジット: 原作『ハトを育てよう』(shiggy / TyranoScript Ver5.20) → 移植基盤 MitiruEngine CEF Hybrid + <code>mitiru.novel</code> VN VM。
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/ShaderPass.js"></script>
+
+    <script src="assets/js/CRTEffect.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/CoinLaundryMachine.js"></script>
+    <script src="assets/js/page-scene.js"></script>
+</body>
+</html>

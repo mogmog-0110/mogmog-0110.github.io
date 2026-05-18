@@ -45,21 +45,20 @@
             <div class="section-block">
                 <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
                     <span class="pub-badge">In Development</span>
-                    <span class="pub-badge muted">Godot 4</span>
-                    <span class="pub-badge muted">GDScript</span>
+                    <span class="pub-badge muted">MitiruEngine 移行中</span>
                     <span class="pub-badge muted">Team (2人)</span>
                     <span class="pub-badge muted">2025年夏〜</span>
                 </div>
 
                 <p style="font-size: 1.1rem; line-height: 1.9;">
-                    落ちぶれたクレープ屋の再建を目指す美少女ゲームです。Godot で作っています。<strong>コミックマーケット 106 で体験版を無料配布しました</strong>。完成までまだ時間はかかりますが、学生のうちに自分が面白いと思うゲームを一本仕上げたくて、書き続けています。
+                    落ちぶれたクレープ屋の再建を目指す美少女ゲームです。<strong>コミックマーケット 106 で Godot 版の体験版を無料配布</strong>したあと、自作エンジンの <a href="engine.html" style="color: var(--washer-red);">MitiruEngine</a> へ全面移植する形で書き直しています。完成までまだ時間はかかりますが、学生のうちに自分が面白いと思うゲームを一本仕上げたくて、書き続けています。
                 </p>
 
                 <div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem;">
                     <a href="https://drive.google.com/drive/folders/1dFSFwuPCTnQW0YqZxIDM-JfFe8dWzBm9?usp=sharing"
                        target="_blank" rel="noopener"
                        style="display: inline-block; padding: 0.6rem 1.2rem; background: rgba(139, 32, 32, 0.8); color: var(--text-light); text-decoration: none; border-radius: 6px; font-size: 0.95rem;">
-                        体験版ダウンロード →
+                        体験版（Godot 版）ダウンロード →
                     </a>
                 </div>
             </div>
@@ -96,16 +95,16 @@
 
             <!-- Tech Selection -->
             <div class="section-block">
-                <h2>なぜ Godot を選んだか</h2>
+                <h2>Godot から MitiruEngine への移行</h2>
                 <p>
-                    過去作で慣れていた Siv3D や Unity を使う選択肢もありましたが、今作では Godot にしました。理由は次のとおりです。
+                    最初は Godot で書き始めました。マルチプラットフォーム書き出しや商用ライセンスの軽さ、GDScript の書き味の良さなど、十分な利点があったからです。コミックマーケット 106 で配布したのもこの Godot 版です。
                 </p>
-                <ul style="margin: 1rem 0 1rem 2rem; line-height: 2;">
-                    <li>Windows / macOS / Linux / Web まで 1 プロジェクトで書き出せること。完成版を広く届けるために大きい。</li>
-                    <li>MIT 寄りのライセンスで、商用利用に追加コストがかからないこと。</li>
-                    <li>Unity のコンポーネントとも Siv3D のクラス設計とも違う、Godot のノード構造を実装する側から理解したかったこと。</li>
-                    <li>GDScript の書き味。C++ ほど堅くなく、書き捨ても効くがクラスも組める塩梅が、シナリオ進行のコードと相性が良いこと。</li>
-                </ul>
+                <p>
+                    そのあと、自作の MitiruEngine が <a href="hato.html" style="color: var(--washer-red);">ハトを育てよう（リメイク）</a> で実際にゲームを動かせる段階に来たのを見て、本作も MitiruEngine 側に移すことにしました。「自分のエンジンで自分のゲームを完成版まで持っていく」というのが、その先に取りたい姿だからです。
+                </p>
+                <p>
+                    現在は MitiruEngine WASM ビルドへの移植が進行中。バージョンは <code>1.0.0-rc1</code>。Playwright による E2E テスト（料理フロー / ビジュアル回帰 / パフォーマンス）、デザイントークンの自動エクスポート、itch.io 向けパッケージング、ローカライズの足場まで一通り入れてあります。
+                </p>
             </div>
 
             <!-- Progress -->
@@ -117,11 +116,12 @@
                     <div class="progress-column done">
                         <h4>できていること</h4>
                         <ul>
-                            <li>シナリオの進行（選択肢・分岐含む）</li>
-                            <li>キャラクター立ち絵と差分の表示</li>
-                            <li>UI（タイトル / ノベル / 経営）</li>
-                            <li>セーブとロード</li>
-                            <li>コミケ 106 で体験版を配布</li>
+                            <li>コミケ 106 で Godot 版の体験版を配布</li>
+                            <li>MitiruEngine 版（WASM）の基盤（1.0.0-rc1）</li>
+                            <li>料理シーン、UI、テーマトークン、設定画面</li>
+                            <li>Playwright E2E テスト（料理フロー / 視覚回帰 / パフォーマンス）</li>
+                            <li>itch.io 向けパッケージングスクリプト</li>
+                            <li>ローカライズの足場（日本語ベース + 英語スキャフォルド）</li>
                         </ul>
                     </div>
 
@@ -132,7 +132,7 @@
                             <li>シナリオ後半の執筆</li>
                             <li>BGM と SE の差し替え</li>
                             <li>エンディング分岐の最終決定</li>
-                            <li>Web 書き出しと itch.io 配布</li>
+                            <li>1.0.0 リリース向けの仕上げ</li>
                         </ul>
                     </div>
 
@@ -157,11 +157,11 @@
                 </ul>
             </div>
 
-            <!-- Future link to engine -->
+            <!-- Engine context -->
             <div class="section-block">
-                <h2>次の作品について</h2>
+                <h2>エンジン側の文脈</h2>
                 <p>
-                    この作品を仕上げたら、次は自作の <a href="engine.html" style="color: var(--washer-red);">MitiruEngine</a> で作る予定です。Godot で一本、自作エンジンで一本、と書き継いでいきます。
+                    本作と並行して、自作の <a href="engine.html" style="color: var(--washer-red);">MitiruEngine</a> を開発しています。前作のリメイクである <a href="hato.html" style="color: var(--washer-red);">ハトを育てよう</a> をエンジン上で完成形まで持っていったので、本作も同じエンジンで仕上げるのが自然な流れになりました。
                 </p>
             </div>
         </main>

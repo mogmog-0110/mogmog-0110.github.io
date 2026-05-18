@@ -169,12 +169,22 @@
 
             <!-- Status -->
             <div class="section-block">
-                <h2>現状とこれから</h2>
+                <h2>MitiruEngine で動いているもの</h2>
                 <p>
-                    エンジン本体は使える段階まで来ていますが、まだこれで作ったゲームを完成版として出したことはありません。今の正直なところです。
+                    エンジン単体ではなく、実際にゲームに使えている状態かどうかが重要なので、現時点で MitiruEngine 上で動いているプロジェクトを並べておきます。
                 </p>
+                <ul style="margin: 1rem 0 1rem 2rem; line-height: 2;">
+                    <li>
+                        <a href="hato.html" style="color: var(--washer-red);">ハトを育てよう（リメイク）</a> —
+                        2023 年に TyranoScript で書いた原作を、MitiruEngine CEF Hybrid + <code>mitiru.novel</code> VM で完全移植。バックログ・既読管理・セーブロードなどの追加要素も入った状態で動いています。
+                    </li>
+                    <li>
+                        <a href="kaerucrape.html" style="color: var(--washer-red);">かえるクレープへようこそ</a> —
+                        当初は Godot で書いていましたが、現在 MitiruEngine の WASM ビルドへ移植中（1.0.0-rc1）。Playwright による E2E テスト、テーマトークン、itch.io 向けパッケージングまでセットアップ済み。
+                    </li>
+                </ul>
                 <p>
-                    今は <a href="kaerucrape.html" style="color: var(--washer-red);">かえるクレープへようこそ</a> を Godot で作っていて、MitiruEngine を使うのはその次のタイトルから。エンジンとゲームを同時に書き続けていきます。
+                    エンジンを書く作業と、エンジンでゲームを作る作業を、両方を行き来しながら進めています。
                 </p>
             </div>
 

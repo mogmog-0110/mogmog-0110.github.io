@@ -57,10 +57,31 @@
             <!-- ============================================== -->
             <div class="section-heading">
                 <h2>Featured</h2>
-                <p>今いちばん力を入れている作品です。</p>
+                <p>自作の MitiruEngine 上で動かしているゲーム。ハトを育てようはリメイクとして完成、かえるクレープは Godot 版から移植中です。</p>
             </div>
 
             <div class="cards-container">
+                <article class="card featured">
+                    <div class="card-image">
+                        <img src="images/hato_1.png" alt="ハトを育てよう（リメイク）">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-status released">Released (Remake)</span>
+                        <h2>ハトを育てよう（MitiruEngine リメイク）</h2>
+                        <p class="card-meta">2026年 | 個人開発 | MitiruEngine CEF Hybrid</p>
+                        <p class="card-description">
+                            2023 年に TyranoScript で書いた原作を、自作の MitiruEngine 上で完全移植 + 追加要素を入れたリメイク版。バックログ、既読管理、セーブロードまで実装。MitiruEngine が「実際にゲームを出せる道具」であることの実証作品でもあります。
+                        </p>
+                        <div class="card-tags">
+                            <span class="tag">MitiruEngine</span>
+                            <span class="tag">CEF</span>
+                            <span class="tag">mitiru.novel</span>
+                            <span class="tag">Visual Novel</span>
+                        </div>
+                        <a href="hato.html" class="card-link">詳細を見る →</a>
+                    </div>
+                </article>
+
                 <article class="card featured">
                     <div class="card-image">
                         <img src="images/kc_1.png" alt="かえるクレープへようこそ">
@@ -68,12 +89,13 @@
                     <div class="card-content">
                         <span class="card-status in-development">In Development</span>
                         <h2>かえるクレープへようこそ</h2>
-                        <p class="card-meta">2025年夏〜 | チーム開発（2人）| Godot Engine</p>
+                        <p class="card-meta">2025年夏〜 | チーム開発（2人）| Godot → MitiruEngine 移行中</p>
                         <p class="card-description">
-                            落ちぶれたクレープ屋の再建を目指す美少女ゲーム。コミックマーケット 106 で体験版を無料配布しました。詳細ページに進捗、技術選定の理由、体験版のリンクをまとめてあります。
+                            落ちぶれたクレープ屋の再建を目指す美少女ゲーム。Godot で書いた体験版をコミックマーケット 106 で無料配布したあと、現在は MitiruEngine の WASM ビルドへ全面移植中（1.0.0-rc1）。E2E テスト、テーマトークン、itch 配布まわりまで足場を整えています。
                         </p>
                         <div class="card-tags">
-                            <span class="tag">GDScript</span>
+                            <span class="tag">MitiruEngine</span>
+                            <span class="tag">WASM</span>
                             <span class="tag">Godot</span>
                             <span class="tag">Visual Novel</span>
                             <span class="tag">Management</span>
@@ -111,16 +133,16 @@
                     </div>
                 </article>
 
-                <!-- ハトを育てよう -->
+                <!-- ハトを育てよう（原作版） -->
                 <article class="card">
                     <div class="card-image">
-                        <img src="images/hato_1.png" alt="ハトを育てよう">
+                        <img src="images/hato_1.png" alt="ハトを育てよう（原作版）">
                     </div>
                     <div class="card-content">
-                        <h2>ハトを育てよう</h2>
-                        <p class="card-meta">2023年春 | 個人開発 | 2日</p>
+                        <h2>ハトを育てよう（原作版）</h2>
+                        <p class="card-meta">2023年春 | 個人開発 | 2日 | TyranoScript</p>
                         <p class="card-description">
-                            ハトを育てるマルチエンディング育成ゲーム。TyranoScriptを使用したノベルゲームエンジンの育成ゲーム実装例。蒼翔祭2023にて展示。
+                            ハトを育てるマルチエンディング育成ゲーム。TyranoScript で書いた原作版。蒼翔祭 2023 にて展示。<a href="hato.html" style="color: var(--washer-red);">この作品は後に MitiruEngine でリメイク</a>されています。
                         </p>
                         <div class="card-tags">
                             <span class="tag">TyranoScript</span>
