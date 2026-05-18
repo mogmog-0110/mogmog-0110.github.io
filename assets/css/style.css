@@ -329,22 +329,37 @@ nav {
 
 .card-image {
     width: 100%;
-    height: 200px;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.85;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.9;
     transition: opacity 0.3s ease, transform 0.3s ease;
+    display: block;
 }
 
 .card:hover .card-image img {
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1.03);
+}
+
+.card.featured .card-image {
+    aspect-ratio: 16 / 9;
+}
+
+.card-image > div {
+    width: 100%;
+    height: 100%;
 }
 
 .card-content {
@@ -670,10 +685,6 @@ nav {
     grid-column: 1 / -1;
     background: linear-gradient(135deg, rgba(20, 20, 30, 0.85), rgba(30, 18, 18, 0.55));
     border-color: rgba(139, 32, 32, 0.5);
-}
-
-.card.featured .card-image {
-    height: 320px;
 }
 
 .card-status {
