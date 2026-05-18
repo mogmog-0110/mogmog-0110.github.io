@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#050508">
     <title>かえるクレープへようこそ | Shiggy</title>
-    <meta name="description" content="落ちぶれたクレープ屋の再建を目指す美少女ゲーム。Godot で開発中。コミックマーケット106にて体験版を無料頒布。">
+    <meta name="description" content="クレープを作りながらヒロインたちと親睦を深める恋愛クッキングゲーム。Godot 版を経て、現在は自作の MitiruEngine 上で 1.0.0-rc1 まで作り込み中。">
 
     <style>
         html, body {
@@ -45,13 +45,16 @@
             <div class="section-block">
                 <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
                     <span class="pub-badge">In Development</span>
-                    <span class="pub-badge muted">MitiruEngine 移行中</span>
+                    <span class="pub-badge muted">MitiruEngine 1.0.0-rc1</span>
+                    <span class="pub-badge muted">WASM</span>
                     <span class="pub-badge muted">Team (2人)</span>
-                    <span class="pub-badge muted">2025年夏〜</span>
                 </div>
 
                 <p style="font-size: 1.1rem; line-height: 1.9;">
-                    落ちぶれたクレープ屋の再建を目指す美少女ゲームです。<strong>コミックマーケット 106 で Godot 版の体験版を無料配布</strong>したあと、自作エンジンの <a href="engine.html" style="color: var(--washer-red);">MitiruEngine</a> へ全面移植する形で書き直しています。完成までまだ時間はかかりますが、学生のうちに自分が面白いと思うゲームを一本仕上げたくて、書き続けています。
+                    クレープを作りながらヒロインたちと親睦を深める <strong>恋愛クッキングゲーム</strong>です。1950 年代アメリカのモーニング・ダイナーを舞台に、4 人のヒロインと 12 日間のキャンペーンを過ごします。ノベルパートとクッキングパートを行き来する 2 モード構成。
+                </p>
+                <p style="color: var(--text-dim); line-height: 1.9;">
+                    Godot で書いた最初のバージョンをコミックマーケット 106 で無料配布したあと、自作の <a href="engine.html" style="color: var(--washer-red);">MitiruEngine</a> へ全面移植して書き直しています。
                 </p>
 
                 <div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem;">
@@ -66,45 +69,96 @@
             <!-- Screenshots -->
             <div class="section-block">
                 <h2>プレイ画面</h2>
+                <p>MitiruEngine 版の開発スクリーンショット。最終アート差し替え前。</p>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                    <a href="images/kc_1.png" target="_blank">
-                        <img src="images/kc_1.png" alt="かえるクレープ screenshot 1" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
+                    <a href="images/kc_remake_novel.png" target="_blank">
+                        <img src="images/kc_remake_novel.png" alt="ノベルパートのオープニング" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
                     </a>
-                    <a href="images/kc_2.png" target="_blank">
-                        <img src="images/kc_2.png" alt="かえるクレープ screenshot 2" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
+                    <a href="images/kc_remake_mainmenu.png" target="_blank">
+                        <img src="images/kc_remake_mainmenu.png" alt="メインメニュー / 控室" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
                     </a>
-                    <a href="images/kc_3.png" target="_blank">
-                        <img src="images/kc_3.png" alt="かえるクレープ screenshot 3" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
+                    <a href="images/kc_remake_cooking.png" target="_blank">
+                        <img src="images/kc_remake_cooking.png" alt="クッキングシーン" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
                     </a>
-                    <a href="images/kc_4.png" target="_blank">
-                        <img src="images/kc_4.png" alt="かえるクレープ screenshot 4" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
+                    <a href="images/kc_remake_ui.png" target="_blank">
+                        <img src="images/kc_remake_ui.png" alt="3D + 2D UI" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);" onerror="this.style.display='none'">
                     </a>
                 </div>
             </div>
 
             <!-- Concept -->
             <div class="section-block">
-                <h2>なぜこのゲームか</h2>
+                <h2>コンセプト</h2>
                 <p>
-                    学生のうちに美少女ゲームを一本仕上げたい、というのが個人的な目標でした。シナリオもシステムも、自分が「面白い」と思えるところまで一人で詰めるための作品です。
+                    舞台は 1950 年代アメリカのモーニング・ダイナー。アクアブルーの壁、黒白のチェッカー柄の床、青い窓枠の大きな窓 ― レトロな朝の店に、ほんの少しだけ近未来の小物（真空管トースター、遠くを横切るホバーカーの影、街灯のホログラム広告）が差し挟まれています。3 + 1 人のヒロイン（サチ、ライカ、マリア、エリザベス）と一緒に、傾いた店を立て直していくキャンペーンです。
                 </p>
                 <p>
-                    題材は「落ちぶれた店の再建」。日常を回しながら関係を深めて店を立て直していく、という構造で、ノベルゲームと経営シミュレーションをキャラクターを軸に繋げたかったのが出発点です。
+                    1 日のループはおおむね次のとおり。
+                </p>
+                <ol style="margin: 1rem 0 1rem 2rem; line-height: 2;">
+                    <li>朝のノベル（章イベントが入る日も）</li>
+                    <li>メインメニュー（控室の机から、ホワイトボード・ノート・PC・ギャラリー壁などをパンで切り替え）</li>
+                    <li>クッキングシフト（10:00 → 20:00 ゲーム内時刻、リアルタイム 300 秒）</li>
+                    <li>シフト終了結果（注文の達成・失敗・売上・チップ・コンボ最高記録）</li>
+                    <li>夜のノベル（オプション）</li>
+                    <li>セーブして翌朝へ</li>
+                </ol>
+                <p>キャンペーンは現状の数値バランスで 12 日です。</p>
+            </div>
+
+            <!-- Cooking / Novel structure -->
+            <div class="section-block">
+                <h2>2 つのモード</h2>
+
+                <h3>クッキングパート</h3>
+                <p>
+                    タッチ / マウスでクレープを作るアクション。3D のキッチン（カウンター・壁・棚）の中で、3D の食材・調理器具をドラッグして組み立てます。キャラクターは 2D 立ち絵。3D オブジェクトにはアニメ／トゥーンシェーダーをかけて、2D のイラストと馴染ませる方針です。フルーツ、トッピング、クリームなどの食材データも実装済み。
+                </p>
+
+                <h3>ノベルパート + メインメニュー</h3>
+                <p>
+                    シフトの合間に控室の机に戻り、ホワイトボードでストーリーを進めたり、ノートで日記を読み返したり、ラップトップで設定を開いたり、ピンボードでギャラリーを覗いたりします。視点は前・上・下・左・右の 5 方向で、それぞれに 1 つの主要オブジェクト（ホワイトボード／ノート／ラップトップ／壁の写真／キッチン入口）が割り当てられています。
+                </p>
+                <p>
+                    視線移動はカメラパン + 軽いブラーで「ぬるっと」切り替わるようにしてあります。
                 </p>
             </div>
 
-            <!-- Tech Selection -->
+            <!-- Tech -->
             <div class="section-block">
                 <h2>Godot から MitiruEngine への移行</h2>
                 <p>
                     最初は Godot で書き始めました。マルチプラットフォーム書き出しや商用ライセンスの軽さ、GDScript の書き味の良さなど、十分な利点があったからです。コミックマーケット 106 で配布したのもこの Godot 版です。
                 </p>
                 <p>
-                    そのあと、自作の MitiruEngine が <a href="hato.html" style="color: var(--washer-red);">ハトを育てよう（リメイク）</a> で実際にゲームを動かせる段階に来たのを見て、本作も MitiruEngine 側に移すことにしました。「自分のエンジンで自分のゲームを完成版まで持っていく」というのが、その先に取りたい姿だからです。
+                    そのあと、自作の MitiruEngine が <a href="hato.html" style="color: var(--washer-red);">ハトを育てよう（リメイク）</a> で実際にゲームを動かせる段階に来たのを見て、本作も MitiruEngine 側に移すことにしました。自分のエンジンで自分のゲームを完成版まで持っていく、というのがその先に取りたい姿だからです。
                 </p>
                 <p>
-                    現在は MitiruEngine WASM ビルドへの移植が進行中。バージョンは <code>1.0.0-rc1</code>。Playwright による E2E テスト（料理フロー / ビジュアル回帰 / パフォーマンス）、デザイントークンの自動エクスポート、itch.io 向けパッケージング、ローカライズの足場まで一通り入れてあります。
+                    現在のバージョンは <code>1.0.0-rc1</code>。kaeru/ 配下に 50 ヘッダぶんの C++ 実装（CookingScene、CookingStateMachine、OrderSystem、RecipeRegistry、Customer、ComboSystem、Economy、Heroine、StoryProgress、SettingsOverlay、SaveSystem、Theme など）と、Playwright による E2E テスト（料理フロー / ブート / 入力 / 視覚回帰 / 安定性 / パフォーマンスなど 10 ファイル）が並んでいます。
                 </p>
+            </div>
+
+            <!-- Infrastructure -->
+            <div class="section-block">
+                <h2>インフラ周り</h2>
+                <p>「ゲーム本編を作るための足場」も自分で整えています。</p>
+                <ul style="margin: 1rem 0 1rem 2rem; line-height: 2;">
+                    <li><strong>デザインシステム</strong> ―
+                        <code>DESIGN.md</code> 1 ファイルに YAML フロントマターで配色・タイポ・スペーシング・角丸・影のトークンを宣言。<code>tools/design_md.py</code> が CSS / DTCG / Tailwind config を自動生成。CI で「コミット済み <code>tokens.css</code> が <code>DESIGN.md</code> の最新エクスポートと一致するか」も検証。
+                    </li>
+                    <li><strong>E2E テスト</strong> ―
+                        Playwright で料理フロー、視覚回帰、パフォーマンス、入力、安定性などをカバー。<code>npm run test</code> で全部走ります。
+                    </li>
+                    <li><strong>ローカライズの足場</strong> ―
+                        <code>assets/locales/</code> に日本語ベース + 英語のスキャフォルド。<code>scripts/check_locales.mjs</code> でロケールの整合性を CI チェック。
+                    </li>
+                    <li><strong>アセットマニフェスト</strong> ―
+                        <code>art_manifest.json</code> / <code>audio_manifest.json</code> / <code>script_manifest.json</code> でキーと URL を分離してあるので、キーに対するファイルが <code>null</code> でも CSS プレースホルダで描画。差し替えはコード変更なしで効きます。
+                    </li>
+                    <li><strong>itch.io 配布</strong> ―
+                        <code>npm run package:itch</code> で <code>dist-packages/*.zip</code> が出るところまでスクリプト化。
+                    </li>
+                </ul>
             </div>
 
             <!-- Progress -->
@@ -117,21 +171,26 @@
                         <h4>できていること</h4>
                         <ul>
                             <li>コミケ 106 で Godot 版の体験版を配布</li>
-                            <li>MitiruEngine 版（WASM）の基盤（1.0.0-rc1）</li>
-                            <li>料理シーン、UI、テーマトークン、設定画面</li>
-                            <li>Playwright E2E テスト（料理フロー / 視覚回帰 / パフォーマンス）</li>
-                            <li>itch.io 向けパッケージングスクリプト</li>
-                            <li>ローカライズの足場（日本語ベース + 英語スキャフォルド）</li>
+                            <li>MitiruEngine 版（WASM）のゲームコード基盤（1.0.0-rc1）</li>
+                            <li>クッキングシーン（3D + 2D、ドラッグ&amp;ドロップ、レシピ判定、注文待ち、コンボ）</li>
+                            <li>メインメニュー（控室 5 方向のパン視点）</li>
+                            <li>ノベルパート（mitiru.novel VM 連動）</li>
+                            <li>セーブシステム（最大 10 スロット、Day 境界で auto-save）</li>
+                            <li>設定オーバーレイ（音量・テキスト速度・フォントスケール・全画面・モーション軽減）</li>
+                            <li>Playwright E2E テスト 10 種</li>
+                            <li>テーマトークン自動生成 + CI ゲート</li>
+                            <li>itch.io 向けパッケージング</li>
                         </ul>
                     </div>
 
                     <div class="progress-column remaining">
                         <h4>残っていること</h4>
                         <ul>
+                            <li>本編シナリオ全文の執筆（現状はプレースホルダ JSON）</li>
+                            <li>キャラ立ち絵・背景・UI の最終アート（0 / 20 件バインド済み）</li>
+                            <li>BGM / 効果音 / ボイスの差し替え（イベントフックは登録済み）</li>
                             <li>経営シミュレーションの数値バランス</li>
-                            <li>シナリオ後半の執筆</li>
-                            <li>BGM と SE の差し替え</li>
-                            <li>エンディング分岐の最終決定</li>
+                            <li>CEF サイドのセーブ署名ブリッジ</li>
                             <li>1.0.0 リリース向けの仕上げ</li>
                         </ul>
                     </div>
@@ -140,6 +199,7 @@
                         <h4>次にやること</h4>
                         <ul>
                             <li>2026 年内にシナリオ全文の初稿を完成させる</li>
+                            <li>キャラ立ち絵の最終アートを順次バインド</li>
                             <li>身内テストを回す</li>
                             <li>完成版は蒼翔祭 2026 で展示する予定</li>
                         </ul>
@@ -152,7 +212,7 @@
                 <h2>制作チーム</h2>
                 <p>2 人で進めているチーム開発です。役割分担は次のとおり。</p>
                 <ul style="margin: 1rem 0 1rem 2rem; line-height: 2;">
-                    <li>川村優弥（自分） — 企画、シナリオ、システム実装、UI、進行管理</li>
+                    <li>川村優弥（自分） — 企画、シナリオ、エンジン側、ゲームコード、システム、UI 実装、進行管理</li>
                     <li>もう一名 — キャラクターデザインとイラスト（メンバーの許諾の都合上、ここでは詳細は伏せています）</li>
                 </ul>
             </div>
