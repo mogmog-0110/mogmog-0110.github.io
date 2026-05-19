@@ -155,11 +155,47 @@
             <!-- ============================================== -->
             <div class="section-block">
                 <h2>研究で開発したソフトウェア</h2>
-                <p>研究遂行の過程で書いた、公開可能な範囲のツール群。</p>
+                <p>研究遂行の過程で書いた、公開可能な範囲のリポジトリ。論文の数値結果はこれらのコードで生成している。</p>
+
+                <h3>macrocycle-rigid-body-sim</h3>
+                <p>
+                    論文の本体となる物理シミュレータ。大環状分子を剛体粒子の鎖として近似し、結合長・結合角・二面角といった幾何条件を D6Joint で課して時間発展させる。Iwamoto ら（2024）が提示した解析モデルを数値的に検証するために書いた。
+                </p>
+                <p>
+                    <a href="https://github.com/mogmog-0110/macrocycle-rigid-body-sim" target="_blank" rel="noopener" style="color: var(--washer-red);">GitHub: mogmog-0110/macrocycle-rigid-body-sim →</a>
+                </p>
+
+                <h4>Tech Stack</h4>
+                <ul>
+                    <li>C++17 / CMake</li>
+                    <li>NVIDIA PhysX 5.6.1（剛体ダイナミクスと D6Joint）</li>
+                    <li>OpenGL + freeglut（リアルタイム可視化）</li>
+                    <li>RAII を徹底した構造、ヘッダ分離、Warnings-as-Errors（/W4 /WX）でコンパイル</li>
+                </ul>
+
+                <h4>実装している主な機能</h4>
+                <ul>
+                    <li>剛体粒子の鎖と、結合長・結合角・二面角を保つ D6Joint compliant mode の組み合わせ</li>
+                    <li>26 個のゴーストアクターによる周期境界条件（PBC）の近似</li>
+                    <li>結合グラフを UnionFind で解析し、環の連結性・サイクル数をフレーム毎にトラッキング</li>
+                    <li>MSER による定常状態の自動検出と、定常区間に絞った統計量算出</li>
+                    <li>マルチレプリカ・バッチ実行と乱数シード制御による再現可能なアンサンブル</li>
+                    <li>独自バイナリフォーマット <code>.pxrf</code>（Adler-32 CRC 付き）でトラジェクトリを保存</li>
+                    <li>記録済みトラジェクトリのリプレイ機能（描画用と解析用を分離）</li>
+                    <li>JSON 設定ファイルからシナリオを駆動するランナー</li>
+                    <li>ヘッドレス実行モード（CI と長時間計算用）</li>
+                </ul>
+
+                <h4>品質と再現性</h4>
+                <ul>
+                    <li>112 ユニットテスト（GoogleTest）でジョイント・PBC・グラフ解析・MSER の各レイヤを検証</li>
+                    <li>固定シードと決定論的ステップで、論文の図表をそのまま再生成できるようにしてある</li>
+                    <li>厳格コンパイル設定と静的解析で、リリースビルドでも警告ゼロを維持</li>
+                </ul>
 
                 <h3>mser-cpp</h3>
                 <p>
-                    シミュレーションが定常状態に達したかを統計的に判定するためのアルゴリズム MSER（Marginal Standard Error Rule）の C++ 実装。長時間の物理シミュレーションを安定して扱うためには、過渡状態を捨てて定常区間だけを集計する必要があり、その判定を自動化している。
+                    上記シミュレータの解析側として書いた、MSER（Marginal Standard Error Rule）の単独実装。シミュレーションが定常状態に達したフレームを統計的に判定するためのアルゴリズムで、長時間トラジェクトリから過渡状態を捨て、定常区間だけを集計する処理を自動化している。スタンドアロンのライブラリとして切り出してあるので、他のシミュレーション系プロジェクトからも使い回せる。
                 </p>
                 <p>
                     <a href="https://github.com/mogmog-0110/mser-cpp" target="_blank" rel="noopener" style="color: var(--washer-red);">GitHub: mogmog-0110/mser-cpp →</a>
