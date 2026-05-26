@@ -147,11 +147,11 @@
                 </p>
             </div>
 
-            <!-- 設計思想 -->
+            <!-- 設計の方針 -->
             <div class="section-block">
-                <h2>設計思想 ── 必要なものしか画面に出さない</h2>
+                <h2>設計の方針</h2>
                 <p>
-                    Unity / Godot のような全部入りの mega editor の<strong style="color: var(--text-light); font-weight: 500;">対極</strong>を志向しています。GUI エディタは持たず、<strong style="color: var(--text-light); font-weight: 500;">CLI を一級市民</strong>に、機能ごとに独立した小さなツール / ウィンドウへ分ける「アトミックツール」設計。文脈外の機能は視界に出さない、という一点から全ての設計判断を導いています。
+                    Unity / Godot のような全部入りエディタは作りません。GUI エディタを持たず <strong style="color: var(--text-light); font-weight: 500;">CLI を中心</strong>に据え、機能ごとに独立した小さなツール / ウィンドウへ分けて、必要なときだけ起動する構成にしています。
                 </p>
                 <p>
                     レイヤーの役割分担も明確です。gameplay・物理・描画は C++、HUD / メニュー / 演出は CEF（HTML/CSS/JS）、純データは JSON。bridge は signal-only で、状態の所有は常に C++ 側に置きます。
