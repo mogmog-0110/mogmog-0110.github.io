@@ -147,37 +147,65 @@
                 </p>
             </div>
 
-            <!-- Highlights -->
+            <!-- 設計思想 -->
             <div class="section-block">
-                <h2>技術的なハイライト</h2>
-
-                <h3>Native / Hybrid の 2 つの動かしかた</h3>
+                <h2>設計思想 ── 必要なものしか画面に出さない</h2>
                 <p>
-                    純 C++ だけで動く Native（コンソールやモバイル、ヘッドレスを視野に）と、CEF + JS で UI を書ける Hybrid（デスクトップ向け、ノベルや経営シミュレーション系）。両方を残す方針で書いていて、その判断は <code>docs/SCOPE.md</code> に書いてあります。
+                    Unity / Godot のような全部入りの mega editor の<strong style="color: var(--text-light); font-weight: 500;">対極</strong>を志向しています。GUI エディタは持たず、<strong style="color: var(--text-light); font-weight: 500;">CLI を一級市民</strong>に、機能ごとに独立した小さなツール / ウィンドウへ分ける「アトミックツール」設計。文脈外の機能は視界に出さない、という一点から全ての設計判断を導いています。
+                </p>
+                <p>
+                    レイヤーの役割分担も明確です。gameplay・物理・描画は C++、HUD / メニュー / 演出は CEF（HTML/CSS/JS）、純データは JSON。bridge は signal-only で、状態の所有は常に C++ 側に置きます。
+                </p>
+            </div>
+
+            <!-- 差別化軸 -->
+            <div class="section-block">
+                <h2>差別化の 5 軸</h2>
+
+                <h3>1. HTML/CSS で UI が書ける C++ エンジン</h3>
+                <p>
+                    gameplay は C++、UI は CEF 上の HTML/CSS/JS。Web の表現力で HUD やメニューを組みつつ、ゲームの状態は C++ が持つ。両者は signal だけでやり取りします。
                 </p>
 
-                <h3>マルチバックエンドの GPU 抽象</h3>
+                <h3>2. 決定論 + 自動リプレイ（replay-as-test）</h3>
                 <p>
-                    Windows なら DX11、Linux/macOS なら Vulkan、Web なら WebGL2、というふうに <code>IDevice</code> の裏でランタイム選択するようにしています。バックエンドを足しても引いても、上のアプリケーションコードは触らずに済みます。
+                    入力を <code>InputSnapshot</code> として記録し、ヘッドレスで <strong style="color: var(--text-light); font-weight: 500;">bit-exact に再生</strong>。実際のプレイ記録を、そのまま回帰テストとして回せます。
                 </p>
 
-                <h3>Header-only と CMake FetchContent での配布</h3>
+                <h3>3. タイムトラベル・インスペクタ</h3>
                 <p>
-                    使う側は CMake で <code>FetchContent_Declare</code> して <code>Mitiru::mitiru</code> をリンクするだけ。ビルド済みバイナリを配る必要がないので、複数プロジェクトから同じエンジンを使い回しやすくしています。
+                    ゲーム状態を単一の <code>GameMemory</code> に集約する構造保証（<strong style="color: var(--text-light); font-weight: 500;">ADR-0005</strong>）により、過去フレームへの巻き戻しと観察が成立します。
                 </p>
 
-                <h3>専用 CLI (<code>mitiru</code>)</h3>
+                <h3>4. 全サブシステムの単独起動</h3>
                 <p>
-                    Go で書いた <code>mitiru</code> CLI が、プロジェクトの雛形生成からビルド、実行までを一通り面倒見ます。使う側は CMake の作法を覚えずにゲームを書き始められます。
+                    audio / input / render などを単体プロセスで起動して検証できます。エンジン全体を立ち上げずに、関心のある一点だけを触れます。
                 </p>
 
-                <h3>付随する道具</h3>
+                <h3>5. モジュラー・サブウィンドウ</h3>
+                <p>
+                    inspector / コマンドパレット / time-travel scrubber などは、ゲーム本体とは独立した別ウィンドウに（ADR-0004）。gameplay 画面とデバッグ系を混在させません。
+                </p>
+            </div>
+
+            <!-- 境界設計 -->
+            <div class="section-block">
+                <h2>Host–Game 境界は C-ABI signal-flow（ADR-0005）</h2>
+                <p>
+                    ゲームは DLL として配布され、ホストとの境界は <strong style="color: var(--text-light); font-weight: 500;">POD の C-ABI だけ</strong>。ゲームは <code>Engine*</code> を持たず、ホストが状態を POD で push、ゲームは「intent」で要求を返します。境界に <code>std::string</code> や C++ オブジェクトのポインタを渡さないこの規律が、上の決定論・リプレイ・タイムトラベルを<strong style="color: var(--text-light); font-weight: 500;">構造的に</strong>成立させています。ABI は version 番号で管理し、後方互換を保ったまま拡張します。
+                </p>
+            </div>
+
+            <!-- 最近の実装 -->
+            <div class="section-block">
+                <h2>最近つくったもの</h2>
                 <ul style="margin: 1rem 0 1rem 2rem; line-height: 2;">
-                    <li>API カタログの自動生成（<code>tools/generate_api_catalog.py</code>）</li>
-                    <li>モジュール依存グラフの自動生成（<code>tools/generate_module_map.py</code>）</li>
-                    <li>編集ファイルだけ高速にコンパイルチェック（<code>tools/quick_compile.py</code>）</li>
-                    <li>GitHub Actions による CI</li>
-                    <li>専用のデザインシステム（<code>DESIGN.md</code>）と UI トークン</li>
+                    <li>FM/OPNA（YM2608）＋ <strong>SF2 / SFZ サウンドフォント</strong>の MML 音楽エンジン。マスターリバーブ付きでオフライン WAV まで出力</li>
+                    <li>DirectX5 期の質感を狙った<strong>低解像 + パレット量子化 + 4×4 Bayer ディザ</strong>のポスト処理（DX12）</li>
+                    <li>美咲フォント＋ BMFont による<strong>ネイティブのピクセル文字描画</strong>（SDF とは別の真のドット）</li>
+                    <li>ゲームパッド（XInput）入力、DLL ホットリロード</li>
+                    <li>6 つの GPU バックエンドを <code>IDevice</code> で抽象化（GPU 無し CI では <code>NullDevice</code> に自動フォールバック）</li>
+                    <li><strong>2,300+ の自動テスト</strong>が常時グリーン</li>
                 </ul>
             </div>
 
@@ -214,15 +242,6 @@
         </main>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/EffectComposer.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/RenderPass.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/ShaderPass.js"></script>
-
-    <script src="assets/js/CRTEffect.js"></script>
-    <script src="assets/js/particles.js"></script>
-    <script src="assets/js/CoinLaundryMachine.js"></script>
-    <script src="assets/js/page-scene.js"></script>
     <script src="assets/js/back-to-top.js"></script>
 </body>
 </html>
