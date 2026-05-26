@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ja" style="background-color: #050508;">
+<html lang="ja" style="background-color: #0d0f1a;">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#050508">
+    <meta name="theme-color" content="#0d0f1a">
     <title>Shiggy's Portfolio</title>
     <meta name="description" content="川村優弥のポートフォリオサイト">
     <meta name="author" content="川村優弥 (Shiggy)">
@@ -13,7 +13,7 @@
     <style>
         html,
         body {
-            background-color: #050508 !important;
+            background-color: #0d0f1a !important;
             margin: 0;
             padding: 0;
         }
@@ -36,21 +36,14 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=DotGothic16&family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/retro.css">
 </head>
 
 <body>
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-        <div class="loader">
-            <div class="washing-loader"></div>
-            <p>Loading...</p>
-        </div>
-    </div>
-
     <!-- UI Overlay -->
     <div class="ui-overlay">
         <!-- Navigation -->
@@ -67,15 +60,75 @@
             </ul>
         </nav>
 
-        <!-- Hero Content -->
-        <main class="hero-text">
-            <h1>Shiggy's Portfolio</h1>
-            <p class="subtitle">Welcome to my space</p>
+        <!-- Hero: OutRun 風 一人称ドライブ (WebGL / synthwave) -->
+        <main class="outrun-hero" aria-label="タイトル">
+            <div class="or-stars" aria-hidden="true"></div>
+            <div class="or-sun" aria-hidden="true"></div>
+            <canvas id="or-gl"></canvas>
+            <div class="or-scrim" aria-hidden="true"></div>
+
+            <div class="or-content">
+                <div class="or-eyebrow">GAME / ENGINE ・ GRAPHICS PROGRAMMER</div>
+                <div class="or-title">川村優弥</div>
+                <div class="or-role">Aizu Univ. M1 ・ Live2D (Cubism SDK / C++) ・ BDA 2025 (LNCS)</div>
+                <p class="or-tag">必要な道具がないなら、自分で作る。</p>
+                <div class="or-actions">
+                    <a class="or-btn solid" href="portfolio.html">作品を見る</a>
+                    <a class="or-btn" href="engine.html">MitiruEngine</a>
+                    <a class="or-btn ghost" href="#game" onclick="if(window.startCareerWalk){startCareerWalk();return false;}">経歴を歩く ▶</a>
+                </div>
+                <a class="or-scroll" href="#about-anchor">▽ 経歴をテキストで読む</a>
+            </div>
         </main>
     </div>
 
-    <!-- WebGL Canvas -->
-    <div id="cosmic-canvas"></div>
+    <!-- 経歴を歩く 横スクロール -->
+    <section id="game" aria-label="経歴を歩くミニゲーム">
+        <div class="game-hud">
+            <div class="hud-bar">
+                <span class="hud-cap">2022</span>
+                <div class="hud-track"><div id="hud-fill"></div></div>
+                <span class="hud-cap">NOW</span>
+                <span id="hud-year" class="hud-year">2022</span>
+            </div>
+            <a class="skip-link game-skip" href="#about-anchor">SKIP ▶ 全情報</a>
+        </div>
+
+        <canvas id="game-canvas"></canvas>
+
+        <div id="game-prompt" class="game-prompt">▲ / SPACE で調べる</div>
+
+        <!-- 操作（タッチ） -->
+        <div class="game-controls" aria-hidden="true">
+            <button id="btn-left" class="gc-btn">◄</button>
+            <button id="btn-right" class="gc-btn">►</button>
+            <button id="btn-act" class="gc-btn gc-act">▲</button>
+        </div>
+
+        <!-- 情報パネル -->
+        <div id="game-panel" class="game-panel">
+            <div class="game-panel-box">
+                <h3 id="game-panel-title"></h3>
+                <p id="game-panel-body"></p>
+                <button id="game-panel-close" class="cta-button primary">閉じる ▶</button>
+            </div>
+        </div>
+
+        <!-- 完了 -->
+        <div id="game-done" class="game-done">
+            <div class="game-done-box">
+                <p class="done-title">★ 現在地に到着 ★</p>
+                <p class="done-sub">2022 から今まで、これが川村優弥の経歴です。</p>
+                <div class="cta-row">
+                    <a class="cta-button primary" href="#about-anchor">詳しい経歴へ ▶</a>
+                    <a class="cta-button ghost" href="portfolio.html">作品を見る ▶</a>
+                    <a class="cta-button ghost" href="mailto:medli908@gmail.com">連絡する ▶</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <span id="about-anchor"></span>
 
     <!-- About Section (revealed on scroll) -->
     <div class="about-section">
@@ -270,21 +323,16 @@
         </div>
     </div>
 
-    <!-- Three.js Library -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
-
-    <!-- Three.js Postprocessing (for CRT effect) -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/EffectComposer.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/RenderPass.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/postprocessing/ShaderPass.js"></script>
-
-    <!-- Custom Scripts -->
-    <script src="assets/js/CRTEffect.js"></script>
-    <script src="assets/js/particles.js"></script>
-    <script src="assets/js/CoinLaundryMachine.js"></script>
-    <script src="assets/js/cosmic-scene.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/retro.js"></script>
+    <script src="assets/js/career-walk.js"></script>
     <script src="assets/js/back-to-top.js"></script>
+
+    <!-- OutRun 一人称ドライブ hero (three.js / synthwave) -->
+    <script type="importmap">{ "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }}</script>
+    <script type="module" src="assets/js/outrun-hero.js"></script>
 </body>
 
 </html>
