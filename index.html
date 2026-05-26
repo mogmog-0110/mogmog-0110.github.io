@@ -52,80 +52,43 @@
                 <a href="index.html">Shiggy</a>
             </div>
             <ul class="nav-links">
-                <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="engine.html">Engine</a></li>
                 <li><a href="research.html">Research</a></li>
-                <li><a href="creation.html">Creation</a></li>
-                <li><a href="skills.html">Skills</a></li>
+                <li><a href="portfolio.html">Works</a></li>
             </ul>
         </nav>
 
-        <!-- Hero: OutRun 風 一人称ドライブ (WebGL / synthwave) -->
-        <main class="outrun-hero" aria-label="タイトル">
-            <div class="or-stars" aria-hidden="true"></div>
-            <div class="or-sun" aria-hidden="true"></div>
-            <canvas id="or-gl"></canvas>
-            <div class="or-scrim" aria-hidden="true"></div>
-
-            <div class="or-content">
-                <div class="or-eyebrow">GAME / ENGINE ・ GRAPHICS PROGRAMMER</div>
-                <div class="or-title">川村優弥</div>
-                <div class="or-role">Aizu Univ. M1 ・ Live2D (Cubism SDK / C++) ・ BDA 2025 (LNCS)</div>
-                <p class="or-tag">必要な道具がないなら、自分で作る。</p>
-                <div class="or-actions">
-                    <a class="or-btn solid" href="portfolio.html">作品を見る</a>
-                    <a class="or-btn" href="engine.html">MitiruEngine</a>
-                    <a class="or-btn ghost" href="#game" onclick="if(window.startCareerWalk){startCareerWalk();return false;}">経歴を歩く ▶</a>
-                </div>
-                <a class="or-scroll" href="#about-anchor">▽ 経歴をテキストで読む</a>
+        <!-- Hero: 静かな導入（synthwave は上部の細い帯だけ） -->
+        <header class="home-hero">
+            <div class="home-band" aria-hidden="true"></div>
+            <div class="home-hero-inner">
+                <p class="home-kicker">GAME / ENGINE ・ GRAPHICS PROGRAMMER</p>
+                <h1 class="home-name">川村優弥 <span>/ Shiggy</span></h1>
+                <p class="home-line">C++ でゲームと、それを動かすための道具をつくっています。</p>
             </div>
-        </main>
+        </header>
     </div>
 
-    <!-- 経歴を歩く 横スクロール -->
-    <section id="game" aria-label="経歴を歩くミニゲーム">
-        <div class="game-hud">
-            <div class="hud-bar">
-                <span class="hud-cap">2022</span>
-                <div class="hud-track"><div id="hud-fill"></div></div>
-                <span class="hud-cap">NOW</span>
-                <span id="hud-year" class="hud-year">2022</span>
-            </div>
-            <a class="skip-link game-skip" href="#about-anchor">SKIP ▶ 全情報</a>
-        </div>
-
-        <canvas id="game-canvas"></canvas>
-
-        <div id="game-prompt" class="game-prompt">▲ / SPACE で調べる</div>
-
-        <!-- 操作（タッチ） -->
-        <div class="game-controls" aria-hidden="true">
-            <button id="btn-left" class="gc-btn">◄</button>
-            <button id="btn-right" class="gc-btn">►</button>
-            <button id="btn-act" class="gc-btn gc-act">▲</button>
-        </div>
-
-        <!-- 情報パネル -->
-        <div id="game-panel" class="game-panel">
-            <div class="game-panel-box">
-                <h3 id="game-panel-title"></h3>
-                <p id="game-panel-body"></p>
-                <button id="game-panel-close" class="cta-button primary">閉じる ▶</button>
-            </div>
-        </div>
-
-        <!-- 完了 -->
-        <div id="game-done" class="game-done">
-            <div class="game-done-box">
-                <p class="done-title">★ 現在地に到着 ★</p>
-                <p class="done-sub">2022 から今まで、これが川村優弥の経歴です。</p>
-                <div class="cta-row">
-                    <a class="cta-button primary" href="#about-anchor">詳しい経歴へ ▶</a>
-                    <a class="cta-button ghost" href="portfolio.html">作品を見る ▶</a>
-                    <a class="cta-button ghost" href="mailto:medli908@gmail.com">連絡する ▶</a>
-                </div>
-            </div>
-        </div>
+    <!-- 3 本柱（作品が主役） -->
+    <section class="pillars" aria-label="主な仕事">
+        <a class="pillar" href="engine.html">
+            <span class="pillar-tag">Engine</span>
+            <span class="pillar-name">MitiruEngine</span>
+            <span class="pillar-desc">C++20 / header-only の自作ゲームエンジン。決定論・リプレイ、6 つの GPU バックエンド、HTML/CSS で書ける UI。</span>
+            <span class="pillar-go">詳しく見る →</span>
+        </a>
+        <a class="pillar" href="research.html">
+            <span class="pillar-tag">Research</span>
+            <span class="pillar-name">剛体物理シミュレーション</span>
+            <span class="pillar-desc">剛体物理で化学現象を再現する研究。国際会議 BDA 2025 に第一著者で採択、Springer LNCS 出版。</span>
+            <span class="pillar-go">論文を見る →</span>
+        </a>
+        <a class="pillar" href="portfolio.html">
+            <span class="pillar-tag">Works</span>
+            <span class="pillar-name">ゲーム・ツール・創作</span>
+            <span class="pillar-desc">自作エンジン上のゲーム、制作ツール、イラストや Live2D まで。チーム開発・個人開発の両方。</span>
+            <span class="pillar-go">作品を見る →</span>
+        </a>
     </section>
 
     <span id="about-anchor"></span>
@@ -133,22 +96,12 @@
     <!-- About Section (revealed on scroll) -->
     <div class="about-section">
         <div class="about-content">
-            <h2>About Me</h2>
-            <p style="font-size: 1.15rem; line-height: 1.9;">
-                <strong style="color: var(--text-light); font-weight: 700;">C++ グラフィックスプログラマ。</strong>
-                グラフィックス API の低レイヤーを軸に、ゲーム・自作エンジン・研究をまたいで開発しています。会津大学大学院（M1）。
-            </p>
-            <p style="font-size: 1rem; line-height: 1.9; color: var(--text-dim); margin-bottom: 0.8rem;">
-                <strong style="color: var(--text-light); font-weight: 500;">MitiruEngine</strong> — C++20 / header-only の自作ゲームエンジン。決定論的な実行とリプレイ、HTML/CSS で書ける UI を軸に、自分のゲームを実際に出すために書いています。
-            </p>
-            <p style="font-size: 1rem; line-height: 1.9; color: var(--text-dim); margin-bottom: 0.8rem;">
-                <strong style="color: var(--text-light); font-weight: 500;">研究</strong> — 剛体物理シミュレーションで化学現象を再現。国際会議 BDA 2025 に第一著者で採択され、Springer LNCS に出版されました。
-            </p>
-            <p style="font-size: 1rem; line-height: 1.9; color: var(--text-dim); margin-bottom: 0.8rem;">
-                <strong style="color: var(--text-light); font-weight: 500;">株式会社 Live2D（アルバイト）</strong> — Cubism SDK for Native（C++）の保守・不具合対応。グラフィック API まわりのプロダクションコードに日常的に触れています。
+            <h2>About</h2>
+            <p style="font-size: 1.05rem; line-height: 1.9; margin-bottom: 0.8rem;">
+                会津大学大学院（M1）。C++ とグラフィックス API の低レイヤーを軸に、ゲーム・自作エンジン・研究をまたいで開発しています。
             </p>
             <p style="font-size: 1rem; line-height: 1.9; color: var(--text-dim); margin-bottom: 2rem;">
-                学部ではチームを率いてゲームを作り、シナリオも絵も自分で書いてきました。足りない道具は自分で作ります — Siv3D 向けの GUI ツール、自作レンダラー、開発中のエンジンも、すべてその延長です。
+                株式会社 Live2D で Cubism SDK for Native（C++）の保守・不具合対応のアルバイト中。学部ではチーム開発でリーダーを務め、シナリオも絵も書いてきました。足りない道具は自分で作る方です。
             </p>
             <div class="about-info">
                 <div class="info-item">
@@ -199,7 +152,7 @@
                     GitHub →
                 </a>
                 <a class="cta-button ghost" href="portfolio.html">
-                    Portfolio →
+                    Works →
                 </a>
                 <a class="cta-button ghost" href="engine.html">
                     MitiruEngine →
@@ -211,61 +164,24 @@
         </div>
     </div>
 
-    <!-- Career Timeline -->
+    <!-- Timeline（静かなテキスト年表） -->
     <div class="timeline-section">
         <div class="timeline-content">
-            <h2>Career Timeline</h2>
-            <p>これまで取り組んできたこと（学部入学から現在まで）。</p>
-
+            <h2>Timeline</h2>
+            <p>学部入学から現在まで。</p>
             <div class="timeline">
-                <div class="timeline-row">
-                    <div class="timeline-date">2022 春</div>
-                    <div class="timeline-body">会津大学コンピュータ理工学部 入学</div>
-                </div>
-                <div class="timeline-row">
-                    <div class="timeline-date">2022 夏</div>
-                    <div class="timeline-body"><strong>Down into...</strong>（チーム5人 / 2ヶ月）— 初めてのチーム開発。蒼翔祭2022・コミックマーケット101 で頒布</div>
-                </div>
-                <div class="timeline-row">
-                    <div class="timeline-date">2023 春</div>
-                    <div class="timeline-body"><strong>ハトを育てよう</strong>（TyranoScript 版）。蒼翔祭2023 で展示</div>
-                </div>
-                <div class="timeline-row">
-                    <div class="timeline-date">2023 夏</div>
-                    <div class="timeline-body"><strong>416</strong>（チーム2人 / 2ヶ月）— 初めてのプロジェクトリーダー。<br>会津大学 <strong>コンピュータサイエンスサマーキャンプ プロジェクトリーダー（1年目）</strong>。蒼翔祭2023・コミックマーケット103 で頒布</div>
-                </div>
-                <div class="timeline-row">
-                    <div class="timeline-date">2024 春</div>
-                    <div class="timeline-body"><strong>ぐるぐる☆しゅがーふぁくとりー</strong>（チーム3人 / 2ヶ月）— 初めての Unity。蒼翔祭2024 で展示。<br><strong>VoronoiShortestPathSolver</strong> — ボロノイ図を用いた最短経路探索</div>
-                </div>
-                <div class="timeline-row">
-                    <div class="timeline-date">2024 夏</div>
-                    <div class="timeline-body"><strong>劇場版ぱんドドド</strong>（チーム6人 / 2ヶ月）— プロジェクトリーダー、自作ステージ制作ツールも開発。<br>CS サマーキャンプ <strong>プロジェクトリーダー（2年目連続）</strong></div>
-                </div>
-                <div class="timeline-row">
-                    <div class="timeline-date">2024 冬</div>
-                    <div class="timeline-body"><strong>Vimove</strong> — Vim 操作習熟のための迷路ゲーム</div>
-                </div>
-                <div class="timeline-row">
-                    <div class="timeline-date">2025 春</div>
-                    <div class="timeline-body"><strong>GraphWalker</strong> — 数式パースを用いたパズルアクション。<br><strong>VisualResourceLinkerForSiv3D</strong> — Siv3D リソース管理 GUI ツール（ImGUI / MVC）</div>
-                </div>
-                <div class="timeline-row">
-                    <div class="timeline-date">2025 夏〜</div>
-                    <div class="timeline-body"><strong>かえるクレープへようこそ</strong> 開発開始（Godot）。コミックマーケット106 で体験版を無料配布。<br><strong>MitiruEngine</strong> 開発開始。<br>研究: 自己組織化シミュレーションを PhysX で実装</div>
-                </div>
-                <div class="timeline-row">
-                    <div class="timeline-date">2025 12月</div>
-                    <div class="timeline-body"><strong>BDA 2025（International Conference on Big Data Analytics）</strong>に第一著者として論文発表（会津）</div>
-                </div>
-                <div class="timeline-row">
-                    <div class="timeline-date">2026 春</div>
-                    <div class="timeline-body"><strong>会津大学大学院（M1）進学</strong>。<br><strong>株式会社 Live2D で Cubism SDK for Native の保守・不具合対応アルバイト</strong>を開始。<br>論文が <strong>Springer LNCS</strong> シリーズに出版</div>
-                </div>
-                <div class="timeline-row">
-                    <div class="timeline-date">2026 現在</div>
-                    <div class="timeline-body"><strong>ハトを育てよう（MitiruEngine リメイク）</strong>完成。<br>かえるクレープを MitiruEngine WASM へ移植中（1.0.0-rc1）。<br>並行して oskar-rythm、脱出ゲーム（仮）など複数プロジェクトを進行</div>
-                </div>
+                <div class="timeline-row"><div class="timeline-date">2022 春</div><div class="timeline-body">会津大学コンピュータ理工学部 入学</div></div>
+                <div class="timeline-row"><div class="timeline-date">2022 夏</div><div class="timeline-body"><strong>Down into...</strong>（チーム5人 / 2ヶ月）— 初めてのチーム開発。蒼翔祭2022・コミックマーケット101 で頒布</div></div>
+                <div class="timeline-row"><div class="timeline-date">2023 春</div><div class="timeline-body"><strong>ハトを育てよう</strong>（TyranoScript 版）。蒼翔祭2023 で展示</div></div>
+                <div class="timeline-row"><div class="timeline-date">2023 夏</div><div class="timeline-body"><strong>416</strong>（チーム2人 / 2ヶ月）— 初めてのプロジェクトリーダー。会津大学 <strong>CS サマーキャンプ PL（1年目）</strong></div></div>
+                <div class="timeline-row"><div class="timeline-date">2024 春</div><div class="timeline-body"><strong>ぐるぐる☆しゅがーふぁくとりー</strong>（チーム3人）— 初めての Unity。<strong>VoronoiShortestPathSolver</strong></div></div>
+                <div class="timeline-row"><div class="timeline-date">2024 夏</div><div class="timeline-body"><strong>劇場版ぱんドドド</strong>（チーム6人）— PL、自作ステージ制作ツールも開発。CS サマーキャンプ <strong>PL（2年連続）</strong></div></div>
+                <div class="timeline-row"><div class="timeline-date">2024 冬</div><div class="timeline-body"><strong>Vimove</strong> — Vim 操作習熟のための迷路ゲーム</div></div>
+                <div class="timeline-row"><div class="timeline-date">2025 春</div><div class="timeline-body"><strong>GraphWalker</strong>（数式パースのパズルアクション）。<strong>VisualResourceLinkerForSiv3D</strong>（Siv3D リソース管理 GUI）</div></div>
+                <div class="timeline-row"><div class="timeline-date">2025 夏〜</div><div class="timeline-body"><strong>かえるクレープへようこそ</strong> 開発開始（Godot、コミケ106 体験版）。<strong>MitiruEngine</strong> 開発開始。研究で自己組織化を PhysX 実装</div></div>
+                <div class="timeline-row"><div class="timeline-date">2025 12月</div><div class="timeline-body"><strong>BDA 2025</strong> に第一著者として論文発表（会津）</div></div>
+                <div class="timeline-row"><div class="timeline-date">2026 春</div><div class="timeline-body"><strong>大学院（M1）進学</strong>。<strong>株式会社 Live2D</strong> で Cubism SDK for Native の保守・不具合対応アルバイト開始。論文が <strong>Springer LNCS</strong> 出版</div></div>
+                <div class="timeline-row"><div class="timeline-date">2026 現在</div><div class="timeline-body"><strong>ハトを育てよう（MitiruEngine リメイク）</strong>完成。かえるクレープを <strong>MitiruEngine WASM</strong> へ移植中。並行して複数プロジェクト進行</div></div>
             </div>
         </div>
     </div>
@@ -329,15 +245,7 @@
     </div>
 
     <script src="assets/js/retro.js"></script>
-    <script src="assets/js/career-walk.js"></script>
     <script src="assets/js/back-to-top.js"></script>
-
-    <!-- OutRun 一人称ドライブ hero (three.js / synthwave) -->
-    <script type="importmap">{ "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-    }}</script>
-    <script type="module" src="assets/js/outrun-hero.js"></script>
 </body>
 
 </html>

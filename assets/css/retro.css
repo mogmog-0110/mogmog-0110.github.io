@@ -499,6 +499,80 @@ nav {
   border: 2px solid var(--amber) !important;
 }
 
+/* ── 静かな hero（synthwave は上部の細い帯だけ）──────── */
+.home-hero { position: relative; z-index: 10; }
+/* 細い synthwave の帯（夕日グラデ + ネオン線）= 唯一の OutRun アクセント */
+.home-band {
+  height: 6px; width: 100%;
+  background: linear-gradient(90deg, #3d137a, #8a2a86 35%, #ff5db0 60%, #ffcf4a 100%);
+  box-shadow: 0 0 14px rgba(255, 93, 176, .5);
+}
+.home-hero-inner {
+  max-width: 1000px; margin: 0 auto;
+  padding: clamp(3rem, 9vw, 6rem) clamp(1.4rem, 5vw, 3rem) clamp(2rem, 5vw, 3.5rem);
+}
+.home-kicker {
+  font-family: 'Space Grotesk', sans-serif; font-size: clamp(.62rem, 1.4vw, .78rem);
+  letter-spacing: .26em; color: var(--cyan); margin: 0 0 1rem;
+}
+.home-name {
+  font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700;
+  font-size: clamp(2rem, 6vw, 3.4rem); color: var(--ink); margin: 0 0 .6rem; line-height: 1.1;
+}
+.home-name span { color: var(--ink-mute); font-size: .5em; font-weight: 500; }
+.home-line { font-size: clamp(1rem, 2.4vw, 1.35rem); color: var(--ink-soft); margin: 0; line-height: 1.7; }
+
+/* ── 3 本柱カード（作品が主役）──────────────────────── */
+.pillars {
+  position: relative; z-index: 10;
+  max-width: 1000px; margin: 0 auto 1rem; padding: 0 clamp(1.4rem, 5vw, 3rem);
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(.8rem, 2vw, 1.2rem);
+}
+@media (max-width: 760px) { .pillars { grid-template-columns: 1fr; } }
+.pillar {
+  display: flex; flex-direction: column; gap: .5rem;
+  padding: clamp(1.2rem, 2.5vw, 1.6rem);
+  background: var(--bg-2); border: 2px solid var(--line); text-decoration: none;
+  transition: border-color .15s, transform .1s, box-shadow .15s;
+}
+.pillar:hover { border-color: var(--cyan); transform: translateY(-3px); box-shadow: 0 6px 0 #00000055; }
+.pillar-tag {
+  font-family: 'Space Grotesk', sans-serif; font-size: .64rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--cyan);
+}
+.pillar-name { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; font-size: 1.25rem; color: var(--ink); }
+.pillar-desc { font-size: .9rem; line-height: 1.7; color: var(--ink-soft); flex: 1; }
+.pillar-go { font-family: 'Space Grotesk', sans-serif; font-size: .8rem; color: var(--amber); margin-top: .3rem; }
+
+/* ── 経歴ドライブ（OutRun 横視点・スクロール同期）──────── */
+#drive { position: relative; width: 100%; background: #06030f; z-index: 10; }
+.drive-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+#drive-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.drive-top {
+  position: absolute; top: clamp(64px, 9vh, 92px); left: 50%; transform: translateX(-50%);
+  z-index: 3; display: flex; align-items: center; gap: 10px; width: min(86vw, 620px);
+}
+.drive-cap { font-family: 'Space Grotesk', sans-serif; font-size: .72rem; letter-spacing: .12em; color: rgba(255, 255, 255, .7); }
+.drive-bar { flex: 1; height: 6px; background: rgba(13, 15, 26, .7); border: 1px solid rgba(95, 240, 255, .3); }
+.drive-bar > i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ff6cc0, #5ff0ff); box-shadow: 0 0 8px rgba(95, 240, 255, .6); transition: width .1s linear; }
+.drive-hud { position: absolute; left: clamp(16px, 4vw, 48px); bottom: clamp(28px, 8vh, 72px); z-index: 3; max-width: min(90vw, 640px); }
+.drive-year {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--amber);
+  font-size: clamp(1.4rem, 4vw, 2.4rem); text-shadow: 0 0 16px rgba(255, 207, 74, .5); margin-bottom: .3rem;
+}
+.drive-body {
+  font-family: 'Zen Kaku Gothic New', sans-serif; color: #fff; line-height: 1.7;
+  font-size: clamp(.95rem, 2vw, 1.25rem); text-shadow: 0 1px 12px rgba(0, 0, 0, .7);
+}
+.drive-body strong { color: #5ff0ff; font-weight: 700; }
+.drive-hint {
+  position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 3;
+  font-family: 'Space Grotesk', sans-serif; font-size: .75rem; letter-spacing: .1em;
+  color: rgba(255, 255, 255, .6); transition: opacity .4s; animation: blink 1.6s steps(1) infinite;
+}
+/* 経歴データは SR / JS 無効フォールバック用に視覚的に隠す */
+.drive-data { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; padding: 0; margin: -1px; }
+
 /* ── フッター ───────────────────────────────────────── */
 .site-footer {
   position: relative;
