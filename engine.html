@@ -67,10 +67,11 @@
                 </div>
 
                 <p style="font-size: 1.1rem; line-height: 1.9;">
-                    ゲームを作っているうちに、エンジンの仕組みを自分の手で確かめたくなって書き始めた C++20 ゲームエンジンです。
+                    <strong style="color: var(--text-light); font-weight: 700;">C++20 / header-only の自作ゲームエンジン。</strong>
+                    CMake の <code>FetchContent</code> でリンクするだけで使え、純 C++ の <strong style="color: var(--text-light); font-weight: 500;">Native</strong> と、CEF + HTML/CSS/JS で UI を組む <strong style="color: var(--text-light); font-weight: 500;">Hybrid</strong> の 2 モードを持ちます。
                 </p>
                 <p style="color: var(--text-dim); line-height: 1.9;">
-                    header-only で配布するつもりで作っていて、使う側は CMake の <code>FetchContent</code> でリンクするだけで動かせます。動かしかたは 2 つあって、純 C++ だけの Native と、CEF + HTML/CSS/JS で UI を組む Hybrid。両方を残す方針です。
+                    決定論的な実行とリプレイ、6 つの GPU バックエンドを 1 つのインターフェイスに抽象化、HTML/CSS で書ける UI ── 使う側ではなく書く側からグラフィックスの低レイヤーを押さえるための足場として開発しています。
                 </p>
             </div>
 
@@ -108,10 +109,10 @@
             <div class="section-block">
                 <h2>なぜ自分でエンジンを書くのか</h2>
                 <p>
-                    Unity も Godot も Unreal も Siv3D も、ゲームを作るだけなら困らないくらいよくできています。それでも自分で書いているのは、ゲームが画面に出るまでに何がどう動いているのかを、使う側ではなく書く側から知っておきたかったからです。
+                    Unity / Godot / Unreal / Siv3D はゲームを作るだけなら困りません。それでも書くのは、ゲームが画面に出るまでに何がどう動くかを、使う側でなく<strong style="color: var(--text-light); font-weight: 500;">書く側から</strong>知っておきたいからです。
                 </p>
                 <p>
-                    エンジン開発が目的ではなくて、ゲームを深く作れる人間でいるための足場として書いています。ゲーム制作はゲーム制作で別に進めていて、そこで詰まったことがあると、こちらに書き戻すこともあります。
+                    目的はエンジンそのものではなく、ゲームを深く作れる人間でいるための足場。ゲーム制作は並行して進め、そこで詰まった課題をエンジンへ書き戻しています。
                 </p>
             </div>
 
