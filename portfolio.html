@@ -61,8 +61,11 @@
         <main class="page-content">
             <h1 class="page-title">Works</h1>
 
-            <p style="margin-bottom: 2rem; padding: 1rem; background: rgba(139, 32, 32, 0.2); border-left: 3px solid var(--washer-red); border-radius: 4px; font-size: 0.9rem; color: var(--text-dim);">
-                ※一部の作品はチーム制作したもので、チームメンバーから許諾を得ていないため、遊べないものもあります。
+            <p style="font-size: 1.05rem; line-height: 1.9; margin-bottom: 1.5rem;">
+                学部から現在まで作ってきたもの ── チーム / 個人のゲーム、開発ツール、研究コード、創作。多くはリーダーや主担当として、企画から実装まで手を動かしています。
+            </p>
+            <p style="margin-bottom: 2rem; padding: 0.8rem 1rem; background: rgba(255, 93, 143, 0.08); border-left: 3px solid var(--washer-red); font-size: 0.85rem; color: var(--text-dim);">
+                ※ 一部はチーム制作で、メンバーの許諾の都合により遊べないものもあります。
             </p>
 
             <!-- ============================================== -->
@@ -347,31 +350,29 @@
             <!-- ============================================== -->
             <div class="section-heading">
                 <h2>Tools &amp; Engines</h2>
-                <p>必要な道具がないときは自分で作ります。レンダラー、エンジン、リソース管理ツール、研究用のアルゴリズムなど。</p>
+                <p>開発の途中で必要になって書いた道具。レンダラー、リソース管理ツール、研究用アルゴリズムなど。</p>
             </div>
 
             <div class="cards-container">
-                <!-- MitiruEngine (Featured tool) -->
-                <article class="card featured">
+                <!-- MitiruEngine（詳細は Engine ページ） -->
+                <article class="card">
                     <div class="card-image">
-                        <div style="background: linear-gradient(135deg, rgba(139, 32, 32, 0.5), rgba(40, 25, 25, 0.4)); height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.85); font-size: 2.2rem; letter-spacing: 0.15em; font-weight: 300;">MitiruEngine</div>
+                        <div style="height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(232, 232, 232, 0.85); font-size: 1.8rem; letter-spacing: 0.12em; font-weight: 300;">MitiruEngine</div>
                     </div>
                     <div class="card-content">
                         <span class="card-status in-development">In Development</span>
                         <h2>MitiruEngine</h2>
                         <p class="card-meta">個人開発 | C++20 header-only ゲームエンジン | MIT</p>
                         <p class="card-description">
-                            自作の C++20 ゲームエンジン。header-only で、CMake の FetchContent でリンクするだけで使えるように作っています。47 モジュール、700+ ヘッダ、730+ commits。DX11 / DX12 / Vulkan / OpenGL / WebGL の複数バックエンド、Win32 / GLFW / SDL2 / Emscripten の複数窓、純 C++ と CEF + JS UI の 2 種類の動かしかた、自前 CLI まで一通り。
+                            自作の C++20 / header-only ゲームエンジン。マルチ GPU バックエンド、決定論＋自動リプレイ、HTML/CSS で書ける UI。<a href="engine.html" style="color: var(--washer-red);">専用ページ</a>で詳しく書いています。
                         </p>
                         <div class="card-tags">
                             <span class="tag">C++20</span>
                             <span class="tag">Header-only</span>
-                            <span class="tag">CMake</span>
-                            <span class="tag">DirectX</span>
-                            <span class="tag">Vulkan</span>
+                            <span class="tag">DirectX / Vulkan</span>
                             <span class="tag">CEF</span>
                         </div>
-                        <a href="engine.html" class="card-link">詳細を見る →</a>
+                        <a href="engine.html" class="card-link">Engine ページへ →</a>
                     </div>
                 </article>
 
