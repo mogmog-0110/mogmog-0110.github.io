@@ -29,14 +29,14 @@
   --line:      #2c3350;     /* 罫線 */
   --line-bright: #3a4470;   /* 明るい罫線 */
 
-  /* フォント */
-  --font-display: 'DotGothic16', 'Courier New', monospace; /* JP+EN ドット */
-  --font-pixel:   'Press Start 2P', monospace;             /* 短い EN ラベル専用 */
+  /* フォント（クリーン路線：ピクセル/ドットは廃し、整ったゴシックに） */
+  --font-display: 'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif; /* 見出し */
+  --font-pixel:   'Space Grotesk', sans-serif;             /* 短い EN ラベル */
   --font-body:    'Space Grotesk', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', system-ui, sans-serif;
 
-  /* 影：ぼかさない硬いオフセット影（レトロ＝シャープ） */
-  --shadow-hard:  4px 4px 0 #00000080;
-  --shadow-hard-sm: 3px 3px 0 #00000066;
+  /* 影：柔らかいドロップシャドウ（上質感。旧: 硬いオフセット＝チープ） */
+  --shadow-hard:  0 8px 26px rgba(0, 0, 0, 0.38);
+  --shadow-hard-sm: 0 4px 16px rgba(0, 0, 0, 0.32);
 }
 
 /* ── グローバル ───────────────────────────────────────── */
@@ -46,36 +46,13 @@ html, body {
   font-family: var(--font-body);
 }
 
-/* CRT 走査線 + わずかなビネット（全面固定オーバーレイ・操作は透過） */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 9000;
-  pointer-events: none;
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.10) 0px,
-      rgba(0, 0, 0, 0.10) 1px,
-      transparent 1px,
-      transparent 3px
-    ),
-    radial-gradient(120% 120% at 50% 50%, transparent 60%, rgba(0, 0, 0, 0.35) 100%);
-}
-
-/* 背景：ドットグリッド（宇宙 nebula の代わりに軽量 CSS で） */
+/* CRT 走査線・ドットグリッドは廃止（チープに見えるため）。背景は落ち着いた単色＋ごく淡いビネット。 */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-color: var(--bg);
-  background-image:
-    radial-gradient(rgba(75, 225, 210, 0.06) 1px, transparent 1px),
-    radial-gradient(rgba(255, 93, 143, 0.05) 1px, transparent 1px);
-  background-size: 32px 32px, 48px 48px;
-  background-position: 0 0, 16px 16px;
+  background: var(--bg);
 }
 
 /* 旧 WebGL hero とローディングは非表示（レトロ背景に置換） */
@@ -100,12 +77,6 @@ h1, h2, h3,
   text-transform: none;
 }
 
-/* セクション見出しに「＞」プロンプトを付ける（端末風） */
-.about-content h2::before,
-.timeline-content h2::before {
-  content: "▸ ";
-  color: var(--amber);
-}
 
 /* ── レイアウト正常化：cosmic 用の fixed overlay を通常フローへ ── */
 .ui-overlay {
@@ -297,10 +268,11 @@ nav {
   color: #5ff0ff; margin-bottom: 1rem; text-shadow: 0 0 12px rgba(95,240,255,.7);
 }
 .or-title {
-  font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 900; line-height: 1.02;
-  font-size: clamp(2.8rem, 8vw, 5.8rem); margin-bottom: .5rem; color: #fff;
-  text-shadow: 0 0 34px rgba(255,93,176,.5), 0 2px 22px rgba(0,0,0,.6);
+  font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; line-height: 1.04;
+  font-size: clamp(2.4rem, 7vw, 4.8rem); margin: 0 0 .5rem; color: #fff;
+  text-shadow: 0 0 34px rgba(255,93,176,.45), 0 2px 22px rgba(0,0,0,.6);
 }
+.or-handle { color: rgba(255,255,255,.55); font-size: .42em; font-weight: 500; }
 .or-role {
   font-size: clamp(.9rem, 2vw, 1.2rem); color: rgba(255,255,255,.92);
   font-weight: 500; margin-bottom: 1.3rem; text-shadow: 0 1px 14px rgba(0,0,0,.6);
@@ -407,8 +379,6 @@ nav {
 .page-content a { color: var(--cyan); }
 .page-content a:hover { color: var(--magenta); }
 .page-content strong { color: var(--ink); }
-/* セクション見出しに端末プロンプト */
-.page-content h2::before { content: "▸ "; color: var(--amber); }
 /* カード/パネル的なブロックを HUD フレーム化（よくある class 名を広く拾う） */
 .page-content .card,
 .page-content .project,
@@ -435,55 +405,24 @@ nav {
   color: var(--ink);
 }
 
-/* ── 各ページ共通: シンセウェイブ・ヘッダー帯（トップの OutRun と統一）──
-   .page-title をバナー化（夕焼けグラデ + 縞の太陽 + ネオン透視グリッド）。
-   retro.css 1 箇所の編集で portfolio/engine/research/skills/creation に伝搬する。 */
+/* ── 各ページ共通のページ見出し（クリーン。細い synthwave アクセント線のみ）── */
 .page-title {
   position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  margin: 0 0 2.4rem;
-  padding: clamp(3rem, 9vw, 5.5rem) clamp(1.2rem, 4vw, 2rem) clamp(2.4rem, 6vw, 3.4rem);
-  text-align: center;
-  font-family: 'Zen Kaku Gothic New', var(--font-display), sans-serif;
-  font-weight: 900;
-  font-size: clamp(2rem, 6vw, 3.6rem);
-  letter-spacing: .04em;
-  color: #fff;
-  text-shadow: 0 0 28px rgba(255, 93, 176, .55), 0 2px 16px rgba(0, 0, 0, .6);
-  background: linear-gradient(to bottom,
-    #1b0742 0%, #3d137a 42%, #8a2a86 70%, #e0487f 86%, #ff8a5c 100%);
-  border: 2px solid var(--line-bright);
-  box-shadow: 0 0 22px rgba(255, 93, 176, .2) inset;
+  margin: clamp(1.5rem, 5vw, 3rem) 0 2rem;
+  padding-bottom: 1rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  letter-spacing: .01em;
+  color: var(--ink);
 }
-/* 縞模様の synthwave サン（タイトル背後・中央）*/
-.page-title::before {
-  content: "";
-  position: absolute; left: 50%; bottom: 30%; transform: translateX(-50%);
-  width: min(46vw, 230px); height: min(46vw, 230px); border-radius: 50%;
-  background: linear-gradient(to bottom, #fff1a8 0%, #ffd23f 28%, #ff5db0 66%, #b14aff 100%);
-  -webkit-mask: linear-gradient(to bottom, #000 0 52%, transparent 52%),
-    repeating-linear-gradient(to bottom, #000 0 6px, transparent 6px 10px);
-  mask: linear-gradient(to bottom, #000 0 52%, transparent 52%),
-    repeating-linear-gradient(to bottom, #000 0 6px, transparent 6px 10px);
-  filter: drop-shadow(0 0 28px rgba(255, 90, 150, .5));
-  opacity: .85; z-index: -1;
-}
-/* ネオン透視グリッドの床（バナー下部）*/
+/* タイトル下の細い夕日アクセント線（唯一の synthwave なごり） */
 .page-title::after {
   content: "";
-  position: absolute; left: -10%; right: -10%; bottom: 0; height: 46%;
-  background-image:
-    repeating-linear-gradient(to right, transparent 0 calc(7% - 1.5px), rgba(95, 240, 255, .55) calc(7% - 1.5px) 7%),
-    repeating-linear-gradient(to bottom, transparent 0 calc(22% - 1.5px), rgba(255, 93, 176, .6) calc(22% - 1.5px) 22%);
-  transform: perspective(180px) rotateX(62deg);
-  transform-origin: bottom center;
-  -webkit-mask: linear-gradient(to top, #000 20%, transparent 92%);
-  mask: linear-gradient(to top, #000 20%, transparent 92%);
-  z-index: -1;
+  position: absolute; left: 0; bottom: 0;
+  width: 64px; height: 3px;
+  background: linear-gradient(90deg, #ff5db0, #ffcf4a);
 }
-/* ページ見出しの「▸」端末プロンプトはトップページ系のみ。バナーには出さない */
-.page-title::first-line { }
 /* 旧 赤/原色グラデのサムネ placeholder（inline style）を retro ドットパネルに統一。
    実スクリーンショット（<img>）は対象外。 */
 .page-content div.card-image {

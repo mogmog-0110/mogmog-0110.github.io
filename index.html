@@ -58,16 +58,24 @@
             </ul>
         </nav>
 
-        <!-- Hero: 静かな導入（synthwave は上部の細い帯だけ） -->
-        <header class="home-hero">
-            <div class="home-band" aria-hidden="true"></div>
-            <div class="home-hero-inner">
-                <p class="home-kicker">GAME / ENGINE ・ GRAPHICS PROGRAMMER</p>
-                <h1 class="home-name">川村優弥 <span>/ Shiggy</span></h1>
-                <p class="home-line">C++ でゲームと、それを動かすための道具をつくっています。</p>
+        <!-- Hero: OutRun 一人称ドライブ（home の signature。文言は控えめ） -->
+        <main class="outrun-hero" aria-label="タイトル">
+            <div class="or-stars" aria-hidden="true"></div>
+            <div class="or-sun" aria-hidden="true"></div>
+            <canvas id="or-gl"></canvas>
+            <div class="or-scrim" aria-hidden="true"></div>
+
+            <div class="or-content">
+                <div class="or-eyebrow">GAME / ENGINE ・ GRAPHICS PROGRAMMER</div>
+                <h1 class="or-title">川村優弥 <span class="or-handle">/ Shiggy</span></h1>
+                <div class="or-role">Aizu Univ. M1 ・ Live2D (Cubism SDK / C++) ・ BDA 2025 (LNCS)</div>
+                <p class="or-tag">C++ でゲームと、それを動かすための道具をつくっています。</p>
+                <a class="or-scroll" href="#pillars-anchor">▽ scroll</a>
             </div>
-        </header>
+        </main>
     </div>
+
+    <span id="pillars-anchor"></span>
 
     <!-- 3 本柱（作品が主役） -->
     <section class="pillars" aria-label="主な仕事">
@@ -246,6 +254,13 @@
 
     <script src="assets/js/retro.js"></script>
     <script src="assets/js/back-to-top.js"></script>
+
+    <!-- OutRun 一人称ドライブ hero (three.js / synthwave) -->
+    <script type="importmap">{ "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }}</script>
+    <script type="module" src="assets/js/outrun-hero.js"></script>
 </body>
 
 </html>
