@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja" style="background-color: #050508;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050508">
+    <title>NPR 輪郭線の時間安定化 | Shiggy</title>
+    <meta name="description" content="TAA の考え方をトゥーン輪郭線に応用した時間安定化を、自作エンジン MitiruEngine 上で実装した実験。">
+
+    <style>
+        html, body {
+            background-color: #050508 !important;
+            margin: 0;
+            padding: 0;
+        }
+        .case-figure { margin: 1.2rem 0; }
+        .case-figure img {
+            width: 100%;
+            border: 1px solid #2a2a33;
+            border-radius: 6px;
+            image-rendering: pixelated;
+        }
+        .case-figure figcaption {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            margin-top: 0.4rem;
+            line-height: 1.7;
+        }
+    </style>
+
+    <!-- meta:social -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shiggy's Portfolio">
+    <meta property="og:title" content="NPR 輪郭線の時間安定化 | Shiggy">
+    <meta property="og:description" content="TAA の考え方をトゥーン輪郭線に応用した時間安定化を、自作エンジン上で実装した実験。">
+    <meta property="og:url" content="https://mogmog-0110.github.io/npr-lines.html">
+    <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NPR 輪郭線の時間安定化 | Shiggy">
+    <meta name="twitter:description" content="TAA の考え方をトゥーン輪郭線に応用した時間安定化を、自作エンジン上で実装した実験。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DotGothic16&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/retro.css">
+</head>
+<body data-page="npr-lines">
+    <div id="cosmic-canvas"></div>
+
+    <div class="ui-overlay">
+        <nav>
+            <div class="nav-logo">
+                <a href="index.html">Shiggy</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="engine.html">Engine</a></li>
+                <li><a href="labs.html">Lab</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="portfolio.html">Works</a></li>
+            </ul>
+        </nav>
+
+        <main class="page-content">
+            <h1 class="page-title">NPR 輪郭線の時間安定化</h1>
+
+            <!-- TL;DR -->
+            <div class="section-block">
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+                    <span class="pub-badge">Experiment</span>
+                    <span class="pub-badge muted">C++20</span>
+                    <span class="pub-badge muted">MitiruEngine</span>
+                    <span class="pub-badge muted">NPR / トゥーン</span>
+                    <span class="pub-badge muted">2026</span>
+                </div>
+
+                <p style="font-size: 1.1rem; line-height: 1.9;">
+                    <strong style="color: var(--text-light); font-weight: 700;">TAA の考え方（motion vector で前フレームを再投影して合成する）を、色ではなくトゥーンの輪郭線に応用してみた実験です。</strong>
+                </p>
+                <p style="color: var(--text-dim); line-height: 1.9;">
+                    3D から自動生成した輪郭線はアニメーションさせるとチラつきやすい、という題材に対して、
+                    motion vector・objectId バッファ・輪郭抽出・時間安定化までを
+                    <a href="engine.html" style="color: var(--washer-red);">自作エンジン</a>に一式実装して、
+                    定量計測と比較デモを作りました。
+                </p>
+            </div>
+
+            <!-- 作ったもの -->
+            <div class="section-block">
+                <h2>作ったもの</h2>
+                <ul style="margin: 1rem 0 1rem 2rem; line-height: 2;">
+                    <li>G-buffer への <strong>motion vector / objectId</strong> チャネルと前フレーム保持（double-buffer）</li>
+                    <li>深度段差 + 法線の折れによる <strong>screen-space 輪郭抽出</strong></li>
+                    <li>再投影 + 履歴検証による<strong>時間安定化</strong>（EMA 方式と、線の芯を保つ dropout-filling 方式の 2 種、CPU/GPU 両実装）</li>
+                    <li>変形メッシュの per-vertex velocity、glTF/VRM 読み込み、線幅などのスタイライズ後処理</li>
+                </ul>
+                <p style="color: var(--text-dim);">
+                    チラつき（フレーム間の再投影残差）で −63%、線幅ジッタで −67% など、各段階は自動テストで数値ごと固定してあります。
+                </p>
+
+                <figure class="case-figure">
+                    <img src="images/npr/flicker_heatmap.png" alt="チラつきヒートマップの before/after" loading="lazy">
+                    <figcaption>
+                        左から: 生の輪郭線 / 安定化後 / 無対策のチラつきヒートマップ（赤）/ 安定化後。
+                        フレーム間の残差を可視化すると、安定化でチラつき成分が減るのが見える。
+                    </figcaption>
+                </figure>
+            </div>
+
+            <!-- デモ -->
+            <div class="section-block">
+                <h2>デモ</h2>
+
+                <h3>VRM モデルのターンテーブル比較</h3>
+                <p>
+                    ニコニ立体ちゃん（©dwango）を VRM から読み込み、業界定番の背面法アウトラインと
+                    screen-space 内側線を組み合わせて比較。ピッチ × ヨーの多視点を事前レンダリングして、
+                    ブラウザでドラッグ回転・ズームできるビューアも作りました。
+                </p>
+                <figure class="case-figure">
+                    <img src="images/npr/toon_compare_alicia.png" alt="VRM モデルでの 3 手法比較" loading="lazy">
+                    <figcaption>左: 背面法 + 内側線（無安定化）/ 中: 背面法のみ / 右: 背面法 + 内側線（安定化）。</figcaption>
+                </figure>
+
+                <h3>リアルタイム布デモ（Game DLL）</h3>
+                <p>
+                    布のシワのような「変形で動的に生まれる線」は、背面法では描けずテクスチャにも事前に描けない、
+                    screen-space 検出ならではの領域です。Verlet 質点ばねの布にランダムな突風を当てる
+                    リアルタイムデモをエンジンの Game DLL として実装し、無安定化と安定化を並べて表示しています。
+                </p>
+                <figure class="case-figure">
+                    <img src="images/npr/windy_cloth_demo.png" alt="windy_cloth リアルタイムデモ" loading="lazy">
+                    <figcaption>windy_cloth: Space キーで突風。布シミュレーションも輪郭線パイプラインも全部自前。</figcaption>
+                </figure>
+                <figure class="case-figure">
+                    <img src="images/npr/cloth_demo.png" alt="布のシワ線 3 条件比較" loading="lazy">
+                    <figcaption>左: 背面法のみ / 中: + シワ線（無安定化）/ 右: + シワ線（安定化）。</figcaption>
+                </figure>
+            </div>
+
+            <!-- Links -->
+            <div class="section-block">
+                <h2>リンク</h2>
+                <div class="pub-links" style="margin-top: 1rem;">
+                    <a href="engine.html">MitiruEngine →</a>
+                    <a href="https://github.com/mogmog-0110/MitiruEngine" target="_blank" rel="noopener">GitHub →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="assets/js/back-to-top.js"></script>
+</body>
+</html>

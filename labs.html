@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ja" style="background-color: #050508;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050508">
+    <title>Lab | Shiggy</title>
+    <meta name="description" content="3DCG・物理シミュレーションの問題を見つけて、自作エンジン MitiruEngine で解決アプローチを試す実験集。">
+
+    <style>
+        html, body {
+            background-color: #050508 !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ── カードグリッド ───────────────────────── */
+        .lab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        .lab-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #2a2a33;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.15s ease, border-color 0.15s ease;
+        }
+        .lab-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--washer-red, #e05555);
+        }
+        .lab-card img {
+            width: 100%;
+            aspect-ratio: 16 / 7;
+            object-fit: cover;
+            display: block;
+            image-rendering: pixelated;
+        }
+        .lab-card-body { padding: 0.9rem 1rem 1.1rem; }
+        .lab-card-body h3 { margin: 0 0 0.4rem; font-size: 1.02rem; color: var(--text-light, #eee); }
+        .lab-card-body p { margin: 0; font-size: 0.85rem; line-height: 1.7; color: var(--text-dim, #999); }
+        .lab-card-tags { margin-top: 0.6rem; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+        .lab-card-tags span {
+            font-size: 0.7rem; padding: 0.1rem 0.5rem; border-radius: 3px;
+            border: 1px solid #3a3a44; color: var(--text-dim, #999);
+        }
+
+        /* ── モーダル ────────────────────────────── */
+        .lab-modal-overlay {
+            position: fixed; inset: 0; z-index: 100;
+            background: rgba(0, 0, 0, 0.82);
+            display: none;
+            align-items: flex-start; justify-content: center;
+            overflow-y: auto; padding: 4vh 1rem;
+        }
+        .lab-modal-overlay.open { display: flex; }
+        .lab-modal {
+            background: #0d0d12;
+            border: 1px solid #2a2a33;
+            border-radius: 10px;
+            max-width: 860px; width: 100%;
+            padding: 1.6rem 1.8rem 2rem;
+            position: relative;
+        }
+        .lab-modal-close {
+            position: absolute; top: 0.7rem; right: 0.9rem;
+            background: none; border: none; color: #888;
+            font-size: 1.6rem; cursor: pointer; line-height: 1;
+        }
+        .lab-modal-close:hover { color: #fff; }
+        .lab-modal h2 { margin: 0 1.5rem 0.8rem 0; color: var(--text-light, #eee); }
+        .lab-modal .lab-meta { color: var(--text-dim, #999); font-size: 0.85rem; margin-bottom: 1rem; }
+        .lab-modal .lab-qa { margin: 0.8rem 0; line-height: 1.9; }
+        .lab-modal .lab-qa b { color: var(--text-light, #eee); }
+        .lab-modal .lab-qa p { margin: 0.2rem 0 0; color: var(--text-dim, #bbb); }
+        .lab-modal video, .lab-modal img.media {
+            width: 100%; border: 1px solid #2a2a33; border-radius: 6px;
+            margin-top: 1rem; image-rendering: pixelated; display: block;
+        }
+        .lab-modal .media-caption {
+            color: var(--text-dim, #999); font-size: 0.82rem; margin-top: 0.35rem; line-height: 1.6;
+        }
+        .lab-modal .lab-more { margin-top: 1.3rem; }
+        .lab-modal .lab-more a { color: var(--washer-red, #e05555); }
+        .lab-code {
+            background: #08080c; border: 1px solid #2a2a33; border-radius: 6px;
+            padding: 0.9rem 1.1rem; overflow-x: auto;
+            font-size: 0.8rem; line-height: 1.7; color: #c8d2dc;
+            margin: 0.6rem 0 0;
+        }
+        .lab-code-links { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 0.6rem; }
+        .lab-code-links a { color: var(--washer-red, #e05555); font-size: 0.85rem; }
+    </style>
+
+    <!-- meta:social -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shiggy's Portfolio">
+    <meta property="og:title" content="Lab | Shiggy">
+    <meta property="og:description" content="3DCG・物理シミュレーションの問題を、自作エンジンで解決アプローチする実験集。">
+    <meta property="og:url" content="https://mogmog-0110.github.io/labs.html">
+    <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lab | Shiggy">
+    <meta name="twitter:description" content="3DCG・物理シミュレーションの問題を、自作エンジンで解決アプローチする実験集。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DotGothic16&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/retro.css">
+</head>
+<body data-page="labs">
+    <div id="cosmic-canvas"></div>
+
+    <div class="ui-overlay">
+        <nav>
+            <div class="nav-logo">
+                <a href="index.html">Shiggy</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="engine.html">Engine</a></li>
+                <li><a href="labs.html" class="active">Lab</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="portfolio.html">Works</a></li>
+            </ul>
+        </nav>
+
+        <main class="page-content">
+            <h1 class="page-title">Lab</h1>
+
+            <div class="section-block">
+                <p style="font-size: 1.05rem; line-height: 1.9;">
+                    3DCG・物理シミュレーションの分野から「これ、どう解くんだろう」という問題を自分で見つけてきて、
+                    <a href="engine.html" style="color: var(--washer-red);">自作エンジン</a>の上で
+                    解決アプローチを実装してみる実験置き場です。カードをクリックするとデモと簡単な説明が開きます。
+                </p>
+            </div>
+
+            <div class="lab-grid" id="lab-grid"></div>
+        </main>
+    </div>
+
+    <!-- モーダル -->
+    <div class="lab-modal-overlay" id="lab-modal-overlay">
+        <div class="lab-modal" id="lab-modal" role="dialog" aria-modal="true">
+            <button class="lab-modal-close" id="lab-modal-close" aria-label="閉じる">×</button>
+            <div id="lab-modal-content"></div>
+        </div>
+    </div>
+
+    <script>
+    "use strict";
+    // ── 実験エントリ。追加するときはここにオブジェクトを 1 つ足すだけ ──
+    const LABS = [
+        {
+            id: "npr-temporal",
+            title: "トゥーン輪郭線の時間安定化",
+            thumb: "images/npr/toon_compare_alicia.png",
+            blurb: "3D から自動生成した輪郭線はアニメでチラつく。TAA の考え方（motion vector 再投影）を輪郭線チャネルに応用して安定化してみた。VRM 比較ビューアと、風で揺れる布のリアルタイムデモ付き。",
+            tags: ["NPR", "TAA", "物理シム", "C++20"],
+            meta: "2026 | MitiruEngine",
+            problem: "screen-space で抽出した輪郭線（深度段差・法線の折れ）は、カメラやモデルが動くとフレームごとに線が明滅・分断されてチラつく。特に布のシワのような「変形で動的に生まれる線」は、定番の背面法では原理的に描けず、テクスチャにも事前に描けないため、screen-space 検出が唯一の手段になる。",
+            approach: "TAA と同じく motion vector で前フレームの線を再投影し、objectId で「同じ物体の線か」を検証してから合成。G-buffer の velocity / objectId チャネル、前フレーム保持、変形メッシュ用の per-vertex velocity、安定化パス（CPU/GPU）までエンジンに一式実装。デモは VRM モデルのターンテーブル比較と、Verlet 布 + ランダム突風のリアルタイム Game DLL の 2 本。チラつき −63% などの数値は自動テストで固定。",
+            media: [
+                { type: "video", src: "images/npr/toon_alicia_turntable.webm",
+                  caption: "VRM モデル（ニコニ立体ちゃん ©dwango）のターンテーブル比較。左: 背面法+内側線（無安定化）/ 中: 背面法のみ / 右: +安定化。" },
+                { type: "video", src: "images/npr/cloth_demo.webm",
+                  caption: "布のシワ線（72f ループ）。左: 背面法のみ（開いたメッシュでは外形線すら出ない）/ 中: +シワ線（無安定化）/ 右: +安定化。リアルタイム版は Game DLL として実装、Space で突風。" },
+                { type: "img", src: "images/npr/flicker_heatmap.png",
+                  caption: "チラつきの可視化（フレーム間の再投影残差）。赤が明滅成分。左 2 枚が輪郭線、右 2 枚がヒートマップ（無対策 → 安定化）。" }
+            ],
+            code: {
+                caption: "安定化の核（dropout-filling）: くっきり出ている線は触らず、「前フレームに線があり、近くで線が生きている」瞬間的な欠落だけを補填する。",
+                snippet:
+`// raw がくっきり出ている画素はそのまま（線をぼかさない）
+if (raw[i] >= p.fillThreshold) continue;
+
+// motion vector で前フレームの対応位置へ
+float sx = x - velocity.x, sy = y - velocity.y;
+if (!inScreen(sx, sy)) continue;
+if (prevObjectId(sx, sy) != objectId(x, y)) continue; // 別物体の履歴は使わない
+
+float hist = bilinear(prevStable, sx, sy);
+if (hist < p.histThreshold) continue;            // 前フレームに線が無い
+if (neighborMaxRaw(x, y) < p.supportThreshold)   // 線が死んでいる
+    continue;
+
+// 瞬間的な欠落だけを減衰付きで補填（消えた線は数フレームでフェード）
+out[i] = max(raw[i], hist * p.decay);`,
+                links: [
+                    { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/npr-line-stabilization" },
+                    { label: "布デモ (demo/windy_cloth)", href: "https://github.com/mogmog-0110/npr-line-stabilization/tree/main/demo/windy_cloth" },
+                    { label: "計測ハーネス (harness)", href: "https://github.com/mogmog-0110/npr-line-stabilization/tree/main/harness" }
+                ]
+            },
+            more: "npr-lines.html"
+        }
+    ];
+
+    // ── カード生成 ──
+    const grid = document.getElementById("lab-grid");
+    for (const lab of LABS) {
+        const card = document.createElement("article");
+        card.className = "lab-card";
+        card.innerHTML = `
+            <img src="${lab.thumb}" alt="${lab.title}" loading="lazy">
+            <div class="lab-card-body">
+                <h3>${lab.title}</h3>
+                <p>${lab.blurb}</p>
+                <div class="lab-card-tags">${lab.tags.map(t => `<span>${t}</span>`).join("")}</div>
+            </div>`;
+        card.addEventListener("click", () => openModal(lab));
+        grid.appendChild(card);
+    }
+
+    // ── モーダル ──
+    const overlay = document.getElementById("lab-modal-overlay");
+    const content = document.getElementById("lab-modal-content");
+
+    function escapeHtml(s) {
+        return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function openModal(lab) {
+        const media = lab.media.map(m => m.type === "video"
+            ? `<video src="${m.src}" autoplay loop muted playsinline></video>
+               <div class="media-caption">${m.caption}</div>`
+            : `<img class="media" src="${m.src}" alt="" loading="lazy">
+               <div class="media-caption">${m.caption}</div>`
+        ).join("");
+        const code = lab.code ? `
+            <div class="lab-qa" style="margin-top:1.3rem;"><b>コード</b><p>${lab.code.caption}</p></div>
+            <pre class="lab-code"><code>${escapeHtml(lab.code.snippet)}</code></pre>
+            <div class="lab-code-links">${lab.code.links.map(l =>
+                `<a href="${l.href}" target="_blank" rel="noopener">${l.label} →</a>`).join("")}</div>` : "";
+        const more = lab.more
+            ? `<div class="lab-more"><a href="${lab.more}">もっと詳しく →</a></div>` : "";
+        content.innerHTML = `
+            <h2>${lab.title}</h2>
+            <div class="lab-meta">${lab.meta}</div>
+            <div class="lab-qa"><b>問題</b><p>${lab.problem}</p></div>
+            <div class="lab-qa"><b>アプローチ</b><p>${lab.approach}</p></div>
+            ${media}${code}${more}`;
+        overlay.classList.add("open");
+        document.body.style.overflow = "hidden";
+    }
+    function closeModal() {
+        overlay.classList.remove("open");
+        content.innerHTML = ""; // 動画停止
+        document.body.style.overflow = "";
+    }
+    document.getElementById("lab-modal-close").addEventListener("click", closeModal);
+    overlay.addEventListener("click", e => { if (e.target === overlay) closeModal(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+    </script>
+
+    <script src="assets/js/back-to-top.js"></script>
+</body>
+</html>
