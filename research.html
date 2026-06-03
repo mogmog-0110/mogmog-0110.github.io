@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja" style="background-color: #ffffff;">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +9,7 @@
     <meta name="description" content="川村優弥の研究：剛体物理シミュレーションを用いた環状化合物の選択性解析（BDA 2025 / Springer LNCS）">
 
     <style>
-        html, body {
-            background-color: #ffffff !important;
-            margin: 0;
-            padding: 0;
-        }
+        html, body { background-color: #ffffff !important; margin: 0; padding: 0; }
     </style>
 
     <!-- meta:social -->
@@ -29,168 +26,174 @@
     <meta name="twitter:title" content="Research | Shiggy">
     <meta name="twitter:description" content="剛体物理シミュレーションを用いた環状化合物の選択性解析。BDA 2025（Springer LNCS）に第一著者として発表。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body data-page="research">
 
-    <div class="ui-overlay">
-        <nav>
-            <div class="nav-logo">
-                <a href="index.html">Shiggy</a>
-            </div>
-            <ul class="nav-links">
+<body>
+    <header class="site-head">
+        <div class="container">
+            <a class="brand" href="index.html">Shiggy</a>
+            <ul class="menu">
                 <li><a href="engine.html">Engine</a></li>
                 <li><a href="labs.html">Lab</a></li>
-                <li><a href="research.html" class="active">Research</a></li>
+                <li><a href="research.html" class="current">Research</a></li>
                 <li><a href="portfolio.html">Works</a></li>
             </ul>
-        </nav>
+        </div>
+    </header>
 
-        <main class="page-content">
-            <h1 class="page-title">Research</h1>
+    <main class="container">
+        <section class="page-head">
+            <p class="kicker">Research</p>
+            <h1>研究</h1>
+            <p class="lede">剛体物理シミュレーションを用いた環状化合物の選択性解析。</p>
+        </section>
 
-            <!-- ============================================== -->
-            <!-- Publications                                   -->
-            <!-- ============================================== -->
-            <div class="section-heading">
+        <div class="sections">
+            <!-- Publications -->
+            <section class="sec">
                 <h2>Publications</h2>
-                <p>査読付き国際会議で発表した論文。</p>
-            </div>
+                <div class="sec-body">
+                    <p style="font-size: 0.85rem; color: var(--ink-faint); margin-bottom: 1.8rem;">査読付き国際会議で発表した論文。</p>
 
-            <div>
+                    <article>
+                        <div class="meta-line">
+                            <span>Peer-reviewed</span><span>First Author</span><span>LNCS</span><span>International</span><span>Full Paper (17 pp.)</span>
+                        </div>
 
-                <article class="publication-card featured">
-                    <div class="pub-badges">
-                        <span class="pub-badge">Peer-reviewed</span>
-                        <span class="pub-badge">First Author</span>
-                        <span class="pub-badge">LNCS</span>
-                        <span class="pub-badge muted">International</span>
-                        <span class="pub-badge muted">Full Paper (17 pp.)</span>
-                    </div>
+                        <h3 style="margin-top: 0; font-size: 1.15rem; line-height: 1.7;">Geometry-Driven Selectivity in Macrocyclization via Rigid-Body Simulation</h3>
 
-                    <h3>Geometry-Driven Selectivity in Macrocyclization via Rigid-Body Simulation</h3>
+                        <p style="font-size: 0.92rem; margin-top: 0.8rem;">
+                            <strong>Yuya Kawamura</strong>, Takahiro Iwamoto, Yohei Nishidate
+                        </p>
 
-                    <p class="pub-authors">
-                        <strong>Yuya Kawamura</strong>, Takahiro Iwamoto, Yohei Nishidate
-                    </p>
+                        <p style="font-size: 0.86rem; color: var(--ink-sub);">
+                            In <em>Big Data Analytics in Astronomy, Science, and Engineering</em>
+                            (BDA 2025, Aizu, Japan, Dec 15–17, 2025),
+                            Lecture Notes in Computer Science, Springer Nature Switzerland, 2026, pp. 55–71.
+                        </p>
 
-                    <p class="pub-venue">
-                        In <em>Big Data Analytics in Astronomy, Science, and Engineering</em>
-                        (BDA 2025, Aizu, Japan, Dec 15–17, 2025),
-                        Lecture Notes in Computer Science, Springer Nature Switzerland, 2026, pp. 55–71.
-                    </p>
+                        <p style="margin-top: 1rem;">
+                            大環状化合物の自己組織化で、なぜ完璧な選択性で四角形だけが生成するのか ── その起源を<strong>分子の化学的性質ではなく「幾何（形と結合ルール）」</strong>に求め、分子を剛体モデルに落として検証しました。単純なルールだけで高い選択性が再現されることを示し、幾何が選択性の主因であるという証拠を与えています。モデル設計・実装・シミュレーション・解析・論文執筆を主担当。
+                        </p>
 
-                    <p class="pub-summary">
-                        大環状化合物の自己組織化で、なぜ完璧な選択性で四角形だけが生成するのか ── その起源を<strong style="color: var(--text-light); font-weight: 500;">分子の化学的性質ではなく「幾何（形と結合ルール）」</strong>に求め、分子を剛体モデルに落として検証しました。単純なルールだけで高い選択性が再現されることを示し、幾何が選択性の主因であるという証拠を与えています。モデル設計・実装・シミュレーション・解析・論文執筆を主担当。
-                    </p>
+                        <p class="note">
+                            剛体を組んで挙動を観察する作業は、ゲームの物理・衝突・拘束・群衆 AI の設計とほぼ同じ思考を使います。「単純なルールから複雑な振る舞いが生まれる」テーマも、プロシージャル生成やゲーム AI と地続きです。
+                        </p>
 
-                    <p class="pub-bridge">
-                        剛体を組んで挙動を観察する作業は、ゲームの物理・衝突・拘束・群衆 AI の設計とほぼ同じ思考を使います。「単純なルールから複雑な振る舞いが生まれる」テーマも、プロシージャル生成やゲーム AI と地続きです。
-                    </p>
-
-                    <div class="pub-links">
-                        <a href="https://doi.org/10.1007/978-3-032-23241-0_4" target="_blank" rel="noopener">DOI →</a>
-                        <a href="https://link.springer.com/chapter/10.1007/978-3-032-23241-0_4" target="_blank" rel="noopener">Springer Link →</a>
-                        <a href="https://github.com/mogmog-0110/mser-cpp" target="_blank" rel="noopener">Code: mser-cpp →</a>
-                    </div>
-                </article>
-
-            </div>
-
-            <!-- ============================================== -->
-            <!-- Research Topic Detail                          -->
-            <!-- ============================================== -->
-            <div class="section-block" style="margin-top: 3rem;">
-                <h2>研究テーマ：自己組織化による環状化合物の選択的生成のシミュレーション</h2>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
-                    <a href="images/research1.webp" target="_blank">
-                        <img loading="lazy" decoding="async" src="images/research1.webp" alt="シミュレーション画像1" style="width: 100%; border-radius: 8px; border: 1px solid #e6e8ec;" onerror="this.style.display='none'">
-                    </a>
-                    <a href="images/research2.webp" target="_blank">
-                        <img loading="lazy" decoding="async" src="images/research2.webp" alt="シミュレーション画像2" style="width: 100%; border-radius: 8px; border: 1px solid #e6e8ec;" onerror="this.style.display='none'">
-                    </a>
+                        <div class="link-row">
+                            <a href="https://doi.org/10.1007/978-3-032-23241-0_4" target="_blank" rel="noopener">DOI →</a>
+                            <a href="https://link.springer.com/chapter/10.1007/978-3-032-23241-0_4" target="_blank" rel="noopener">Springer Link →</a>
+                            <a href="https://github.com/mogmog-0110/mser-cpp" target="_blank" rel="noopener">Code: mser-cpp →</a>
+                        </div>
+                    </article>
                 </div>
+            </section>
 
-                <h3>問い</h3>
-                <p>
-                    分子が自発的に秩序構造をつくる「自己組織化」のうち、ある反応では<strong style="color: var(--text-light); font-weight: 500;">完璧な選択性で四角形だけ</strong>が生成します。その起源は何か ── 次の 2 点を物理から説明することを目指しました。
-                </p>
-                <ul style="margin: 1rem 0 1rem 2rem; line-height: 2;">
-                    <li>なぜ直線やその他でなく、四角形だけが選択的に作られるのか。</li>
-                    <li>なぜ高濃度でも選択性が落ちず、効率よく反応が進むのか。</li>
-                </ul>
-                <p style="padding: 1rem; background: rgba(37, 99, 235, 0.08); border-left: 3px solid var(--washer-red); border-radius: 4px; margin: 1rem 0;">
-                    <strong>※選択性</strong>＝複数の反応が起こりうる状況で、特定の化合物だけが優先的に作られる性質。
-                </p>
+            <!-- Research Topic Detail -->
+            <section class="sec">
+                <h2>研究テーマ</h2>
+                <div class="sec-body">
+                    <p style="font-size: 0.85rem; color: var(--ink-faint); margin-bottom: 1.4rem;">自己組織化による環状化合物の選択的生成のシミュレーション。</p>
 
-                <h3>アプローチと結論</h3>
-                <p>
-                    化学的な詳細をあえて捨て、分子を<strong style="color: var(--text-light); font-weight: 500;">単純な剛体モデル</strong>に置き換える。形と結合ルール（幾何条件）だけを与えて C++ ＋ PhysX で時間発展させ、構造形成の過程を追跡しました。狙いは「単純なルールだけで現実の高い選択性が再現できるか」の切り分けです。
-                </p>
-                <p>
-                    結果、シンプルなモデルでも四角形が優先生成され、<strong style="color: var(--text-light); font-weight: 500;">選択性は複雑な化学的性質でなく幾何に起因する</strong>という証拠が得られました。ユニット密度を振ることで「高濃度でも選択性が落ちない理由」にも物理的な説明を与えています。
-                </p>
-            </div>
+                    <div class="plate-grid">
+                        <a href="images/research1.webp" target="_blank">
+                            <img loading="lazy" decoding="async" src="images/research1.webp" alt="シミュレーション画像1" onerror="this.style.display='none'">
+                        </a>
+                        <a href="images/research2.webp" target="_blank">
+                            <img loading="lazy" decoding="async" src="images/research2.webp" alt="シミュレーション画像2" onerror="this.style.display='none'">
+                        </a>
+                    </div>
 
-            <!-- ============================================== -->
-            <!-- Software From Research                         -->
-            <!-- ============================================== -->
-            <div class="section-block">
+                    <h3>問い</h3>
+                    <p>
+                        分子が自発的に秩序構造をつくる「自己組織化」のうち、ある反応では<strong>完璧な選択性で四角形だけ</strong>が生成します。その起源は何か ── 次の 2 点を物理から説明することを目指しました。
+                    </p>
+                    <ul>
+                        <li>なぜ直線やその他でなく、四角形だけが選択的に作られるのか。</li>
+                        <li>なぜ高濃度でも選択性が落ちず、効率よく反応が進むのか。</li>
+                    </ul>
+                    <p class="note">
+                        <strong>※選択性</strong>＝複数の反応が起こりうる状況で、特定の化合物だけが優先的に作られる性質。
+                    </p>
+
+                    <h3>アプローチと結論</h3>
+                    <p>
+                        化学的な詳細をあえて捨て、分子を<strong>単純な剛体モデル</strong>に置き換える。形と結合ルール（幾何条件）だけを与えて C++ ＋ PhysX で時間発展させ、構造形成の過程を追跡しました。狙いは「単純なルールだけで現実の高い選択性が再現できるか」の切り分けです。
+                    </p>
+                    <p>
+                        結果、シンプルなモデルでも四角形が優先生成され、<strong>選択性は複雑な化学的性質でなく幾何に起因する</strong>という証拠が得られました。ユニット密度を振ることで「高濃度でも選択性が落ちない理由」にも物理的な説明を与えています。
+                    </p>
+                </div>
+            </section>
+
+            <!-- Software From Research -->
+            <section class="sec">
                 <h2>研究で開発したソフトウェア</h2>
-                <p>研究遂行の過程で書いた、公開可能な範囲のリポジトリ。論文の数値結果はこれらのコードで生成している。</p>
+                <div class="sec-body">
+                    <p>研究遂行の過程で書いた、公開可能な範囲のリポジトリ。論文の数値結果はこれらのコードで生成している。</p>
 
-                <h3>macrocycle-rigid-body-sim</h3>
-                <p>
-                    論文の本体となる物理シミュレータ。大環状分子を剛体粒子の鎖として近似し、結合長・結合角・二面角といった幾何条件を D6Joint で課して時間発展させる。Iwamoto ら（2024）が提示した解析モデルを数値的に検証するために書いた。
-                </p>
-                <p>
-                    <a href="https://github.com/mogmog-0110/macrocycle-rigid-body-sim" target="_blank" rel="noopener" style="color: var(--washer-red);">GitHub: mogmog-0110/macrocycle-rigid-body-sim →</a>
-                </p>
+                    <h3>macrocycle-rigid-body-sim</h3>
+                    <p>
+                        論文の本体となる物理シミュレータ。大環状分子を剛体粒子の鎖として近似し、結合長・結合角・二面角といった幾何条件を D6Joint で課して時間発展させる。Iwamoto ら（2024）が提示した解析モデルを数値的に検証するために書いた。
+                    </p>
+                    <div class="link-row" style="margin-top: 0.4rem; margin-bottom: 1.4rem;">
+                        <a href="https://github.com/mogmog-0110/macrocycle-rigid-body-sim" target="_blank" rel="noopener">GitHub: mogmog-0110/macrocycle-rigid-body-sim →</a>
+                    </div>
 
-                <h4>Tech Stack</h4>
-                <ul>
-                    <li>C++17 / CMake</li>
-                    <li>NVIDIA PhysX 5.6.1（剛体ダイナミクスと D6Joint）</li>
-                    <li>OpenGL + freeglut（リアルタイム可視化）</li>
-                    <li>RAII を徹底した構造、ヘッダ分離、Warnings-as-Errors（/W4 /WX）でコンパイル</li>
-                </ul>
+                    <h4>Tech Stack</h4>
+                    <ul>
+                        <li>C++17 / CMake</li>
+                        <li>NVIDIA PhysX 5.6.1（剛体ダイナミクスと D6Joint）</li>
+                        <li>OpenGL + freeglut（リアルタイム可視化）</li>
+                        <li>RAII を徹底した構造、ヘッダ分離、Warnings-as-Errors（/W4 /WX）でコンパイル</li>
+                    </ul>
 
-                <h4>実装している主な機能</h4>
-                <ul>
-                    <li>剛体粒子の鎖と、結合長・結合角・二面角を保つ D6Joint compliant mode の組み合わせ</li>
-                    <li>26 個のゴーストアクターによる周期境界条件（PBC）の近似</li>
-                    <li>結合グラフを UnionFind で解析し、環の連結性・サイクル数をフレーム毎にトラッキング</li>
-                    <li>MSER による定常状態の自動検出と、定常区間に絞った統計量算出</li>
-                    <li>マルチレプリカ・バッチ実行と乱数シード制御による再現可能なアンサンブル</li>
-                    <li>独自バイナリフォーマット <code>.pxrf</code>（Adler-32 CRC 付き）でトラジェクトリを保存</li>
-                    <li>記録済みトラジェクトリのリプレイ機能（描画用と解析用を分離）</li>
-                    <li>JSON 設定ファイルからシナリオを駆動するランナー</li>
-                    <li>ヘッドレス実行モード（CI と長時間計算用）</li>
-                </ul>
+                    <h4>実装している主な機能</h4>
+                    <ul>
+                        <li>剛体粒子の鎖と、結合長・結合角・二面角を保つ D6Joint compliant mode の組み合わせ</li>
+                        <li>26 個のゴーストアクターによる周期境界条件（PBC）の近似</li>
+                        <li>結合グラフを UnionFind で解析し、環の連結性・サイクル数をフレーム毎にトラッキング</li>
+                        <li>MSER による定常状態の自動検出と、定常区間に絞った統計量算出</li>
+                        <li>マルチレプリカ・バッチ実行と乱数シード制御による再現可能なアンサンブル</li>
+                        <li>独自バイナリフォーマット <code>.pxrf</code>（Adler-32 CRC 付き）でトラジェクトリを保存</li>
+                        <li>記録済みトラジェクトリのリプレイ機能（描画用と解析用を分離）</li>
+                        <li>JSON 設定ファイルからシナリオを駆動するランナー</li>
+                        <li>ヘッドレス実行モード（CI と長時間計算用）</li>
+                    </ul>
 
-                <h4>品質と再現性</h4>
-                <ul>
-                    <li>112 ユニットテスト（GoogleTest）でジョイント・PBC・グラフ解析・MSER の各レイヤを検証</li>
-                    <li>固定シードと決定論的ステップで、論文の図表をそのまま再生成できるようにしてある</li>
-                    <li>厳格コンパイル設定と静的解析で、リリースビルドでも警告ゼロを維持</li>
-                </ul>
+                    <h4>品質と再現性</h4>
+                    <ul>
+                        <li>112 ユニットテスト（GoogleTest）でジョイント・PBC・グラフ解析・MSER の各レイヤを検証</li>
+                        <li>固定シードと決定論的ステップで、論文の図表をそのまま再生成できるようにしてある</li>
+                        <li>厳格コンパイル設定と静的解析で、リリースビルドでも警告ゼロを維持</li>
+                    </ul>
 
-                <h3>mser-cpp</h3>
-                <p>
-                    上記シミュレータの解析側として書いた、MSER（Marginal Standard Error Rule）の単独実装。シミュレーションが定常状態に達したフレームを統計的に判定するためのアルゴリズムで、長時間トラジェクトリから過渡状態を捨て、定常区間だけを集計する処理を自動化している。スタンドアロンのライブラリとして切り出してあるので、他のシミュレーション系プロジェクトからも使い回せる。
-                </p>
-                <p>
-                    <a href="https://github.com/mogmog-0110/mser-cpp" target="_blank" rel="noopener" style="color: var(--washer-red);">GitHub: mogmog-0110/mser-cpp →</a>
-                </p>
-            </div>
-        </main>
-    </div>
+                    <h3>mser-cpp</h3>
+                    <p>
+                        上記シミュレータの解析側として書いた、MSER（Marginal Standard Error Rule）の単独実装。シミュレーションが定常状態に達したフレームを統計的に判定するためのアルゴリズムで、長時間トラジェクトリから過渡状態を捨て、定常区間だけを集計する処理を自動化している。スタンドアロンのライブラリとして切り出してあるので、他のシミュレーション系プロジェクトからも使い回せる。
+                    </p>
+                    <div class="link-row" style="margin-top: 0.4rem;">
+                        <a href="https://github.com/mogmog-0110/mser-cpp" target="_blank" rel="noopener">GitHub: mogmog-0110/mser-cpp →</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-foot">
+        <div class="container">
+            <p>&copy; 川村優弥 / Shiggy</p>
+            <p><a href="mailto:medli908@gmail.com">medli908@gmail.com</a> ・ <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">GitHub</a></p>
+        </div>
+    </footer>
 
     <script src="assets/js/back-to-top.js"></script>
 </body>
+
 </html>

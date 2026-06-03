@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja" style="background-color: #ffffff;">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,8 @@
     <title>Works | Shiggy</title>
     <meta name="description" content="川村優弥のポートフォリオ - これまでに制作したゲームやソフトウェア">
 
-    <!-- Prevent white flash during page transition -->
     <style>
-        html, body {
-            background-color: #ffffff !important;
-            margin: 0;
-            padding: 0;
-        }
+        html, body { background-color: #ffffff !important; margin: 0; padding: 0; }
     </style>
 
     <!-- meta:social -->
@@ -30,710 +26,496 @@
     <meta name="twitter:title" content="Portfolio | Shiggy">
     <meta name="twitter:description" content="川村優弥のゲーム作品とツール。MitiruEngine、かえるクレープ、ハトを育てよう（リメイク）など。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
-    <!-- Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body data-page="portfolio">
-    <!-- WebGL Canvas -->
 
-    <!-- UI Overlay -->
-    <div class="ui-overlay">
-        <!-- Navigation -->
-        <nav>
-            <div class="nav-logo">
-                <a href="index.html">Shiggy</a>
-            </div>
-            <ul class="nav-links">
+<body>
+    <header class="site-head">
+        <div class="container">
+            <a class="brand" href="index.html">Shiggy</a>
+            <ul class="menu">
                 <li><a href="engine.html">Engine</a></li>
                 <li><a href="labs.html">Lab</a></li>
                 <li><a href="research.html">Research</a></li>
-                <li><a href="portfolio.html" class="active">Works</a></li>
+                <li><a href="portfolio.html" class="current">Works</a></li>
             </ul>
-        </nav>
+        </div>
+    </header>
 
-        <!-- Content Area -->
-        <main class="page-content">
-            <h1 class="page-title">Works</h1>
-
-            <p style="font-size: 1.05rem; line-height: 1.9; margin-bottom: 1.5rem;">
+    <main class="container">
+        <section class="page-head">
+            <p class="kicker">Works</p>
+            <h1>作品</h1>
+            <p class="lede">
                 学部から現在まで作ってきたもの ── チーム / 個人のゲーム、開発ツール、研究コード、創作。多くはリーダーや主担当として、企画から実装まで手を動かしています。
             </p>
-            <p style="margin-bottom: 2rem; padding: 0.8rem 1rem; background: rgba(37, 99, 235, 0.06); border-left: 3px solid var(--washer-red); font-size: 0.85rem; color: var(--text-dim);">
-                ※ 一部はチーム制作で、メンバーの許諾の都合により遊べないものもあります。
-            </p>
+            <p class="note">※ 一部はチーム制作で、メンバーの許諾の都合により遊べないものもあります。</p>
+        </section>
 
+        <div class="sections">
             <!-- ============================================== -->
             <!-- Featured                                       -->
             <!-- ============================================== -->
-            <div class="section-heading">
+            <section class="sec">
                 <h2>Featured</h2>
-                <p>自作の MitiruEngine 上で動かしているゲーム。ハトを育てようはリメイクとして完成、かえるクレープは Godot 版から移植中です。</p>
-            </div>
+                <div class="sec-body">
+                    <p style="font-size: 0.85rem; color: var(--ink-faint); margin-bottom: 0;">自作の MitiruEngine 上で動かしているゲーム。ハトを育てようはリメイクとして完成、かえるクレープは Godot 版から移植中です。</p>
 
-            <div class="cards-container">
-                <article class="card featured">
-                    <div class="card-image">
-                        <img loading="lazy" decoding="async" src="images/hato_1.webp" alt="ハトを育てよう（リメイク）">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-status released">Released (Remake)</span>
-                        <h2>ハトを育てよう（MitiruEngine リメイク）</h2>
-                        <p class="card-meta">2026年 | 個人開発 | MitiruEngine CEF Hybrid</p>
-                        <p class="card-description">
-                            2023 年に TyranoScript で書いた原作を、自作の MitiruEngine 上で完全移植 + 追加要素を入れたリメイク版。バックログ、既読管理、セーブロードまで実装。MitiruEngine が「実際にゲームを出せる道具」であることの実証作品でもあります。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">MitiruEngine</span>
-                            <span class="tag">CEF</span>
-                            <span class="tag">mitiru.novel</span>
-                            <span class="tag">Visual Novel</span>
-                        </div>
-                        <a href="hato.html" class="card-link">詳細を見る →</a>
-                    </div>
-                </article>
+                    <div class="work-list" style="border-top: none; margin-top: 1.4rem;">
+                        <article class="work" style="border-top: 1px solid var(--rule-soft);">
+                            <div class="work-media">
+                                <img loading="lazy" decoding="async" src="images/hato_1.webp" alt="ハトを育てよう（リメイク）">
+                            </div>
+                            <div class="work-body">
+                                <h3>ハトを育てよう（MitiruEngine リメイク）</h3>
+                                <p class="work-meta">Released (Remake) · 2026年 · 個人開発 · MitiruEngine CEF Hybrid</p>
+                                <p>
+                                    2023 年に TyranoScript で書いた原作を、自作の MitiruEngine 上で完全移植 + 追加要素を入れたリメイク版。バックログ、既読管理、セーブロードまで実装。MitiruEngine が「実際にゲームを出せる道具」であることの実証作品でもあります。
+                                </p>
+                                <p class="tags">MitiruEngine / CEF / mitiru.novel / Visual Novel</p>
+                                <a href="hato.html" class="go">詳細を見る →</a>
+                            </div>
+                        </article>
 
-                <article class="card featured">
-                    <div class="card-image">
-                        <img loading="lazy" decoding="async" src="images/kc_remake_novel.webp" alt="かえるクレープへようこそ（MitiruEngine 版）" onerror="this.src='images/kc_1.webp'">
+                        <article class="work">
+                            <div class="work-media">
+                                <img loading="lazy" decoding="async" src="images/kc_remake_novel.webp" alt="かえるクレープへようこそ（MitiruEngine 版）" onerror="this.src='images/kc_1.webp'">
+                            </div>
+                            <div class="work-body">
+                                <h3>かえるクレープへようこそ</h3>
+                                <p class="work-meta">In Development · 2025年夏〜 · チーム開発（2人）· Godot → MitiruEngine 移行中</p>
+                                <p>
+                                    クレープを作りながらヒロインたちと親睦を深める <strong>美少女ゲーム × クッキングゲーム</strong>。コミックマーケット 106 で配布した Godot 版を経て、現在は自作の MitiruEngine 上で書き直し中（1.0.0-rc1）。
+                                </p>
+                                <p class="tags">MitiruEngine / WASM / Godot / Visual Novel / Cooking</p>
+                                <a href="kaerucrape.html" class="go">詳細を見る →</a>
+                            </div>
+                        </article>
                     </div>
-                    <div class="card-content">
-                        <span class="card-status in-development">In Development</span>
-                        <h2>かえるクレープへようこそ</h2>
-                        <p class="card-meta">2025年夏〜 | チーム開発（2人）| Godot → MitiruEngine 移行中</p>
-                        <p class="card-description">
-                            クレープを作りながらヒロインたちと親睦を深める <strong>美少女ゲーム × クッキングゲーム</strong>。コミックマーケット 106 で配布した Godot 版を経て、現在は自作の MitiruEngine 上で書き直し中（1.0.0-rc1）。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">MitiruEngine</span>
-                            <span class="tag">WASM</span>
-                            <span class="tag">Godot</span>
-                            <span class="tag">Visual Novel</span>
-                            <span class="tag">Cooking</span>
-                        </div>
-                        <a href="kaerucrape.html" class="card-link">詳細を見る →</a>
-                    </div>
-                </article>
-            </div>
+                </div>
+            </section>
 
             <!-- ============================================== -->
             <!-- Other Games                                    -->
             <!-- ============================================== -->
-            <div class="section-heading">
+            <section class="sec">
                 <h2>Other Games</h2>
-                <p>学部時代から書いてきた個人・チーム制作。プロジェクトリーダーとして関わったものを含みます。</p>
-            </div>
+                <div class="sec-body">
+                    <p style="font-size: 0.85rem; color: var(--ink-faint); margin-bottom: 0;">学部時代から書いてきた個人・チーム制作。プロジェクトリーダーとして関わったものを含みます。</p>
 
-            <div class="cards-container">
-                <!-- Down into... -->
-                <article class="card">
-                    <div class="card-image">
-                        <img loading="lazy" decoding="async" src="images/down_1.webp" alt="Down into...">
-                    </div>
-                    <div class="card-content">
-                        <h2>Down into...</h2>
-                        <p class="card-meta">2022年夏 | チーム開発（5人）| 2ヶ月</p>
-                        <p class="card-description">
-                            怪物から逃げながら塔の脱出を目指す倉庫番系パズル。C++とSiv3Dを使った初めてのチーム開発作品。会津大学・蒼翔祭2022、コミックマーケット101にて無料頒布。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">Siv3D</span>
-                            <span class="tag">Puzzle</span>
-                        </div>
-                    </div>
-                </article>
+                    <div class="work-list" style="border-top: none; margin-top: 1.4rem;">
+                        <article class="work" style="border-top: 1px solid var(--rule-soft);">
+                            <div class="work-media">
+                                <img loading="lazy" decoding="async" src="images/down_1.webp" alt="Down into...">
+                            </div>
+                            <div class="work-body">
+                                <h3>Down into...</h3>
+                                <p class="work-meta">2022年夏 · チーム開発（5人）· 2ヶ月</p>
+                                <p>
+                                    怪物から逃げながら塔の脱出を目指す倉庫番系パズル。C++とSiv3Dを使った初めてのチーム開発作品。会津大学・蒼翔祭2022、コミックマーケット101にて無料頒布。
+                                </p>
+                                <p class="tags">C++ / Siv3D / Puzzle</p>
+                            </div>
+                        </article>
 
-                <!-- ハトを育てよう（原作版） -->
-                <article class="card">
-                    <div class="card-image">
-                        <img loading="lazy" decoding="async" src="images/hato_1.webp" alt="ハトを育てよう（原作版）">
-                    </div>
-                    <div class="card-content">
-                        <h2>ハトを育てよう（原作版）</h2>
-                        <p class="card-meta">2023年春 | 個人開発 | 2日 | TyranoScript</p>
-                        <p class="card-description">
-                            ハトを育てるマルチエンディング育成ゲーム。TyranoScript で書いた原作版。蒼翔祭 2023 にて展示。<a href="hato.html" style="color: var(--washer-red);">この作品は後に MitiruEngine でリメイク</a>されています。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">TyranoScript</span>
-                            <span class="tag">Visual Novel</span>
-                        </div>
-                        <a href="https://drive.google.com/drive/folders/1dFSFwuPCTnQW0YqZxIDM-JfFe8dWzBm9?usp=sharing"
-                           class="card-link" target="_blank" rel="noopener">
-                            ダウンロード →
-                        </a>
-                    </div>
-                </article>
+                        <article class="work">
+                            <div class="work-media">
+                                <img loading="lazy" decoding="async" src="images/hato_1.webp" alt="ハトを育てよう（原作版）">
+                            </div>
+                            <div class="work-body">
+                                <h3>ハトを育てよう（原作版）</h3>
+                                <p class="work-meta">2023年春 · 個人開発 · 2日 · TyranoScript</p>
+                                <p>
+                                    ハトを育てるマルチエンディング育成ゲーム。TyranoScript で書いた原作版。蒼翔祭 2023 にて展示。<a href="hato.html">この作品は後に MitiruEngine でリメイク</a>されています。
+                                </p>
+                                <p class="tags">TyranoScript / Visual Novel</p>
+                                <a href="https://drive.google.com/drive/folders/1dFSFwuPCTnQW0YqZxIDM-JfFe8dWzBm9?usp=sharing" class="go" target="_blank" rel="noopener">ダウンロード →</a>
+                            </div>
+                        </article>
 
-                <!-- 416 -->
-                <article class="card">
-                    <div class="card-image">
-                        <img loading="lazy" decoding="async" src="images/416_1.webp" alt="416">
-                    </div>
-                    <div class="card-content">
-                        <h2>416</h2>
-                        <p class="card-meta">2023年夏 | チーム開発（2人）| 2ヶ月</p>
-                        <p class="card-description">
-                            たくさんの迫りくる化け物を倒すヴァンサバ風ローグライク。初めてのプロジェクトリーダー経験。蒼翔祭2023、コミックマーケット103にて無料頒布。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">Siv3D</span>
-                            <span class="tag">Roguelike</span>
-                        </div>
-                    </div>
-                </article>
+                        <article class="work">
+                            <div class="work-media">
+                                <img loading="lazy" decoding="async" src="images/416_1.webp" alt="416">
+                            </div>
+                            <div class="work-body">
+                                <h3>416</h3>
+                                <p class="work-meta">2023年夏 · チーム開発（2人）· 2ヶ月</p>
+                                <p>
+                                    たくさんの迫りくる化け物を倒すヴァンサバ風ローグライク。初めてのプロジェクトリーダー経験。蒼翔祭2023、コミックマーケット103にて無料頒布。
+                                </p>
+                                <p class="tags">C++ / Siv3D / Roguelike</p>
+                            </div>
+                        </article>
 
-                <!-- ぐるぐる☆しゅがーふぁくとりー -->
-                <article class="card">
-                    <div class="card-image">
-                        <img loading="lazy" decoding="async" src="images/shugar_1.webp" alt="ぐるぐる☆しゅがーふぁくとりー">
-                    </div>
-                    <div class="card-content">
-                        <h2>ぐるぐる☆しゅがーふぁくとりー</h2>
-                        <p class="card-meta">2024年春 | チーム開発（3人）| 2ヶ月</p>
-                        <p class="card-description">
-                            落ちてくる飴玉を回転するドーナツを使ってくっつける落ちものパズル。初めてのUnity開発。蒼翔祭2024にて展示。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">C#</span>
-                            <span class="tag">Unity</span>
-                            <span class="tag">Puzzle</span>
-                        </div>
-                    </div>
-                </article>
+                        <article class="work">
+                            <div class="work-media">
+                                <img loading="lazy" decoding="async" src="images/shugar_1.webp" alt="ぐるぐる☆しゅがーふぁくとりー">
+                            </div>
+                            <div class="work-body">
+                                <h3>ぐるぐる☆しゅがーふぁくとりー</h3>
+                                <p class="work-meta">2024年春 · チーム開発（3人）· 2ヶ月</p>
+                                <p>
+                                    落ちてくる飴玉を回転するドーナツを使ってくっつける落ちものパズル。初めてのUnity開発。蒼翔祭2024にて展示。
+                                </p>
+                                <p class="tags">C# / Unity / Puzzle</p>
+                            </div>
+                        </article>
 
-                <!-- VoronoiShortestPathSolver -->
-                <article class="card">
-                    <div class="card-image">
-                        <img loading="lazy" decoding="async" src="images/vs_1.webp" alt="VoronoiShortestPathSolver" onerror="this.parentElement.innerHTML='<div style=\'background: linear-gradient(135deg, #e8eef9, #f4f6fa); height: 100%; display: flex; align-items: center; justify-content: center; color: #5f6775; font-size: 3rem;\'>📐</div>'">
-                    </div>
-                    <div class="card-content">
-                        <h2>VoronoiShortestPathSolver</h2>
-                        <p class="card-meta">2024年春 | 個人開発 | 1週間</p>
-                        <p class="card-description">
-                            ボロノイ図を用いた最短経路探索シミュレーション。ビジュアルコンピューティングのための幾何学という授業で得た知見をもとに作成。点（母点）がいくつか与えられたとき、どの点に一番近いかによって平面を分割したものをボロノイ図といい、それを用いて最短経路を探索する試み。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">Siv3D</span>
-                            <span class="tag">OpenCV</span>
-                        </div>
-                        <a href="https://github.com/mogmog-0110/VoronoiShortestPathSolver"
-                           class="card-link" target="_blank" rel="noopener">
-                            GitHub →
-                        </a>
-                    </div>
-                </article>
+                        <article class="work">
+                            <div class="work-media">
+                                <img loading="lazy" decoding="async" src="images/vs_1.webp" alt="VoronoiShortestPathSolver" onerror="this.parentElement.innerHTML='<div class=&quot;ph&quot;>VORONOI</div>'">
+                            </div>
+                            <div class="work-body">
+                                <h3>VoronoiShortestPathSolver</h3>
+                                <p class="work-meta">2024年春 · 個人開発 · 1週間</p>
+                                <p>
+                                    ボロノイ図を用いた最短経路探索シミュレーション。ビジュアルコンピューティングのための幾何学という授業で得た知見をもとに作成。点（母点）がいくつか与えられたとき、どの点に一番近いかによって平面を分割したものをボロノイ図といい、それを用いて最短経路を探索する試み。
+                                </p>
+                                <p class="tags">C++ / Siv3D / OpenCV</p>
+                                <a href="https://github.com/mogmog-0110/VoronoiShortestPathSolver" class="go" target="_blank" rel="noopener">GitHub →</a>
+                            </div>
+                        </article>
 
-                <!-- 劇場版ぱんドドド―ド・ドードド デストロイ オブ アイヅ ゆにばーしてぃ the ファイナル -->
-                <article class="card">
-                    <div class="card-image">
-                        <img loading="lazy" decoding="async" src="images/dodo_1.webp" alt="劇場版ぱんドドド―ド・ドードド">
-                    </div>
-                    <div class="card-content">
-                        <h2>劇場版ぱんドドド―ド</h2>
-                        <p class="card-meta">2024年夏 | チーム開発（6人）| 2ヶ月</p>
-                        <p class="card-description">
-                            キャラクターを育成して、アクションに挑む新感覚おばか育成アクション。プロジェクトリーダーとしてチームメンバーのサポートをしながら開発。Unityのようなコンポーネントシステムを参考に設計し、ステージ制作ツールを別途作成。モンスターに支配された会津大学を企画開発部のマスコットキャラクター「ぱんどど」を育成し、モンスター退治をするというストーリー。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">Siv3D</span>
-                            <span class="tag">Action</span>
-                        </div>
-                    </div>
-                </article>
+                        <article class="work">
+                            <div class="work-media">
+                                <img loading="lazy" decoding="async" src="images/dodo_1.webp" alt="劇場版ぱんドドド―ド・ドードド">
+                            </div>
+                            <div class="work-body">
+                                <h3>劇場版ぱんドドド―ド</h3>
+                                <p class="work-meta">2024年夏 · チーム開発（6人）· 2ヶ月</p>
+                                <p>
+                                    キャラクターを育成して、アクションに挑む新感覚おばか育成アクション。プロジェクトリーダーとしてチームメンバーのサポートをしながら開発。Unityのようなコンポーネントシステムを参考に設計し、ステージ制作ツールを別途作成。モンスターに支配された会津大学を企画開発部のマスコットキャラクター「ぱんどど」を育成し、モンスター退治をするというストーリー。
+                                </p>
+                                <p class="tags">C++ / Siv3D / Action</p>
+                            </div>
+                        </article>
 
-                <!-- Vimove -->
-                <article class="card">
-                    <div class="card-image">
-                        <img loading="lazy" decoding="async" src="images/vimove_1.webp" alt="Vimove" onerror="this.parentElement.innerHTML='<div style=\'background: linear-gradient(135deg, #e8eef9, #f4f6fa); height: 100%; display: flex; align-items: center; justify-content: center; color: #5f6775; font-size: 3rem;\'>📝</div>'">
-                    </div>
-                    <div class="card-content">
-                        <h2>Vimove</h2>
-                        <p class="card-meta">2024年冬 | 個人開発 | 1週間</p>
-                        <p class="card-description">
-                            Vimの操作方法でクリアを目指す迷路ゲーム。Vimの上下左右移動（h, j, k, l）で迷路をクリアするゲーム。Vimの操作感に慣れるために作成。あらかじめ用意した数十ステージと、全ステージクリア後に開放されるエンドレスモード（ランダムで迷路を生成）で遊べる。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">Siv3D</span>
-                            <span class="tag">Game</span>
-                        </div>
-                        <a href="downloads/Vimove.zip"
-                           class="card-link">
-                            ダウンロード →
-                        </a>
-                    </div>
-                </article>
+                        <article class="work">
+                            <div class="work-media">
+                                <img loading="lazy" decoding="async" src="images/vimove_1.webp" alt="Vimove" onerror="this.parentElement.innerHTML='<div class=&quot;ph&quot;>VIMOVE</div>'">
+                            </div>
+                            <div class="work-body">
+                                <h3>Vimove</h3>
+                                <p class="work-meta">2024年冬 · 個人開発 · 1週間</p>
+                                <p>
+                                    Vimの操作方法でクリアを目指す迷路ゲーム。Vimの上下左右移動（h, j, k, l）で迷路をクリアするゲーム。Vimの操作感に慣れるために作成。あらかじめ用意した数十ステージと、全ステージクリア後に開放されるエンドレスモード（ランダムで迷路を生成）で遊べる。
+                                </p>
+                                <p class="tags">C++ / Siv3D / Game</p>
+                                <a href="downloads/Vimove.zip" class="go">ダウンロード →</a>
+                            </div>
+                        </article>
 
-                <!-- GraphWalker -->
-                <article class="card">
-                    <div class="card-image">
-                        <img loading="lazy" decoding="async" src="images/gw_1.webp" alt="GraphWalker" onerror="this.parentElement.innerHTML='<div style=\'background: linear-gradient(135deg, #e8eef9, #f4f6fa); height: 100%; display: flex; align-items: center; justify-content: center; color: #5f6775; font-size: 3rem;\'>🕸️</div>'">
-                    </div>
-                    <div class="card-content">
-                        <h2>GraphWalker</h2>
-                        <p class="card-meta">2025年春 | 個人開発 | 1週間</p>
-                        <p class="card-description">
-                            数式を打ち込んでグラフを作成し、ゴールを目指すパズルアクション。Siv3Dの数式パース機能を利用して、当たり判定のあるグラフを作成し、ゴールを目指す。数学が苦手な後輩を見て発案。グラフをもっと身近なものにしようという意図でアクションゲームにした。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">Siv3D</span>
-                            <span class="tag">Educational</span>
-                        </div>
-                        <a href="https://github.com/mogmog-0110/GraphWalker"
-                           class="card-link" target="_blank" rel="noopener">
-                            GitHub →
-                        </a>
-                    </div>
-                </article>
+                        <article class="work">
+                            <div class="work-media">
+                                <img loading="lazy" decoding="async" src="images/gw_1.webp" alt="GraphWalker" onerror="this.parentElement.innerHTML='<div class=&quot;ph&quot;>GRAPHWALKER</div>'">
+                            </div>
+                            <div class="work-body">
+                                <h3>GraphWalker</h3>
+                                <p class="work-meta">2025年春 · 個人開発 · 1週間</p>
+                                <p>
+                                    数式を打ち込んでグラフを作成し、ゴールを目指すパズルアクション。Siv3Dの数式パース機能を利用して、当たり判定のあるグラフを作成し、ゴールを目指す。数学が苦手な後輩を見て発案。グラフをもっと身近なものにしようという意図でアクションゲームにした。
+                                </p>
+                                <p class="tags">C++ / Siv3D / Educational</p>
+                                <a href="https://github.com/mogmog-0110/GraphWalker" class="go" target="_blank" rel="noopener">GitHub →</a>
+                            </div>
+                        </article>
 
+                        <article class="work">
+                            <div class="work-media">
+                                <div class="ph">OSKAR × RHYTHM</div>
+                            </div>
+                            <div class="work-body">
+                                <h3>oskar-rythm</h3>
+                                <p class="work-meta">In Development · 個人開発 · MitiruEngine CEF Hybrid</p>
+                                <p>
+                                    オスカー × ガーデニング × リズム天国型のタイミングゲーム。種まき（お手本）→ 水やり（プレイヤー操作）→ リザルトの 3 フェーズ構成。リズム判定は Web Audio API の <code>AudioContext.currentTime</code> 基準。MitiruEngine の web-first CEF shell パターンの実装例。
+                                </p>
+                                <p class="tags">MitiruEngine / CEF / Rhythm</p>
+                                <a href="https://github.com/mogmog-0110/oskar-rythm" class="go" target="_blank" rel="noopener">GitHub →</a>
+                            </div>
+                        </article>
 
-                <!-- oskar-rythm -->
-                <article class="card">
-                    <div class="card-image">
-                        <div style="background: linear-gradient(135deg, #e3f2ea, #f2f8f5); height: 100%; display: flex; align-items: center; justify-content: center; color: #3a4150; font-size: 1.3rem; letter-spacing: 0.08em;">オスカー × リズム</div>
+                        <article class="work">
+                            <div class="work-media">
+                                <img loading="lazy" decoding="async" src="images/minge2025_1.webp" alt="脱出ゲーム（仮）" onerror="this.parentElement.innerHTML='<div class=&quot;ph&quot;>ESCAPE</div>'">
+                            </div>
+                            <div class="work-body">
+                                <h3>脱出ゲーム（仮）</h3>
+                                <p class="work-meta">In Development · 2025年夏〜 · チーム開発（3人）</p>
+                                <p>
+                                    ループするサークル部室から脱出を目指すミステリーゲーム。シェーダーでゲーム画面を CRT モニター風に演出している。見た目、ゲームシステム、シナリオにこだわった作品を目指し、制作中。会津大学・蒼翔祭2026 にて展示予定。
+                                </p>
+                                <p class="tags">C++ / Siv3D / Shader / WIP</p>
+                            </div>
+                        </article>
                     </div>
-                    <div class="card-content">
-                        <span class="card-status in-development">In Development</span>
-                        <h2>oskar-rythm</h2>
-                        <p class="card-meta">個人開発 | MitiruEngine CEF Hybrid</p>
-                        <p class="card-description">
-                            オスカー × ガーデニング × リズム天国型のタイミングゲーム。種まき（お手本）→ 水やり（プレイヤー操作）→ リザルトの 3 フェーズ構成。リズム判定は Web Audio API の <code>AudioContext.currentTime</code> 基準。MitiruEngine の web-first CEF shell パターンの実装例。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">MitiruEngine</span>
-                            <span class="tag">CEF</span>
-                            <span class="tag">Rhythm</span>
-                        </div>
-                        <a href="https://github.com/mogmog-0110/oskar-rythm"
-                           class="card-link" target="_blank" rel="noopener">
-                            GitHub →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- 脱出ゲーム（仮） -->
-                <article class="card">
-                    <div class="card-image">
-                        <img loading="lazy" decoding="async" src="images/minge2025_1.webp" alt="脱出ゲーム（仮）" onerror="this.parentElement.innerHTML='<div style=\'background: linear-gradient(135deg, #e8eef9, #f4f6fa); height: 100%; display: flex; align-items: center; justify-content: center; color: #5f6775; font-size: 3rem;\'>🚪</div>'">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-status in-development">In Development</span>
-                        <h2>脱出ゲーム（仮）</h2>
-                        <p class="card-meta">2025年夏〜 | チーム開発（3人）| 開発中</p>
-                        <p class="card-description">
-                            ループするサークル部室から脱出を目指すミステリーゲーム。シェーダーでゲーム画面を CRT モニター風に演出している。見た目、ゲームシステム、シナリオにこだわった作品を目指し、制作中。会津大学・蒼翔祭2026 にて展示予定。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">Siv3D</span>
-                            <span class="tag">Shader</span>
-                            <span class="tag">WIP</span>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
+                </div>
+            </section>
 
             <!-- ============================================== -->
             <!-- Tools / Engines                                -->
             <!-- ============================================== -->
-            <div class="section-heading">
+            <section class="sec">
                 <h2>Tools &amp; Engines</h2>
-                <p>開発の途中で必要になって書いた道具。レンダラー、リソース管理ツール、研究用アルゴリズムなど。</p>
-            </div>
+                <div class="sec-body">
+                    <p style="font-size: 0.85rem; color: var(--ink-faint); margin-bottom: 0;">開発の途中で必要になって書いた道具。レンダラー、リソース管理ツール、研究用アルゴリズムなど。</p>
 
-            <div class="cards-container">
-                <!-- MitiruEngine（詳細は Engine ページ） -->
-                <article class="card">
-                    <div class="card-image">
-                        <div style="height: 100%; display: flex; align-items: center; justify-content: center; color: #3a4150; font-size: 1.8rem; letter-spacing: 0.12em; font-weight: 300;">MitiruEngine</div>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-status in-development">In Development</span>
-                        <h2>MitiruEngine</h2>
-                        <p class="card-meta">個人開発 | C++20 header-only ゲームエンジン | MIT</p>
-                        <p class="card-description">
-                            自作の C++20 / header-only ゲームエンジン。マルチ GPU バックエンド、決定論＋自動リプレイ、HTML/CSS で書ける UI。<a href="engine.html" style="color: var(--washer-red);">専用ページ</a>で詳しく書いています。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">C++20</span>
-                            <span class="tag">Header-only</span>
-                            <span class="tag">DirectX / Vulkan</span>
-                            <span class="tag">CEF</span>
-                        </div>
-                        <a href="engine.html" class="card-link">Engine ページへ →</a>
-                    </div>
-                </article>
-
-                <!-- mitiru-cli -->
-                <article class="card">
-                    <div class="card-image">
-                        <div style="background: linear-gradient(135deg, #e8eef9, #f4f6fa); height: 100%; display: flex; align-items: center; justify-content: center; color: #3a4150; font-family: 'Courier New', monospace; font-size: 1.4rem; letter-spacing: 0.1em;">mitiru&nbsp;new</div>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-status tool">Tool</span>
-                        <h2>mitiru-cli</h2>
-                        <p class="card-meta">個人開発 | Go | Cargo 風 CLI</p>
-                        <p class="card-description">
-                            MitiruEngine プロジェクトを CMake に触らずに作って・ビルドして・走らせる CLI。<code>mitiru new</code> / <code>mitiru build</code> / <code>mitiru run</code> の 3 コマンドだけで、Cargo や <code>go run</code> の感覚でゲームを書き始められる。エンジンキャッシュと TOML 設定の管理も裏で面倒見ます。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">Go</span>
-                            <span class="tag">CLI</span>
-                            <span class="tag">CMake</span>
-                        </div>
-                        <a href="https://github.com/mogmog-0110/mitiru-cli"
-                           class="card-link" target="_blank" rel="noopener">
-                            GitHub →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- lsdj-project -->
-                <article class="card">
-                    <div class="card-image">
-                        <div style="background: linear-gradient(135deg, #e3f2ea, #eef4f2); height: 100%; display: flex; align-items: center; justify-content: center; color: #3a4150; font-family: 'Courier New', monospace; font-size: 1.4rem; letter-spacing: 0.1em;">.sav</div>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-status tool">Tool</span>
-                        <h2>lsdj-project</h2>
-                        <p class="card-meta">個人開発 | C++ + Web | チップチューン補助</p>
-                        <p class="card-description">
-                            ゲームボーイの音楽ソフト LSDJ（Little Sound Dj）でチップチューンを書くための道具立て 2 種。① ブラウザ上で stem 分離とピッチ検出をかけて譜面を並べる耳コピビューア、② 単旋律 MIDI を <code>.sav</code> 形式に変換する C++ コンバータ（フレーズ重複排除、チェイン最適化付き）。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">MIDI</span>
-                            <span class="tag">LSDJ</span>
-                            <span class="tag">Web</span>
-                        </div>
-                        <a href="https://github.com/mogmog-0110/lsdj-project"
-                           class="card-link" target="_blank" rel="noopener">
-                            GitHub →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- AthenaRenderer -->
-                <article class="card">
-                    <div class="card-image">
-                        <div style="background: linear-gradient(135deg, #e8eef9, #f4f6fa); height: 100%; display: flex; align-items: center; justify-content: center; color: #5f6775; font-size: 3rem;">🎨</div>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-status tool">Tool</span>
-                        <h2>AthenaRenderer</h2>
-                        <p class="card-meta">個人開発 | DirectX 12 ベース | 研究向け描画フレームワーク</p>
-                        <p class="card-description">
-                            DirectX 12 をベースにした自作レンダラー / 研究用描画フレームワーク。レンダリングパイプラインの理解を深めるために作成。シェーディング、ライティング、テクスチャマッピングを実装してグラフィックスプログラミングの基礎を整理。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">DirectX 12</span>
-                            <span class="tag">Graphics</span>
-                        </div>
-                        <a href="https://github.com/mogmog-0110/AthenaRenderer"
-                           class="card-link" target="_blank" rel="noopener">
-                            GitHub →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- VisualResourceLinkerForSiv3D -->
-                <article class="card">
-                    <div class="card-image">
-                        <img loading="lazy" decoding="async" src="images/res_1.webp" alt="VisualResourceLinkerForSiv3D" onerror="this.parentElement.innerHTML='<div style=\'background: linear-gradient(135deg, #e8eef9, #f4f6fa); height: 100%; display: flex; align-items: center; justify-content: center; color: #5f6775; font-size: 3rem;\'>🔗</div>'">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-status tool">Tool</span>
-                        <h2>VisualResourceLinkerForSiv3D</h2>
-                        <p class="card-meta">2025年夏 | 個人開発 | 2日</p>
-                        <p class="card-description">
-                            Siv3D のリソース管理を GUI 上で自動的に行うツール。ウェブ上で配布されていた類似ツールがリンク切れしていたので自作。GUI は ImGUI、設計は MVC を採用。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">Siv3D</span>
-                            <span class="tag">ImGUI</span>
-                        </div>
-                        <a href="https://github.com/mogmog-0110/VisualResourceLinkerForSiv3D"
-                           class="card-link" target="_blank" rel="noopener">
-                            GitHub →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- imgui-s3d-wrapper -->
-                <article class="card">
-                    <div class="card-image">
-                        <div style="background: linear-gradient(135deg, #e6ebf5, #f0f3f8); height: 100%; display: flex; align-items: center; justify-content: center; color: #3a4150; font-family: 'Courier New', monospace; font-size: 1.4rem; letter-spacing: 0.1em;">ImGui &times; S3D</div>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-status tool">Tool</span>
-                        <h2>imgui-s3d-wrapper</h2>
-                        <p class="card-meta">個人開発 | Siv3D + Dear ImGui ラッパー</p>
-                        <p class="card-description">
-                            Dear ImGui を Siv3D で即座に使い始めるためのスターターラッパー。<code>imgui_impl_s3d</code> をプロジェクトに組み込み済みの最小テンプレート。Siv3D ベースのツール作成を素早く立ち上げたいとき向け。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">Siv3D</span>
-                            <span class="tag">ImGui</span>
-                        </div>
-                        <a href="https://github.com/mogmog-0110/imgui-s3d-wrapper"
-                           class="card-link" target="_blank" rel="noopener">
-                            GitHub →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- NeonVector -->
-                <article class="card">
-                    <div class="card-image">
-                        <div style="background: linear-gradient(135deg, #fbe7f3, #f1ecf8); height: 100%; display: flex; align-items: center; justify-content: center; color: #3a4150; font-family: 'Courier New', monospace; font-size: 1.4rem; letter-spacing: 0.15em;">VECTOR_SCAN</div>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-status tool">Tool</span>
-                        <h2>NeonVector</h2>
-                        <p class="card-meta">個人開発 | C++ + DirectX 12 | ベクタースキャン再現</p>
-                        <p class="card-description">
-                            <em>Asteroids</em> や <em>Tempest</em> など 1970-80 年代アーケードゲームのベクタースキャン技術を、DirectX 12 を用いて現代的に再現するプロジェクト。ライン主体の表示と発光効果の再構築。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">DirectX 12</span>
-                            <span class="tag">Retro</span>
-                        </div>
-                        <a href="https://github.com/mogmog-0110/NeonVector"
-                           class="card-link" target="_blank" rel="noopener">
-                            GitHub →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- DimensionEditor -->
-                <article class="card">
-                    <div class="card-image">
-                        <div style="background: linear-gradient(135deg, #e3edf8, #eef2f8); height: 100%; display: flex; align-items: center; justify-content: center; color: #3a4150; font-family: 'Courier New', monospace; font-size: 1.4rem; letter-spacing: 0.12em;">DimEd</div>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-status tool">Tool</span>
-                        <h2>DimensionEditor</h2>
-                        <p class="card-meta">個人開発 | C++ + GLSL / HLSL | グラフィックツール</p>
-                        <p class="card-description">
-                            C++ をベースに、GLSL と HLSL の両方のシェーダーを扱うクロスプラットフォームのグラフィック / 描画ツール。シェーダー記述の比較と検証用に作成。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">GLSL</span>
-                            <span class="tag">HLSL</span>
-                        </div>
-                        <a href="https://github.com/mogmog-0110/DimensionEditor"
-                           class="card-link" target="_blank" rel="noopener">
-                            GitHub →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- CSSC2025 -->
-                <article class="card">
-                    <div class="card-image">
-                        <div style="background: linear-gradient(135deg, #e3f2ea, #eef4f2); height: 100%; display: flex; align-items: center; justify-content: center; color: #3a4150; font-family: 'Courier New', monospace; font-size: 1.4rem; letter-spacing: 0.12em;">CSSC 2025</div>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-status tool">Education</span>
-                        <h2>CSSC 2025</h2>
-                        <p class="card-meta">教材 + ワークショップ | プロジェクトリーダー</p>
-                        <p class="card-description">
-                            会津大学・コンピュータサイエンスサマーキャンプ 2025 の教材リポジトリ。CreateJS（JS トラック）と grasp3d（CG トラック）の 2 部構成。全国の高校生にゲーム開発を指導する際の課題・テンプレート・Git/GitHub の使い方ガイドを提供。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">CreateJS</span>
-                            <span class="tag">Education</span>
-                        </div>
-                        <a href="https://github.com/mogmog-0110/CSSC2025"
-                           class="card-link" target="_blank" rel="noopener">
-                            GitHub →
-                        </a>
-                    </div>
-                </article>
-
-                <!-- mser-cpp -->
-                <article class="card">
-                    <div class="card-image">
-                        <div style="background: linear-gradient(135deg, #e8eef9, #f4f6fa); height: 100%; display: flex; align-items: center; justify-content: center; color: #5f6775; font-size: 3rem;">📊</div>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-status tool">Tool</span>
-                        <h2>mser-cpp</h2>
-                        <p class="card-meta">個人開発 | 研究用アルゴリズム実装</p>
-                        <p class="card-description">
-                            シミュレーションが定常状態に達したかを統計的に判定するアルゴリズム MSER の C++ 実装。BDA 2025 投稿論文での解析に使用。
-                        </p>
-                        <div class="card-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">Algorithm</span>
-                            <span class="tag">Research</span>
-                        </div>
-                        <a href="https://github.com/mogmog-0110/mser-cpp"
-                           class="card-link" target="_blank" rel="noopener">
-                            GitHub →
-                        </a>
-                    </div>
-                </article>
-            </div>
-            <!-- ============================================== -->
-            <!-- Creative（creation から統合）                 -->
-            <!-- ============================================== -->
-            <div class="section-heading">
-                <h2>Creative</h2>
-                <p>ゲーム以外の創作 ── イラスト・Live2D・短編小説。</p>
-            </div>
-
-<!-- Graphics Section -->
-            <div class="section-block">
-                <h2>グラフィック</h2>
-                <p style="margin-bottom: 1.5rem;">趣味で描いたイラスト。クリックで拡大表示されます。</p>
-                <div class="gallery-grid">
-                    <a href="images/art1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art1.webp" alt="イラスト 1"></a>
-                    <a href="images/art2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art2.webp" alt="イラスト 2"></a>
-                    <a href="images/art3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art3.webp" alt="イラスト 3"></a>
-                    <a href="images/art4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art4.webp" alt="イラスト 4"></a>
-                    <a href="images/art5.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art5.webp" alt="イラスト 5"></a>
-                    <a href="images/art6.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art6.webp" alt="イラスト 6"></a>
-                    <a href="images/art7.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art7.webp" alt="イラスト 7"></a>
-                    <a href="images/art8.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art8.webp" alt="イラスト 8"></a>
-                    <a href="images/art9.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art9.webp" alt="イラスト 9"></a>
-                    <a href="images/art10.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art10.webp" alt="イラスト 10"></a>
-                    <a href="images/art11.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art11.webp" alt="イラスト 11"></a>
-                    <a href="images/art12.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art12.webp" alt="イラスト 12"></a>
-                    <a href="images/art13.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art13.webp" alt="イラスト 13"></a>
-                    <a href="images/art14.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art14.webp" alt="イラスト 14"></a>
-                    <a href="images/art15.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art15.webp" alt="イラスト 15"></a>
-                </div>
-            </div>
-
-            <!-- Live2D Section -->
-            <div class="section-block">
-                <h2>Live2D</h2>
-                <p style="margin-bottom: 1.5rem; color: var(--text-dim); font-size: 0.9rem;">
-                    自分で作った Live2D モデル。なお、現在は株式会社 Live2D で Cubism SDK for Native の保守・不具合対応のアルバイトに従事しています。
-                </p>
-                <div class="cards-container" style="margin-top: 1.5rem;">
-                    <article class="card">
-                        <div class="card-image">
-                            <a href="images/myModel.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/myModel.webp" alt="自作Live2Dモデル">
-                            </a>
-                        </div>
-                        <div class="card-content">
-                            <h2>自作Live2Dモデル</h2>
-                            <p class="card-description">
-                                Live2D への興味から作ってみた自創作キャラの Live2D モデル。横や斜めを向いたときの設定がうまくいかず難航しました。時間的な余裕があれば、もっといいモデルを作りたい。
-                            </p>
-                            <div class="card-tags">
-                                <span class="tag">Live2D</span>
-                                <span class="tag">Character</span>
+                    <div class="work-list" style="border-top: none; margin-top: 1.4rem;">
+                        <article class="work" style="border-top: 1px solid var(--rule-soft);">
+                            <div class="work-media">
+                                <div class="ph">MITIRUENGINE</div>
                             </div>
-                        </div>
-                    </article>
+                            <div class="work-body">
+                                <h3>MitiruEngine</h3>
+                                <p class="work-meta">In Development · 個人開発 · C++20 header-only ゲームエンジン · MIT</p>
+                                <p>
+                                    自作の C++20 / header-only ゲームエンジン。マルチ GPU バックエンド、決定論＋自動リプレイ、HTML/CSS で書ける UI。<a href="engine.html">専用ページ</a>で詳しく書いています。
+                                </p>
+                                <p class="tags">C++20 / Header-only / DirectX / Vulkan / CEF</p>
+                                <a href="engine.html" class="go">Engine ページへ →</a>
+                            </div>
+                        </article>
+
+                        <article class="work">
+                            <div class="work-media">
+                                <div class="ph">MITIRU NEW</div>
+                            </div>
+                            <div class="work-body">
+                                <h3>mitiru-cli</h3>
+                                <p class="work-meta">Tool · 個人開発 · Go · Cargo 風 CLI</p>
+                                <p>
+                                    MitiruEngine プロジェクトを CMake に触らずに作って・ビルドして・走らせる CLI。<code>mitiru new</code> / <code>mitiru build</code> / <code>mitiru run</code> の 3 コマンドだけで、Cargo や <code>go run</code> の感覚でゲームを書き始められる。エンジンキャッシュと TOML 設定の管理も裏で面倒見ます。
+                                </p>
+                                <p class="tags">Go / CLI / CMake</p>
+                                <a href="https://github.com/mogmog-0110/mitiru-cli" class="go" target="_blank" rel="noopener">GitHub →</a>
+                            </div>
+                        </article>
+
+                        <article class="work">
+                            <div class="work-media">
+                                <div class="ph">.SAV</div>
+                            </div>
+                            <div class="work-body">
+                                <h3>lsdj-project</h3>
+                                <p class="work-meta">Tool · 個人開発 · C++ + Web · チップチューン補助</p>
+                                <p>
+                                    ゲームボーイの音楽ソフト LSDJ（Little Sound Dj）でチップチューンを書くための道具立て 2 種。① ブラウザ上で stem 分離とピッチ検出をかけて譜面を並べる耳コピビューア、② 単旋律 MIDI を <code>.sav</code> 形式に変換する C++ コンバータ（フレーズ重複排除、チェイン最適化付き）。
+                                </p>
+                                <p class="tags">C++ / MIDI / LSDJ / Web</p>
+                                <a href="https://github.com/mogmog-0110/lsdj-project" class="go" target="_blank" rel="noopener">GitHub →</a>
+                            </div>
+                        </article>
+
+                        <article class="work">
+                            <div class="work-media">
+                                <div class="ph">ATHENA</div>
+                            </div>
+                            <div class="work-body">
+                                <h3>AthenaRenderer</h3>
+                                <p class="work-meta">Tool · 個人開発 · DirectX 12 ベース · 研究向け描画フレームワーク</p>
+                                <p>
+                                    DirectX 12 をベースにした自作レンダラー / 研究用描画フレームワーク。レンダリングパイプラインの理解を深めるために作成。シェーディング、ライティング、テクスチャマッピングを実装してグラフィックスプログラミングの基礎を整理。
+                                </p>
+                                <p class="tags">C++ / DirectX 12 / Graphics</p>
+                                <a href="https://github.com/mogmog-0110/AthenaRenderer" class="go" target="_blank" rel="noopener">GitHub →</a>
+                            </div>
+                        </article>
+
+                        <article class="work">
+                            <div class="work-media">
+                                <img loading="lazy" decoding="async" src="images/res_1.webp" alt="VisualResourceLinkerForSiv3D" onerror="this.parentElement.innerHTML='<div class=&quot;ph&quot;>LINKER</div>'">
+                            </div>
+                            <div class="work-body">
+                                <h3>VisualResourceLinkerForSiv3D</h3>
+                                <p class="work-meta">Tool · 2025年夏 · 個人開発 · 2日</p>
+                                <p>
+                                    Siv3D のリソース管理を GUI 上で自動的に行うツール。ウェブ上で配布されていた類似ツールがリンク切れしていたので自作。GUI は ImGUI、設計は MVC を採用。
+                                </p>
+                                <p class="tags">C++ / Siv3D / ImGUI</p>
+                                <a href="https://github.com/mogmog-0110/VisualResourceLinkerForSiv3D" class="go" target="_blank" rel="noopener">GitHub →</a>
+                            </div>
+                        </article>
+
+                        <article class="work">
+                            <div class="work-media">
+                                <div class="ph">IMGUI × S3D</div>
+                            </div>
+                            <div class="work-body">
+                                <h3>imgui-s3d-wrapper</h3>
+                                <p class="work-meta">Tool · 個人開発 · Siv3D + Dear ImGui ラッパー</p>
+                                <p>
+                                    Dear ImGui を Siv3D で即座に使い始めるためのスターターラッパー。<code>imgui_impl_s3d</code> をプロジェクトに組み込み済みの最小テンプレート。Siv3D ベースのツール作成を素早く立ち上げたいとき向け。
+                                </p>
+                                <p class="tags">C++ / Siv3D / ImGui</p>
+                                <a href="https://github.com/mogmog-0110/imgui-s3d-wrapper" class="go" target="_blank" rel="noopener">GitHub →</a>
+                            </div>
+                        </article>
+
+                        <article class="work">
+                            <div class="work-media">
+                                <div class="ph">VECTOR_SCAN</div>
+                            </div>
+                            <div class="work-body">
+                                <h3>NeonVector</h3>
+                                <p class="work-meta">Tool · 個人開発 · C++ + DirectX 12 · ベクタースキャン再現</p>
+                                <p>
+                                    <em>Asteroids</em> や <em>Tempest</em> など 1970-80 年代アーケードゲームのベクタースキャン技術を、DirectX 12 を用いて現代的に再現するプロジェクト。ライン主体の表示と発光効果の再構築。
+                                </p>
+                                <p class="tags">C++ / DirectX 12 / Retro</p>
+                                <a href="https://github.com/mogmog-0110/NeonVector" class="go" target="_blank" rel="noopener">GitHub →</a>
+                            </div>
+                        </article>
+
+                        <article class="work">
+                            <div class="work-media">
+                                <div class="ph">DIMED</div>
+                            </div>
+                            <div class="work-body">
+                                <h3>DimensionEditor</h3>
+                                <p class="work-meta">Tool · 個人開発 · C++ + GLSL / HLSL · グラフィックツール</p>
+                                <p>
+                                    C++ をベースに、GLSL と HLSL の両方のシェーダーを扱うクロスプラットフォームのグラフィック / 描画ツール。シェーダー記述の比較と検証用に作成。
+                                </p>
+                                <p class="tags">C++ / GLSL / HLSL</p>
+                                <a href="https://github.com/mogmog-0110/DimensionEditor" class="go" target="_blank" rel="noopener">GitHub →</a>
+                            </div>
+                        </article>
+
+                        <article class="work">
+                            <div class="work-media">
+                                <div class="ph">CSSC 2025</div>
+                            </div>
+                            <div class="work-body">
+                                <h3>CSSC 2025</h3>
+                                <p class="work-meta">Education · 教材 + ワークショップ · プロジェクトリーダー</p>
+                                <p>
+                                    会津大学・コンピュータサイエンスサマーキャンプ 2025 の教材リポジトリ。CreateJS（JS トラック）と grasp3d（CG トラック）の 2 部構成。全国の高校生にゲーム開発を指導する際の課題・テンプレート・Git/GitHub の使い方ガイドを提供。
+                                </p>
+                                <p class="tags">JavaScript / CreateJS / Education</p>
+                                <a href="https://github.com/mogmog-0110/CSSC2025" class="go" target="_blank" rel="noopener">GitHub →</a>
+                            </div>
+                        </article>
+
+                        <article class="work">
+                            <div class="work-media">
+                                <div class="ph">MSER</div>
+                            </div>
+                            <div class="work-body">
+                                <h3>mser-cpp</h3>
+                                <p class="work-meta">Tool · 個人開発 · 研究用アルゴリズム実装</p>
+                                <p>
+                                    シミュレーションが定常状態に達したかを統計的に判定するアルゴリズム MSER の C++ 実装。BDA 2025 投稿論文での解析に使用。
+                                </p>
+                                <p class="tags">C++ / Algorithm / Research</p>
+                                <a href="https://github.com/mogmog-0110/mser-cpp" class="go" target="_blank" rel="noopener">GitHub →</a>
+                            </div>
+                        </article>
+                    </div>
                 </div>
-            </div>
+            </section>
 
-            <!-- Novels Section -->
-            <div class="section-block">
-                <h2>小説</h2>
-                <p style="margin-bottom: 1.5rem;">趣味で執筆した短編小説です。</p>
+            <!-- ============================================== -->
+            <!-- Creative                                       -->
+            <!-- ============================================== -->
+            <section class="sec">
+                <h2>Creative</h2>
+                <div class="sec-body">
+                    <p style="font-size: 0.85rem; color: var(--ink-faint);">ゲーム以外の創作 ── イラスト・Live2D・短編小説。</p>
 
-                <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f7f8fa; border-left: 3px solid var(--washer-red); border-radius: 8px;">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;">
-                        <a href="downloads/リハビリ作品 『鯨・秘密・水槽』.txt" target="_blank" style="color: var(--text-light); text-decoration: none;">
-                            泡のゆりかご、風のうた →
+                    <h3>グラフィック</h3>
+                    <p>趣味で描いたイラスト。クリックで拡大表示されます。</p>
+                    <div class="art-grid">
+                        <a href="images/art1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art1.webp" alt="イラスト 1"></a>
+                        <a href="images/art2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art2.webp" alt="イラスト 2"></a>
+                        <a href="images/art3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art3.webp" alt="イラスト 3"></a>
+                        <a href="images/art4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art4.webp" alt="イラスト 4"></a>
+                        <a href="images/art5.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art5.webp" alt="イラスト 5"></a>
+                        <a href="images/art6.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art6.webp" alt="イラスト 6"></a>
+                        <a href="images/art7.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art7.webp" alt="イラスト 7"></a>
+                        <a href="images/art8.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art8.webp" alt="イラスト 8"></a>
+                        <a href="images/art9.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art9.webp" alt="イラスト 9"></a>
+                        <a href="images/art10.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art10.webp" alt="イラスト 10"></a>
+                        <a href="images/art11.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art11.webp" alt="イラスト 11"></a>
+                        <a href="images/art12.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art12.webp" alt="イラスト 12"></a>
+                        <a href="images/art13.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art13.webp" alt="イラスト 13"></a>
+                        <a href="images/art14.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art14.webp" alt="イラスト 14"></a>
+                        <a href="images/art15.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art15.webp" alt="イラスト 15"></a>
+                    </div>
+
+                    <h3>Live2D</h3>
+                    <p>
+                        自分で作った Live2D モデル。なお、現在は株式会社 Live2D で Cubism SDK for Native の保守・不具合対応のアルバイトに従事しています。
+                    </p>
+                    <figure class="plate" style="max-width: 420px;">
+                        <a href="images/myModel.webp" target="_blank">
+                            <img loading="lazy" decoding="async" src="images/myModel.webp" alt="自作Live2Dモデル">
                         </a>
-                    </h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>ジャンル:</strong> SF短編</p>
-                    <p style="color: var(--text-dim);">『秘密』『水槽』『鯨』の三つのお題で書いた作品</p>
+                        <figcaption>
+                            自作Live2Dモデル ── Live2D への興味から作ってみた自創作キャラの Live2D モデル。横や斜めを向いたときの設定がうまくいかず難航しました。時間的な余裕があれば、もっといいモデルを作りたい。
+                        </figcaption>
+                    </figure>
+
+                    <h3>小説</h3>
+                    <p>趣味で執筆した短編小説です。</p>
+                    <ul class="text-list">
+                        <li>
+                            <a href="downloads/リハビリ作品 『鯨・秘密・水槽』.txt" target="_blank">泡のゆりかご、風のうた →</a>
+                            <p class="genre">SF短編</p>
+                            <p>『秘密』『水槽』『鯨』の三つのお題で書いた作品</p>
+                        </li>
+                        <li>
+                            <a href="downloads/君と渚と永遠と.txt" target="_blank">君と渚と永遠と →</a>
+                            <p class="genre">最後の一文ですべてが変わる短編ミステリー</p>
+                            <p>どんでん返しもの。よくあるラブストーリーと思いきや……</p>
+                        </li>
+                        <li>
+                            <a href="downloads/最近、猫を飼い始めた。.txt" target="_blank">最近、猫を飼い始めた。 →</a>
+                            <p class="genre">短編</p>
+                            <p>「最近、猫を飼い始めた。」で始まり「そういえば、人間だった。」で終わる作品を書くというお題で作った物語。</p>
+                        </li>
+                        <li>
+                            <a href="downloads/犬の惑星.txt" target="_blank">犬の惑星 →</a>
+                            <p class="genre">短編SF</p>
+                            <p>星新一っぽい作品が書きたかった。</p>
+                        </li>
+                        <li>
+                            <a href="downloads/それは綺麗だった.txt" target="_blank">それは綺麗だった →</a>
+                            <p class="genre">短編</p>
+                            <p>「それは綺麗だった。」で始まり「明日なんか来なければいいのに。」で終わる作品を書くというお題で作った物語。</p>
+                        </li>
+                        <li>
+                            <a href="downloads/一世一代のあみだくじ.txt" target="_blank">一世一代のあみだくじ →</a>
+                            <p class="genre">最後の一文ですべてが変わる短編ミステリー</p>
+                            <p>どんでん返しもののお題で作った作品。</p>
+                        </li>
+                    </ul>
+
+                    <h3>その他</h3>
+                    <ul class="text-list">
+                        <li>
+                            <a href="downloads/私がバナナを食べた日.zip" target="_blank">私がバナナを食べた日 (TRPGシナリオ) →</a>
+                            <p class="genre">オリジナルのTRPG（マーダーミステリー）</p>
+                            <p>プレイ人数5人（GM1人、プレイヤー4人）。プレイ時間4時間程度。病院に入院した四人の患者が各々の目標を持って、それを隠しながらクリアを目指すTRPG</p>
+                        </li>
+                    </ul>
                 </div>
+            </section>
+        </div>
+    </main>
 
-                <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f7f8fa; border-left: 3px solid var(--washer-red); border-radius: 8px;">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;">
-                        <a href="downloads/君と渚と永遠と.txt" target="_blank" style="color: var(--text-light); text-decoration: none;">
-                            君と渚と永遠と →
-                        </a>
-                    </h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>ジャンル:</strong> 最後の一文ですべてが変わる短編ミステリー</p>
-                    <p style="color: var(--text-dim);">どんでん返しもの。よくあるラブストーリーと思いきや……</p>
-                </div>
+    <footer class="site-foot">
+        <div class="container">
+            <p>&copy; 川村優弥 / Shiggy</p>
+            <p><a href="mailto:medli908@gmail.com">medli908@gmail.com</a> ・ <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">GitHub</a></p>
+        </div>
+    </footer>
 
-                <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f7f8fa; border-left: 3px solid var(--washer-red); border-radius: 8px;">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;">
-                        <a href="downloads/最近、猫を飼い始めた。.txt" target="_blank" style="color: var(--text-light); text-decoration: none;">
-                            最近、猫を飼い始めた。 →
-                        </a>
-                    </h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>ジャンル:</strong> 短編</p>
-                    <p style="color: var(--text-dim);">「最近、猫を飼い始めた。」で始まり「そういえば、人間だった。」で終わる作品を書くというお題で作った物語。</p>
-                </div>
-
-                <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f7f8fa; border-left: 3px solid var(--washer-red); border-radius: 8px;">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;">
-                        <a href="downloads/犬の惑星.txt" target="_blank" style="color: var(--text-light); text-decoration: none;">
-                            犬の惑星 →
-                        </a>
-                    </h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>ジャンル:</strong> 短編SF</p>
-                    <p style="color: var(--text-dim);">星新一っぽい作品が書きたかった。</p>
-                </div>
-
-                <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f7f8fa; border-left: 3px solid var(--washer-red); border-radius: 8px;">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;">
-                        <a href="downloads/それは綺麗だった.txt" target="_blank" style="color: var(--text-light); text-decoration: none;">
-                            それは綺麗だった →
-                        </a>
-                    </h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>ジャンル:</strong> 短編</p>
-                    <p style="color: var(--text-dim);">「それは綺麗だった。」で始まり「明日なんか来なければいいのに。」で終わる作品を書くというお題で作った物語。</p>
-                </div>
-
-                <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f7f8fa; border-left: 3px solid var(--washer-red); border-radius: 8px;">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;">
-                        <a href="downloads/一世一代のあみだくじ.txt" target="_blank" style="color: var(--text-light); text-decoration: none;">
-                            一世一代のあみだくじ →
-                        </a>
-                    </h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>ジャンル:</strong> 最後の一文ですべてが変わる短編ミステリー</p>
-                    <p style="color: var(--text-dim);">どんでん返しもののお題で作った作品。</p>
-                </div>
-            </div>
-
-            <!-- Other Works Section -->
-            <div class="section-block">
-                <h2>その他</h2>
-
-                <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f7f8fa; border-left: 3px solid var(--washer-red); border-radius: 8px;">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 0.75rem;">
-                        <a href="downloads/私がバナナを食べた日.zip" target="_blank" style="color: var(--text-light); text-decoration: none;">
-                            私がバナナを食べた日 (TRPGシナリオ) →
-                        </a>
-                    </h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>形式:</strong> オリジナルのTRPG（マーダーミステリー）</p>
-                    <p style="color: var(--text-dim);">プレイ人数5人（GM1人、プレイヤー4人）。プレイ時間4時間程度。病院に入院した四人の患者が各々の目標を持って、それを隠しながらクリアを目指すTRPG</p>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <!-- Three.js Library -->
     <script src="assets/js/back-to-top.js"></script>
 </body>
+
 </html>

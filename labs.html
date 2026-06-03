@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja" style="background-color: #ffffff;">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,96 +9,7 @@
     <meta name="description" content="3DCG・物理シミュレーションの問題を見つけて、自作エンジン MitiruEngine で解決アプローチを試す実験集。">
 
     <style>
-        html, body {
-            background-color: #ffffff !important;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* ── カードグリッド ───────────────────────── */
-        .lab-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.2rem;
-            margin-top: 1.5rem;
-        }
-        .lab-card {
-            background: #ffffff;
-            border: 1px solid #e6e8ec;
-            border-radius: 10px;
-            box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
-        }
-        .lab-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--washer-red, #2563eb);
-            box-shadow: 0 4px 16px rgba(16, 24, 40, 0.08);
-        }
-        .lab-card img {
-            width: 100%;
-            aspect-ratio: 16 / 7;
-            object-fit: cover;
-            display: block;
-            image-rendering: pixelated;
-        }
-        .lab-card-body { padding: 0.9rem 1rem 1.1rem; }
-        .lab-card-body h3 { margin: 0 0 0.4rem; font-size: 1.02rem; color: var(--text-light, #1f2430); }
-        .lab-card-body p { margin: 0; font-size: 0.85rem; line-height: 1.7; color: var(--text-dim, #5f6775); }
-        .lab-card-tags { margin-top: 0.6rem; display: flex; flex-wrap: wrap; gap: 0.35rem; }
-        .lab-card-tags span {
-            font-size: 0.7rem; padding: 0.1rem 0.55rem; border-radius: 999px;
-            border: 1px solid #e6e8ec; background: #f7f8fa; color: var(--text-dim, #5f6775);
-        }
-
-        /* ── モーダル ────────────────────────────── */
-        .lab-modal-overlay {
-            position: fixed; inset: 0; z-index: 100;
-            background: rgba(31, 36, 48, 0.45);
-            backdrop-filter: blur(6px);
-            display: none;
-            align-items: flex-start; justify-content: center;
-            overflow-y: auto; padding: 4vh 1rem;
-        }
-        .lab-modal-overlay.open { display: flex; }
-        .lab-modal {
-            background: #ffffff;
-            border: 1px solid #e6e8ec;
-            box-shadow: 0 12px 40px rgba(16, 24, 40, 0.18);
-            border-radius: 14px;
-            max-width: 860px; width: 100%;
-            padding: 1.6rem 1.8rem 2rem;
-            position: relative;
-        }
-        .lab-modal-close {
-            position: absolute; top: 0.7rem; right: 0.9rem;
-            background: none; border: none; color: #9aa1ad;
-            font-size: 1.6rem; cursor: pointer; line-height: 1;
-        }
-        .lab-modal-close:hover { color: #1f2430; }
-        .lab-modal h2 { margin: 0 1.5rem 0.8rem 0; color: var(--text-light, #1f2430); }
-        .lab-modal .lab-meta { color: var(--text-dim, #5f6775); font-size: 0.85rem; margin-bottom: 1rem; }
-        .lab-modal .lab-qa { margin: 0.8rem 0; line-height: 1.9; }
-        .lab-modal .lab-qa b { color: var(--text-light, #1f2430); }
-        .lab-modal .lab-qa p { margin: 0.2rem 0 0; color: var(--text-dim, #5f6775); }
-        .lab-modal video, .lab-modal img.media {
-            width: 100%; border: 1px solid #e6e8ec; border-radius: 8px;
-            margin-top: 1rem; image-rendering: pixelated; display: block;
-        }
-        .lab-modal .media-caption {
-            color: var(--text-dim, #5f6775); font-size: 0.82rem; margin-top: 0.35rem; line-height: 1.6;
-        }
-        .lab-modal .lab-more { margin-top: 1.3rem; }
-        .lab-modal .lab-more a { color: var(--washer-red, #2563eb); }
-        .lab-code {
-            background: #f7f8fa; border: 1px solid #e6e8ec; border-radius: 8px;
-            padding: 0.9rem 1.1rem; overflow-x: auto;
-            font-size: 0.8rem; line-height: 1.7; color: #334155;
-            margin: 0.6rem 0 0;
-        }
-        .lab-code-links { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 0.6rem; }
-        .lab-code-links a { color: var(--washer-red, #2563eb); font-size: 0.85rem; }
+        html, body { background-color: #ffffff !important; margin: 0; padding: 0; }
     </style>
 
     <!-- meta:social -->
@@ -111,49 +23,53 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Lab | Shiggy">
     <meta name="twitter:description" content="3DCG・物理シミュレーションの問題を、自作エンジンで解決アプローチする実験集。">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body data-page="labs">
 
-    <div class="ui-overlay">
-        <nav>
-            <div class="nav-logo">
-                <a href="index.html">Shiggy</a>
-            </div>
-            <ul class="nav-links">
+<body>
+    <header class="site-head">
+        <div class="container">
+            <a class="brand" href="index.html">Shiggy</a>
+            <ul class="menu">
                 <li><a href="engine.html">Engine</a></li>
-                <li><a href="labs.html" class="active">Lab</a></li>
+                <li><a href="labs.html" class="current">Lab</a></li>
                 <li><a href="research.html">Research</a></li>
                 <li><a href="portfolio.html">Works</a></li>
             </ul>
-        </nav>
+        </div>
+    </header>
 
-        <main class="page-content">
-            <h1 class="page-title">Lab</h1>
+    <main class="container">
+        <section class="page-head">
+            <p class="kicker">Lab</p>
+            <h1>実験室</h1>
+            <p class="lede">
+                3DCG・物理シミュレーションの分野から「これ、どう解くんだろう」という問題を自分で見つけてきて、<a href="engine.html" style="color: inherit; text-decoration: underline; text-decoration-color: #9b9fa8; text-underline-offset: 3px;">自作エンジン</a>の上で解決アプローチを実装してみる実験置き場です。タイトルをクリックするとデモと簡単な説明が開きます。
+            </p>
+        </section>
 
-            <div class="section-block">
-                <p style="font-size: 1.05rem; line-height: 1.9;">
-                    3DCG・物理シミュレーションの分野から「これ、どう解くんだろう」という問題を自分で見つけてきて、
-                    <a href="engine.html" style="color: var(--washer-red);">自作エンジン</a>の上で
-                    解決アプローチを実装してみる実験置き場です。カードをクリックするとデモと簡単な説明が開きます。
-                </p>
-            </div>
-
-            <div class="lab-grid" id="lab-grid"></div>
-        </main>
-    </div>
+        <div class="lab-list" id="lab-list"></div>
+    </main>
 
     <!-- モーダル -->
-    <div class="lab-modal-overlay" id="lab-modal-overlay">
-        <div class="lab-modal" id="lab-modal" role="dialog" aria-modal="true">
-            <button class="lab-modal-close" id="lab-modal-close" aria-label="閉じる">×</button>
+    <div class="modal-overlay" id="lab-modal-overlay">
+        <div class="modal-panel" id="lab-modal" role="dialog" aria-modal="true">
+            <button class="modal-close" id="lab-modal-close" aria-label="閉じる">×</button>
             <div id="lab-modal-content"></div>
         </div>
     </div>
+
+    <footer class="site-foot">
+        <div class="container">
+            <p>&copy; 川村優弥 / Shiggy</p>
+            <p><a href="mailto:medli908@gmail.com">medli908@gmail.com</a> ・ <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">GitHub</a></p>
+        </div>
+    </footer>
 
     <script>
     "use strict";
@@ -204,20 +120,22 @@ out[i] = max(raw[i], hist * p.decay);`,
         }
     ];
 
-    // ── カード生成 ──
-    const grid = document.getElementById("lab-grid");
+    // ── 一覧生成 ──
+    const list = document.getElementById("lab-list");
     for (const lab of LABS) {
-        const card = document.createElement("article");
-        card.className = "lab-card";
-        card.innerHTML = `
-            <img src="${lab.thumb}" alt="${lab.title}" loading="lazy">
-            <div class="lab-card-body">
-                <h3>${lab.title}</h3>
+        const entry = document.createElement("article");
+        entry.className = "lab-entry";
+        entry.innerHTML = `
+            <div class="lab-media">
+                <img src="${lab.thumb}" alt="${lab.title}" loading="lazy">
+            </div>
+            <div class="lab-text">
+                <h3>${lab.title}<span class="open-hint">OPEN +</span></h3>
+                <div class="lab-tags">${lab.tags.join(" / ")}</div>
                 <p>${lab.blurb}</p>
-                <div class="lab-card-tags">${lab.tags.map(t => `<span>${t}</span>`).join("")}</div>
             </div>`;
-        card.addEventListener("click", () => openModal(lab));
-        grid.appendChild(card);
+        entry.addEventListener("click", () => openModal(lab));
+        list.appendChild(entry);
     }
 
     // ── モーダル ──
@@ -236,17 +154,17 @@ out[i] = max(raw[i], hist * p.decay);`,
                <div class="media-caption">${m.caption}</div>`
         ).join("");
         const code = lab.code ? `
-            <div class="lab-qa" style="margin-top:1.3rem;"><b>コード</b><p>${lab.code.caption}</p></div>
-            <pre class="lab-code"><code>${escapeHtml(lab.code.snippet)}</code></pre>
-            <div class="lab-code-links">${lab.code.links.map(l =>
+            <div class="m-block" style="margin-top: 1.6rem;"><b>コード</b><p>${lab.code.caption}</p></div>
+            <pre><code>${escapeHtml(lab.code.snippet)}</code></pre>
+            <div class="link-row" style="margin-top: 0.8rem;">${lab.code.links.map(l =>
                 `<a href="${l.href}" target="_blank" rel="noopener">${l.label} →</a>`).join("")}</div>` : "";
         const more = lab.more
-            ? `<div class="lab-more"><a href="${lab.more}">もっと詳しく →</a></div>` : "";
+            ? `<div class="link-row"><a href="${lab.more}">もっと詳しく →</a></div>` : "";
         content.innerHTML = `
             <h2>${lab.title}</h2>
-            <div class="lab-meta">${lab.meta}</div>
-            <div class="lab-qa"><b>問題</b><p>${lab.problem}</p></div>
-            <div class="lab-qa"><b>アプローチ</b><p>${lab.approach}</p></div>
+            <div class="m-meta">${lab.meta}</div>
+            <div class="m-block"><b>問題</b><p>${lab.problem}</p></div>
+            <div class="m-block"><b>アプローチ</b><p>${lab.approach}</p></div>
             ${media}${code}${more}`;
         overlay.classList.add("open");
         document.body.style.overflow = "hidden";
@@ -263,4 +181,5 @@ out[i] = max(raw[i], hist * p.decay);`,
 
     <script src="assets/js/back-to-top.js"></script>
 </body>
+
 </html>

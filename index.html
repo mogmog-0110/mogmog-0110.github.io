@@ -10,12 +10,7 @@
     <meta name="author" content="川村優弥 (Shiggy)">
 
     <style>
-        html,
-        body {
-            background-color: #ffffff !important;
-            margin: 0;
-            padding: 0;
-        }
+        html, body { background-color: #ffffff !important; margin: 0; padding: 0; }
     </style>
 
     <!-- meta:social -->
@@ -32,153 +27,147 @@
     <meta name="twitter:title" content="Shiggy's Portfolio">
     <meta name="twitter:description" content="川村優弥のポートフォリオ。ゲーム開発、自作エンジン MitiruEngine、剛体物理シミュレーション研究（BDA 2025 / Springer LNCS）、株式会社 Live2D での Cubism SDK 実務。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/site.css">
 </head>
 
 <body>
-    <!-- UI Overlay -->
-    <div class="ui-overlay">
-        <!-- Navigation -->
-        <nav>
-            <div class="nav-logo">
-                <a href="index.html">Shiggy</a>
-            </div>
-            <ul class="nav-links">
+    <header class="site-head">
+        <div class="container">
+            <a class="brand" href="index.html">Shiggy</a>
+            <ul class="menu">
                 <li><a href="engine.html">Engine</a></li>
                 <li><a href="labs.html">Lab</a></li>
                 <li><a href="research.html">Research</a></li>
                 <li><a href="portfolio.html">Works</a></li>
             </ul>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <p class="kicker">Portfolio</p>
+            <h1>川村 優弥</h1>
+            <p class="role">Shiggy ── ゲーム / 自作エンジン / 物理シミュレーション</p>
+        </section>
+
+        <!-- 扉リンク -->
+        <nav class="doors" aria-label="主要セクション">
+            <a class="door" href="engine.html">
+                <span class="door-name">Engine</span>
+                <span class="door-desc">C++20 / header-only の自作ゲームエンジン MitiruEngine</span>
+                <span class="door-arrow">→</span>
+            </a>
+            <a class="door" href="labs.html">
+                <span class="door-name">Lab</span>
+                <span class="door-desc">3DCG・物理シミュレーションの問題を自作エンジンで解く実験集</span>
+                <span class="door-arrow">→</span>
+            </a>
+            <a class="door" href="research.html">
+                <span class="door-name">Research</span>
+                <span class="door-desc">剛体物理シミュレーションによる環状化合物の選択性解析（BDA 2025 / LNCS）</span>
+                <span class="door-arrow">→</span>
+            </a>
+            <a class="door" href="portfolio.html">
+                <span class="door-name">Works</span>
+                <span class="door-desc">学部から現在までのゲーム・ツール・創作</span>
+                <span class="door-arrow">→</span>
+            </a>
         </nav>
 
-        <!-- Hero -->
-        <main class="clean-hero" aria-label="タイトル">
-            <p class="hero-kicker">Game / Engine / Graphics</p>
-            <h1>Shiggy&rsquo;s Portfolio</h1>
-            <p class="hero-lede">
-                ゲーム・自作エンジン MitiruEngine・物理シミュレーションの制作記録。
-            </p>
-        </main>
-    </div>
+        <!-- About -->
+        <div class="sections">
+            <section class="sec">
+                <h2>About</h2>
+                <div class="sec-body">
+                    <p>
+                        会津大学大学院 修士1年。C++ とグラフィックス API を軸に、ゲーム・ゲームエンジン・物理シミュレーションを横断して開発しています。
+                    </p>
+                    <p>
+                        株式会社 Live2D で Cubism SDK for Native（C++）の保守・不具合対応に従事し、グラフィックス API のプロダクションコードに日常的に触れています。学部ではチーム開発のリーダーとして、企画からシナリオ・イラスト・実装まで担当してきました。
+                    </p>
+                </div>
+            </section>
 
-    <span id="about-anchor"></span>
-
-    <!-- About Section (revealed on scroll) -->
-    <div class="about-section">
-        <div class="about-content">
-            <h2>About</h2>
-            <p style="font-size: 1.05rem; line-height: 1.9; margin-bottom: 0.8rem;">
-                会津大学大学院 修士1年。C++ とグラフィックス API を軸に、ゲーム・ゲームエンジン・物理シミュレーションを横断して開発しています。
-            </p>
-            <p style="font-size: 1rem; line-height: 1.9; color: var(--text-dim); margin-bottom: 2rem;">
-                株式会社 Live2D で Cubism SDK for Native（C++）の保守・不具合対応に従事し、グラフィックス API のプロダクションコードに日常的に触れています。学部ではチーム開発のリーダーとして、企画からシナリオ・イラスト・実装まで担当してきました。
-            </p>
-            <div class="about-info">
-                <div class="info-item">
-                    <span class="info-label">名前</span>
-                    <span class="info-value">
-                        <a href="#about-detail"
-                            style="color: var(--text-light); text-decoration: none; cursor: pointer; border-bottom: 1px dotted var(--washer-red);"
-                            onclick="document.getElementById('about-detail-modal').style.display='flex'; return false;">川村優弥</a>
-                    </span>
+            <section class="sec">
+                <h2>Profile</h2>
+                <div class="sec-body">
+                    <ul class="profile">
+                        <li>
+                            <span class="k">名前</span>
+                            <span class="v"><a href="#" onclick="document.getElementById('about-detail-modal').classList.add('open'); return false;" style="color: inherit; text-decoration: underline; text-decoration-color: #9b9fa8; text-underline-offset: 3px;">川村優弥</a></span>
+                        </li>
+                        <li>
+                            <span class="k">ハンドルネーム</span>
+                            <span class="v">Shiggy</span>
+                        </li>
+                        <li>
+                            <span class="k">所属</span>
+                            <span class="v">会津大学大学院 コンピュータ理工学研究科<br>コンピュータ・情報システム学専攻（M1）</span>
+                        </li>
+                        <li>
+                            <span class="k">アルバイト</span>
+                            <span class="v">株式会社 Live2D<br>Cubism SDK for Native 保守・不具合対応</span>
+                        </li>
+                        <li>
+                            <span class="k">GitHub</span>
+                            <span class="v"><a href="https://github.com/mogmog-0110" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; text-decoration-color: #9b9fa8; text-underline-offset: 3px;">mogmog-0110</a></span>
+                        </li>
+                        <li>
+                            <span class="k">Publication</span>
+                            <span class="v"><a href="research.html" style="color: inherit; text-decoration: underline; text-decoration-color: #9b9fa8; text-underline-offset: 3px;">BDA 2025 (LNCS)</a></span>
+                        </li>
+                        <li>
+                            <span class="k">Featured</span>
+                            <span class="v"><a href="kaerucrape.html" style="color: inherit; text-decoration: underline; text-decoration-color: #9b9fa8; text-underline-offset: 3px;">かえるクレープ</a></span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="info-item">
-                    <span class="info-label">ハンドルネーム</span>
-                    <span class="info-value">Shiggy</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">所属</span>
-                    <span class="info-value" style="font-size: 0.95rem;">会津大学大学院 コンピュータ理工学研究科<br>コンピュータ・情報システム学専攻（M1）</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">アルバイト</span>
-                    <span class="info-value" style="font-size: 0.95rem;">株式会社 Live2D<br>Cubism SDK for Native 保守・不具合対応</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">GitHub</span>
-                    <span class="info-value">
-                        <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">mogmog-0110</a>
-                    </span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Publication</span>
-                    <span class="info-value">
-                        <a href="research.html">BDA 2025 (LNCS)</a>
-                    </span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Featured</span>
-                    <span class="info-value">
-                        <a href="kaerucrape.html">かえるクレープ</a>
-                    </span>
-                </div>
-            </div>
+            </section>
         </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <p>連絡先: <a href="mailto:medli908@gmail.com">medli908@gmail.com</a> ・ <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">GitHub</a></p>
-        <p style="color: var(--text-dim); font-size: 0.75rem;">&copy; 川村優弥 / Shiggy</p>
-    </footer>
+    </main>
 
     <!-- About Detail Modal -->
-    <div id="about-detail-modal"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(31, 36, 48, 0.45); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(6px);"
-        onclick="this.style.display='none'">
-        <div style="background: #ffffff; border: 1px solid #e6e8ec; border-radius: 14px; box-shadow: 0 12px 40px rgba(16, 24, 40, 0.18); padding: 2rem; max-width: 600px; margin: 2rem; max-height: 80vh; overflow-y: auto;"
-            onclick="event.stopPropagation()">
-            <h2
-                style="color: var(--text-light); margin-bottom: 1.5rem; border-bottom: 2px solid var(--washer-red); padding-bottom: 0.75rem;">
-                川村優弥について</h2>
+    <div id="about-detail-modal" class="modal-overlay" onclick="this.classList.remove('open')">
+        <div class="modal-panel" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="document.getElementById('about-detail-modal').classList.remove('open')" aria-label="閉じる">×</button>
+            <h2>川村優弥について</h2>
 
-            <div style="margin-bottom: 1.5rem;">
-                <h3 style="color: var(--washer-red); font-size: 1.1rem; margin-bottom: 0.5rem;">趣味</h3>
-                <p style="color: var(--text-dim); line-height: 1.8;">小説を読む、書く</p>
+            <div class="m-block">
+                <b>趣味</b>
+                <p>小説を読む、書く</p>
             </div>
 
-            <div style="margin-bottom: 1.5rem;">
-                <h3 style="color: var(--washer-red); font-size: 1.1rem; margin-bottom: 0.5rem;">好きな本</h3>
-                <ul style="color: var(--text-dim); line-height: 1.8; margin-left: 1.5rem;">
-                    <li>ハムレット（シェイクスピア）</li>
-                    <li>愛人-AIREN-（田中ユタカ）</li>
-                    <li>官能小説用語辞典</li>
-                </ul>
+            <div class="m-block">
+                <b>好きな本</b>
+                <p>ハムレット（シェイクスピア）／ 愛人-AIREN-（田中ユタカ）／ 官能小説用語辞典</p>
             </div>
 
-            <div style="margin-bottom: 1.5rem;">
-                <h3 style="color: var(--washer-red); font-size: 1.1rem; margin-bottom: 0.5rem;">好きなゲーム</h3>
-                <ul style="color: var(--text-dim); line-height: 1.8; margin-left: 1.5rem;">
-                    <li>グリザイアの果実</li>
-                    <li>この世の果てで恋を唄う少女~YUNO~</li>
-                    <li>オプーナ</li>
-                    <li>ゼノギアス</li>
-                </ul>
+            <div class="m-block">
+                <b>好きなゲーム</b>
+                <p>グリザイアの果実 ／ この世の果てで恋を唄う少女~YUNO~ ／ オプーナ ／ ゼノギアス</p>
             </div>
 
-            <div style="margin-bottom: 1.5rem;">
-                <h3 style="color: var(--washer-red); font-size: 1.1rem; margin-bottom: 0.5rem;">はまってること</h3>
-                <ul style="color: var(--text-dim); line-height: 1.8; margin-left: 1.5rem;">
-                    <li>東方の同人CDを集めて聴く</li>
-                    <li>研究室から朝帰りする</li>
-                    <li>Beatboxを聴く</li>
-                </ul>
+            <div class="m-block">
+                <b>はまってること</b>
+                <p>東方の同人CDを集めて聴く ／ 研究室から朝帰りする ／ Beatboxを聴く</p>
             </div>
-
-            <button onclick="document.getElementById('about-detail-modal').style.display='none'"
-                style="background: #2563eb; border: 1px solid #2563eb; color: #ffffff; padding: 0.75rem 2rem; border-radius: 8px; cursor: pointer; font-size: 1rem; margin-top: 1rem; transition: background 0.3s ease;"
-                onmouseover="this.style.background='#1d4ed8'"
-                onmouseout="this.style.background='#2563eb'">
-                閉じる
-            </button>
         </div>
     </div>
+
+    <footer class="site-foot">
+        <div class="container">
+            <p>&copy; 川村優弥 / Shiggy</p>
+            <p><a href="mailto:medli908@gmail.com">medli908@gmail.com</a> ・ <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">GitHub</a></p>
+        </div>
+    </footer>
 
     <script src="assets/js/back-to-top.js"></script>
 </body>
