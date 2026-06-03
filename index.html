@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="ja" style="background-color: #0d0f1a;">
+<html lang="ja" style="background-color: #ffffff;">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0d0f1a">
+    <meta name="theme-color" content="#ffffff">
     <title>Shiggy's Portfolio</title>
     <meta name="description" content="川村優弥のポートフォリオサイト">
     <meta name="author" content="川村優弥 (Shiggy)">
 
-    <!-- Prevent white flash during page transition -->
     <style>
         html,
         body {
-            background-color: #0d0f1a !important;
+            background-color: #ffffff !important;
             margin: 0;
             padding: 0;
         }
@@ -36,11 +35,10 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=DotGothic16&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/retro.css">
 </head>
 
 <body>
@@ -59,17 +57,13 @@
             </ul>
         </nav>
 
-        <!-- Hero: OutRun 一人称ドライブ（home の signature。文言は控えめ） -->
-        <main class="outrun-hero" aria-label="タイトル">
-            <div class="or-stars" aria-hidden="true"></div>
-            <div class="or-sun" aria-hidden="true"></div>
-            <canvas id="or-gl"></canvas>
-            <div class="or-scrim" aria-hidden="true"></div>
-
-            <div class="or-content">
-                <h1 class="or-title">Shiggy&rsquo;s Portfolio</h1>
-                <a class="or-scroll" href="#about-anchor">▽ scroll</a>
-            </div>
+        <!-- Hero -->
+        <main class="clean-hero" aria-label="タイトル">
+            <p class="hero-kicker">Game / Engine / Graphics</p>
+            <h1>Shiggy&rsquo;s Portfolio</h1>
+            <p class="hero-lede">
+                ゲーム・自作エンジン MitiruEngine・物理シミュレーションの制作記録。
+            </p>
         </main>
     </div>
 
@@ -136,12 +130,12 @@
 
     <!-- About Detail Modal -->
     <div id="about-detail-modal"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 8, 0.95); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(10px);"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(31, 36, 48, 0.45); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(6px);"
         onclick="this.style.display='none'">
-        <div style="background: rgba(20, 20, 30, 0.9); border: 1px solid rgba(139, 32, 32, 0.5); border-radius: 12px; padding: 2rem; max-width: 600px; margin: 2rem; max-height: 80vh; overflow-y: auto;"
+        <div style="background: #ffffff; border: 1px solid #e6e8ec; border-radius: 14px; box-shadow: 0 12px 40px rgba(16, 24, 40, 0.18); padding: 2rem; max-width: 600px; margin: 2rem; max-height: 80vh; overflow-y: auto;"
             onclick="event.stopPropagation()">
             <h2
-                style="color: var(--text-light); margin-bottom: 1.5rem; border-bottom: 2px solid rgba(139, 32, 32, 0.5); padding-bottom: 0.75rem;">
+                style="color: var(--text-light); margin-bottom: 1.5rem; border-bottom: 2px solid var(--washer-red); padding-bottom: 0.75rem;">
                 川村優弥について</h2>
 
             <div style="margin-bottom: 1.5rem;">
@@ -178,23 +172,15 @@
             </div>
 
             <button onclick="document.getElementById('about-detail-modal').style.display='none'"
-                style="background: rgba(139, 32, 32, 0.8); border: 1px solid rgba(139, 32, 32, 1); color: var(--text-light); padding: 0.75rem 2rem; border-radius: 8px; cursor: pointer; font-size: 1rem; margin-top: 1rem; transition: background 0.3s ease;"
-                onmouseover="this.style.background='rgba(139, 32, 32, 1)'"
-                onmouseout="this.style.background='rgba(139, 32, 32, 0.8)'">
+                style="background: #2563eb; border: 1px solid #2563eb; color: #ffffff; padding: 0.75rem 2rem; border-radius: 8px; cursor: pointer; font-size: 1rem; margin-top: 1rem; transition: background 0.3s ease;"
+                onmouseover="this.style.background='#1d4ed8'"
+                onmouseout="this.style.background='#2563eb'">
                 閉じる
             </button>
         </div>
     </div>
 
-    <script src="assets/js/retro.js"></script>
     <script src="assets/js/back-to-top.js"></script>
-
-    <!-- OutRun 一人称ドライブ hero (three.js / synthwave) -->
-    <script type="importmap">{ "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-    }}</script>
-    <script type="module" src="assets/js/outrun-hero.js"></script>
 </body>
 
 </html>

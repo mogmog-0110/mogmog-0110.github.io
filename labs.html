@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="ja" style="background-color: #050508;">
+<html lang="ja" style="background-color: #ffffff;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#050508">
+    <meta name="theme-color" content="#ffffff">
     <title>Lab | Shiggy</title>
     <meta name="description" content="3DCG・物理シミュレーションの問題を見つけて、自作エンジン MitiruEngine で解決アプローチを試す実験集。">
 
     <style>
         html, body {
-            background-color: #050508 !important;
+            background-color: #ffffff !important;
             margin: 0;
             padding: 0;
         }
@@ -22,16 +22,18 @@
             margin-top: 1.5rem;
         }
         .lab-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid #2a2a33;
-            border-radius: 8px;
+            background: #ffffff;
+            border: 1px solid #e6e8ec;
+            border-radius: 10px;
+            box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.15s ease, border-color 0.15s ease;
+            transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
         }
         .lab-card:hover {
             transform: translateY(-3px);
-            border-color: var(--washer-red, #e05555);
+            border-color: var(--washer-red, #2563eb);
+            box-shadow: 0 4px 16px rgba(16, 24, 40, 0.08);
         }
         .lab-card img {
             width: 100%;
@@ -41,59 +43,61 @@
             image-rendering: pixelated;
         }
         .lab-card-body { padding: 0.9rem 1rem 1.1rem; }
-        .lab-card-body h3 { margin: 0 0 0.4rem; font-size: 1.02rem; color: var(--text-light, #eee); }
-        .lab-card-body p { margin: 0; font-size: 0.85rem; line-height: 1.7; color: var(--text-dim, #999); }
+        .lab-card-body h3 { margin: 0 0 0.4rem; font-size: 1.02rem; color: var(--text-light, #1f2430); }
+        .lab-card-body p { margin: 0; font-size: 0.85rem; line-height: 1.7; color: var(--text-dim, #5f6775); }
         .lab-card-tags { margin-top: 0.6rem; display: flex; flex-wrap: wrap; gap: 0.35rem; }
         .lab-card-tags span {
-            font-size: 0.7rem; padding: 0.1rem 0.5rem; border-radius: 3px;
-            border: 1px solid #3a3a44; color: var(--text-dim, #999);
+            font-size: 0.7rem; padding: 0.1rem 0.55rem; border-radius: 999px;
+            border: 1px solid #e6e8ec; background: #f7f8fa; color: var(--text-dim, #5f6775);
         }
 
         /* ── モーダル ────────────────────────────── */
         .lab-modal-overlay {
             position: fixed; inset: 0; z-index: 100;
-            background: rgba(0, 0, 0, 0.82);
+            background: rgba(31, 36, 48, 0.45);
+            backdrop-filter: blur(6px);
             display: none;
             align-items: flex-start; justify-content: center;
             overflow-y: auto; padding: 4vh 1rem;
         }
         .lab-modal-overlay.open { display: flex; }
         .lab-modal {
-            background: #0d0d12;
-            border: 1px solid #2a2a33;
-            border-radius: 10px;
+            background: #ffffff;
+            border: 1px solid #e6e8ec;
+            box-shadow: 0 12px 40px rgba(16, 24, 40, 0.18);
+            border-radius: 14px;
             max-width: 860px; width: 100%;
             padding: 1.6rem 1.8rem 2rem;
             position: relative;
         }
         .lab-modal-close {
             position: absolute; top: 0.7rem; right: 0.9rem;
-            background: none; border: none; color: #888;
+            background: none; border: none; color: #9aa1ad;
             font-size: 1.6rem; cursor: pointer; line-height: 1;
         }
-        .lab-modal-close:hover { color: #fff; }
-        .lab-modal h2 { margin: 0 1.5rem 0.8rem 0; color: var(--text-light, #eee); }
-        .lab-modal .lab-meta { color: var(--text-dim, #999); font-size: 0.85rem; margin-bottom: 1rem; }
+        .lab-modal-close:hover { color: #1f2430; }
+        .lab-modal h2 { margin: 0 1.5rem 0.8rem 0; color: var(--text-light, #1f2430); }
+        .lab-modal .lab-meta { color: var(--text-dim, #5f6775); font-size: 0.85rem; margin-bottom: 1rem; }
         .lab-modal .lab-qa { margin: 0.8rem 0; line-height: 1.9; }
-        .lab-modal .lab-qa b { color: var(--text-light, #eee); }
-        .lab-modal .lab-qa p { margin: 0.2rem 0 0; color: var(--text-dim, #bbb); }
+        .lab-modal .lab-qa b { color: var(--text-light, #1f2430); }
+        .lab-modal .lab-qa p { margin: 0.2rem 0 0; color: var(--text-dim, #5f6775); }
         .lab-modal video, .lab-modal img.media {
-            width: 100%; border: 1px solid #2a2a33; border-radius: 6px;
+            width: 100%; border: 1px solid #e6e8ec; border-radius: 8px;
             margin-top: 1rem; image-rendering: pixelated; display: block;
         }
         .lab-modal .media-caption {
-            color: var(--text-dim, #999); font-size: 0.82rem; margin-top: 0.35rem; line-height: 1.6;
+            color: var(--text-dim, #5f6775); font-size: 0.82rem; margin-top: 0.35rem; line-height: 1.6;
         }
         .lab-modal .lab-more { margin-top: 1.3rem; }
-        .lab-modal .lab-more a { color: var(--washer-red, #e05555); }
+        .lab-modal .lab-more a { color: var(--washer-red, #2563eb); }
         .lab-code {
-            background: #08080c; border: 1px solid #2a2a33; border-radius: 6px;
+            background: #f7f8fa; border: 1px solid #e6e8ec; border-radius: 8px;
             padding: 0.9rem 1.1rem; overflow-x: auto;
-            font-size: 0.8rem; line-height: 1.7; color: #c8d2dc;
+            font-size: 0.8rem; line-height: 1.7; color: #334155;
             margin: 0.6rem 0 0;
         }
         .lab-code-links { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 0.6rem; }
-        .lab-code-links a { color: var(--washer-red, #e05555); font-size: 0.85rem; }
+        .lab-code-links a { color: var(--washer-red, #2563eb); font-size: 0.85rem; }
     </style>
 
     <!-- meta:social -->
@@ -109,13 +113,11 @@
     <meta name="twitter:description" content="3DCG・物理シミュレーションの問題を、自作エンジンで解決アプローチする実験集。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=DotGothic16&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/retro.css">
 </head>
 <body data-page="labs">
-    <div id="cosmic-canvas"></div>
 
     <div class="ui-overlay">
         <nav>
