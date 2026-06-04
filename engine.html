@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#ffffff">
     <title>MitiruEngine | Shiggy</title>
-    <meta name="description" content="MitiruEngine。C++20 で書いている header-only の自作ゲームエンジン。">
+    <meta name="description" content="MitiruEngine。「必要なものしか画面に出さない」を哲学にした自作 C++20 ゲームエンジン。Game-as-DLL、タイムトラベル、決定論リプレイ。">
 
     <style>
         html, body { background-color: #ffffff !important; margin: 0; padding: 0; }
@@ -17,14 +17,14 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shiggy's Portfolio">
     <meta property="og:title" content="MitiruEngine | Shiggy">
-    <meta property="og:description" content="C++20 で書いている自作 header-only ゲームエンジン。47 モジュール / 700+ ヘッダ / 730+ commits。">
+    <meta property="og:description" content="「必要なものしか画面に出さない」を哲学にした自作 C++20 ゲームエンジン。Game-as-DLL、タイムトラベル、決定論リプレイ。">
     <meta property="og:url" content="https://mogmog-0110.github.io/engine.html">
     <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="MitiruEngine | Shiggy">
-    <meta name="twitter:description" content="C++20 で書いている自作 header-only ゲームエンジン。47 モジュール / 700+ ヘッダ / 730+ commits。">
+    <meta name="twitter:description" content="「必要なものしか画面に出さない」を哲学にした自作 C++20 ゲームエンジン。Game-as-DLL、タイムトラベル、決定論リプレイ。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,11 +52,11 @@
             <p class="kicker">Engine</p>
             <h1>MitiruEngine</h1>
             <p class="lede">
-                <strong>C++20 / header-only の自作ゲームエンジン。</strong>
-                CMake の <code>FetchContent</code> でリンクするだけで使え、純 C++ の Native と、CEF + HTML/CSS/JS で UI を組む Hybrid の 2 モードを持ちます。
+                <strong>「必要なものしか画面に出さない」を哲学にした自作 C++ ゲームエンジン。</strong>
+                Unity / Godot のような全機能エディタの対極 ── 1 ツール = 1 関心事 = 1 ウィンドウ。CLI が一級市民で、GUI エディタは提供しません。ゲームのロジックは C++、メニューや HUD は HTML/CSS で書けます。
             </p>
             <div class="meta-line" style="margin-top: 1.6rem; margin-bottom: 0;">
-                <span>In Development</span><span>C++20</span><span>Header-only</span><span>MIT</span><span>Public on GitHub</span>
+                <span>In Development</span><span>C++20</span><span>Header-only</span><span>Game-as-DLL</span><span>MIT</span>
             </div>
         </section>
 
@@ -65,16 +65,16 @@
                 <h2>概要</h2>
                 <div class="sec-body">
                     <p>
-                        決定論的な実行とリプレイ、6 つの GPU バックエンドを 1 つのインターフェイスに抽象化、HTML/CSS で書ける UI ── 使う側ではなく書く側からグラフィックスの低レイヤーを押さえるための足場として開発しています。
+                        使う側ではなく書く側からグラフィックスとエンジンの低レイヤーを押さえるための足場として開発しています。決定論的な実行とリプレイ、タイムトラベル・インスペクタ、サブシステムの単独起動 ── 「裏側で何が起きているか見える」ことを価値の中心に置いた設計です。
                     </p>
                     <div class="figures">
-                        <div class="figure"><b>47</b><span>Modules</span></div>
-                        <div class="figure"><b>700+</b><span>Headers</span></div>
-                        <div class="figure"><b>730+</b><span>Commits</span></div>
-                        <div class="figure"><b>6</b><span>GPU Backends</span></div>
-                        <div class="figure"><b>4</b><span>Platforms</span></div>
+                        <div class="figure"><b>760+</b><span>Headers</span></div>
+                        <div class="figure"><b>40+</b><span>Modules</span></div>
+                        <div class="figure"><b>1,000+</b><span>Commits</span></div>
+                        <div class="figure"><b>7</b><span>GPU Backends</span></div>
+                        <div class="figure"><b>1,800+</b><span>Tests</span></div>
                     </div>
-                    <p style="font-size: 0.8rem; color: var(--ink-faint);">数値は 2026 年 5 月時点。</p>
+                    <p style="font-size: 0.8rem; color: var(--ink-faint);">数値は 2026 年 6 月時点（v0.7 系）。GPU バックエンド: OpenGL / DX11 / DX12 / Vulkan / WebGL / WebGPU / Null。プラットフォーム: GLFW / Win32 / SDL2 / Emscripten / Headless。</p>
                 </div>
             </section>
 
@@ -91,47 +91,45 @@
             </section>
 
             <section class="sec">
-                <h2>アーキテクチャ</h2>
+                <h2>設計哲学 ── アトミックツール</h2>
                 <div class="sec-body">
-                    <p>レイヤースタックは以下のとおりです。Native（Mode A）と Hybrid（Mode B）は同じ C++ ランタイムを共有していて、Hybrid はその上に CEF と JS ランタイムが乗ります。</p>
-
-<pre><code>+----------------------------------------------------------+
-|  CEF / WEB RUNTIME  (Mode B only)                        |
-|  web/mitiru_runtime/*.js  -- mitiru.audio / .save / ...  |
-|  HTML / CSS / JS gameplay loaded by CefStartUrl          |
-+----------------------------------------------------------+
-|  CEF HOST + JS BRIDGES  (Mode B only)                    |
-|  mitiru::cef::*  -- MitiruCefContext, AudioBridge, ...   |
-+----------------------------------------------------------+
-|  APPLICATION LAYER     User Games (Game subclass)        |
-+----------------------------------------------------------+
-|  ENGINE / SCENE / ECS  Engine, Clock, GameLoop, Screen,  |
-|                        SceneManager, GameWorld           |
-+----------------------------------------------------------+
-|  SUBSYSTEM   Input, Audio, Physics, Network, Render,     |
-|              Resource, Asset, Data, Control, Observe     |
-+----------------------------------------------------------+
-|  PLATFORM    Win32Window | GlfwWindow | Sdl2Window       |
-|              | EmscriptenWindow                          |
-+----------------------------------------------------------+
-|  GRAPHICS    IDevice 抽象の裏で                          |
-|              DX11 | DX12 | Vulkan | OpenGL | WebGL | Null|
-+----------------------------------------------------------+</code></pre>
-
                     <p>
-                        GPU バックエンドは全部 <code>IDevice</code> という同じインターフェイスの裏に隠してあります。GPU が無い CI 環境では <code>NullDevice</code> に自動で落とすので、テストはそのまま緑で回ります。
+                        すべての設計判断は<strong>「必要なものしか画面に出さない」</strong>から派生しています。Unity / Godot の「50 パネルが同時に見える」状態の対極です。
                     </p>
+                    <ul>
+                        <li><strong>1 ツール = 1 関心事 = 1 ウィンドウ</strong> ── Renderer / Audio / FSM / インスペクタはそれぞれ独立した別ウィンドウ</li>
+                        <li><strong>デフォルトでは何も開かない</strong> ── 開発者が必要に応じて窓を開く pulled UI</li>
+                        <li><strong>CLI が一級市民</strong> ── <code>mitiru new / build / run / watch / replay / inspect</code> で全機能にアクセス。IDE は optional（VS でも Vim でもメモ帳でも）</li>
+                        <li><strong>Code-first、インスペクタは観察専用</strong> ── state を書き換える GUI エディタは作らず、Chrome DevTools 型の「観察する GUI」だけを提供</li>
+                    </ul>
                 </div>
             </section>
 
             <section class="sec">
-                <h2>設計の方針</h2>
+                <h2>Game-as-DLL とホットリロード</h2>
                 <div class="sec-body">
                     <p>
-                        Unity / Godot のような全部入りエディタは作りません。GUI エディタを持たず <strong>CLI を中心</strong>に据え、機能ごとに独立した小さなツール / ウィンドウへ分けて、必要なときだけ起動する構成にしています。
+                        ゲームコードは DLL で、ホスト（<code>mitiru_host.exe</code>）がロードしてメインループを駆動します。編集 → ビルド → <strong>state を保持したまま即時リロード</strong>。Handmade Hero のパターンをエンジン哲学に組み込みました（ADR 0005 / 0015）。
                     </p>
                     <p>
-                        レイヤーの役割分担も明確です。gameplay・物理・描画は C++、HUD / メニュー / 演出は CEF（HTML/CSS/JS）、純データは JSON。bridge は signal-only で、状態の所有は常に C++ 側に置きます。
+                        Host–Game 境界は <strong>POD の C-ABI だけ</strong>。ゲームは <code>Engine*</code> を一切持たず、<code>(memory, input, dt)</code> を受けて <code>(state push / inspectable / JS 実行の intent)</code> を返す純関数に近い形です。「<code>engine.foo()</code> で済ませる」誘惑が構造的に消えるため、後述のタイムトラベルとリプレイが <code>GameMemory</code> の memcpy だけで動く設計保証になります。
+                    </p>
+                    <p>書き味はこれだけです。<code>struct</code> に状態を持ち、<code>update</code> / <code>draw</code> を書いて 1 行で DLL の入口を作ります。</p>
+
+<pre><code>struct MyGame {
+    float x = 600;
+    int   score = 0;
+
+    void update(Input in, Hud hud, float dt) {
+        if (in.down(Key::Right)) x += 320 * dt;   // → で右へ
+        hud.set("view.hud.score", score);         // HTML 側へ push
+    }
+    void draw(Screen&amp; s) { /* 四角や文字を描く */ }
+};
+MITIRU_GAME(MyGame)   // これだけで DLL の入口ができる</code></pre>
+
+                    <p>
+                        HUD は HTML 側で <code>&lt;span data-m-text="view.hud.score"&gt;</code> と書くだけで受かります。JavaScript は書きません。bridge は signal-only で、状態の所有は常に C++ 側です。
                     </p>
                 </div>
             </section>
@@ -141,52 +139,71 @@
                 <div class="sec-body">
                     <h3>1. HTML/CSS で UI が書ける C++ エンジン</h3>
                     <p>
-                        gameplay は C++、UI は CEF 上の HTML/CSS/JS。Web の表現力で HUD やメニューを組みつつ、ゲームの状態は C++ が持つ。両者は signal だけでやり取りします。
+                        gameplay は C++、メニューや HUD は CEF 上の HTML/CSS。Web 開発の知識がそのまま UI に使え、CSS アニメーションも効きます。両者は signal だけでやり取りします。
                     </p>
 
-                    <h3>2. 決定論 + 自動リプレイ（replay-as-test）</h3>
+                    <h3>2. タイムトラベル・インスペクタ</h3>
                     <p>
-                        入力を <code>InputSnapshot</code> として記録し、ヘッドレスで <strong>bit-exact に再生</strong>。実際のプレイ記録を、そのまま回帰テストとして回せます。
+                        全フレームの state を ring buffer に記録し、<strong>巻き戻して観察</strong>できます。「なぜ HP が 50 になったか」を 30 フレーム前に戻って原因の 1 行まで特定する、が実際にできます。プレイ中に T キーで過去 5 秒をスクラブ。
                     </p>
 
-                    <h3>3. タイムトラベル・インスペクタ</h3>
+                    <h3>3. 全サブシステムの単独起動</h3>
                     <p>
-                        ゲーム状態を単一の <code>GameMemory</code> に集約する構造保証（<strong>ADR-0005</strong>）により、過去フレームへの巻き戻しと観察が成立します。
+                        <code>mitiru renderer</code> / <code>mitiru audio</code> のように、各サブシステムが個別の CLI コマンドで立ち上がります。CEF のコールドスタートもフォントアトラス構築も全部省くので 1 秒以下で起動。シェーダの反復にも、描画バグの切り分け（これが動くなら blame は gameplay 層）にも効きます。
                     </p>
 
-                    <h3>4. 全サブシステムの単独起動</h3>
+                    <h3>4. 決定論 + 自動リプレイ</h3>
                     <p>
-                        audio / input / render などを単体プロセスで起動して検証できます。エンジン全体を立ち上げずに、関心のある一点だけを触れます。
+                        入力と乱数 seed を毎プレイ自動記録し、<code>mitiru replay run.json</code> で<strong>ヘッドレスでも bit-exact に再現</strong>。実際のプレイ記録がそのまま回帰テストになります。リプレイ再生中にタイムトラベルを開く、という組み合わせも可能です。
                     </p>
 
                     <h3>5. モジュラー・サブウィンドウ</h3>
                     <p>
-                        inspector / コマンドパレット / time-travel scrubber などは、ゲーム本体とは独立した別ウィンドウに（ADR-0004）。gameplay 画面とデバッグ系を混在させません。
+                        インスペクタやコマンドパレットは <strong>OS レベルで独立した別ウィンドウ</strong>（ADR 0004）。サブモニタへドラッグでき、片方が落ちても他方は生き、ゲーム画面のスクリーンショットに余計なものが映りません。<code>mitiru inspect &lt;pid&gt;</code> で走っているゲームに後から繋げます。
                     </p>
                 </div>
             </section>
 
             <section class="sec">
-                <h2>Host–Game 境界は C-ABI signal-flow（ADR-0005）</h2>
+                <h2>CLI</h2>
                 <div class="sec-body">
+                    <p>エンジンの正規の入口です。Go 製の <a href="https://github.com/mogmog-0110/mitiru-cli" target="_blank" rel="noopener">mitiru-cli</a> が CMake を隠蔽し、Cargo / <code>go run</code> の感覚でゲームを書き始められます。</p>
+
+<pre><code>mitiru new my_game     # DLL skeleton の scaffold
+mitiru run             # build + host 起動
+mitiru watch           # src/ 編集で state 保持のままホットリロード
+mitiru replay run.json # 記録済み入力を決定論的に再生
+mitiru renderer        # renderer サブシステム単独起動
+mitiru inspect &lt;pid&gt;   # 走っているゲームを別窓で観察
+mitiru doctor          # VS / CMake / engine cache を 3 行で診断</code></pre>
+                </div>
+            </section>
+
+            <section class="sec">
+                <h2>アーキテクチャ</h2>
+                <div class="sec-body">
+                    <p>header-only のレイヤースタックです。gameplay は全て C++ で、CEF は UI オーバーレイとインスペクタ層 ── gameplay 層ではありません。</p>
+
+<pre><code>+-------------------------------------+
+| user code (game DLL)                |
++-------------------------------------+
+| P0 primitives                       |  FSM, Timer, SceneRouter,
+|                                     |  JsonBinding, SaveSchema, ...
++-------------------------------------+
+| Engine subsystems（機能別に独立）   |  Renderer, Audio, Physics,
+|                                     |  Input, Scene, ECS, Network
++-------------------------------------+
+| Platform backends                   |  GLFW | Win32 | SDL2
+|                                     |  | Emscripten | Headless
++-------------------------------------+
+| Graphics: IDevice 抽象の裏で        |  OpenGL | DX11 | DX12 |
+|                                     |  Vulkan | WebGL | WebGPU | Null
++-------------------------------------+
+        ↑ CEF UI / Inspector layer（観察専用 + HTML/CSS UI）</code></pre>
+
                     <p>
-                        ゲームは DLL として配布され、ホストとの境界は <strong>POD の C-ABI だけ</strong>。ゲームは <code>Engine*</code> を持たず、ホストが状態を POD で push、ゲームは「intent」で要求を返します。境界に <code>std::string</code> や C++ オブジェクトのポインタを渡さないこの規律が、上の決定論・リプレイ・タイムトラベルを<strong>構造的に</strong>成立させています。ABI は version 番号で管理し、後方互換を保ったまま拡張します。
+                        GPU バックエンドは全部 <code>IDevice</code> という同じインターフェイスの裏に隠してあります。GPU が無い CI 環境では <code>NullDevice</code> に自動で落とすので、1,800+ のテストはヘッドレスでそのまま緑で回ります。
                     </p>
-                </div>
-            </section>
-
-            <section class="sec">
-                <h2>最近つくったもの</h2>
-                <div class="sec-body">
-                    <ul>
-                        <li><a href="npr-lines.html">NPR 輪郭線の時間安定化</a> — TAA の考え方をトゥーン輪郭線に応用。motion vector / objectId バッファから GPU パスまで一式実装した実験</li>
-                        <li>FM/OPNA（YM2608）＋ <strong>SF2 / SFZ サウンドフォント</strong>の MML 音楽エンジン。マスターリバーブ付きでオフライン WAV まで出力</li>
-                        <li>DirectX5 期の質感を狙った<strong>低解像 + パレット量子化 + 4×4 Bayer ディザ</strong>のポスト処理（DX12）</li>
-                        <li>美咲フォント＋ BMFont による<strong>ネイティブのピクセル文字描画</strong>（SDF とは別の真のドット）</li>
-                        <li>ゲームパッド（XInput）入力、DLL ホットリロード</li>
-                        <li>6 つの GPU バックエンドを <code>IDevice</code> で抽象化（GPU 無し CI では <code>NullDevice</code> に自動フォールバック）</li>
-                        <li><strong>2,300+ の自動テスト</strong>が常時グリーン</li>
-                    </ul>
                 </div>
             </section>
 
@@ -194,16 +211,22 @@
                 <h2>MitiruEngine で動いているもの</h2>
                 <div class="sec-body">
                     <p>
-                        エンジン単体ではなく、実際にゲームに使えている状態かどうかが重要なので、現時点で MitiruEngine 上で動いているプロジェクトを並べておきます。
+                        エンジン単体ではなく、実際にゲームに使えている状態かどうかが重要なので、現時点で MitiruEngine 上で動いているものを並べておきます。
                     </p>
                     <ul>
                         <li>
                             <a href="hato.html">ハトを育てよう（リメイク）</a> —
-                            2023 年に TyranoScript で書いた原作を、MitiruEngine CEF Hybrid + <code>mitiru.novel</code> VM で完全移植。バックログ・既読管理・セーブロードなどの追加要素も入った状態で動いています。
+                            2023 年に TyranoScript で書いた原作を、CEF Hybrid + <code>mitiru.novel</code> VM で完全移植。バックログ・既読管理・セーブロードなどの追加要素も入った状態で動いています。
                         </li>
                         <li>
                             <a href="kaerucrape.html">かえるクレープへようこそ</a> —
-                            当初は Godot で書いていましたが、現在 MitiruEngine の WASM ビルドへ移植中（1.0.0-rc1）。Playwright による E2E テスト、テーマトークン、itch.io 向けパッケージングまでセットアップ済み。
+                            Godot 版を経て、現在 MitiruEngine の WASM ビルドへ移植中（1.0.0-rc1）。Playwright による E2E テスト、テーマトークン、itch.io 向けパッケージングまでセットアップ済み。
+                        </li>
+                        <li>
+                            同梱サンプル — ブロック崩し（breakout）、よけゲーム（dodge）、サバイバル（hello_game）など。hello_game は 1 本でタイムトラベル・リプレイ・サブウィンドウの 3 軸に触れる参照実装になっています。
+                        </li>
+                        <li>
+                            <a href="npr-lines.html">NPR 輪郭線の時間安定化</a> — motion vector / objectId バッファから GPU パスまでエンジン上で実装した実験（Lab）。
                         </li>
                     </ul>
                     <p>
@@ -213,11 +236,25 @@
             </section>
 
             <section class="sec">
+                <h2>最近つくったもの</h2>
+                <div class="sec-body">
+                    <ul>
+                        <li>Game-as-DLL ＋ <strong>state 保持ホットリロード</strong>（<code>mitiru watch</code>。アセット側も HTML/CSS/JS の編集が 1 秒以内に反映）</li>
+                        <li><strong>ランチャー</strong> ── zip を展開して bat をダブルクリックすれば、ターミナルなしでサンプルが起動する first-touch 経路</li>
+                        <li>FM/OPNA（YM2608）＋ SF2 / SFZ サウンドフォントの MML 音楽エンジン。マスターリバーブ付きでオフライン WAV まで出力</li>
+                        <li>DirectX5 期の質感を狙った低解像 + パレット量子化 + 4×4 Bayer ディザのポスト処理</li>
+                        <li>美咲フォント＋ BMFont によるネイティブのピクセル文字描画（SDF とは別の真のドット）</li>
+                        <li><a href="npr-lines.html">NPR 輪郭線の時間安定化</a> ── TAA の考え方をトゥーン輪郭線に応用した G-buffer 拡張と安定化パス</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="sec">
                 <h2>リンク</h2>
                 <div class="sec-body">
                     <div class="link-row" style="margin-top: 0;">
                         <a href="https://github.com/mogmog-0110/MitiruEngine" target="_blank" rel="noopener">GitHub →</a>
-                        <a href="https://github.com/mogmog-0110/MitiruEngine/actions/workflows/build.yml" target="_blank" rel="noopener">CI →</a>
+                        <a href="https://github.com/mogmog-0110/mitiru-cli" target="_blank" rel="noopener">mitiru-cli →</a>
                         <a href="https://github.com/mogmog-0110/MitiruEngine/blob/main/LICENSE" target="_blank" rel="noopener">License (MIT) →</a>
                     </div>
                 </div>
