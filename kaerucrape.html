@@ -19,6 +19,7 @@
     <meta property="og:title" content="かえるクレープへようこそ | Shiggy">
     <meta property="og:description" content="クレープを作りながらヒロインたちと親睦を深める美少女ゲーム × クッキングゲーム。Godot 版を経て MitiruEngine で書き直し中。">
     <meta property="og:url" content="https://mogmog-0110.github.io/kaerucrape.html">
+    <link rel="canonical" href="https://mogmog-0110.github.io/kaerucrape.html">
     <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -29,12 +30,13 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600&family=Noto+Sans+JP:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/site.css">
 </head>
 
 <body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
     <header class="site-head">
         <div class="container">
             <a class="brand" href="index.html">Shiggy</a>
@@ -47,7 +49,7 @@
         </div>
     </header>
 
-    <main class="container">
+    <main class="container" id="main">
         <section class="page-head">
             <p class="kicker">Works — Game</p>
             <h1>かえるクレープへようこそ</h1>
@@ -55,7 +57,7 @@
                 クレープを作りながらヒロインたちと親睦を深める <strong>美少女ゲーム × クッキングゲーム</strong>です。ノベルパートとクッキングパートを行き来する 2 モード構成。
             </p>
             <p class="lede" style="margin-top: 0.8rem;">
-                Godot で書いた最初のバージョンをコミックマーケット 106 で無料配布したあと、自作の <a href="engine.html" style="color: inherit; text-decoration: underline; text-decoration-color: #9b9fa8; text-underline-offset: 3px;">MitiruEngine</a> へ全面移植して書き直しています。
+                Godot で書いた最初のバージョンをコミックマーケット 106 で無料配布したあと、自作の <a href="engine.html" class="soft-link">MitiruEngine</a> へ全面移植して書き直しています。
             </p>
             <div class="meta-line" style="margin-top: 1.6rem; margin-bottom: 0;">
                 <span>In Development</span><span>MitiruEngine 1.0.0-rc1</span><span>WASM</span><span>Team (2人)</span>
@@ -72,16 +74,16 @@
                     <p>MitiruEngine 版の開発スクリーンショット。最終アート差し替え前。</p>
                     <div class="plate-grid">
                         <a href="images/kc_remake_novel.webp" target="_blank">
-                            <img loading="lazy" decoding="async" src="images/kc_remake_novel.webp" alt="ノベルパートのオープニング" onerror="this.style.display='none'">
+                            <img loading="lazy" decoding="async" src="images/kc_remake_novel.webp" alt="ノベルパートのオープニング" width="1600" height="900">
                         </a>
                         <a href="images/kc_remake_mainmenu.webp" target="_blank">
-                            <img loading="lazy" decoding="async" src="images/kc_remake_mainmenu.webp" alt="メインメニュー / 控室" onerror="this.style.display='none'">
+                            <img loading="lazy" decoding="async" src="images/kc_remake_mainmenu.webp" alt="メインメニュー / 控室" width="1280" height="720">
                         </a>
                         <a href="images/kc_remake_cooking.webp" target="_blank">
-                            <img loading="lazy" decoding="async" src="images/kc_remake_cooking.webp" alt="クッキングシーン" onerror="this.style.display='none'">
+                            <img loading="lazy" decoding="async" src="images/kc_remake_cooking.webp" alt="クッキングシーン" width="1280" height="720">
                         </a>
                         <a href="images/kc_remake_ui.webp" target="_blank">
-                            <img loading="lazy" decoding="async" src="images/kc_remake_ui.webp" alt="3D + 2D UI" onerror="this.style.display='none'">
+                            <img loading="lazy" decoding="async" src="images/kc_remake_ui.webp" alt="3D + 2D UI" width="1280" height="720">
                         </a>
                     </div>
                 </div>
@@ -165,7 +167,9 @@
             <section class="sec">
                 <h2>現在地</h2>
                 <div class="sec-body">
-                    <p>今できていること、残っていること、次にやることを並べておきます。</p>
+                    <p>
+                        システム面（クッキング、ノベル、セーブ、テスト、配布パイプライン）は一通り完成していて、残る作業はシナリオとアートというコンテンツ制作のフェーズに入っています。差し替えやすい構造（マニフェスト分離・プレースホルダ描画）を先に作ってあるので、コンテンツは出来たそばから流し込めます。
+                    </p>
 
                     <h3>できていること</h3>
                     <ul>
@@ -181,10 +185,10 @@
                         <li>itch.io 向けパッケージング</li>
                     </ul>
 
-                    <h3>残っていること</h3>
+                    <h3>残っていること（コンテンツ制作）</h3>
                     <ul>
-                        <li>本編シナリオ全文の執筆（現状はプレースホルダ JSON）</li>
-                        <li>キャラ立ち絵・背景・UI の最終アート（0 / 20 件バインド済み）</li>
+                        <li>本編シナリオ全文の執筆（構成・分岐の骨子は実装済み、本文を流し込む段階）</li>
+                        <li>キャラ立ち絵・背景・UI の最終アート（差し替え枠 20 件はマニフェスト登録済み）</li>
                         <li>BGM / 効果音 / ボイスの差し替え（イベントフックは登録済み）</li>
                         <li>経営シミュレーションの数値バランス</li>
                         <li>CEF サイドのセーブ署名ブリッジ</li>

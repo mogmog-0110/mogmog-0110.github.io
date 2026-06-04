@@ -19,6 +19,7 @@
     <meta property="og:title" content="Research | Shiggy">
     <meta property="og:description" content="剛体物理シミュレーションを用いた環状化合物の選択性解析。BDA 2025（Springer LNCS）に第一著者として発表。">
     <meta property="og:url" content="https://mogmog-0110.github.io/research.html">
+    <link rel="canonical" href="https://mogmog-0110.github.io/research.html">
     <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -29,12 +30,34 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600&family=Noto+Sans+JP:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/site.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ScholarlyArticle",
+        "headline": "Geometry-Driven Selectivity in Macrocyclization via Rigid-Body Simulation",
+        "author": [
+            { "@type": "Person", "name": "Yuya Kawamura", "url": "https://mogmog-0110.github.io/" },
+            { "@type": "Person", "name": "Takahiro Iwamoto" },
+            { "@type": "Person", "name": "Yohei Nishidate" }
+        ],
+        "isPartOf": {
+            "@type": "PublicationVolume",
+            "name": "Big Data Analytics in Astronomy, Science, and Engineering (BDA 2025), Lecture Notes in Computer Science"
+        },
+        "publisher": { "@type": "Organization", "name": "Springer Nature Switzerland" },
+        "datePublished": "2026",
+        "pagination": "55-71",
+        "sameAs": "https://doi.org/10.1007/978-3-032-23241-0_4"
+    }
+    </script>
 </head>
 
 <body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
     <header class="site-head">
         <div class="container">
             <a class="brand" href="index.html">Shiggy</a>
@@ -47,7 +70,7 @@
         </div>
     </header>
 
-    <main class="container">
+    <main class="container" id="main">
         <section class="page-head">
             <p class="kicker">Research</p>
             <h1>研究</h1>
@@ -59,7 +82,7 @@
             <section class="sec">
                 <h2>Publications</h2>
                 <div class="sec-body">
-                    <p style="font-size: 0.85rem; color: var(--ink-faint); margin-bottom: 1.8rem;">査読付き国際会議で発表した論文。</p>
+                    <p class="sec-intro" style="margin-bottom: 1.8rem;">査読付き国際会議で発表した論文。</p>
 
                     <article>
                         <div class="meta-line">
@@ -99,15 +122,21 @@
             <section class="sec">
                 <h2>研究テーマ</h2>
                 <div class="sec-body">
-                    <p style="font-size: 0.85rem; color: var(--ink-faint); margin-bottom: 1.4rem;">自己組織化による環状化合物の選択的生成のシミュレーション。</p>
+                    <p class="sec-intro" style="margin-bottom: 1.4rem;">自己組織化による環状化合物の選択的生成のシミュレーション。</p>
 
                     <div class="plate-grid">
-                        <a href="images/research1.webp" target="_blank">
-                            <img loading="lazy" decoding="async" src="images/research1.webp" alt="シミュレーション画像1" onerror="this.style.display='none'">
-                        </a>
-                        <a href="images/research2.webp" target="_blank">
-                            <img loading="lazy" decoding="async" src="images/research2.webp" alt="シミュレーション画像2" onerror="this.style.display='none'">
-                        </a>
+                        <figure class="plate" style="margin: 0;">
+                            <a href="images/research1.webp" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/research1.webp" alt="対象反応のスキーム。ビフェノールとジクロロシランから、室温 10 分・収率 99% 超で四角形の大環状化合物だけが生成する" width="497" height="214">
+                            </a>
+                            <figcaption>対象の実反応。室温 10 分・収率 &gt;99% で「四角形」だけが選択的に生成する。</figcaption>
+                        </figure>
+                        <figure class="plate" style="margin: 0;">
+                            <a href="images/research2.webp" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/research2.webp" alt="剛体シミュレーションのスクリーンショット。剛体粒子の鎖がジョイントで結合しながら構造を組み上げていく様子" width="347" height="266">
+                            </a>
+                            <figcaption>剛体モデルによる再現。分子を剛体粒子の鎖に置き換え、幾何条件だけで時間発展させる。</figcaption>
+                        </figure>
                     </div>
 
                     <h3>問い</h3>
@@ -146,7 +175,7 @@
                         <a href="https://github.com/mogmog-0110/macrocycle-rigid-body-sim" target="_blank" rel="noopener">GitHub: mogmog-0110/macrocycle-rigid-body-sim →</a>
                     </div>
 
-                    <h4>Tech Stack</h4>
+                    <h4>技術構成</h4>
                     <ul>
                         <li>C++17 / CMake</li>
                         <li>NVIDIA PhysX 5.6.1（剛体ダイナミクスと D6Joint）</li>

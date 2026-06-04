@@ -19,6 +19,7 @@
     <meta property="og:title" content="MitiruEngine | Shiggy">
     <meta property="og:description" content="自作の C++ ゲームエンジン。ゲームの中身は C++、メニューや HUD は HTML/CSS で書ける。プレイの録画再生や、巻き戻して観察できる開発ツール付き。">
     <meta property="og:url" content="https://mogmog-0110.github.io/engine.html">
+    <link rel="canonical" href="https://mogmog-0110.github.io/engine.html">
     <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -29,12 +30,13 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600&family=Noto+Sans+JP:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/site.css">
 </head>
 
 <body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
     <header class="site-head">
         <div class="container">
             <a class="brand" href="index.html">Shiggy</a>
@@ -47,13 +49,13 @@
         </div>
     </header>
 
-    <main class="container">
+    <main class="container" id="main">
         <section class="page-head">
             <p class="kicker">Engine</p>
             <h1>MitiruEngine</h1>
             <p class="lede">
                 <strong>ひとりで書き続けている、自作の C++ ゲームエンジンです。</strong>
-                ゲームの中身（動き・当たり判定・スコア）は C++ で、メニューや体力バーなどの画面表示は Web ページと同じ HTML / CSS で書けます。コマンドひとつでプロジェクトを作り、数分で動く窓が出ます。
+                ライブラリ全体がヘッダファイルだけで完結する header-only 構成で、リンク設定なしに <code>#include</code> するだけで使い始められます。ゲームの中身（動き・当たり判定・スコア）は C++ で、メニューや体力バーなどの画面表示は Web ページと同じ HTML / CSS で書けます。コマンドひとつでプロジェクトを作り、数分で動く窓が出ます。
             </p>
             <div class="meta-line" style="margin-top: 1.6rem; margin-bottom: 0;">
                 <span>開発中</span><span>C++20</span><span>Windows</span><span>MIT License</span>
@@ -68,16 +70,16 @@
                         下の画面は、このエンジンで作ったサンプルのブロック崩しです。ボールやブロックの動きは C++ で、上のスコア・残機・レベルの表示は HTML と CSS で書かれています。
                     </p>
                     <figure class="plate">
-                        <img src="images/engine/breakout.webp" alt="MitiruEngine で作ったブロック崩しのプレイ画面。カラフルなブロックの壁とボール、上部にスコア・残機・レベルの表示" loading="lazy">
+                        <img src="images/engine/breakout.webp" alt="MitiruEngine で作ったブロック崩しのプレイ画面。カラフルなブロックの壁とボール、上部にスコア・残機・レベルの表示" fetchpriority="high" width="1280" height="720">
                         <figcaption>同梱サンプル「ブロック崩し」。ゲーム本体は C++、画面上部の表示は HTML/CSS。</figcaption>
                     </figure>
                     <div class="figures">
-                        <div class="figure"><b>760+</b><span>ヘッダファイル</span></div>
-                        <div class="figure"><b>1,000+</b><span>コミット</span></div>
-                        <div class="figure"><b>1,800+</b><span>自動テスト</span></div>
                         <div class="figure"><b>7</b><span>描画バックエンド</span></div>
+                        <div class="figure"><b>5</b><span>対応プラットフォーム</span></div>
+                        <div class="figure"><b>1,800+</b><span>自動テスト</span></div>
+                        <div class="figure"><b>1,000+</b><span>コミット</span></div>
                     </div>
-                    <p style="font-size: 0.8rem; color: var(--ink-faint);">数値は 2026 年 6 月時点。描画は OpenGL / DirectX 11・12 / Vulkan などを同じ書き方で切り替えられます。</p>
+                    <p class="fine">数値は 2026 年 6 月時点。描画は OpenGL / DirectX 11・12 / Vulkan / WebGL / WebGPU を同じ書き方で切り替えられます。</p>
                 </div>
             </section>
 
@@ -133,7 +135,7 @@ MITIRU_GAME(MyGame)   // この 1 行でエンジンに繋がる</code></pre>
                         C++ から送った値は、HTML 側で <code>&lt;span data-m-text="view.hud.score"&gt;</code> と書くだけで表示されます。JavaScript は書きません。
                     </p>
                     <figure class="plate">
-                        <img src="images/engine/hello_game_window.webp" alt="サンプルゲームのプレイ画面。水色の自機と赤い敵、左上に HP バー、右上に残り秒数" loading="lazy">
+                        <img src="images/engine/hello_game_window.webp" alt="サンプルゲームのプレイ画面。水色の自機と赤い敵、左上に HP バー、右上に残り秒数" loading="lazy" width="1280" height="720">
                         <figcaption>サンプル「hello_game」（敵をよけて 30 秒生き残るゲーム）。自機や敵は C++ が描き、左上の HP バーと右上のタイマーは HTML/CSS。</figcaption>
                     </figure>
                     <p>
@@ -149,7 +151,7 @@ MITIRU_GAME(MyGame)   // この 1 行でエンジンに繋がる</code></pre>
                         プレイ中に T キーを押すと、<strong>直前 5 秒を 1 フレームずつ巻き戻して見られます</strong>。「なぜか HP が減った」というとき、その瞬間まで戻って、何が起きたかを目で確認できます。
                     </p>
                     <figure class="plate">
-                        <img src="images/engine/hello_game_timetravel.webp" alt="タイムトラベル中の画面。下部に −37 frames・−0.62s と書かれた巻き戻しバー、右に押されたキーの履歴一覧" loading="lazy">
+                        <img src="images/engine/hello_game_timetravel.webp" alt="タイムトラベル中の画面。下部に −37 frames・−0.62s と書かれた巻き戻しバー、右に押されたキーの履歴一覧" loading="lazy" width="1280" height="720">
                         <figcaption>タイムトラベル中の画面。下のバーが「37 フレーム（0.62 秒）前を見ている」ことを示し、その時点の HP も表示される。右の窓は押したキーの履歴。</figcaption>
                     </figure>
                     <p>
@@ -182,7 +184,7 @@ MITIRU_GAME(MyGame)   // この 1 行でエンジンに繋がる</code></pre>
                         </li>
                     </ul>
                     <figure class="plate">
-                        <img src="images/engine/dodge.webp" alt="よけゲームのプレイ画面。暗い背景に落ちてくる赤いブロックと水色の自機、左上にスコア表示" loading="lazy">
+                        <img src="images/engine/dodge.webp" alt="よけゲームのプレイ画面。暗い背景に落ちてくる赤いブロックと水色の自機、左上にスコア表示" loading="lazy" width="1280" height="720">
                         <figcaption>同梱サンプル「よけゲーム」。初心者向けチュートリアルの題材で、約 100 行の C++ だけでできている。</figcaption>
                     </figure>
                 </div>
@@ -194,7 +196,7 @@ MITIRU_GAME(MyGame)   // この 1 行でエンジンに繋がる</code></pre>
                     <p>コードは公開しています。エンジン自体の紹介サイトも別途用意しています。</p>
                     <div class="link-row" style="margin-top: 0;">
                         <a href="https://github.com/mogmog-0110/MitiruEngine" target="_blank" rel="noopener">GitHub →</a>
-                        <a href="https://github.com/mogmog-0110/mitiru-cli" target="_blank" rel="noopener">mitiru-cli（コマンドツール） →</a>
+                        <a href="https://github.com/mogmog-0110/mitiru-cli" target="_blank" rel="noopener">mitiru-cli（Go 製コマンドツール） →</a>
                     </div>
                 </div>
             </section>

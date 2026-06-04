@@ -16,25 +16,27 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shiggy's Portfolio">
-    <meta property="og:title" content="Portfolio | Shiggy">
+    <meta property="og:title" content="Works | Shiggy">
     <meta property="og:description" content="川村優弥のゲーム作品とツール。MitiruEngine、かえるクレープ、ハトを育てよう（リメイク）など。">
     <meta property="og:url" content="https://mogmog-0110.github.io/portfolio.html">
+    <link rel="canonical" href="https://mogmog-0110.github.io/portfolio.html">
     <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Portfolio | Shiggy">
+    <meta name="twitter:title" content="Works | Shiggy">
     <meta name="twitter:description" content="川村優弥のゲーム作品とツール。MitiruEngine、かえるクレープ、ハトを育てよう（リメイク）など。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600&family=Noto+Sans+JP:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/site.css">
 </head>
 
 <body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
     <header class="site-head">
         <div class="container">
             <a class="brand" href="index.html">Shiggy</a>
@@ -47,7 +49,7 @@
         </div>
     </header>
 
-    <main class="container">
+    <main class="container" id="main">
         <section class="page-head">
             <p class="kicker">Works</p>
             <h1>作品</h1>
@@ -64,12 +66,12 @@
             <section class="sec">
                 <h2>Featured</h2>
                 <div class="sec-body">
-                    <p style="font-size: 0.85rem; color: var(--ink-faint); margin-bottom: 0;">自作の MitiruEngine 上で動かしているゲーム。ハトを育てようはリメイクとして完成、かえるクレープは Godot 版から移植中です。</p>
+                    <p class="sec-intro">自作の MitiruEngine 上で動かしているゲーム。ハトを育てようはリメイクとして完成、かえるクレープは Godot 版から移植中です。</p>
 
-                    <div class="work-list" style="margin-top: 1.2rem;">
+                    <div class="work-list">
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/hato_1.webp" alt="ハトを育てよう（リメイク）">
+                                <img loading="lazy" decoding="async" src="images/hato_1.webp" alt="ハトを育てよう（リメイク）" width="1596" height="898">
                             </div>
                             <div class="work-body">
                                 <h3>ハトを育てよう（MitiruEngine リメイク）</h3>
@@ -84,11 +86,11 @@
 
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/kc_remake_novel.webp" alt="かえるクレープへようこそ（MitiruEngine 版）" onerror="this.src='images/kc_1.webp'">
+                                <img loading="lazy" decoding="async" src="images/kc_remake_novel.webp" alt="かえるクレープへようこそ（MitiruEngine 版）" width="1600" height="900">
                             </div>
                             <div class="work-body">
                                 <h3>かえるクレープへようこそ</h3>
-                                <p class="work-meta">In Development · 2025年夏〜 · チーム開発（2人）· Godot → MitiruEngine 移行中</p>
+                                <p class="work-meta">In Development · 2025年夏〜 · チーム開発（2人）· 担当: 企画 / シナリオ / 実装全般</p>
                                 <p>
                                     クレープを作りながらヒロインたちと親睦を深める <strong>美少女ゲーム × クッキングゲーム</strong>。コミックマーケット 106 で配布した Godot 版を経て、現在は自作の MitiruEngine 上で書き直し中（1.0.0-rc1）。
                                 </p>
@@ -106,12 +108,12 @@
             <section class="sec">
                 <h2>Other Games</h2>
                 <div class="sec-body">
-                    <p style="font-size: 0.85rem; color: var(--ink-faint); margin-bottom: 0;">学部時代から書いてきた個人・チーム制作。プロジェクトリーダーとして関わったものを含みます。</p>
+                    <p class="sec-intro">学部時代から書いてきた個人・チーム制作。プロジェクトリーダーとして関わったものを含みます。</p>
 
-                    <div class="work-list" style="margin-top: 1.2rem;">
+                    <div class="work-list">
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/down_1.webp" alt="Down into...">
+                                <img loading="lazy" decoding="async" src="images/down_1.webp" alt="Down into..." width="1600" height="935">
                             </div>
                             <div class="work-body">
                                 <h3>Down into...</h3>
@@ -125,7 +127,7 @@
 
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/hato_1.webp" alt="ハトを育てよう（原作版）">
+                                <img loading="lazy" decoding="async" src="images/hato_1.webp" alt="ハトを育てよう（原作版）" width="1596" height="898">
                             </div>
                             <div class="work-body">
                                 <h3>ハトを育てよう（原作版）</h3>
@@ -140,11 +142,11 @@
 
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/416_1.webp" alt="416">
+                                <img loading="lazy" decoding="async" src="images/416_1.webp" alt="416" width="1276" height="956">
                             </div>
                             <div class="work-body">
                                 <h3>416</h3>
-                                <p class="work-meta">2023年夏 · チーム開発（2人）· 2ヶ月</p>
+                                <p class="work-meta">2023年夏 · チーム開発（2人）· 2ヶ月 · 担当: リーダー / プログラム</p>
                                 <p>
                                     たくさんの迫りくる化け物を倒すヴァンサバ風ローグライク。初めてのプロジェクトリーダー経験。蒼翔祭2023、コミックマーケット103にて無料頒布。
                                 </p>
@@ -154,7 +156,7 @@
 
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/shugar_1.webp" alt="ぐるぐる☆しゅがーふぁくとりー">
+                                <img loading="lazy" decoding="async" src="images/shugar_1.webp" alt="ぐるぐる☆しゅがーふぁくとりー" width="1600" height="900">
                             </div>
                             <div class="work-body">
                                 <h3>ぐるぐる☆しゅがーふぁくとりー</h3>
@@ -168,7 +170,7 @@
 
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/vs_1.webp" alt="VoronoiShortestPathSolver" onerror="this.parentElement.innerHTML='<div class=&quot;ph&quot;>VORONOI</div>'">
+                                <img loading="lazy" decoding="async" src="images/vs_1.webp" alt="VoronoiShortestPathSolver" width="1272" height="704">
                             </div>
                             <div class="work-body">
                                 <h3>VoronoiShortestPathSolver</h3>
@@ -183,11 +185,11 @@
 
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/dodo_1.webp" alt="劇場版ぱんドドド―ド・ドードド">
+                                <img loading="lazy" decoding="async" src="images/dodo_1.webp" alt="劇場版ぱんドドド―ド・ドードド" width="1190" height="892">
                             </div>
                             <div class="work-body">
                                 <h3>劇場版ぱんドドド―ド</h3>
-                                <p class="work-meta">2024年夏 · チーム開発（6人）· 2ヶ月</p>
+                                <p class="work-meta">2024年夏 · チーム開発（6人）· 2ヶ月 · 担当: リーダー / 設計 / ステージ制作ツール</p>
                                 <p>
                                     キャラクターを育成して、アクションに挑む新感覚おばか育成アクション。プロジェクトリーダーとしてチームメンバーのサポートをしながら開発。Unityのようなコンポーネントシステムを参考に設計し、ステージ制作ツールを別途作成。モンスターに支配された会津大学を企画開発部のマスコットキャラクター「ぱんどど」を育成し、モンスター退治をするというストーリー。
                                 </p>
@@ -197,7 +199,7 @@
 
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/vimove_1.webp" alt="Vimove" onerror="this.parentElement.innerHTML='<div class=&quot;ph&quot;>VIMOVE</div>'">
+                                <img loading="lazy" decoding="async" src="images/vimove_1.webp" alt="Vimove" width="795" height="795">
                             </div>
                             <div class="work-body">
                                 <h3>Vimove</h3>
@@ -212,7 +214,7 @@
 
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/gw_1.webp" alt="GraphWalker" onerror="this.parentElement.innerHTML='<div class=&quot;ph&quot;>GRAPHWALKER</div>'">
+                                <img loading="lazy" decoding="async" src="images/gw_1.webp" alt="GraphWalker" width="1273" height="716">
                             </div>
                             <div class="work-body">
                                 <h3>GraphWalker</h3>
@@ -242,7 +244,7 @@
 
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/minge2025_1.webp" alt="脱出ゲーム（仮）" onerror="this.parentElement.innerHTML='<div class=&quot;ph&quot;>ESCAPE</div>'">
+                                <img loading="lazy" decoding="async" src="images/minge2025_1.webp" alt="脱出ゲーム（仮）" width="1273" height="956">
                             </div>
                             <div class="work-body">
                                 <h3>脱出ゲーム（仮）</h3>
@@ -263,9 +265,9 @@
             <section class="sec">
                 <h2>Tools &amp; Engines</h2>
                 <div class="sec-body">
-                    <p style="font-size: 0.85rem; color: var(--ink-faint); margin-bottom: 0;">開発の途中で必要になって書いた道具。レンダラー、リソース管理ツール、研究用アルゴリズムなど。</p>
+                    <p class="sec-intro">開発の途中で必要になって書いた道具。レンダラー、リソース管理ツール、研究用アルゴリズムなど。</p>
 
-                    <div class="work-list" style="margin-top: 1.2rem;">
+                    <div class="work-list">
                         <article class="work">
                             <div class="work-media">
                                 <div class="ph">MITIRUENGINE</div>
@@ -328,66 +330,6 @@
 
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/res_1.webp" alt="VisualResourceLinkerForSiv3D" onerror="this.parentElement.innerHTML='<div class=&quot;ph&quot;>LINKER</div>'">
-                            </div>
-                            <div class="work-body">
-                                <h3>VisualResourceLinkerForSiv3D</h3>
-                                <p class="work-meta">Tool · 2025年夏 · 個人開発 · 2日</p>
-                                <p>
-                                    Siv3D のリソース管理を GUI 上で自動的に行うツール。ウェブ上で配布されていた類似ツールがリンク切れしていたので自作。GUI は ImGUI、設計は MVC を採用。
-                                </p>
-                                <p class="tags">C++ / Siv3D / ImGUI</p>
-                                <a href="https://github.com/mogmog-0110/VisualResourceLinkerForSiv3D" class="go" target="_blank" rel="noopener">GitHub →</a>
-                            </div>
-                        </article>
-
-                        <article class="work">
-                            <div class="work-media">
-                                <div class="ph">IMGUI × S3D</div>
-                            </div>
-                            <div class="work-body">
-                                <h3>imgui-s3d-wrapper</h3>
-                                <p class="work-meta">Tool · 個人開発 · Siv3D + Dear ImGui ラッパー</p>
-                                <p>
-                                    Dear ImGui を Siv3D で即座に使い始めるためのスターターラッパー。<code>imgui_impl_s3d</code> をプロジェクトに組み込み済みの最小テンプレート。Siv3D ベースのツール作成を素早く立ち上げたいとき向け。
-                                </p>
-                                <p class="tags">C++ / Siv3D / ImGui</p>
-                                <a href="https://github.com/mogmog-0110/imgui-s3d-wrapper" class="go" target="_blank" rel="noopener">GitHub →</a>
-                            </div>
-                        </article>
-
-                        <article class="work">
-                            <div class="work-media">
-                                <div class="ph">VECTOR_SCAN</div>
-                            </div>
-                            <div class="work-body">
-                                <h3>NeonVector</h3>
-                                <p class="work-meta">Tool · 個人開発 · C++ + DirectX 12 · ベクタースキャン再現</p>
-                                <p>
-                                    <em>Asteroids</em> や <em>Tempest</em> など 1970-80 年代アーケードゲームのベクタースキャン技術を、DirectX 12 を用いて現代的に再現するプロジェクト。ライン主体の表示と発光効果の再構築。
-                                </p>
-                                <p class="tags">C++ / DirectX 12 / Retro</p>
-                                <a href="https://github.com/mogmog-0110/NeonVector" class="go" target="_blank" rel="noopener">GitHub →</a>
-                            </div>
-                        </article>
-
-                        <article class="work">
-                            <div class="work-media">
-                                <div class="ph">DIMED</div>
-                            </div>
-                            <div class="work-body">
-                                <h3>DimensionEditor</h3>
-                                <p class="work-meta">Tool · 個人開発 · C++ + GLSL / HLSL · グラフィックツール</p>
-                                <p>
-                                    C++ をベースに、GLSL と HLSL の両方のシェーダーを扱うクロスプラットフォームのグラフィック / 描画ツール。シェーダー記述の比較と検証用に作成。
-                                </p>
-                                <p class="tags">C++ / GLSL / HLSL</p>
-                                <a href="https://github.com/mogmog-0110/DimensionEditor" class="go" target="_blank" rel="noopener">GitHub →</a>
-                            </div>
-                        </article>
-
-                        <article class="work">
-                            <div class="work-media">
                                 <div class="ph">CSSC 2025</div>
                             </div>
                             <div class="work-body">
@@ -416,6 +358,31 @@
                             </div>
                         </article>
                     </div>
+
+                    <h3>小さな道具</h3>
+                    <p class="sec-intro">数日〜1週間で書いた小物。必要に迫られて作り、公開しているもの。</p>
+                    <ul class="text-list">
+                        <li>
+                            <a href="https://github.com/mogmog-0110/VisualResourceLinkerForSiv3D" target="_blank" rel="noopener">VisualResourceLinkerForSiv3D →</a>
+                            <p class="genre">C++ / Siv3D / ImGui · 2025年夏 · 2日</p>
+                            <p>Siv3D のリソース管理を GUI で自動化するツール。配布されていた類似ツールがリンク切れだったので自作。設計は MVC。</p>
+                        </li>
+                        <li>
+                            <a href="https://github.com/mogmog-0110/imgui-s3d-wrapper" target="_blank" rel="noopener">imgui-s3d-wrapper →</a>
+                            <p class="genre">C++ / Siv3D / ImGui</p>
+                            <p>Dear ImGui を Siv3D で即座に使い始めるための最小テンプレート。Siv3D ベースのツール開発の立ち上げ用。</p>
+                        </li>
+                        <li>
+                            <a href="https://github.com/mogmog-0110/NeonVector" target="_blank" rel="noopener">NeonVector →</a>
+                            <p class="genre">C++ / DirectX 12 / Retro</p>
+                            <p><em>Asteroids</em> など 1970-80 年代アーケードのベクタースキャン表示を DirectX 12 で再現する実験。</p>
+                        </li>
+                        <li>
+                            <a href="https://github.com/mogmog-0110/DimensionEditor" target="_blank" rel="noopener">DimensionEditor →</a>
+                            <p class="genre">C++ / GLSL / HLSL</p>
+                            <p>GLSL と HLSL の両方を扱うクロスプラットフォームの描画ツール。シェーダー記述の比較・検証用。</p>
+                        </li>
+                    </ul>
                 </div>
             </section>
 
@@ -425,26 +392,26 @@
             <section class="sec">
                 <h2>Creative</h2>
                 <div class="sec-body">
-                    <p style="font-size: 0.85rem; color: var(--ink-faint);">ゲーム以外の創作 ── イラスト・Live2D・短編小説。</p>
+                    <p class="sec-intro">ゲーム以外の創作 ── イラスト・Live2D・短編小説。</p>
 
                     <h3>グラフィック</h3>
                     <p>趣味で描いたイラスト。クリックで拡大表示されます。</p>
                     <div class="art-grid">
-                        <a href="images/art1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art1.webp" alt="イラスト 1"></a>
-                        <a href="images/art2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art2.webp" alt="イラスト 2"></a>
-                        <a href="images/art3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art3.webp" alt="イラスト 3"></a>
-                        <a href="images/art4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art4.webp" alt="イラスト 4"></a>
-                        <a href="images/art5.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art5.webp" alt="イラスト 5"></a>
-                        <a href="images/art6.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art6.webp" alt="イラスト 6"></a>
-                        <a href="images/art7.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art7.webp" alt="イラスト 7"></a>
-                        <a href="images/art8.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art8.webp" alt="イラスト 8"></a>
-                        <a href="images/art9.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art9.webp" alt="イラスト 9"></a>
-                        <a href="images/art10.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art10.webp" alt="イラスト 10"></a>
-                        <a href="images/art11.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art11.webp" alt="イラスト 11"></a>
-                        <a href="images/art12.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art12.webp" alt="イラスト 12"></a>
-                        <a href="images/art13.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art13.webp" alt="イラスト 13"></a>
-                        <a href="images/art14.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art14.webp" alt="イラスト 14"></a>
-                        <a href="images/art15.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art15.webp" alt="イラスト 15"></a>
+                        <a href="images/art1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art1.webp" alt="イラスト 1" width="768" height="1024"></a>
+                        <a href="images/art2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art2.webp" alt="イラスト 2" width="768" height="768"></a>
+                        <a href="images/art3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art3.webp" alt="イラスト 3" width="1013" height="1600"></a>
+                        <a href="images/art4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art4.webp" alt="イラスト 4" width="1600" height="1131"></a>
+                        <a href="images/art5.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art5.webp" alt="イラスト 5" width="1131" height="1600"></a>
+                        <a href="images/art6.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art6.webp" alt="イラスト 6" width="1200" height="1600"></a>
+                        <a href="images/art7.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art7.webp" alt="イラスト 7" width="1280" height="1280"></a>
+                        <a href="images/art8.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art8.webp" alt="イラスト 8" width="1600" height="1200"></a>
+                        <a href="images/art9.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art9.webp" alt="イラスト 9" width="1131" height="1600"></a>
+                        <a href="images/art10.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art10.webp" alt="イラスト 10" width="1131" height="1600"></a>
+                        <a href="images/art11.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art11.webp" alt="イラスト 11" width="1131" height="1600"></a>
+                        <a href="images/art12.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art12.webp" alt="イラスト 12" width="1200" height="1600"></a>
+                        <a href="images/art13.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art13.webp" alt="イラスト 13" width="1200" height="1600"></a>
+                        <a href="images/art14.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art14.webp" alt="イラスト 14" width="640" height="400"></a>
+                        <a href="images/art15.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art15.webp" alt="イラスト 15" width="768" height="1024"></a>
                     </div>
 
                     <h3>Live2D</h3>
@@ -453,10 +420,10 @@
                     </p>
                     <figure class="plate" style="max-width: 420px;">
                         <a href="images/myModel.webp" target="_blank">
-                            <img loading="lazy" decoding="async" src="images/myModel.webp" alt="自作Live2Dモデル">
+                            <img loading="lazy" decoding="async" src="images/myModel.webp" alt="自作Live2Dモデル" width="1214" height="1600">
                         </a>
                         <figcaption>
-                            自作Live2Dモデル ── Live2D への興味から作ってみた自創作キャラの Live2D モデル。横や斜めを向いたときの設定がうまくいかず難航しました。時間的な余裕があれば、もっといいモデルを作りたい。
+                            自作Live2Dモデル ── Live2D への興味から作った自創作キャラのモデル。横や斜めを向いたときのパラメータ設計の難しさを体感し、SDK の保守という現在の実務に興味が繋がった制作です。
                         </figcaption>
                     </figure>
 

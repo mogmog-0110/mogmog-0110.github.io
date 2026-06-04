@@ -19,19 +19,24 @@
     <meta property="og:title" content="Lab | Shiggy">
     <meta property="og:description" content="3DCG・物理シミュレーションの問題を、自作エンジンで解決アプローチする実験集。">
     <meta property="og:url" content="https://mogmog-0110.github.io/labs.html">
+    <link rel="canonical" href="https://mogmog-0110.github.io/labs.html">
     <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Lab | Shiggy">
     <meta name="twitter:description" content="3DCG・物理シミュレーションの問題を、自作エンジンで解決アプローチする実験集。">
+    <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600&family=Noto+Sans+JP:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/site.css">
 </head>
 
 <body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
     <header class="site-head">
         <div class="container">
             <a class="brand" href="index.html">Shiggy</a>
@@ -44,12 +49,12 @@
         </div>
     </header>
 
-    <main class="container">
+    <main class="container" id="main">
         <section class="page-head">
             <p class="kicker">Lab</p>
             <h1>実験室</h1>
             <p class="lede">
-                3DCG・物理シミュレーションの分野から「これ、どう解くんだろう」という問題を自分で見つけてきて、<a href="engine.html" style="color: inherit; text-decoration: underline; text-decoration-color: #9b9fa8; text-underline-offset: 3px;">自作エンジン</a>の上で解決アプローチを実装してみる実験置き場です。タイトルをクリックするとデモと簡単な説明が開きます。
+                3DCG・物理シミュレーションの分野から「これ、どう解くんだろう」という問題を自分で見つけてきて、<a href="engine.html" class="soft-link">自作エンジン</a>の上で解決アプローチを実装してみる実験置き場です。タイトルをクリックするとデモと簡単な説明が開きます。
             </p>
         </section>
 
@@ -78,18 +83,21 @@
         {
             id: "sdf-face-shadow",
             title: "上下の光に応答するアニメ顔影 ── SDF しきい値マップの仰角拡張",
-            thumb: "images/sdf-face/compare_up.webp",
+            thumb: "images/sdf-face/compare_up.webp", thumbW: 1500, thumbH: 500,
             blurb: "アニメ顔の定番「SDF 顔影マップ」は光の左右にしか反応せず、上下の光では顔だけがのっぺりしたまま環境から浮く。マップを方位角×仰角の 2D に拡張し、テクスチャ参照 2 回のままレイトレース相当の影の応答を得た。",
             tags: ["DirectX 11", "NPR", "Cel Shading", "SDF", "VRM"],
             meta: "2026 | DirectX 11 スタンドアロンデモ",
             problem: "セルルックのアニメ顔では、顔の影を法線からではなく「SDF しきい値マップ」というテクスチャで制御するのが業界の定番。ただしこのマップは光の方位角（左右）のみを軸にした 1 次元の仕組みで、仰角（上下）はわざと無視するのが標準 ── つまり回避であって解決ではない。結果、夕日や下からの照明のシーンで、体や背景には上下の陰影が付くのに顔だけがのっぺりと浮く。",
             approach: "しきい値マップを方位角×仰角の 2D に拡張し、仰角ごとのスライスを補間して参照する。シェーダ側の追加コストはテクスチャ参照が 1 回増えるだけ（計 2 fetch）。検証は 3 方式の比較で行った ── STANDARD（業界標準・仰角無反応）/ PROPOSED（仰角スライス補間）/ REFERENCE（レイトレースによる正解）。同カメラ・同光源で方式だけを差し替えると、PROPOSED は REFERENCE と同構造の影（上光での眉下・鼻下、下光でのホラー表現）をしきい値マップのコストのまま再現する。多灯の合成と、手描きキーフレームでの検証は未了で、その意味でまだ「実験」として提示する。",
             media: [
-                { type: "img", src: "images/sdf-face/compare_up.webp",
+                { type: "img", src: "images/sdf-face/compare_up.webp", w: 1500, h: 500,
+                  alt: "上光での 3 方式比較（業界標準・提案・レイトレース正解）",
                   caption: "上からの光（仰角 +50°）。左: 業界標準 ── 仰角に反応せずのっぺり / 中: 提案 ── 眉下・鼻下に影が落ちる / 右: レイトレース正解。同カメラ・同光源で、差はシェーディング方式のみ。モデル: アリシア・ソリッド（© DWANGO Co., Ltd. / ニコニ立体ちゃん）。" },
-                { type: "img", src: "images/sdf-face/compare_down.webp",
+                { type: "img", src: "images/sdf-face/compare_down.webp", w: 1500, h: 500,
+                  alt: "下光での 3 方式比較",
                   caption: "下からの光（仰角 −50°、いわゆるホラー下光）。左: 業界標準 / 中: 提案 / 右: 正解。標準は下光でも昼間の顔のままになる。" },
-                { type: "img", src: "images/sdf-face/threshold_maps.webp",
+                { type: "img", src: "images/sdf-face/threshold_maps.webp", w: 1200, h: 600,
+                  alt: "仰角 0° と +60° のしきい値マップ",
                   caption: "提案手法の中身: 仰角ごとに焼いたしきい値マップ（左: 仰角 0° / 右: +60°）。この間を補間して参照する。" }
             ],
             links: [
@@ -99,16 +107,18 @@
         {
             id: "sim-render-seam",
             title: "物理と描画の継ぎ目 ── モーションベクタの嘘を可視化する",
-            thumb: "images/seam/framegen_generated.webp",
+            thumb: "images/seam/framegen_generated.webp", thumbW: 1000, thumbH: 1000,
             blurb: "固定タイムステップの物理を可変レート表示に補間して見せるとき、「画面に見せた動き」と「エンジンが申告するモーションベクタ」が食い違う。その嘘がどの後段処理でどう画になるかを、実機 GPU デモで可視化・実測した。結論: TAA は嘘を赦し、フレーム生成は赦さない。",
             tags: ["DirectX 11", "VRM", "VMD", "TAA", "Frame Generation"],
             meta: "2026 | DirectX 11 スタンドアロンデモ",
             problem: "物理シミュレーションは固定タイムステップで回し、表示はその間を補間する ── ゲームの定番構成。このとき画面に出した動きと、TAA やフレーム生成（DLSS3/FSR3 系）へ渡すモーションベクタ(MV)の申告が食い違う。「ティック由来の MV」「MV=0」「提示状態由来の MV」のどれを申告するかで後段の画がどう変わるかは、意外と整理されていない。",
             approach: "DX11 のスタンドアロンデモを書き、VRM モデルに VMD ダンスを CPU スキニングで再生。画面を左右に分割して MV の申告方法だけを変え、TAA / 簡易フレーム生成 / MV 可視化の 3 ビューで比較した。決定的な CPU 計測ハーネスも併設。結果はネガティブ寄りで、それを正直に書くのがこのエントリの価値 ── (1) 近傍クランプ付き TAA は MV の嘘をほぼ吸収する（実測でほぼフラット）。(2) フレーム生成はクランプが無いので嘘を素通しし、過大 MV はスカートや脚の破断・振動、MV=0 は実効 fps 半減のガタつきとして直撃する。(3) 大手エンジンの標準経路では提示状態由来の MV は事実上実装済みで、嘘が残るのはレンダラが変形を追跡しない場所（Unity Cloth の MV=0、GPU パーティクル、カスタムコンピュート変形など）。数値では、提示 MV はティック MV 比で再投影残差 −86%、ジャダー指標は最新値提示の 1/65。",
             media: [
-                { type: "img", src: "images/seam/framegen_real.webp",
+                { type: "img", src: "images/seam/framegen_real.webp", w: 1000, h: 1000,
+                  alt: "実描画フレーム（左右 2 つの MV モード）",
                   caption: "実描画フレーム。左右どちらの MV モードでもモデルは無傷。" },
-                { type: "img", src: "images/seam/framegen_generated.webp",
+                { type: "img", src: "images/seam/framegen_generated.webp", w: 1000, h: 1000,
+                  alt: "フレーム生成による生成フレーム。過大 MV 側でスカートと脚が破断",
                   caption: "フレーム生成が捏造したフレーム（上と同一瞬間・同一モデル、差は MV の申告のみ）。左半分＝過大 MV ではスカートと脚が破断し、右半分＝提示 MV では軽微。モデル: アリシア・ソリッド（© DWANGO Co., Ltd. / ニコニ立体ちゃん）。" }
             ],
             links: [
@@ -118,7 +128,7 @@
         {
             id: "npr-temporal",
             title: "トゥーン輪郭線の時間安定化",
-            thumb: "images/npr/toon_compare_alicia.png",
+            thumb: "images/npr/toon_compare_alicia.webp", thumbW: 968, thumbH: 320,
             blurb: "3D から自動生成した輪郭線はアニメでチラつく。TAA の考え方（motion vector 再投影）を輪郭線チャネルに応用して安定化してみた。VRM 比較ビューアと、風で揺れる布のリアルタイムデモ付き。",
             tags: ["NPR", "TAA", "物理シム", "C++20"],
             meta: "2026 | MitiruEngine",
@@ -129,7 +139,8 @@
                   caption: "VRM モデル（ニコニ立体ちゃん ©dwango）のターンテーブル比較。左: 背面法+内側線（無安定化）/ 中: 背面法のみ / 右: +安定化。" },
                 { type: "video", src: "images/npr/cloth_demo.webm",
                   caption: "布のシワ線（72f ループ）。左: 背面法のみ（開いたメッシュでは外形線すら出ない）/ 中: +シワ線（無安定化）/ 右: +安定化。リアルタイム版は Game DLL として実装、Space で突風。" },
-                { type: "img", src: "images/npr/flicker_heatmap.png",
+                { type: "img", src: "images/npr/flicker_heatmap.webp", w: 1292, h: 180,
+                  alt: "チラつきヒートマップの before/after",
                   caption: "チラつきの可視化（フレーム間の再投影残差）。赤が明滅成分。左 2 枚が輪郭線、右 2 枚がヒートマップ（無対策 → 安定化）。" }
             ],
             code: {
@@ -165,32 +176,46 @@ out[i] = max(raw[i], hist * p.decay);`,
     for (const lab of LABS) {
         const entry = document.createElement("article");
         entry.className = "lab-entry";
+        entry.setAttribute("tabindex", "0");
+        entry.setAttribute("role", "button");
+        entry.setAttribute("aria-haspopup", "dialog");
+        entry.setAttribute("aria-label", `${lab.title} ── 詳細を開く`);
         entry.innerHTML = `
             <div class="lab-media">
-                <img src="${lab.thumb}" alt="${lab.title}" loading="lazy">
+                <img src="${lab.thumb}" alt="" width="${lab.thumbW}" height="${lab.thumbH}" loading="lazy">
             </div>
             <div class="lab-text">
                 <h3>${lab.title}<span class="open-hint">OPEN +</span></h3>
                 <div class="lab-tags">${lab.tags.join(" / ")}</div>
                 <p>${lab.blurb}</p>
             </div>`;
-        entry.addEventListener("click", () => openModal(lab));
+        entry.addEventListener("click", () => openModal(lab, entry));
+        entry.addEventListener("keydown", e => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                openModal(lab, entry);
+            }
+        });
         list.appendChild(entry);
     }
 
     // ── モーダル ──
     const overlay = document.getElementById("lab-modal-overlay");
+    const panel = document.getElementById("lab-modal");
     const content = document.getElementById("lab-modal-content");
+    const closeBtn = document.getElementById("lab-modal-close");
+    let lastOpener = null;
 
     function escapeHtml(s) {
         return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
 
-    function openModal(lab) {
+    function openModal(lab, opener) {
+        lastOpener = opener || null;
         const media = lab.media.map(m => m.type === "video"
             ? `<video src="${m.src}" autoplay loop muted playsinline></video>
                <div class="media-caption">${m.caption}</div>`
-            : `<img class="media" src="${m.src}" alt="" loading="lazy">
+            : `<img class="media" src="${m.src}" alt="${m.alt || ""}"${m.w ? ` width="${m.w}" height="${m.h}"` : ""} loading="lazy">
                <div class="media-caption">${m.caption}</div>`
         ).join("");
         const code = lab.code ? `
@@ -209,17 +234,35 @@ out[i] = max(raw[i], hist * p.decay);`,
             <div class="m-block"><b>問題</b><p>${lab.problem}</p></div>
             <div class="m-block"><b>アプローチ</b><p>${lab.approach}</p></div>
             ${media}${code}${links}${more}`;
+        panel.setAttribute("aria-label", lab.title);
         overlay.classList.add("open");
         document.body.style.overflow = "hidden";
+        closeBtn.focus();
     }
     function closeModal() {
         overlay.classList.remove("open");
         content.innerHTML = ""; // 動画停止
         document.body.style.overflow = "";
+        if (lastOpener) { lastOpener.focus(); lastOpener = null; }
     }
-    document.getElementById("lab-modal-close").addEventListener("click", closeModal);
+    closeBtn.addEventListener("click", closeModal);
     overlay.addEventListener("click", e => { if (e.target === overlay) closeModal(); });
-    document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+    document.addEventListener("keydown", e => {
+        if (!overlay.classList.contains("open")) return;
+        if (e.key === "Escape") { closeModal(); return; }
+        if (e.key !== "Tab") return;
+        // focus trap: モーダル内の最初/最後の要素で折り返す
+        const focusables = panel.querySelectorAll(
+            'button, a[href], video, [tabindex]:not([tabindex="-1"])');
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault(); first.focus();
+        }
+    });
     </script>
 
     <script src="assets/js/back-to-top.js"></script>

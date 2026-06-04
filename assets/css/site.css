@@ -24,6 +24,30 @@
 
 html { scroll-behavior: smooth; }
 
+/* ── フォーカス可視化（キーボード操作）─────────── */
+
+:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+}
+
+/* ── skip link ─────────────────────────── */
+
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 200;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+}
+
+.skip-link:focus { left: 0; }
+
 html, body {
     background: var(--paper) !important;
     color: var(--ink-body);
@@ -42,7 +66,7 @@ body {
 
 a { color: inherit; }
 
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 
 .container {
     max-width: var(--w);
@@ -854,4 +878,60 @@ pre code { background: none; padding: 0; }
 @media (max-width: 420px) {
     .brand { font-size: 0.95rem; }
     .figures .figure { border-right: none; padding-right: 0; margin-right: 1.6rem; }
+}
+
+/* ── タッチ端末（hover なし）────────────────── */
+
+@media (hover: none) {
+    .work-media img,
+    .art-grid img,
+    .lab-entry img { filter: none; }
+}
+
+/* ── motion 配慮 ─────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+/* ── 補助クラス（インライン style の置き換え）────── */
+
+.fine {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+}
+
+.sec-intro {
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    margin-bottom: 1.2rem;
+}
+
+.soft-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--ink-faint);
+    text-underline-offset: 3px;
+}
+
+.soft-link:hover { text-decoration-color: var(--ink); }
+
+/* ── 印刷 ──────────────────────────────── */
+
+@media print {
+    .site-head .menu,
+    .back-to-top,
+    .skip-link,
+    .modal-overlay { display: none !important; }
+
+    body { font-size: 11pt; }
+
+    .sec { break-inside: avoid; }
+
+    a { text-decoration: none; }
 }

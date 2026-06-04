@@ -20,6 +20,7 @@
     <meta property="og:title" content="Shiggy's Portfolio">
     <meta property="og:description" content="川村優弥のポートフォリオ。ゲーム開発、自作エンジン MitiruEngine、剛体物理シミュレーション研究（BDA 2025 / Springer LNCS）、株式会社 Live2D での Cubism SDK 実務。">
     <meta property="og:url" content="https://mogmog-0110.github.io/">
+    <link rel="canonical" href="https://mogmog-0110.github.io/">
     <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -31,13 +32,28 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600&family=Noto+Sans+JP:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/site.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "川村優弥",
+        "alternateName": ["Yuya Kawamura", "Shiggy"],
+        "url": "https://mogmog-0110.github.io/",
+        "email": "mailto:medli908@gmail.com",
+        "sameAs": ["https://github.com/mogmog-0110"],
+        "affiliation": { "@type": "CollegeOrUniversity", "name": "会津大学大学院" },
+        "knowsAbout": ["C++", "Game Engine Development", "Computer Graphics", "Physics Simulation"]
+    }
+    </script>
 </head>
 
 <body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
     <header class="site-head">
         <div class="container">
             <a class="brand" href="index.html">Shiggy</a>
@@ -50,7 +66,7 @@
         </div>
     </header>
 
-    <main class="container">
+    <main class="container" id="main">
         <!-- Hero -->
         <section class="hero">
             <p class="kicker">Portfolio</p>
@@ -97,6 +113,54 @@
             </section>
 
             <section class="sec">
+                <h2>Skills</h2>
+                <div class="sec-body">
+                    <ul class="profile">
+                        <li>
+                            <span class="k">言語</span>
+                            <span class="v">C++（C++17 / 20、主力）／ C# ／ Go ／ JavaScript</span>
+                        </li>
+                        <li>
+                            <span class="k">グラフィックス</span>
+                            <span class="v">DirectX 11・12 ／ OpenGL ／ Vulkan ／ WebGL ／ WebGPU ／ HLSL ／ GLSL</span>
+                        </li>
+                        <li>
+                            <span class="k">エンジン・FW</span>
+                            <span class="v">自作（MitiruEngine）／ Unity ／ Godot ／ Siv3D ／ PhysX ／ CEF</span>
+                        </li>
+                        <li>
+                            <span class="k">開発環境</span>
+                            <span class="v">CMake ／ Git・GitHub ／ GoogleTest ／ Live2D Cubism SDK ／ Dear ImGui</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="sec">
+                <h2>経歴・活動</h2>
+                <div class="sec-body">
+                    <ul class="profile">
+                        <li>
+                            <span class="k">2022年〜</span>
+                            <span class="v">会津大学 コンピュータ理工学部。在学中からチーム開発・コミックマーケット（101 / 103 / 106）でのゲーム頒布を継続</span>
+                        </li>
+                        <li>
+                            <span class="k">2025年</span>
+                            <span class="v">コンピュータサイエンスサマーキャンプ 2025 にてプロジェクトリーダーとして教材開発・高校生への指導</span>
+                        </li>
+                        <li>
+                            <span class="k">2025年12月</span>
+                            <span class="v">国際会議 BDA 2025 にて第一著者として発表（Springer LNCS 収録、フルペーパー 17 頁）</span>
+                        </li>
+                        <li>
+                            <span class="k">2026年4月〜</span>
+                            <span class="v">会津大学大学院 コンピュータ・情報システム学専攻（M1）。並行して株式会社 Live2D で Cubism SDK for Native（C++）の保守・不具合対応に従事</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="sec">
                 <h2>Profile</h2>
                 <div class="sec-body">
                     <ul class="profile">
@@ -114,7 +178,7 @@
                         </li>
                         <li>
                             <span class="k">GitHub</span>
-                            <span class="v"><a href="https://github.com/mogmog-0110" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; text-decoration-color: #9b9fa8; text-underline-offset: 3px;">mogmog-0110</a></span>
+                            <span class="v"><a href="https://github.com/mogmog-0110" target="_blank" rel="noopener" class="soft-link">mogmog-0110</a></span>
                         </li>
                         <li>
                             <span class="k">趣味</span>
@@ -133,6 +197,19 @@
                             <span class="v">東方の同人CDを集めて聴く ／ 研究室から朝帰りする</span>
                         </li>
                     </ul>
+                </div>
+            </section>
+
+            <section class="sec">
+                <h2>Contact</h2>
+                <div class="sec-body">
+                    <p>
+                        お仕事や研究のご相談、作品へのフィードバックなど、お気軽にご連絡ください。
+                    </p>
+                    <div class="link-row" style="margin-top: 0.8rem;">
+                        <a href="mailto:medli908@gmail.com">medli908@gmail.com →</a>
+                        <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">GitHub: mogmog-0110 →</a>
+                    </div>
                 </div>
             </section>
         </div>
