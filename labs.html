@@ -76,6 +76,25 @@
     // ── 実験エントリ。追加するときはここにオブジェクトを 1 つ足すだけ ──
     const LABS = [
         {
+            id: "sim-render-seam",
+            title: "物理と描画の継ぎ目 ── モーションベクタの嘘を可視化する",
+            thumb: "images/seam/framegen_generated.webp",
+            blurb: "固定タイムステップの物理を可変レート表示に補間して見せるとき、「画面に見せた動き」と「エンジンが申告するモーションベクタ」が食い違う。その嘘がどの後段処理でどう画になるかを、実機 GPU デモで可視化・実測した。結論: TAA は嘘を赦し、フレーム生成は赦さない。",
+            tags: ["DirectX 11", "VRM", "VMD", "TAA", "Frame Generation"],
+            meta: "2026 | DirectX 11 スタンドアロンデモ",
+            problem: "物理シミュレーションは固定タイムステップで回し、表示はその間を補間する ── ゲームの定番構成。このとき画面に出した動きと、TAA やフレーム生成（DLSS3/FSR3 系）へ渡すモーションベクタ(MV)の申告が食い違う。「ティック由来の MV」「MV=0」「提示状態由来の MV」のどれを申告するかで後段の画がどう変わるかは、意外と整理されていない。",
+            approach: "DX11 のスタンドアロンデモを書き、VRM モデルに VMD ダンスを CPU スキニングで再生。画面を左右に分割して MV の申告方法だけを変え、TAA / 簡易フレーム生成 / MV 可視化の 3 ビューで比較した。決定的な CPU 計測ハーネスも併設。結果はネガティブ寄りで、それを正直に書くのがこのエントリの価値 ── (1) 近傍クランプ付き TAA は MV の嘘をほぼ吸収する（実測でほぼフラット）。(2) フレーム生成はクランプが無いので嘘を素通しし、過大 MV はスカートや脚の破断・振動、MV=0 は実効 fps 半減のガタつきとして直撃する。(3) 大手エンジンの標準経路では提示状態由来の MV は事実上実装済みで、嘘が残るのはレンダラが変形を追跡しない場所（Unity Cloth の MV=0、GPU パーティクル、カスタムコンピュート変形など）。数値では、提示 MV はティック MV 比で再投影残差 −86%、ジャダー指標は最新値提示の 1/65。",
+            media: [
+                { type: "img", src: "images/seam/framegen_real.webp",
+                  caption: "実描画フレーム。左右どちらの MV モードでもモデルは無傷。" },
+                { type: "img", src: "images/seam/framegen_generated.webp",
+                  caption: "フレーム生成が捏造したフレーム（上と同一瞬間・同一モデル、差は MV の申告のみ）。左半分＝過大 MV ではスカートと脚が破断し、右半分＝提示 MV では軽微。モデル: アリシア・ソリッド（© DWANGO Co., Ltd. / ニコニ立体ちゃん）。" }
+            ],
+            links: [
+                { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/sim-render-seam" }
+            ]
+        },
+        {
             id: "npr-temporal",
             title: "トゥーン輪郭線の時間安定化",
             thumb: "images/npr/toon_compare_alicia.png",
@@ -158,6 +177,9 @@ out[i] = max(raw[i], hist * p.decay);`,
             <pre><code>${escapeHtml(lab.code.snippet)}</code></pre>
             <div class="link-row" style="margin-top: 0.8rem;">${lab.code.links.map(l =>
                 `<a href="${l.href}" target="_blank" rel="noopener">${l.label} →</a>`).join("")}</div>` : "";
+        const links = lab.links ? `
+            <div class="link-row">${lab.links.map(l =>
+                `<a href="${l.href}" target="_blank" rel="noopener">${l.label} →</a>`).join("")}</div>` : "";
         const more = lab.more
             ? `<div class="link-row"><a href="${lab.more}">もっと詳しく →</a></div>` : "";
         content.innerHTML = `
@@ -165,7 +187,7 @@ out[i] = max(raw[i], hist * p.decay);`,
             <div class="m-meta">${lab.meta}</div>
             <div class="m-block"><b>問題</b><p>${lab.problem}</p></div>
             <div class="m-block"><b>アプローチ</b><p>${lab.approach}</p></div>
-            ${media}${code}${more}`;
+            ${media}${code}${links}${more}`;
         overlay.classList.add("open");
         document.body.style.overflow = "hidden";
     }
