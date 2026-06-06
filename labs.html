@@ -81,6 +81,30 @@
     // ── 実験エントリ。追加するときはここにオブジェクトを 1 つ足すだけ ──
     const LABS = [
         {
+            id: "pb-mpm",
+            title: "EA SEED の PB-MPM を手元で動かす ── WebGPU 研究実装を DirectX 12 へ移植",
+            thumb: "images/pbmpm/thumb.webp", thumbW: 444, thumbH: 155,
+            blurb: "砂・雪・粘体をリアルタイムに解く EA SEED の MPM ソルバ（SIGGRAPH 2024）は、公開実装が WebGPU の研究コードのみ。これを自作エンジンの DirectX 12 / HLSL へ「行単位で忠実に」移植し、液体・弾性・砂・粘体の 4 材質が別々の物性として 60fps で解けるところまで再現した。この実験が次の制作につながった。",
+            tags: ["DirectX 12", "HLSL", "Compute Shader", "MPM", "物理シム"],
+            meta: "2026 | MitiruEngine（DirectX 12 コンピュート）",
+            problem: "EA SEED の PB-MPM（Position-Based MPM, SIGGRAPH 2024）は、砂・雪・泥・粘弾性体をリアルタイムに扱える Material Point Method を、位置ベースの制約ループに作り直した手法。任意のタイムステップで破綻せず「explicit 並みに実装が楽」が売り。ただし公開されているのは WebGPU の研究実装で、ネイティブ GPU（DirectX / Vulkan）での再現はほとんど無い。最新手法は論文とブラウザデモを眺めるだけでは「自分のゲームの土台に使えるか」が分からない ── 自分の環境で動かして初めて分かる。",
+            approach: "公式の WebGPU / WGSL 実装（BSD-3-Clause）を、式だけでなく行単位で忠実に DirectX 12 / HLSL へ翻訳した（過去に式だけ移植して挙動が合わず失敗した反省から）。粒子→グリッド→粒子を 1 ディスパッチに融合した g2p2g、6×6+ハロ1 のタイル（bukkit）への粒子再ビン、3 枚の格子のリングローテーション、GPU 側エミッション ── 公式アーキテクチャをそのまま移植している。結果、液体・弾性・砂・粘体の 4 材質が、砂は粒として積もり／液体は広がり／弾性体は形を保つ、と別々の物性として 60fps・1.7 万粒子で安定して解ける。移植で効いたのは自作エンジンの決定論リプレイ（同じ入力なら bit-exact）で、グリッド書き込み順に起因する非決定性を差分として炙り出せた。DX12 / HLSL 固有の罠も複数踏んだ ── 例えば HLSL の atan2(0,0) が NaN を返し、無変形の弾性体で 2×2 SVD が壊れて「粒子が空中で凍結」する（WGSL は 0 を返すので公式では起きない）／未初期化ディスクリプタがテーブル内にあるだけでデバイスロスト、など。この『一本のソルバから複数の物性が出る』のが面白く、後の落ちものパズル制作につながった。EA の移植部は BSD-3-Clause に従い帰属表示の上で利用している。",
+            media: [
+                { type: "img", src: "images/pbmpm/materials.webp", w: 444, h: 182,
+                  alt: "移植した PB-MPM の 4 材質（液体・弾性・砂・粘体）",
+                  caption: "移植した PB-MPM が解く 4 材質。砂（黄）は粒として積もり、液体（青）は広がってならされ、弾性体（緑）は塊のまま形を保ち、粘体（桃）はとろりと沈む ── すべて同じ 1 本のソルバが解いている（DirectX 12 コンピュート、1.7 万粒子・60fps）。" },
+                { type: "img", src: "images/pbmpm/metaball.webp", w: 444, h: 182,
+                  alt: "同じプールをメタボールで表面化して描画したカット",
+                  caption: "同じプールをメタボールで表面化して描いたカット。粒子のままでも、滑らかな表面としても出せる。" },
+                { type: "img", src: "images/pbmpm/game.webp", w: 960, h: 720,
+                  alt: "PB-MPM を土台に作った落ちものパズル（開発中）",
+                  caption: "そして ── この PB-MPM をそのままルールにした落ちものパズルを作った（開発中）。積んだブロックが時間経過の「波」でゼリー → 液体 と溶けて混ざり、冷えるとまた固まる。流体の物性そのものが攻略になる落ちものゲームで、上の実験がそのまま土台になっている。" }
+            ],
+            links: [
+                { label: "PB-MPM 論文 (EA SEED, SIGGRAPH 2024)", href: "https://media.contentapi.ea.com/content/dam/ea/seed/presentations/seed-siggraph2024-pbmpm-paper.pdf" }
+            ]
+        },
+        {
             id: "sdf-face-shadow",
             title: "上下の光に応答するアニメ顔影 ── SDF しきい値マップの仰角拡張",
             thumb: "images/sdf-face/compare_up.webp", thumbW: 1500, thumbH: 500,
