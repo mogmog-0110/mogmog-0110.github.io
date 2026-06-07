@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="ja" style="background-color: #ffffff;">
+<html lang="ja" style="background-color: #fcfcfb;">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#fcfcfb">
     <title>Shiggy's Portfolio</title>
     <meta name="description" content="川村優弥のポートフォリオサイト">
     <meta name="author" content="川村優弥 (Shiggy)">
 
     <style>
-        html, body { background-color: #ffffff !important; margin: 0; padding: 0; }
+        html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
     </style>
 
     <!-- meta:social -->
@@ -18,7 +18,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shiggy's Portfolio">
     <meta property="og:title" content="Shiggy's Portfolio">
-    <meta property="og:description" content="川村優弥のポートフォリオ。ゲーム開発、自作エンジン MitiruEngine、剛体物理シミュレーション研究（BDA 2025 / Springer LNCS）、株式会社 Live2D での Cubism SDK 実務。">
+    <meta property="og:description" content="川村優弥のポートフォリオ。ゲーム開発、自作エンジン MitiruEngine、3DCG・物理シミュレーションの実験、剛体物理シミュレーション研究（BDA 2025 / Springer LNCS）。">
     <meta property="og:url" content="https://mogmog-0110.github.io/">
     <link rel="canonical" href="https://mogmog-0110.github.io/">
     <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
@@ -26,13 +26,13 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Shiggy's Portfolio">
-    <meta name="twitter:description" content="川村優弥のポートフォリオ。ゲーム開発、自作エンジン MitiruEngine、剛体物理シミュレーション研究（BDA 2025 / Springer LNCS）、株式会社 Live2D での Cubism SDK 実務。">
+    <meta name="twitter:description" content="川村優弥のポートフォリオ。ゲーム開発、自作エンジン MitiruEngine、3DCG・物理シミュレーションの実験、剛体物理シミュレーション研究（BDA 2025 / Springer LNCS）。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600&family=Noto+Sans+JP:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/site.css">
@@ -44,7 +44,6 @@
         "name": "川村優弥",
         "alternateName": ["Yuya Kawamura", "Shiggy"],
         "url": "https://mogmog-0110.github.io/",
-        "email": "mailto:medli908@gmail.com",
         "sameAs": ["https://github.com/mogmog-0110"],
         "affiliation": { "@type": "CollegeOrUniversity", "name": "会津大学大学院" },
         "knowsAbout": ["C++", "Game Engine Development", "Computer Graphics", "Physics Simulation"]
@@ -54,175 +53,174 @@
 
 <body>
     <a class="skip-link" href="#main">本文へスキップ</a>
-    <header class="site-head">
-        <div class="container">
-            <a class="brand" href="index.html">Shiggy</a>
-            <ul class="menu">
-                <li><a href="engine.html">Engine</a></li>
-                <li><a href="labs.html">Lab</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="portfolio.html">Works</a></li>
-            </ul>
-        </div>
-    </header>
 
-    <main class="container" id="main">
-        <!-- Hero -->
-        <section class="hero">
-            <p class="kicker">Portfolio</p>
-            <h1>川村 優弥</h1>
-            <p class="role">Shiggy ── ゲーム / 自作エンジン / 物理シミュレーション</p>
-        </section>
+    <div class="frame">
+        <header class="site-head">
+            <div class="inner">
+                <a class="brand" href="index.html">shiggy</a>
+                <ul class="menu">
+                    <li><a href="engine.html">engine</a></li>
+                    <li><a href="labs.html">lab</a></li>
+                    <li><a href="research.html">research</a></li>
+                    <li><a href="portfolio.html">works</a></li>
+                </ul>
+            </div>
+        </header>
 
-        <!-- 扉リンク -->
-        <nav class="doors" aria-label="主要セクション">
-            <a class="door" href="engine.html">
-                <span class="door-name">Engine</span>
-                <span class="door-desc">C++20 / header-only の自作ゲームエンジン MitiruEngine</span>
-                <span class="door-arrow">→</span>
-            </a>
-            <a class="door" href="labs.html">
-                <span class="door-name">Lab</span>
-                <span class="door-desc">3DCG・物理シミュレーションの問題を自作エンジンで解く実験集</span>
-                <span class="door-arrow">→</span>
-            </a>
-            <a class="door" href="research.html">
-                <span class="door-name">Research</span>
-                <span class="door-desc">剛体物理シミュレーションによる環状化合物の選択性解析（BDA 2025 / LNCS）</span>
-                <span class="door-arrow">→</span>
-            </a>
-            <a class="door" href="portfolio.html">
-                <span class="door-name">Works</span>
-                <span class="door-desc">学部から現在までのゲーム・ツール・創作</span>
-                <span class="door-arrow">→</span>
-            </a>
-        </nav>
-
-        <!-- About -->
-        <div class="sections">
-            <section class="sec">
-                <h2>About</h2>
-                <div class="sec-body">
-                    <p>
-                        会津大学大学院 修士1年。C++ とグラフィックス API を軸に、ゲーム・ゲームエンジン・物理シミュレーションを横断して開発しています。
-                    </p>
-                    <p>
-                        株式会社 Live2D で Cubism SDK for Native（C++）の保守・不具合対応に従事し、グラフィックス API のプロダクションコードに日常的に触れています。学部ではチーム開発のリーダーとして、企画からシナリオ・イラスト・実装まで担当してきました。
-                    </p>
+        <main id="main">
+            <!-- Hero：名前 + リアルタイム図版 fig.0 -->
+            <section class="hero">
+                <div class="hero-text">
+                    <p class="file-line">mogmog-0110.github.io / portfolio</p>
+                    <h1>川村 優弥</h1>
+                    <p class="role">Shiggy — game / engine / physics-simulation</p>
                 </div>
-            </section>
-
-            <section class="sec">
-                <h2>Skills</h2>
-                <div class="sec-body">
-                    <ul class="profile">
-                        <li>
-                            <span class="k">言語</span>
-                            <span class="v">C++（C++17 / 20、主力）／ C# ／ Go ／ JavaScript</span>
-                        </li>
-                        <li>
-                            <span class="k">グラフィックス</span>
-                            <span class="v">DirectX 11・12 ／ OpenGL ／ Vulkan ／ WebGL ／ WebGPU ／ HLSL ／ GLSL</span>
-                        </li>
-                        <li>
-                            <span class="k">エンジン・FW</span>
-                            <span class="v">自作（MitiruEngine）／ Unity ／ Godot ／ Siv3D ／ PhysX ／ CEF</span>
-                        </li>
-                        <li>
-                            <span class="k">開発環境</span>
-                            <span class="v">CMake ／ Git・GitHub ／ GoogleTest ／ Live2D Cubism SDK ／ Dear ImGui</span>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="sec">
-                <h2>経歴・活動</h2>
-                <div class="sec-body">
-                    <ul class="profile">
-                        <li>
-                            <span class="k">2022年〜</span>
-                            <span class="v">会津大学 コンピュータ理工学部。在学中からチーム開発・コミックマーケット（101 / 103 / 106）でのゲーム頒布を継続</span>
-                        </li>
-                        <li>
-                            <span class="k">2025年</span>
-                            <span class="v">コンピュータサイエンスサマーキャンプ 2025 にてプロジェクトリーダーとして教材開発・高校生への指導</span>
-                        </li>
-                        <li>
-                            <span class="k">2025年12月</span>
-                            <span class="v">国際会議 BDA 2025 にて第一著者として発表（Springer LNCS 収録、フルペーパー 17 頁）</span>
-                        </li>
-                        <li>
-                            <span class="k">2026年4月〜</span>
-                            <span class="v">会津大学大学院 コンピュータ・情報システム学専攻（M1）。並行して株式会社 Live2D で Cubism SDK for Native（C++）の保守・不具合対応に従事</span>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="sec">
-                <h2>Profile</h2>
-                <div class="sec-body">
-                    <ul class="profile">
-                        <li>
-                            <span class="k">名前</span>
-                            <span class="v">川村優弥</span>
-                        </li>
-                        <li>
-                            <span class="k">ハンドルネーム</span>
-                            <span class="v">Shiggy</span>
-                        </li>
-                        <li>
-                            <span class="k">所属</span>
-                            <span class="v">会津大学大学院 コンピュータ理工学研究科<br>コンピュータ・情報システム学専攻（M1）</span>
-                        </li>
-                        <li>
-                            <span class="k">GitHub</span>
-                            <span class="v"><a href="https://github.com/mogmog-0110" target="_blank" rel="noopener" class="soft-link">mogmog-0110</a></span>
-                        </li>
-                        <li>
-                            <span class="k">趣味</span>
-                            <span class="v">小説を読む、書く</span>
-                        </li>
-                        <li>
-                            <span class="k">好きな本</span>
-                            <span class="v">ハムレット（シェイクスピア）／ 愛人-AIREN-（田中ユタカ）／ 官能小説用語辞典</span>
-                        </li>
-                        <li>
-                            <span class="k">好きなゲーム</span>
-                            <span class="v">グリザイアの果実 ／ この世の果てで恋を唄う少女~YUNO~ ／ オプーナ ／ ゼノギアス</span>
-                        </li>
-                        <li>
-                            <span class="k">はまってること</span>
-                            <span class="v">東方の同人CDを集めて聴く ／ 研究室から朝帰りする</span>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="sec">
-                <h2>Contact</h2>
-                <div class="sec-body">
-                    <p>
-                        お仕事や研究のご相談、作品へのフィードバックなど、お気軽にご連絡ください。
-                    </p>
-                    <div class="link-row" style="margin-top: 0.8rem;">
-                        <a href="mailto:medli908@gmail.com">medli908@gmail.com →</a>
-                        <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">GitHub: mogmog-0110 →</a>
+                <div class="hero-fig">
+                    <div class="fig-stage">
+                        <canvas id="fig0" role="img" aria-label="SDF レイマーチングによるリアルタイム NPR 描画。輪郭線とハッチングのみで陰影を構成"></canvas>
+                        <noscript>
+                            <img class="fig-fallback" src="images/sdf-face/threshold_maps.webp" alt="SDF 顔影のしきい値マップ" width="1024" height="512" loading="lazy">
+                        </noscript>
                     </div>
+                    <p class="fig-caption">
+                        <b>fig.0</b>SDF raymarching — 手続き生成形状を輪郭線＋ハッチングのみで描画（realtime / WebGL）。光源はカーソルに追従。
+                    </p>
                 </div>
             </section>
-        </div>
-    </main>
 
-    <footer class="site-foot">
-        <div class="container">
+            <!-- 扉リンク -->
+            <nav class="doors" aria-label="主要セクション">
+                <a class="door" href="engine.html">
+                    <span class="door-no">[01]</span>
+                    <span>
+                        <span class="door-name">engine</span>
+                        <span class="door-desc">C++20 / header-only の自作ゲームエンジン MitiruEngine</span>
+                    </span>
+                </a>
+                <a class="door" href="labs.html">
+                    <span class="door-no">[02]</span>
+                    <span>
+                        <span class="door-name">lab</span>
+                        <span class="door-desc">3DCG・物理シミュレーションの問題を自作エンジンで解く実験集</span>
+                    </span>
+                </a>
+                <a class="door" href="research.html">
+                    <span class="door-no">[03]</span>
+                    <span>
+                        <span class="door-name">research</span>
+                        <span class="door-desc">剛体物理シミュレーションによる環状化合物の選択性解析（BDA 2025 / LNCS）</span>
+                    </span>
+                </a>
+                <a class="door" href="portfolio.html">
+                    <span class="door-no">[04]</span>
+                    <span>
+                        <span class="door-name">works</span>
+                        <span class="door-desc">学部から現在までのゲーム・ツール・創作</span>
+                    </span>
+                </a>
+            </nav>
+
+            <div class="sections">
+                <section class="sec">
+                    <h2>ABOUT</h2>
+                    <div class="sec-body">
+                        <p>
+                            会津大学大学院 修士1年。C++ とグラフィックス API を軸に、ゲーム・ゲームエンジン・物理シミュレーションを横断して開発しています。現在は CG をメインに、個人でも研究・開発を進めています。
+                        </p>
+                        <p>
+                            2026年1月から株式会社 Live2D で Cubism SDK for Native（C++）まわりのアルバイトをしており、SDK の保守・不具合対応に携わっています。学部ではゲーム制作サークルの部長として、企画からシナリオ・イラスト・実装まで担当しながらチームでゲームを作ってきました。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>HISTORY</h2>
+                    <div class="sec-body">
+                        <ul class="profile">
+                            <li>
+                                <span class="k">2022 -</span>
+                                <span class="v">会津大学 コンピュータ理工学部。ゲーム制作サークルでコミックマーケット（C100 - C106）にゲームを頒布し、頒布する CD・パッケージ・ランチャーの制作も部員と手がける</span>
+                            </li>
+                            <li>
+                                <span class="k">2024</span>
+                                <span class="v">ゲーム制作サークルの部長を務める</span>
+                            </li>
+                            <li>
+                                <span class="k">2024 / 2025</span>
+                                <span class="v">全国の高校生が集まるプログラミングイベント「コンピュータサイエンスサマーキャンプ」で学生リーダーを務め、JavaScript でのゲームプログラミングと CG を指導</span>
+                            </li>
+                            <li>
+                                <span class="k">2025-12</span>
+                                <span class="v">国際会議 BDA 2025 にて第一著者として発表（Springer LNCS 収録、フルペーパー 17 頁）</span>
+                            </li>
+                            <li>
+                                <span class="k">2026-01 -</span>
+                                <span class="v">株式会社 Live2D で Cubism SDK for Native（C++）保守のアルバイトを開始</span>
+                            </li>
+                            <li>
+                                <span class="k">2026-04 -</span>
+                                <span class="v">会津大学大学院 コンピュータ・情報システム学専攻（M1）。CG をメインに研究・開発を継続</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>PROFILE</h2>
+                    <div class="sec-body">
+                        <ul class="profile">
+                            <li>
+                                <span class="k">name</span>
+                                <span class="v">川村優弥（Shiggy）</span>
+                            </li>
+                            <li>
+                                <span class="k">affiliation</span>
+                                <span class="v">会津大学大学院 コンピュータ理工学研究科 コンピュータ・情報システム学専攻（M1）</span>
+                            </li>
+                            <li>
+                                <span class="k">github</span>
+                                <span class="v"><a href="https://github.com/mogmog-0110" target="_blank" rel="noopener" class="soft-link">mogmog-0110</a></span>
+                            </li>
+                            <li>
+                                <span class="k">hobby</span>
+                                <span class="v">小説を読む、書く</span>
+                            </li>
+                            <li>
+                                <span class="k">books</span>
+                                <span class="v">ハムレット（シェイクスピア）／ 愛人-AIREN-（田中ユタカ）／ 官能小説用語辞典</span>
+                            </li>
+                            <li>
+                                <span class="k">games</span>
+                                <span class="v">グリザイアの果実 ／ この世の果てで恋を唄う少女~YUNO~ ／ オプーナ ／ ゼノギアス</span>
+                            </li>
+                            <li>
+                                <span class="k">obsessed</span>
+                                <span class="v">東方の同人CDを集めて聴く ／ 研究室から朝帰りする</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>CONTACT</h2>
+                    <div class="sec-body">
+                        <div class="link-row">
+                            <span class="addr">fujimiya0110☆gmail.com<span class="addr-note">（☆ を @ に変えてください）</span></span>
+                            <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">github.com/mogmog-0110 →</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="site-foot">
             <p>&copy; 川村優弥 / Shiggy</p>
-            <p><a href="mailto:medli908@gmail.com">medli908@gmail.com</a> ・ <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">GitHub</a></p>
-        </div>
-    </footer>
+            <p>fujimiya0110☆gmail.com（☆→@） · <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">github</a></p>
+        </footer>
+    </div>
 
     <script src="assets/js/back-to-top.js"></script>
+    <script src="assets/js/fig0.js"></script>
 </body>
 
 </html>

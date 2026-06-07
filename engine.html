@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="ja" style="background-color: #ffffff;">
+<html lang="ja" style="background-color: #fcfcfb;">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#fcfcfb">
     <title>MitiruEngine | Shiggy</title>
     <meta name="description" content="MitiruEngine。自作の C++ ゲームエンジン。ゲームの中身は C++、メニューや HUD は HTML/CSS で書ける。プレイの録画再生や、巻き戻して観察できる開発ツール付き。">
 
     <style>
-        html, body { background-color: #ffffff !important; margin: 0; padding: 0; }
+        html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
     </style>
 
     <!-- meta:social -->
@@ -28,96 +28,101 @@
     <meta name="twitter:description" content="自作の C++ ゲームエンジン。ゲームの中身は C++、メニューや HUD は HTML/CSS で書ける。プレイの録画再生や、巻き戻して観察できる開発ツール付き。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600&family=Noto+Sans+JP:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
+    <!-- Styles -->
     <link rel="stylesheet" href="assets/css/site.css">
 </head>
 
 <body>
     <a class="skip-link" href="#main">本文へスキップ</a>
-    <header class="site-head">
-        <div class="container">
-            <a class="brand" href="index.html">Shiggy</a>
-            <ul class="menu">
-                <li><a href="engine.html" class="current">Engine</a></li>
-                <li><a href="labs.html">Lab</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="portfolio.html">Works</a></li>
-            </ul>
-        </div>
-    </header>
 
-    <main class="container" id="main">
-        <section class="page-head">
-            <p class="kicker">Engine</p>
-            <h1>MitiruEngine</h1>
-            <p class="lede">
-                <strong>ひとりで書き続けている、自作の C++ ゲームエンジンです。</strong>
-                ライブラリ全体がヘッダファイルだけで完結する header-only 構成で、リンク設定なしに <code>#include</code> するだけで使い始められます。ゲームの中身（動き・当たり判定・スコア）は C++ で、メニューや体力バーなどの画面表示は Web ページと同じ HTML / CSS で書けます。コマンドひとつでプロジェクトを作り、数分で動く窓が出ます。
-            </p>
-            <div class="meta-line" style="margin-top: 1.6rem; margin-bottom: 0;">
-                <span>開発中</span><span>C++20</span><span>Windows</span><span>MIT License</span>
+    <div class="frame">
+        <header class="site-head">
+            <div class="inner">
+                <a class="brand" href="index.html">shiggy</a>
+                <ul class="menu">
+                    <li><a href="engine.html" class="current">engine</a></li>
+                    <li><a href="labs.html">lab</a></li>
+                    <li><a href="research.html">research</a></li>
+                    <li><a href="portfolio.html">works</a></li>
+                </ul>
             </div>
-        </section>
+        </header>
 
-        <div class="sections">
-            <section class="sec">
-                <h2>どんなもの？</h2>
-                <div class="sec-body">
-                    <p>
-                        下の画面は、このエンジンで作ったサンプルのブロック崩しです。ボールやブロックの動きは C++ で、上のスコア・残機・レベルの表示は HTML と CSS で書かれています。
-                    </p>
-                    <figure class="plate">
-                        <img src="images/engine/breakout.webp" alt="MitiruEngine で作ったブロック崩しのプレイ画面。カラフルなブロックの壁とボール、上部にスコア・残機・レベルの表示" fetchpriority="high" width="1280" height="720">
-                        <figcaption>同梱サンプル「ブロック崩し」。ゲーム本体は C++、画面上部の表示は HTML/CSS。</figcaption>
-                    </figure>
-                    <div class="figures">
-                        <div class="figure"><b>7</b><span>描画バックエンド</span></div>
-                        <div class="figure"><b>5</b><span>対応プラットフォーム</span></div>
-                        <div class="figure"><b>1,800+</b><span>自動テスト</span></div>
-                        <div class="figure"><b>1,000+</b><span>コミット</span></div>
+        <main id="main">
+            <section class="page-head">
+                <p class="file-line">mogmog-0110.github.io / engine</p>
+                <h1>MitiruEngine</h1>
+                <p class="lede">
+                    <strong>ひとりで書き続けている、自作の C++ ゲームエンジンです。</strong>
+                    ライブラリ全体がヘッダファイルだけで完結する header-only 構成で、リンク設定なしに <code>#include</code> するだけで使い始められます。ゲームの中身（動き・当たり判定・スコア）は C++ で、メニューや体力バーなどの画面表示は Web ページと同じ HTML / CSS で書けます。コマンドひとつでプロジェクトを作り、数分で動く窓が出ます。
+                </p>
+            </section>
+
+            <div class="sections">
+                <section class="sec">
+                    <h2>OVERVIEW</h2>
+                    <div class="sec-body">
+                        <div class="meta-line">
+                            <span>開発中</span><span>C++20</span><span>Windows</span><span>MIT License</span>
+                        </div>
+                        <p>
+                            下の画面は、このエンジンで作ったサンプルのブロック崩しです。ボールやブロックの動きは C++ で、上のスコア・残機・レベルの表示は HTML と CSS で書かれています。
+                        </p>
+                        <figure class="plate">
+                            <img src="images/engine/breakout.webp" alt="MitiruEngine で作ったブロック崩しのプレイ画面。カラフルなブロックの壁とボール、上部にスコア・残機・レベルの表示" fetchpriority="high" width="1280" height="720">
+                            <figcaption>同梱サンプル「ブロック崩し」。ゲーム本体は C++、画面上部の表示は HTML/CSS。</figcaption>
+                        </figure>
+                        <div class="figures">
+                            <div class="figure"><b>7</b><span>描画バックエンド</span></div>
+                            <div class="figure"><b>5</b><span>対応プラットフォーム</span></div>
+                            <div class="figure"><b>1,800+</b><span>自動テスト</span></div>
+                            <div class="figure"><b>1,000+</b><span>コミット</span></div>
+                        </div>
+                        <p class="fine">数値は 2026 年 6 月時点。描画は OpenGL / DirectX 11・12 / Vulkan / WebGL / WebGPU を同じ書き方で切り替えられます。</p>
                     </div>
-                    <p class="fine">数値は 2026 年 6 月時点。描画は OpenGL / DirectX 11・12 / Vulkan / WebGL / WebGPU を同じ書き方で切り替えられます。</p>
-                </div>
-            </section>
+                </section>
 
-            <section class="sec">
-                <h2>なぜ自分でエンジンを書くのか</h2>
-                <div class="sec-body">
-                    <p>
-                        Unity や Godot を使えば、ゲームを作るだけなら困りません。それでも自分で書くのは、ゲームが画面に出るまでに何がどう動いているかを、使う側ではなく<strong>作る側から</strong>知っておきたいからです。
-                    </p>
-                    <p>
-                        目的はエンジンそのものではなく、ゲームを深く作れる人間でいるための足場です。ゲーム制作は並行して進めていて、そこで詰まった課題をエンジンに書き戻す、という往復で育てています。
-                    </p>
-                </div>
-            </section>
+                <section class="sec">
+                    <h2>なぜ自分でエンジンを書くのか</h2>
+                    <div class="sec-body">
+                        <p>
+                            Unity や Godot を使えば、ゲームを作るだけなら困りません。それでも自分で書くのは、ゲームが画面に出るまでに何がどう動いているかを、使う側ではなく<strong>作る側から</strong>知っておきたいからです。
+                        </p>
+                        <p>
+                            目的はエンジンそのものではなく、ゲームを深く作れる人間でいるための足場です。ゲーム制作は並行して進めていて、そこで詰まった課題をエンジンに書き戻す、という往復で育てています。
+                        </p>
+                    </div>
+                </section>
 
-            <section class="sec">
-                <h2>考え方 ── 必要なものしか画面に出さない</h2>
-                <div class="sec-body">
-                    <p>
-                        Unity / Godot のような「たくさんのパネルが同時に並ぶ全部入りエディタ」は作りません。逆の方向に振っています。
-                    </p>
-                    <ul>
-                        <li><strong>道具は 1 つにつき 1 ウィンドウ。</strong>描画の確認、音の確認、デバッグ表示は、それぞれ独立した小さな窓で、必要なときだけ開きます</li>
-                        <li><strong>ふだんは何も開かない。</strong>ゲームの窓だけがある状態が基本です</li>
-                        <li><strong>操作はコマンドから。</strong>プロジェクト作成・ビルド・実行はすべて <code>mitiru</code> コマンドでできるので、エディタは Visual Studio でも VS Code でもメモ帳でも構いません</li>
-                    </ul>
-                    <p>
-                        「画面がごちゃごちゃしない」だけの話に見えますが、エンジンの中身も同じ方針で、部品ごとに独立して動くように作ってあります。
-                    </p>
-                </div>
-            </section>
+                <section class="sec">
+                    <h2>PHILOSOPHY</h2>
+                    <div class="sec-body">
+                        <p class="sec-intro">考え方 ── 必要なものしか画面に出さない</p>
+                        <p>
+                            Unity / Godot のような「たくさんのパネルが同時に並ぶ全部入りエディタ」は作りません。逆の方向に振っています。
+                        </p>
+                        <ul>
+                            <li><strong>道具は 1 つにつき 1 ウィンドウ。</strong>描画の確認、音の確認、デバッグ表示は、それぞれ独立した小さな窓で、必要なときだけ開きます</li>
+                            <li><strong>ふだんは何も開かない。</strong>ゲームの窓だけがある状態が基本です</li>
+                            <li><strong>操作はコマンドから。</strong>プロジェクト作成・ビルド・実行はすべて <code>mitiru</code> コマンドでできるので、エディタは Visual Studio でも VS Code でもメモ帳でも構いません</li>
+                        </ul>
+                        <p>
+                            「画面がごちゃごちゃしない」だけの話に見えますが、エンジンの中身も同じ方針で、部品ごとに独立して動くように作ってあります。
+                        </p>
+                    </div>
+                </section>
 
-            <section class="sec">
-                <h2>ゲームの書き方</h2>
-                <div class="sec-body">
-                    <p>
-                        書くのは「状態のまとまり（struct）」と「毎フレームの処理（update / draw）」だけです。最後の 1 行でエンジンに繋がります。
-                    </p>
+                <section class="sec">
+                    <h2>ゲームの書き方</h2>
+                    <div class="sec-body">
+                        <p>
+                            書くのは「状態のまとまり（struct）」と「毎フレームの処理（update / draw）」だけです。最後の 1 行でエンジンに繋がります。
+                        </p>
 
 <pre><code>struct MyGame {
     float x = 600;
@@ -131,84 +136,84 @@
 };
 MITIRU_GAME(MyGame)   // この 1 行でエンジンに繋がる</code></pre>
 
-                    <p>
-                        C++ から送った値は、HTML 側で <code>&lt;span data-m-text="view.hud.score"&gt;</code> と書くだけで表示されます。JavaScript は書きません。
-                    </p>
-                    <figure class="plate">
-                        <img src="images/engine/hello_game_window.webp" alt="サンプルゲームのプレイ画面。水色の自機と赤い敵、左上に HP バー、右上に残り秒数" loading="lazy" width="1280" height="720">
-                        <figcaption>サンプル「hello_game」（敵をよけて 30 秒生き残るゲーム）。自機や敵は C++ が描き、左上の HP バーと右上のタイマーは HTML/CSS。</figcaption>
-                    </figure>
-                    <p>
-                        ゲームコードを保存すると、<strong>動いているゲームを止めずにその場で反映</strong>されます（位置や HP などの状態は保ったまま）。数字を変えて手触りを試す、を高速に繰り返せます。
-                    </p>
-                </div>
-            </section>
-
-            <section class="sec">
-                <h2>いちばんの特徴 ── 巻き戻して、観察できる</h2>
-                <div class="sec-body">
-                    <p>
-                        プレイ中に T キーを押すと、<strong>直前 5 秒を 1 フレームずつ巻き戻して見られます</strong>。「なぜか HP が減った」というとき、その瞬間まで戻って、何が起きたかを目で確認できます。
-                    </p>
-                    <figure class="plate">
-                        <img src="images/engine/hello_game_timetravel.webp" alt="タイムトラベル中の画面。下部に −37 frames・−0.62s と書かれた巻き戻しバー、右に押されたキーの履歴一覧" loading="lazy" width="1280" height="720">
-                        <figcaption>タイムトラベル中の画面。下のバーが「37 フレーム（0.62 秒）前を見ている」ことを示し、その時点の HP も表示される。右の窓は押したキーの履歴。</figcaption>
-                    </figure>
-                    <p>
-                        さらに、プレイ中の入力はすべて自動で記録されていて、<strong>あとから同じプレイをそっくり再生</strong>できます。「たまにしか起きないバグ」を録画しておいて何度でも再現する、テストとして毎回流す、という使い方ができます。
-                    </p>
-                    <p>
-                        こうした道具が成立するのは、ゲームの状態を 1 か所にまとめて持つ、というエンジンの構造上の約束があるからです。機能を後付けしたのではなく、設計の段階からこれらを目的にしています。
-                    </p>
-                </div>
-            </section>
-
-            <section class="sec">
-                <h2>MitiruEngine で動いているもの</h2>
-                <div class="sec-body">
-                    <p>
-                        エンジンは「実際にゲームを出せる道具」になっていてこそなので、いま動いているものを並べておきます。
-                    </p>
-                    <ul>
-                        <li>
-                            <a href="hato.html">ハトを育てよう（リメイク）</a> ── 2023 年に作ったノベルゲームを、このエンジン上で完全移植。セーブ・ロードやバックログなどの追加要素込みで動いています
-                        </li>
-                        <li>
-                            <a href="kaerucrape.html">かえるクレープへようこそ</a> ── コミックマーケットで配布したゲームを、Godot からこのエンジンへ移植中
-                        </li>
-                        <li>
-                            同梱サンプル ── ブロック崩し、よけゲーム、サバイバルゲームなど。コードを読んで真似るところから始められます
-                        </li>
-                        <li>
-                            <a href="npr-lines.html">NPR 輪郭線の時間安定化</a> ── アニメ調の輪郭線がチラつく問題への実験（Lab）。実験台としてもこのエンジンを使っています
-                        </li>
-                    </ul>
-                    <figure class="plate">
-                        <img src="images/engine/dodge.webp" alt="よけゲームのプレイ画面。暗い背景に落ちてくる赤いブロックと水色の自機、左上にスコア表示" loading="lazy" width="1280" height="720">
-                        <figcaption>同梱サンプル「よけゲーム」。初心者向けチュートリアルの題材で、約 100 行の C++ だけでできている。</figcaption>
-                    </figure>
-                </div>
-            </section>
-
-            <section class="sec">
-                <h2>リンク</h2>
-                <div class="sec-body">
-                    <p>コードは公開しています。エンジン自体の紹介サイトも別途用意しています。</p>
-                    <div class="link-row" style="margin-top: 0;">
-                        <a href="https://github.com/mogmog-0110/MitiruEngine" target="_blank" rel="noopener">GitHub →</a>
-                        <a href="https://github.com/mogmog-0110/mitiru-cli" target="_blank" rel="noopener">mitiru-cli（Go 製コマンドツール） →</a>
+                        <p>
+                            C++ から送った値は、HTML 側で <code>&lt;span data-m-text="view.hud.score"&gt;</code> と書くだけで表示されます。JavaScript は書きません。
+                        </p>
+                        <figure class="plate">
+                            <img src="images/engine/hello_game_window.webp" alt="サンプルゲームのプレイ画面。水色の自機と赤い敵、左上に HP バー、右上に残り秒数" loading="lazy" width="1280" height="720">
+                            <figcaption>サンプル「hello_game」（敵をよけて 30 秒生き残るゲーム）。自機や敵は C++ が描き、左上の HP バーと右上のタイマーは HTML/CSS。</figcaption>
+                        </figure>
+                        <p>
+                            ゲームコードを保存すると、<strong>動いているゲームを止めずにその場で反映</strong>されます（位置や HP などの状態は保ったまま）。数字を変えて手触りを試す、を高速に繰り返せます。
+                        </p>
                     </div>
-                </div>
-            </section>
-        </div>
-    </main>
+                </section>
 
-    <footer class="site-foot">
-        <div class="container">
+                <section class="sec">
+                    <h2>TIME TRAVEL</h2>
+                    <div class="sec-body">
+                        <p class="sec-intro">いちばんの特徴 ── 巻き戻して、観察できる</p>
+                        <p>
+                            プレイ中に T キーを押すと、<strong>直前 5 秒を 1 フレームずつ巻き戻して見られます</strong>。「なぜか HP が減った」というとき、その瞬間まで戻って、何が起きたかを目で確認できます。
+                        </p>
+                        <figure class="plate">
+                            <img src="images/engine/hello_game_timetravel.webp" alt="タイムトラベル中の画面。下部に −37 frames・−0.62s と書かれた巻き戻しバー、右に押されたキーの履歴一覧" loading="lazy" width="1280" height="720">
+                            <figcaption>タイムトラベル中の画面。下のバーが「37 フレーム（0.62 秒）前を見ている」ことを示し、その時点の HP も表示される。右の窓は押したキーの履歴。</figcaption>
+                        </figure>
+                        <p>
+                            さらに、プレイ中の入力はすべて自動で記録されていて、<strong>あとから同じプレイをそっくり再生</strong>できます。「たまにしか起きないバグ」を録画しておいて何度でも再現する、テストとして毎回流す、という使い方ができます。
+                        </p>
+                        <p>
+                            こうした道具が成立するのは、ゲームの状態を 1 か所にまとめて持つ、というエンジンの構造上の約束があるからです。機能を後付けしたのではなく、設計の段階からこれらを目的にしています。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>MitiruEngine で動いているもの</h2>
+                    <div class="sec-body">
+                        <p>
+                            エンジンは「実際にゲームを出せる道具」になっていてこそなので、いま動いているものを並べておきます。
+                        </p>
+                        <ul>
+                            <li>
+                                <a href="hato.html">ハトを育てよう（リメイク）</a> ── 2023 年に作ったノベルゲームを、このエンジン上で完全移植。セーブ・ロードやバックログなどの追加要素込みで動いています
+                            </li>
+                            <li>
+                                <a href="kaerucrape.html">かえるクレープへようこそ</a> ── コミックマーケットで配布したゲームを、Godot からこのエンジンへ移植中
+                            </li>
+                            <li>
+                                同梱サンプル ── ブロック崩し、よけゲーム、サバイバルゲームなど。コードを読んで真似るところから始められます
+                            </li>
+                            <li>
+                                <a href="npr-lines.html">NPR 輪郭線の時間安定化</a> ── アニメ調の輪郭線がチラつく問題への実験（Lab）。実験台としてもこのエンジンを使っています
+                            </li>
+                        </ul>
+                        <figure class="plate">
+                            <img src="images/engine/dodge.webp" alt="よけゲームのプレイ画面。暗い背景に落ちてくる赤いブロックと水色の自機、左上にスコア表示" loading="lazy" width="1280" height="720">
+                            <figcaption>同梱サンプル「よけゲーム」。初心者向けチュートリアルの題材で、約 100 行の C++ だけでできている。</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>LINKS</h2>
+                    <div class="sec-body">
+                        <p>コードは公開しています。エンジン自体の紹介サイトも別途用意しています。</p>
+                        <div class="link-row">
+                            <a href="https://github.com/mogmog-0110/MitiruEngine" target="_blank" rel="noopener">GitHub →</a>
+                            <a href="https://github.com/mogmog-0110/mitiru-cli" target="_blank" rel="noopener">mitiru-cli（Go 製コマンドツール） →</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="site-foot">
             <p>&copy; 川村優弥 / Shiggy</p>
-            <p><a href="mailto:medli908@gmail.com">medli908@gmail.com</a> ・ <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">GitHub</a></p>
-        </div>
-    </footer>
+            <p>fujimiya0110☆gmail.com（☆→@） · <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">github</a></p>
+        </footer>
+    </div>
 
     <script src="assets/js/back-to-top.js"></script>
 </body>

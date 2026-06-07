@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="ja" style="background-color: #ffffff;">
+<html lang="ja" style="background-color: #fcfcfb;">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#fcfcfb">
     <title>かえるクレープへようこそ | Shiggy</title>
     <meta name="description" content="クレープを作りながらヒロインたちと親睦を深める美少女ゲーム × クッキングゲーム。Godot 版を経て、現在は自作の MitiruEngine 上で書き直し中。">
 
     <style>
-        html, body { background-color: #ffffff !important; margin: 0; padding: 0; }
+        html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
     </style>
 
     <!-- meta:social -->
@@ -28,211 +28,217 @@
     <meta name="twitter:description" content="クレープを作りながらヒロインたちと親睦を深める美少女ゲーム × クッキングゲーム。Godot 版を経て MitiruEngine で書き直し中。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600&family=Noto+Sans+JP:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
+    <!-- Styles -->
     <link rel="stylesheet" href="assets/css/site.css">
 </head>
 
 <body>
     <a class="skip-link" href="#main">本文へスキップ</a>
-    <header class="site-head">
-        <div class="container">
-            <a class="brand" href="index.html">Shiggy</a>
-            <ul class="menu">
-                <li><a href="engine.html">Engine</a></li>
-                <li><a href="labs.html">Lab</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="portfolio.html" class="current">Works</a></li>
-            </ul>
-        </div>
-    </header>
 
-    <main class="container" id="main">
-        <section class="page-head">
-            <p class="kicker">Works — Game</p>
-            <h1>かえるクレープへようこそ</h1>
-            <p class="lede">
-                クレープを作りながらヒロインたちと親睦を深める <strong>美少女ゲーム × クッキングゲーム</strong>です。ノベルパートとクッキングパートを行き来する 2 モード構成。
-            </p>
-            <p class="lede" style="margin-top: 0.8rem;">
-                Godot で書いた最初のバージョンをコミックマーケット 106 で無料配布したあと、自作の <a href="engine.html" class="soft-link">MitiruEngine</a> へ全面移植して書き直しています。
-            </p>
-            <div class="meta-line" style="margin-top: 1.6rem; margin-bottom: 0;">
-                <span>In Development</span><span>MitiruEngine 1.0.0-rc1</span><span>WASM</span><span>Team (2人)</span>
+    <div class="frame">
+        <header class="site-head">
+            <div class="inner">
+                <a class="brand" href="index.html">shiggy</a>
+                <ul class="menu">
+                    <li><a href="engine.html">engine</a></li>
+                    <li><a href="labs.html">lab</a></li>
+                    <li><a href="research.html">research</a></li>
+                    <li><a href="portfolio.html" class="current">works</a></li>
+                </ul>
             </div>
-            <div class="link-row">
-                <a href="https://drive.google.com/drive/folders/1dFSFwuPCTnQW0YqZxIDM-JfFe8dWzBm9?usp=sharing" target="_blank" rel="noopener">体験版（Godot 版）ダウンロード →</a>
-            </div>
-        </section>
+        </header>
 
-        <div class="sections">
-            <section class="sec">
-                <h2>プレイ画面</h2>
-                <div class="sec-body">
-                    <p>MitiruEngine 版の開発スクリーンショット。最終アート差し替え前。</p>
-                    <div class="plate-grid">
-                        <a href="images/kc_remake_novel.webp" target="_blank">
-                            <img loading="lazy" decoding="async" src="images/kc_remake_novel.webp" alt="ノベルパートのオープニング" width="1600" height="900">
-                        </a>
-                        <a href="images/kc_remake_mainmenu.webp" target="_blank">
-                            <img loading="lazy" decoding="async" src="images/kc_remake_mainmenu.webp" alt="メインメニュー / 控室" width="1280" height="720">
-                        </a>
-                        <a href="images/kc_remake_cooking.webp" target="_blank">
-                            <img loading="lazy" decoding="async" src="images/kc_remake_cooking.webp" alt="クッキングシーン" width="1280" height="720">
-                        </a>
-                        <a href="images/kc_remake_ui.webp" target="_blank">
-                            <img loading="lazy" decoding="async" src="images/kc_remake_ui.webp" alt="3D + 2D UI" width="1280" height="720">
-                        </a>
+        <main id="main">
+            <section class="page-head">
+                <p class="file-line">mogmog-0110.github.io / works / kaerucrape</p>
+                <h1>かえるクレープへようこそ</h1>
+                <p class="lede">
+                    クレープを作りながらヒロインたちと親睦を深める <strong>美少女ゲーム × クッキングゲーム</strong>です。ノベルパートとクッキングパートを行き来する 2 モード構成。
+                </p>
+                <p class="lede">
+                    Godot で書いた最初のバージョンをコミックマーケット 106 で無料配布したあと、自作の <a href="engine.html" class="soft-link">MitiruEngine</a> へ全面移植して書き直しています。
+                </p>
+                <div class="meta-line">
+                    <span>In Development</span><span>MitiruEngine 1.0.0-rc1</span><span>WASM</span><span>Team (2人)</span>
+                </div>
+                <div class="link-row">
+                    <a href="https://drive.google.com/drive/folders/1dFSFwuPCTnQW0YqZxIDM-JfFe8dWzBm9?usp=sharing" target="_blank" rel="noopener">体験版（Godot 版）ダウンロード →</a>
+                </div>
+            </section>
+
+            <div class="sections">
+                <section class="sec">
+                    <h2>SCREENS</h2>
+                    <div class="sec-body">
+                        <p>MitiruEngine 版の開発スクリーンショット。最終アート差し替え前。</p>
+                        <div class="plate-grid">
+                            <a href="images/kc_remake_novel.webp" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/kc_remake_novel.webp" alt="ノベルパートのオープニング" width="1600" height="900">
+                            </a>
+                            <a href="images/kc_remake_mainmenu.webp" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/kc_remake_mainmenu.webp" alt="メインメニュー / 控室" width="1280" height="720">
+                            </a>
+                            <a href="images/kc_remake_cooking.webp" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/kc_remake_cooking.webp" alt="クッキングシーン" width="1280" height="720">
+                            </a>
+                            <a href="images/kc_remake_ui.webp" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/kc_remake_ui.webp" alt="3D + 2D UI" width="1280" height="720">
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section class="sec">
-                <h2>コンセプト</h2>
-                <div class="sec-body">
-                    <p>
-                        傾いたクレープ屋を、ヒロインたちと一緒に立て直していくゲーム。日々の店の運営と、ヒロインとの会話やイベントを行き来する構造です。詳細な時代設定や舞台はまだ仮置きで、コア体験の作り込みを優先しています。
-                    </p>
-                    <p>1 日のループはおおむね次のとおり。</p>
-                    <ol>
-                        <li>朝のノベル（章イベントが入る日も）</li>
-                        <li>メインメニュー（控室の机から、ホワイトボード・ノート・PC などをパンで切り替え）</li>
-                        <li>クッキングシフト（リアルタイムで複数の注文をさばく）</li>
-                        <li>シフト終了結果（注文の達成・失敗・売上・チップ・コンボ最高記録）</li>
-                        <li>夜のノベル（オプション）</li>
-                        <li>セーブして翌朝へ</li>
-                    </ol>
-                </div>
-            </section>
+                <section class="sec">
+                    <h2>コンセプト</h2>
+                    <div class="sec-body">
+                        <p>
+                            傾いたクレープ屋を、ヒロインたちと一緒に立て直していくゲーム。日々の店の運営と、ヒロインとの会話やイベントを行き来する構造です。詳細な時代設定や舞台はまだ仮置きで、コア体験の作り込みを優先しています。
+                        </p>
+                        <p>1 日のループはおおむね次のとおり。</p>
+                        <ol>
+                            <li>朝のノベル（章イベントが入る日も）</li>
+                            <li>メインメニュー（控室の机から、ホワイトボード・ノート・PC などをパンで切り替え）</li>
+                            <li>クッキングシフト（リアルタイムで複数の注文をさばく）</li>
+                            <li>シフト終了結果（注文の達成・失敗・売上・チップ・コンボ最高記録）</li>
+                            <li>夜のノベル（オプション）</li>
+                            <li>セーブして翌朝へ</li>
+                        </ol>
+                    </div>
+                </section>
 
-            <section class="sec">
-                <h2>2 つのモード</h2>
-                <div class="sec-body">
-                    <h3>クッキングパート</h3>
-                    <p>
-                        タッチ / マウスでクレープを作るアクション。3D のキッチン（カウンター・壁・棚）の中で、3D の食材・調理器具をドラッグして組み立てます。キャラクターは 2D 立ち絵。3D オブジェクトにはアニメ／トゥーンシェーダーをかけて、2D のイラストと馴染ませる方針です。フルーツ、トッピング、クリームなどの食材データも実装済み。
-                    </p>
+                <section class="sec">
+                    <h2>2 つのモード</h2>
+                    <div class="sec-body">
+                        <h3>クッキングパート</h3>
+                        <p>
+                            タッチ / マウスでクレープを作るアクション。3D のキッチン（カウンター・壁・棚）の中で、3D の食材・調理器具をドラッグして組み立てます。キャラクターは 2D 立ち絵。3D オブジェクトにはアニメ／トゥーンシェーダーをかけて、2D のイラストと馴染ませる方針です。フルーツ、トッピング、クリームなどの食材データも実装済み。
+                        </p>
 
-                    <h3>ノベルパート + メインメニュー</h3>
-                    <p>
-                        シフトの合間に控室の机に戻り、ホワイトボードでストーリーを進めたり、ノートで日記を読み返したり、ラップトップで設定を開いたり、ピンボードでギャラリーを覗いたりします。視点は前・上・下・左・右の 5 方向で、それぞれに 1 つの主要オブジェクト（ホワイトボード／ノート／ラップトップ／壁の写真／キッチン入口）が割り当てられています。
-                    </p>
-                    <p>
-                        視線移動はカメラパン + 軽いブラーで「ぬるっと」切り替わるようにしてあります。
-                    </p>
-                </div>
-            </section>
+                        <h3>ノベルパート + メインメニュー</h3>
+                        <p>
+                            シフトの合間に控室の机に戻り、ホワイトボードでストーリーを進めたり、ノートで日記を読み返したり、ラップトップで設定を開いたり、ピンボードでギャラリーを覗いたりします。視点は前・上・下・左・右の 5 方向で、それぞれに 1 つの主要オブジェクト（ホワイトボード／ノート／ラップトップ／壁の写真／キッチン入口）が割り当てられています。
+                        </p>
+                        <p>
+                            視線移動はカメラパン + 軽いブラーで「ぬるっと」切り替わるようにしてあります。
+                        </p>
+                    </div>
+                </section>
 
-            <section class="sec">
-                <h2>Godot から MitiruEngine への移行</h2>
-                <div class="sec-body">
-                    <p>
-                        最初は Godot で書き始めました。マルチプラットフォーム書き出しや商用ライセンスの軽さ、GDScript の書き味の良さなど、十分な利点があったからです。コミックマーケット 106 で配布したのもこの Godot 版です。
-                    </p>
-                    <p>
-                        そのあと、自作の MitiruEngine が <a href="hato.html">ハトを育てよう（リメイク）</a> で実際にゲームを動かせる段階に来たのを見て、本作も MitiruEngine 側に移すことにしました。自分のエンジンで自分のゲームを完成版まで持っていく、というのがその先に取りたい姿だからです。
-                    </p>
-                    <p>
-                        現在のバージョンは <code>1.0.0-rc1</code>。kaeru/ 配下に 50 ヘッダぶんの C++ 実装（CookingScene、CookingStateMachine、OrderSystem、RecipeRegistry、Customer、ComboSystem、Economy、Heroine、StoryProgress、SettingsOverlay、SaveSystem、Theme など）と、Playwright による E2E テスト（料理フロー / ブート / 入力 / 視覚回帰 / 安定性 / パフォーマンスなど 10 ファイル）が並んでいます。
-                    </p>
-                </div>
-            </section>
+                <section class="sec">
+                    <h2>Godot から MitiruEngine への移行</h2>
+                    <div class="sec-body">
+                        <p>
+                            最初は Godot で書き始めました。マルチプラットフォーム書き出しや商用ライセンスの軽さ、GDScript の書き味の良さなど、十分な利点があったからです。コミックマーケット 106 で配布したのもこの Godot 版です。
+                        </p>
+                        <p>
+                            そのあと、自作の MitiruEngine が <a href="hato.html">ハトを育てよう（リメイク）</a> で実際にゲームを動かせる段階に来たのを見て、本作も MitiruEngine 側に移すことにしました。自分のエンジンで自分のゲームを完成版まで持っていく、というのがその先に取りたい姿だからです。
+                        </p>
+                        <p>
+                            現在のバージョンは <code>1.0.0-rc1</code>。kaeru/ 配下に 50 ヘッダぶんの C++ 実装（CookingScene、CookingStateMachine、OrderSystem、RecipeRegistry、Customer、ComboSystem、Economy、Heroine、StoryProgress、SettingsOverlay、SaveSystem、Theme など）と、Playwright による E2E テスト（料理フロー / ブート / 入力 / 視覚回帰 / 安定性 / パフォーマンスなど 10 ファイル）が並んでいます。
+                        </p>
+                    </div>
+                </section>
 
-            <section class="sec">
-                <h2>インフラ周り</h2>
-                <div class="sec-body">
-                    <p>「ゲーム本編を作るための足場」も自分で整えています。</p>
-                    <ul>
-                        <li><strong>デザインシステム</strong> ―
-                            <code>DESIGN.md</code> 1 ファイルに YAML フロントマターで配色・タイポ・スペーシング・角丸・影のトークンを宣言。<code>tools/design_md.py</code> が CSS / DTCG / Tailwind config を自動生成。CI で「コミット済み <code>tokens.css</code> が <code>DESIGN.md</code> の最新エクスポートと一致するか」も検証。
-                        </li>
-                        <li><strong>E2E テスト</strong> ―
-                            Playwright で料理フロー、視覚回帰、パフォーマンス、入力、安定性などをカバー。<code>npm run test</code> で全部走ります。
-                        </li>
-                        <li><strong>ローカライズの足場</strong> ―
-                            <code>assets/locales/</code> に日本語ベース + 英語のスキャフォルド。<code>scripts/check_locales.mjs</code> でロケールの整合性を CI チェック。
-                        </li>
-                        <li><strong>アセットマニフェスト</strong> ―
-                            <code>art_manifest.json</code> / <code>audio_manifest.json</code> / <code>script_manifest.json</code> でキーと URL を分離してあるので、キーに対するファイルが <code>null</code> でも CSS プレースホルダで描画。差し替えはコード変更なしで効きます。
-                        </li>
-                        <li><strong>itch.io 配布</strong> ―
-                            <code>npm run package:itch</code> で <code>dist-packages/*.zip</code> が出るところまでスクリプト化。
-                        </li>
-                    </ul>
-                </div>
-            </section>
+                <section class="sec">
+                    <h2>インフラ周り</h2>
+                    <div class="sec-body">
+                        <p>「ゲーム本編を作るための足場」も自分で整えています。</p>
+                        <ul>
+                            <li><strong>デザインシステム</strong> ―
+                                <code>DESIGN.md</code> 1 ファイルに YAML フロントマターで配色・タイポ・スペーシング・角丸・影のトークンを宣言。<code>tools/design_md.py</code> が CSS / DTCG / Tailwind config を自動生成。CI で「コミット済み <code>tokens.css</code> が <code>DESIGN.md</code> の最新エクスポートと一致するか」も検証。
+                            </li>
+                            <li><strong>E2E テスト</strong> ―
+                                Playwright で料理フロー、視覚回帰、パフォーマンス、入力、安定性などをカバー。<code>npm run test</code> で全部走ります。
+                            </li>
+                            <li><strong>ローカライズの足場</strong> ―
+                                <code>assets/locales/</code> に日本語ベース + 英語のスキャフォルド。<code>scripts/check_locales.mjs</code> でロケールの整合性を CI チェック。
+                            </li>
+                            <li><strong>アセットマニフェスト</strong> ―
+                                <code>art_manifest.json</code> / <code>audio_manifest.json</code> / <code>script_manifest.json</code> でキーと URL を分離してあるので、キーに対するファイルが <code>null</code> でも CSS プレースホルダで描画。差し替えはコード変更なしで効きます。
+                            </li>
+                            <li><strong>itch.io 配布</strong> ―
+                                <code>npm run package:itch</code> で <code>dist-packages/*.zip</code> が出るところまでスクリプト化。
+                            </li>
+                        </ul>
+                    </div>
+                </section>
 
-            <section class="sec">
-                <h2>現在地</h2>
-                <div class="sec-body">
-                    <p>
-                        システム面（クッキング、ノベル、セーブ、テスト、配布パイプライン）は一通り完成していて、残る作業はシナリオとアートというコンテンツ制作のフェーズに入っています。差し替えやすい構造（マニフェスト分離・プレースホルダ描画）を先に作ってあるので、コンテンツは出来たそばから流し込めます。
-                    </p>
+                <section class="sec">
+                    <h2>現在地</h2>
+                    <div class="sec-body">
+                        <p>
+                            システム面（クッキング、ノベル、セーブ、テスト、配布パイプライン）は一通り完成していて、残る作業はシナリオとアートというコンテンツ制作のフェーズに入っています。差し替えやすい構造（マニフェスト分離・プレースホルダ描画）を先に作ってあるので、コンテンツは出来たそばから流し込めます。
+                        </p>
 
-                    <h3>できていること</h3>
-                    <ul>
-                        <li>コミケ 106 で Godot 版の体験版を配布</li>
-                        <li>MitiruEngine 版（WASM）のゲームコード基盤（1.0.0-rc1）</li>
-                        <li>クッキングシーン（3D + 2D、ドラッグ&amp;ドロップ、レシピ判定、注文待ち、コンボ）</li>
-                        <li>メインメニュー（控室 5 方向のパン視点）</li>
-                        <li>ノベルパート（mitiru.novel VM 連動）</li>
-                        <li>セーブシステム（最大 10 スロット、Day 境界で auto-save）</li>
-                        <li>設定オーバーレイ（音量・テキスト速度・フォントスケール・全画面・モーション軽減）</li>
-                        <li>Playwright E2E テスト 10 種</li>
-                        <li>テーマトークン自動生成 + CI ゲート</li>
-                        <li>itch.io 向けパッケージング</li>
-                    </ul>
+                        <h3>できていること</h3>
+                        <ul>
+                            <li>コミケ 106 で Godot 版の体験版を配布</li>
+                            <li>MitiruEngine 版（WASM）のゲームコード基盤（1.0.0-rc1）</li>
+                            <li>クッキングシーン（3D + 2D、ドラッグ&amp;ドロップ、レシピ判定、注文待ち、コンボ）</li>
+                            <li>メインメニュー（控室 5 方向のパン視点）</li>
+                            <li>ノベルパート（mitiru.novel VM 連動）</li>
+                            <li>セーブシステム（最大 10 スロット、Day 境界で auto-save）</li>
+                            <li>設定オーバーレイ（音量・テキスト速度・フォントスケール・全画面・モーション軽減）</li>
+                            <li>Playwright E2E テスト 10 種</li>
+                            <li>テーマトークン自動生成 + CI ゲート</li>
+                            <li>itch.io 向けパッケージング</li>
+                        </ul>
 
-                    <h3>残っていること（コンテンツ制作）</h3>
-                    <ul>
-                        <li>本編シナリオ全文の執筆（構成・分岐の骨子は実装済み、本文を流し込む段階）</li>
-                        <li>キャラ立ち絵・背景・UI の最終アート（差し替え枠 20 件はマニフェスト登録済み）</li>
-                        <li>BGM / 効果音 / ボイスの差し替え（イベントフックは登録済み）</li>
-                        <li>経営シミュレーションの数値バランス</li>
-                        <li>CEF サイドのセーブ署名ブリッジ</li>
-                        <li>1.0.0 リリース向けの仕上げ</li>
-                    </ul>
+                        <h3>残っていること（コンテンツ制作）</h3>
+                        <ul>
+                            <li>本編シナリオ全文の執筆（構成・分岐の骨子は実装済み、本文を流し込む段階）</li>
+                            <li>キャラ立ち絵・背景・UI の最終アート（差し替え枠 20 件はマニフェスト登録済み）</li>
+                            <li>BGM / 効果音 / ボイスの差し替え（イベントフックは登録済み）</li>
+                            <li>経営シミュレーションの数値バランス</li>
+                            <li>CEF サイドのセーブ署名ブリッジ</li>
+                            <li>1.0.0 リリース向けの仕上げ</li>
+                        </ul>
 
-                    <h3>次にやること</h3>
-                    <ul>
-                        <li>2026 年内にシナリオ全文の初稿を完成させる</li>
-                        <li>キャラ立ち絵の最終アートを順次バインド</li>
-                        <li>身内テストを回す</li>
-                        <li>完成版は蒼翔祭 2026 で展示する予定</li>
-                    </ul>
-                </div>
-            </section>
+                        <h3>次にやること</h3>
+                        <ul>
+                            <li>2026 年内にシナリオ全文の初稿を完成させる</li>
+                            <li>キャラ立ち絵の最終アートを順次バインド</li>
+                            <li>身内テストを回す</li>
+                            <li>完成版は蒼翔祭 2026 で展示する予定</li>
+                        </ul>
+                    </div>
+                </section>
 
-            <section class="sec">
-                <h2>制作チーム</h2>
-                <div class="sec-body">
-                    <p>2 人で進めているチーム開発です。役割分担は次のとおり。</p>
-                    <ul>
-                        <li>川村優弥（自分） — 企画、シナリオ、エンジン側、ゲームコード、システム、UI 実装、進行管理</li>
-                        <li>もう一名 — キャラクターデザインとイラスト（メンバーの許諾の都合上、ここでは詳細は伏せています）</li>
-                    </ul>
-                </div>
-            </section>
+                <section class="sec">
+                    <h2>制作チーム</h2>
+                    <div class="sec-body">
+                        <p>2 人で進めているチーム開発です。役割分担は次のとおり。</p>
+                        <ul>
+                            <li>川村優弥（自分） — 企画、シナリオ、エンジン側、ゲームコード、システム、UI 実装、進行管理</li>
+                            <li>もう一名 — キャラクターデザインとイラスト（メンバーの許諾の都合上、ここでは詳細は伏せています）</li>
+                        </ul>
+                    </div>
+                </section>
 
-            <section class="sec">
-                <h2>エンジン側の文脈</h2>
-                <div class="sec-body">
-                    <p>
-                        本作と並行して、自作の <a href="engine.html">MitiruEngine</a> を開発しています。前作のリメイクである <a href="hato.html">ハトを育てよう</a> をエンジン上で完成形まで持っていったので、本作も同じエンジンで仕上げるのが自然な流れになりました。
-                    </p>
-                </div>
-            </section>
-        </div>
-    </main>
+                <section class="sec">
+                    <h2>エンジン側の文脈</h2>
+                    <div class="sec-body">
+                        <p>
+                            本作と並行して、自作の <a href="engine.html">MitiruEngine</a> を開発しています。前作のリメイクである <a href="hato.html">ハトを育てよう</a> をエンジン上で完成形まで持っていったので、本作も同じエンジンで仕上げるのが自然な流れになりました。
+                        </p>
+                        <div class="link-row">
+                            <a href="portfolio.html">← Works に戻る</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
 
-    <footer class="site-foot">
-        <div class="container">
+        <footer class="site-foot">
             <p>&copy; 川村優弥 / Shiggy</p>
-            <p><a href="mailto:medli908@gmail.com">medli908@gmail.com</a> ・ <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">GitHub</a></p>
-        </div>
-    </footer>
+            <p>fujimiya0110☆gmail.com（☆→@） · <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">github</a></p>
+        </footer>
+    </div>
 
     <script src="assets/js/back-to-top.js"></script>
 </body>

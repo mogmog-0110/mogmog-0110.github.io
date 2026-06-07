@@ -1,6 +1,5 @@
 _shots/
-assets/models/
-assets/textures/
+_preview-*.html
 
 REDESIGN_HANDOFF.md
 HANDOFF-sim-render-seam.md

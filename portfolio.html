@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="ja" style="background-color: #ffffff;">
+<html lang="ja" style="background-color: #fcfcfb;">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#fcfcfb">
     <title>Works | Shiggy</title>
     <meta name="description" content="川村優弥のポートフォリオ - これまでに制作したゲームやソフトウェア">
 
     <style>
-        html, body { background-color: #ffffff !important; margin: 0; padding: 0; }
+        html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
     </style>
 
     <!-- meta:social -->
@@ -28,45 +28,50 @@
     <meta name="twitter:description" content="川村優弥のゲーム作品とツール。MitiruEngine、かえるクレープ、ハトを育てよう（リメイク）など。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600&family=Noto+Sans+JP:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
+    <!-- Styles -->
     <link rel="stylesheet" href="assets/css/site.css">
 </head>
 
 <body>
     <a class="skip-link" href="#main">本文へスキップ</a>
-    <header class="site-head">
-        <div class="container">
-            <a class="brand" href="index.html">Shiggy</a>
-            <ul class="menu">
-                <li><a href="engine.html">Engine</a></li>
-                <li><a href="labs.html">Lab</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="portfolio.html" class="current">Works</a></li>
-            </ul>
-        </div>
-    </header>
 
-    <main class="container" id="main">
-        <section class="page-head">
-            <p class="kicker">Works</p>
-            <h1>作品</h1>
-            <p class="lede">
-                学部から現在まで作ってきたもの ── チーム / 個人のゲーム、開発ツール、研究コード、創作。多くはリーダーや主担当として、企画から実装まで手を動かしています。
-            </p>
-            <p class="note">※ 一部はチーム制作で、メンバーの許諾の都合により遊べないものもあります。</p>
-        </section>
+    <div class="frame">
+        <header class="site-head">
+            <div class="inner">
+                <a class="brand" href="index.html">shiggy</a>
+                <ul class="menu">
+                    <li><a href="engine.html">engine</a></li>
+                    <li><a href="labs.html">lab</a></li>
+                    <li><a href="research.html">research</a></li>
+                    <li><a href="portfolio.html" class="current">works</a></li>
+                </ul>
+            </div>
+        </header>
 
-        <div class="sections">
-            <!-- ============================================== -->
-            <!-- Featured                                       -->
-            <!-- ============================================== -->
-            <section class="sec">
-                <h2>Featured</h2>
-                <div class="sec-body">
-                    <p class="sec-intro">自作の MitiruEngine 上で動かしているゲーム。ハトを育てようはリメイクとして完成、かえるクレープは Godot 版から移植中です。</p>
+        <main id="main">
+            <section class="page-head">
+                <p class="file-line">mogmog-0110.github.io / works</p>
+                <h1>作品</h1>
+                <p class="lede">
+                    学部から現在まで作ってきたもの ── チーム / 個人のゲーム、開発ツール、研究コード、創作。多くはリーダーや主担当として、企画から実装まで手を動かしています。
+                </p>
+                <p class="note">※ 一部はチーム制作で、メンバーの許諾の都合により遊べないものもあります。</p>
+            </section>
+
+            <div class="sections">
+                <!-- ============================================== -->
+                <!-- Featured                                       -->
+                <!-- ============================================== -->
+                <section class="sec">
+                    <h2>FEATURED</h2>
+                    <div class="sec-body">
+                        <p class="sec-intro">自作の MitiruEngine 上で動かしているゲーム。ハトを育てようはリメイクとして完成、かえるクレープは Godot 版から移植中です。</p>
+                    </div>
 
                     <div class="work-list">
                         <article class="work">
@@ -99,16 +104,16 @@
                             </div>
                         </article>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- ============================================== -->
-            <!-- Other Games                                    -->
-            <!-- ============================================== -->
-            <section class="sec">
-                <h2>Other Games</h2>
-                <div class="sec-body">
-                    <p class="sec-intro">学部時代から書いてきた個人・チーム制作。プロジェクトリーダーとして関わったものを含みます。</p>
+                <!-- ============================================== -->
+                <!-- Other Games                                    -->
+                <!-- ============================================== -->
+                <section class="sec">
+                    <h2>GAMES</h2>
+                    <div class="sec-body">
+                        <p class="sec-intro">学部時代から書いてきた個人・チーム制作。プロジェクトリーダーとして関わったものを含みます。</p>
+                    </div>
 
                     <div class="work-list">
                         <article class="work">
@@ -241,18 +246,17 @@
                                 <a href="https://github.com/mogmog-0110/oskar-rythm" class="go" target="_blank" rel="noopener">GitHub →</a>
                             </div>
                         </article>
-
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- ============================================== -->
-            <!-- Tools / Engines                                -->
-            <!-- ============================================== -->
-            <section class="sec">
-                <h2>Tools &amp; Engines</h2>
-                <div class="sec-body">
-                    <p class="sec-intro">開発の途中で必要になって書いた道具。レンダラー、リソース管理ツール、研究用アルゴリズムなど。</p>
+                <!-- ============================================== -->
+                <!-- Tools / Engines                                -->
+                <!-- ============================================== -->
+                <section class="sec">
+                    <h2>TOOLS &amp; ENGINES</h2>
+                    <div class="sec-body">
+                        <p class="sec-intro">開発の途中で必要になって書いた道具。レンダラー、リソース管理ツール、研究用アルゴリズムなど。</p>
+                    </div>
 
                     <div class="work-list">
                         <article class="work">
@@ -346,128 +350,128 @@
                         </article>
                     </div>
 
-                    <h3>小さな道具</h3>
-                    <p class="sec-intro">数日〜1週間で書いた小物。必要に迫られて作り、公開しているもの。</p>
-                    <ul class="text-list">
-                        <li>
-                            <a href="https://github.com/mogmog-0110/VisualResourceLinkerForSiv3D" target="_blank" rel="noopener">VisualResourceLinkerForSiv3D →</a>
-                            <p class="genre">C++ / Siv3D / ImGui · 2025年夏 · 2日</p>
-                            <p>Siv3D のリソース管理を GUI で自動化するツール。配布されていた類似ツールがリンク切れだったので自作。設計は MVC。</p>
-                        </li>
-                        <li>
-                            <a href="https://github.com/mogmog-0110/imgui-s3d-wrapper" target="_blank" rel="noopener">imgui-s3d-wrapper →</a>
-                            <p class="genre">C++ / Siv3D / ImGui</p>
-                            <p>Dear ImGui を Siv3D で即座に使い始めるための最小テンプレート。Siv3D ベースのツール開発の立ち上げ用。</p>
-                        </li>
-                        <li>
-                            <a href="https://github.com/mogmog-0110/NeonVector" target="_blank" rel="noopener">NeonVector →</a>
-                            <p class="genre">C++ / DirectX 12 / Retro</p>
-                            <p><em>Asteroids</em> など 1970-80 年代アーケードのベクタースキャン表示を DirectX 12 で再現する実験。</p>
-                        </li>
-                        <li>
-                            <a href="https://github.com/mogmog-0110/DimensionEditor" target="_blank" rel="noopener">DimensionEditor →</a>
-                            <p class="genre">C++ / GLSL / HLSL</p>
-                            <p>GLSL と HLSL の両方を扱うクロスプラットフォームの描画ツール。シェーダー記述の比較・検証用。</p>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- ============================================== -->
-            <!-- Creative                                       -->
-            <!-- ============================================== -->
-            <section class="sec">
-                <h2>Creative</h2>
-                <div class="sec-body">
-                    <p class="sec-intro">ゲーム以外の創作 ── イラスト・Live2D・短編小説。</p>
-
-                    <h3>グラフィック</h3>
-                    <p>趣味で描いたイラスト。クリックで拡大表示されます。</p>
-                    <div class="art-grid">
-                        <a href="images/art1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art1.webp" alt="イラスト 1" width="768" height="1024"></a>
-                        <a href="images/art2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art2.webp" alt="イラスト 2" width="768" height="768"></a>
-                        <a href="images/art3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art3.webp" alt="イラスト 3" width="1013" height="1600"></a>
-                        <a href="images/art4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art4.webp" alt="イラスト 4" width="1600" height="1131"></a>
-                        <a href="images/art5.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art5.webp" alt="イラスト 5" width="1131" height="1600"></a>
-                        <a href="images/art6.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art6.webp" alt="イラスト 6" width="1200" height="1600"></a>
-                        <a href="images/art7.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art7.webp" alt="イラスト 7" width="1280" height="1280"></a>
-                        <a href="images/art8.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art8.webp" alt="イラスト 8" width="1600" height="1200"></a>
-                        <a href="images/art9.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art9.webp" alt="イラスト 9" width="1131" height="1600"></a>
-                        <a href="images/art10.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art10.webp" alt="イラスト 10" width="1131" height="1600"></a>
-                        <a href="images/art11.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art11.webp" alt="イラスト 11" width="1131" height="1600"></a>
-                        <a href="images/art12.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art12.webp" alt="イラスト 12" width="1200" height="1600"></a>
-                        <a href="images/art13.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art13.webp" alt="イラスト 13" width="1200" height="1600"></a>
-                        <a href="images/art14.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art14.webp" alt="イラスト 14" width="640" height="400"></a>
-                        <a href="images/art15.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art15.webp" alt="イラスト 15" width="768" height="1024"></a>
+                    <div class="sec-body">
+                        <h3>小さな道具</h3>
+                        <p class="sec-intro">数日〜1週間で書いた小物。必要に迫られて作り、公開しているもの。</p>
+                        <ul class="text-list">
+                            <li>
+                                <a href="https://github.com/mogmog-0110/VisualResourceLinkerForSiv3D" target="_blank" rel="noopener">VisualResourceLinkerForSiv3D →</a>
+                                <p class="genre">C++ / Siv3D / ImGui · 2025年夏 · 2日</p>
+                                <p>Siv3D のリソース管理を GUI で自動化するツール。配布されていた類似ツールがリンク切れだったので自作。設計は MVC。</p>
+                            </li>
+                            <li>
+                                <a href="https://github.com/mogmog-0110/imgui-s3d-wrapper" target="_blank" rel="noopener">imgui-s3d-wrapper →</a>
+                                <p class="genre">C++ / Siv3D / ImGui</p>
+                                <p>Dear ImGui を Siv3D で即座に使い始めるための最小テンプレート。Siv3D ベースのツール開発の立ち上げ用。</p>
+                            </li>
+                            <li>
+                                <a href="https://github.com/mogmog-0110/NeonVector" target="_blank" rel="noopener">NeonVector →</a>
+                                <p class="genre">C++ / DirectX 12 / Retro</p>
+                                <p><em>Asteroids</em> など 1970-80 年代アーケードのベクタースキャン表示を DirectX 12 で再現する実験。</p>
+                            </li>
+                            <li>
+                                <a href="https://github.com/mogmog-0110/DimensionEditor" target="_blank" rel="noopener">DimensionEditor →</a>
+                                <p class="genre">C++ / GLSL / HLSL</p>
+                                <p>GLSL と HLSL の両方を扱うクロスプラットフォームの描画ツール。シェーダー記述の比較・検証用。</p>
+                            </li>
+                        </ul>
                     </div>
+                </section>
 
-                    <h3>Live2D</h3>
-                    <p>
-                        自分で作った Live2D モデル。なお、現在は株式会社 Live2D で Cubism SDK for Native の保守・不具合対応のアルバイトに従事しています。
-                    </p>
-                    <figure class="plate" style="max-width: 420px;">
-                        <a href="images/myModel.webp" target="_blank">
-                            <img loading="lazy" decoding="async" src="images/myModel.webp" alt="自作Live2Dモデル" width="1214" height="1600">
-                        </a>
-                        <figcaption>
-                            自作Live2Dモデル ── Live2D への興味から作った自創作キャラのモデル。横や斜めを向いたときのパラメータ設計の難しさを体感し、SDK の保守という現在の実務に興味が繋がった制作です。
-                        </figcaption>
-                    </figure>
+                <!-- ============================================== -->
+                <!-- Creative                                       -->
+                <!-- ============================================== -->
+                <section class="sec">
+                    <h2>ART &amp; TEXTS</h2>
+                    <div class="sec-body">
+                        <p class="sec-intro">ゲーム以外の創作 ── イラスト・Live2D・短編小説。</p>
 
-                    <h3>小説</h3>
-                    <p>趣味で執筆した短編小説です。</p>
-                    <ul class="text-list">
-                        <li>
-                            <a href="downloads/リハビリ作品 『鯨・秘密・水槽』.txt" target="_blank">泡のゆりかご、風のうた →</a>
-                            <p class="genre">SF短編</p>
-                            <p>『秘密』『水槽』『鯨』の三つのお題で書いた作品</p>
-                        </li>
-                        <li>
-                            <a href="downloads/君と渚と永遠と.txt" target="_blank">君と渚と永遠と →</a>
-                            <p class="genre">最後の一文ですべてが変わる短編ミステリー</p>
-                            <p>どんでん返しもの。よくあるラブストーリーと思いきや……</p>
-                        </li>
-                        <li>
-                            <a href="downloads/最近、猫を飼い始めた。.txt" target="_blank">最近、猫を飼い始めた。 →</a>
-                            <p class="genre">短編</p>
-                            <p>「最近、猫を飼い始めた。」で始まり「そういえば、人間だった。」で終わる作品を書くというお題で作った物語。</p>
-                        </li>
-                        <li>
-                            <a href="downloads/犬の惑星.txt" target="_blank">犬の惑星 →</a>
-                            <p class="genre">短編SF</p>
-                            <p>星新一っぽい作品が書きたかった。</p>
-                        </li>
-                        <li>
-                            <a href="downloads/それは綺麗だった.txt" target="_blank">それは綺麗だった →</a>
-                            <p class="genre">短編</p>
-                            <p>「それは綺麗だった。」で始まり「明日なんか来なければいいのに。」で終わる作品を書くというお題で作った物語。</p>
-                        </li>
-                        <li>
-                            <a href="downloads/一世一代のあみだくじ.txt" target="_blank">一世一代のあみだくじ →</a>
-                            <p class="genre">最後の一文ですべてが変わる短編ミステリー</p>
-                            <p>どんでん返しもののお題で作った作品。</p>
-                        </li>
-                    </ul>
+                        <h3>グラフィック</h3>
+                        <p>趣味で描いたイラスト。クリックで拡大表示されます。</p>
+                        <div class="art-grid">
+                            <a href="images/art1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art1.webp" alt="イラスト 1" width="768" height="1024"></a>
+                            <a href="images/art2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art2.webp" alt="イラスト 2" width="768" height="768"></a>
+                            <a href="images/art3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art3.webp" alt="イラスト 3" width="1013" height="1600"></a>
+                            <a href="images/art4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art4.webp" alt="イラスト 4" width="1600" height="1131"></a>
+                            <a href="images/art5.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art5.webp" alt="イラスト 5" width="1131" height="1600"></a>
+                            <a href="images/art6.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art6.webp" alt="イラスト 6" width="1200" height="1600"></a>
+                            <a href="images/art7.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art7.webp" alt="イラスト 7" width="1280" height="1280"></a>
+                            <a href="images/art8.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art8.webp" alt="イラスト 8" width="1600" height="1200"></a>
+                            <a href="images/art9.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art9.webp" alt="イラスト 9" width="1131" height="1600"></a>
+                            <a href="images/art10.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art10.webp" alt="イラスト 10" width="1131" height="1600"></a>
+                            <a href="images/art11.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art11.webp" alt="イラスト 11" width="1131" height="1600"></a>
+                            <a href="images/art12.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art12.webp" alt="イラスト 12" width="1200" height="1600"></a>
+                            <a href="images/art13.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art13.webp" alt="イラスト 13" width="1200" height="1600"></a>
+                            <a href="images/art14.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art14.webp" alt="イラスト 14" width="640" height="400"></a>
+                            <a href="images/art15.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art15.webp" alt="イラスト 15" width="768" height="1024"></a>
+                        </div>
 
-                    <h3>その他</h3>
-                    <ul class="text-list">
-                        <li>
-                            <a href="downloads/私がバナナを食べた日.zip" target="_blank">私がバナナを食べた日 (TRPGシナリオ) →</a>
-                            <p class="genre">オリジナルのTRPG（マーダーミステリー）</p>
-                            <p>プレイ人数5人（GM1人、プレイヤー4人）。プレイ時間4時間程度。病院に入院した四人の患者が各々の目標を持って、それを隠しながらクリアを目指すTRPG</p>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-        </div>
-    </main>
+                        <h3>Live2D</h3>
+                        <p>
+                            自分で作った Live2D モデル。なお、現在は株式会社 Live2D で Cubism SDK for Native（C++）まわりのアルバイトをしており、SDK の保守・不具合対応に携わっています。
+                        </p>
+                        <figure class="plate">
+                            <a href="images/myModel.webp" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/myModel.webp" alt="自作Live2Dモデル" width="1214" height="1600">
+                            </a>
+                            <figcaption>
+                                自作Live2Dモデル ── Live2D への興味から作った自創作キャラのモデル。横や斜めを向いたときのパラメータ設計の難しさを体感し、SDK の保守という現在の実務に興味が繋がった制作です。
+                            </figcaption>
+                        </figure>
 
-    <footer class="site-foot">
-        <div class="container">
+                        <h3>小説</h3>
+                        <p>趣味で執筆した短編小説です。</p>
+                        <ul class="text-list">
+                            <li>
+                                <a href="downloads/リハビリ作品 『鯨・秘密・水槽』.txt" target="_blank">泡のゆりかご、風のうた →</a>
+                                <p class="genre">SF短編</p>
+                                <p>『秘密』『水槽』『鯨』の三つのお題で書いた作品</p>
+                            </li>
+                            <li>
+                                <a href="downloads/君と渚と永遠と.txt" target="_blank">君と渚と永遠と →</a>
+                                <p class="genre">最後の一文ですべてが変わる短編ミステリー</p>
+                                <p>どんでん返しもの。よくあるラブストーリーと思いきや……</p>
+                            </li>
+                            <li>
+                                <a href="downloads/最近、猫を飼い始めた。.txt" target="_blank">最近、猫を飼い始めた。 →</a>
+                                <p class="genre">短編</p>
+                                <p>「最近、猫を飼い始めた。」で始まり「そういえば、人間だった。」で終わる作品を書くというお題で作った物語。</p>
+                            </li>
+                            <li>
+                                <a href="downloads/犬の惑星.txt" target="_blank">犬の惑星 →</a>
+                                <p class="genre">短編SF</p>
+                                <p>星新一っぽい作品が書きたかった。</p>
+                            </li>
+                            <li>
+                                <a href="downloads/それは綺麗だった.txt" target="_blank">それは綺麗だった →</a>
+                                <p class="genre">短編</p>
+                                <p>「それは綺麗だった。」で始まり「明日なんか来なければいいのに。」で終わる作品を書くというお題で作った物語。</p>
+                            </li>
+                            <li>
+                                <a href="downloads/一世一代のあみだくじ.txt" target="_blank">一世一代のあみだくじ →</a>
+                                <p class="genre">最後の一文ですべてが変わる短編ミステリー</p>
+                                <p>どんでん返しもののお題で作った作品。</p>
+                            </li>
+                        </ul>
+
+                        <h3>その他</h3>
+                        <ul class="text-list">
+                            <li>
+                                <a href="downloads/私がバナナを食べた日.zip" target="_blank">私がバナナを食べた日 (TRPGシナリオ) →</a>
+                                <p class="genre">オリジナルのTRPG（マーダーミステリー）</p>
+                                <p>プレイ人数5人（GM1人、プレイヤー4人）。プレイ時間4時間程度。病院に入院した四人の患者が各々の目標を持って、それを隠しながらクリアを目指すTRPG</p>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="site-foot">
             <p>&copy; 川村優弥 / Shiggy</p>
-            <p><a href="mailto:medli908@gmail.com">medli908@gmail.com</a> ・ <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">GitHub</a></p>
-        </div>
-    </footer>
+            <p>fujimiya0110☆gmail.com（☆→@） · <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">github</a></p>
+        </footer>
+    </div>
 
     <script src="assets/js/back-to-top.js"></script>
 </body>

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="ja" style="background-color: #ffffff;">
+<html lang="ja" style="background-color: #fcfcfb;">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#fcfcfb">
     <title>Lab | Shiggy</title>
     <meta name="description" content="3DCG・物理シミュレーションの問題を見つけて、自作エンジン MitiruEngine で解決アプローチを試す実験集。">
 
     <style>
-        html, body { background-color: #ffffff !important; margin: 0; padding: 0; }
+        html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
     </style>
 
     <!-- meta:social -->
@@ -28,38 +28,48 @@
     <meta name="twitter:description" content="3DCG・物理シミュレーションの問題を、自作エンジンで解決アプローチする実験集。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600&family=Noto+Sans+JP:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
+    <!-- Styles -->
     <link rel="stylesheet" href="assets/css/site.css">
 </head>
 
 <body>
     <a class="skip-link" href="#main">本文へスキップ</a>
-    <header class="site-head">
-        <div class="container">
-            <a class="brand" href="index.html">Shiggy</a>
-            <ul class="menu">
-                <li><a href="engine.html">Engine</a></li>
-                <li><a href="labs.html" class="current">Lab</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="portfolio.html">Works</a></li>
-            </ul>
-        </div>
-    </header>
 
-    <main class="container" id="main">
-        <section class="page-head">
-            <p class="kicker">Lab</p>
-            <h1>実験室</h1>
-            <p class="lede">
-                3DCG・物理シミュレーションの分野から「これ、どう解くんだろう」という問題を自分で見つけてきて、<a href="engine.html" class="soft-link">自作エンジン</a>の上で解決アプローチを実装してみる実験置き場です。タイトルをクリックするとデモと簡単な説明が開きます。
-            </p>
-        </section>
+    <div class="frame">
+        <header class="site-head">
+            <div class="inner">
+                <a class="brand" href="index.html">shiggy</a>
+                <ul class="menu">
+                    <li><a href="engine.html">engine</a></li>
+                    <li><a href="labs.html" class="current">lab</a></li>
+                    <li><a href="research.html">research</a></li>
+                    <li><a href="portfolio.html">works</a></li>
+                </ul>
+            </div>
+        </header>
 
-        <div class="lab-list" id="lab-list"></div>
-    </main>
+        <main id="main">
+            <section class="page-head">
+                <p class="file-line">mogmog-0110.github.io / lab</p>
+                <h1>実験室</h1>
+                <p class="lede">
+                    3DCG・物理シミュレーションの分野から「これ、どう解くんだろう」という問題を自分で見つけてきて、<a href="engine.html" class="soft-link">自作エンジン</a>の上で解決アプローチを実装してみる実験置き場です。タイトルをクリックするとデモと簡単な説明が開きます。
+                </p>
+            </section>
+
+            <ul class="lab-list" id="lab-list"></ul>
+        </main>
+
+        <footer class="site-foot">
+            <p>&copy; 川村優弥 / Shiggy</p>
+            <p>fujimiya0110☆gmail.com（☆→@） · <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">github</a></p>
+        </footer>
+    </div>
 
     <!-- モーダル -->
     <div class="modal-overlay" id="lab-modal-overlay">
@@ -68,13 +78,6 @@
             <div id="lab-modal-content"></div>
         </div>
     </div>
-
-    <footer class="site-foot">
-        <div class="container">
-            <p>&copy; 川村優弥 / Shiggy</p>
-            <p><a href="mailto:medli908@gmail.com">medli908@gmail.com</a> ・ <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">GitHub</a></p>
-        </div>
-    </footer>
 
     <script>
     "use strict";
@@ -198,7 +201,7 @@ out[i] = max(raw[i], hist * p.decay);`,
     // ── 一覧生成 ──
     const list = document.getElementById("lab-list");
     for (const lab of LABS) {
-        const entry = document.createElement("article");
+        const entry = document.createElement("li");
         entry.className = "lab-entry";
         entry.setAttribute("tabindex", "0");
         entry.setAttribute("role", "button");
