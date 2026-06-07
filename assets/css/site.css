@@ -93,14 +93,15 @@ img { max-width: 100%; height: auto; display: block; }
 
 .brand {
     font-family: var(--mono);
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var(--ink);
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--ink-sub);
     text-decoration: none;
+    transition: color 0.15s;
 }
 
-.brand::before { content: "// "; color: var(--ink-faint); }
+.brand:hover { color: var(--ink); }
 
 .menu {
     display: flex;
@@ -183,6 +184,36 @@ img { max-width: 100%; height: auto; display: block; }
     font-size: 0.84rem;
     color: var(--ink-sub);
     letter-spacing: 0.02em;
+}
+
+/* 名前クリックで PROFILE モーダルを開くボタン */
+
+.hero h1 .name-open {
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+}
+
+.hero h1 .name-open:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--ink-faint);
+    text-underline-offset: 8px;
+}
+
+.hero h1 .open-hint {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--ink-faint);
+    margin-left: 1.1em;
+    vertical-align: middle;
+    white-space: nowrap;
 }
 
 .hero-fig {
@@ -958,7 +989,7 @@ pre code { background: none; padding: 0; }
 }
 
 @media (max-width: 420px) {
-    .brand { font-size: 0.82rem; }
+    .brand { font-size: 0.64rem; }
     .figures .figure { border-right: none; padding-right: 0; margin-right: 1.6rem; }
 }
 

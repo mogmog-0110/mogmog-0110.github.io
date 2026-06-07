@@ -57,7 +57,7 @@
     <div class="frame">
         <header class="site-head">
             <div class="inner">
-                <a class="brand" href="index.html">shiggy</a>
+                <a class="brand" href="index.html">mogmog-0110.github.io</a>
                 <ul class="menu">
                     <li><a href="engine.html">engine</a></li>
                     <li><a href="labs.html">lab</a></li>
@@ -71,8 +71,10 @@
             <!-- Hero：名前 + リアルタイム図版 fig.0 -->
             <section class="hero">
                 <div class="hero-text">
-                    <p class="file-line">mogmog-0110.github.io / portfolio</p>
-                    <h1>川村 優弥</h1>
+                    <p class="file-line">/ portfolio</p>
+                    <h1>
+                        <button type="button" class="name-open" id="profile-open" aria-haspopup="dialog">川村 優弥<span class="open-hint">profile +</span></button>
+                    </h1>
                     <p class="role">Shiggy — game / engine / physics-simulation</p>
                 </div>
                 <div class="hero-fig">
@@ -166,42 +168,6 @@
                 </section>
 
                 <section class="sec">
-                    <h2>PROFILE</h2>
-                    <div class="sec-body">
-                        <ul class="profile">
-                            <li>
-                                <span class="k">name</span>
-                                <span class="v">川村優弥（Shiggy）</span>
-                            </li>
-                            <li>
-                                <span class="k">affiliation</span>
-                                <span class="v">会津大学大学院 コンピュータ理工学研究科 コンピュータ・情報システム学専攻（M1）</span>
-                            </li>
-                            <li>
-                                <span class="k">github</span>
-                                <span class="v"><a href="https://github.com/mogmog-0110" target="_blank" rel="noopener" class="soft-link">mogmog-0110</a></span>
-                            </li>
-                            <li>
-                                <span class="k">hobby</span>
-                                <span class="v">小説を読む、書く</span>
-                            </li>
-                            <li>
-                                <span class="k">books</span>
-                                <span class="v">ハムレット（シェイクスピア）／ 愛人-AIREN-（田中ユタカ）／ 官能小説用語辞典</span>
-                            </li>
-                            <li>
-                                <span class="k">games</span>
-                                <span class="v">グリザイアの果実 ／ この世の果てで恋を唄う少女~YUNO~ ／ オプーナ ／ ゼノギアス</span>
-                            </li>
-                            <li>
-                                <span class="k">obsessed</span>
-                                <span class="v">東方の同人CDを集めて聴く ／ 研究室から朝帰りする</span>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section class="sec">
                     <h2>CONTACT</h2>
                     <div class="sec-body">
                         <div class="link-row">
@@ -219,8 +185,83 @@
         </footer>
     </div>
 
+    <!-- PROFILE モーダル（hero の名前クリックで開く） -->
+    <div class="modal-overlay" id="profile-modal">
+        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="profile-title">
+            <button type="button" class="modal-close" aria-label="閉じる">×</button>
+            <h2 id="profile-title">PROFILE</h2>
+            <p class="m-meta">kawamura yuya / shiggy</p>
+            <ul class="profile">
+                <li>
+                    <span class="k">name</span>
+                    <span class="v">川村優弥</span>
+                </li>
+                <li>
+                    <span class="k">hn</span>
+                    <span class="v">Shiggy（よく使うハンドルネーム）</span>
+                </li>
+                <li>
+                    <span class="k">affiliation</span>
+                    <span class="v">会津大学大学院 コンピュータ理工学研究科 コンピュータ・情報システム学専攻（M1）</span>
+                </li>
+                <li>
+                    <span class="k">github</span>
+                    <span class="v"><a href="https://github.com/mogmog-0110" target="_blank" rel="noopener" class="soft-link">mogmog-0110</a></span>
+                </li>
+                <li>
+                    <span class="k">hobby</span>
+                    <span class="v">小説を読む、書く</span>
+                </li>
+                <li>
+                    <span class="k">books</span>
+                    <span class="v">ハムレット（シェイクスピア）／ 愛人-AIREN-（田中ユタカ）／ 官能小説用語辞典</span>
+                </li>
+                <li>
+                    <span class="k">games</span>
+                    <span class="v">グリザイアの果実 ／ この世の果てで恋を唄う少女~YUNO~ ／ オプーナ ／ ゼノギアス</span>
+                </li>
+                <li>
+                    <span class="k">obsessed</span>
+                    <span class="v">東方の同人CDを集めて聴く ／ 研究室から朝帰りする</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <script src="assets/js/back-to-top.js"></script>
     <script src="assets/js/fig0.js"></script>
+    <script>
+    /* PROFILE モーダルの開閉 */
+    (function () {
+        var overlay = document.getElementById('profile-modal');
+        var opener = document.getElementById('profile-open');
+        if (!overlay || !opener) return;
+        var closeBtn = overlay.querySelector('.modal-close');
+        var lastFocus = null;
+
+        function open() {
+            lastFocus = document.activeElement;
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            closeBtn.focus();
+        }
+
+        function close() {
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+            if (lastFocus) lastFocus.focus();
+        }
+
+        opener.addEventListener('click', open);
+        closeBtn.addEventListener('click', close);
+        overlay.addEventListener('click', function (e) {
+            if (e.target === overlay) close();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+        });
+    })();
+    </script>
 </body>
 
 </html>
