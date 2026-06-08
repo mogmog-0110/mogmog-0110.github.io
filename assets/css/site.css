@@ -603,11 +603,7 @@ pre code { background: none; padding: 0; }
     aspect-ratio: 16 / 9;
     object-fit: cover;
     border: 1px solid var(--rule-soft);
-    filter: grayscale(100%);
-    transition: filter 0.25s;
 }
-
-.work:hover .work-media img { filter: grayscale(0%); }
 
 .work-media .ph {
     width: 100%;
@@ -707,11 +703,7 @@ pre code { background: none; padding: 0; }
     height: 42px;
     object-fit: cover;
     border: 1px solid var(--rule-soft);
-    filter: grayscale(100%);
-    transition: filter 0.2s;
 }
-
-.mini-open:hover .mini-thumb { filter: grayscale(0%); }
 
 .mini-thumb.ph {
     display: flex;
@@ -817,18 +809,28 @@ pre code { background: none; padding: 0; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(100%);
-    transition: filter 0.25s;
-}
-
-.thumb-grid button:hover img { filter: grayscale(0%); }
-
-@media (hover: none) {
-    .mini-thumb, .thumb-grid img { filter: none; }
 }
 
 @media (max-width: 720px) {
     .thumb-grid { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 0.4rem; }
+}
+
+/* ── モーダル内の画像ギャラリー（候補スクショ一覧）── */
+
+.m-shots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.6rem;
+    margin-top: 1.3rem;
+}
+
+.m-shots a { display: block; }
+
+.m-shots img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border: 1px solid var(--rule-soft);
 }
 
 /* ── Works：畳んだ創作（クリックで一覧モーダル）── */
@@ -882,11 +884,7 @@ pre code { background: none; padding: 0; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(100%);
-    transition: filter 0.25s;
 }
-
-.art-grid a:hover img { filter: grayscale(0%); }
 
 /* ── 文章一覧（小説など）───────────────────── */
 
@@ -942,11 +940,7 @@ pre code { background: none; padding: 0; }
 .lab-entry img {
     width: 100%;
     border: 1px solid var(--rule-soft);
-    filter: grayscale(100%);
-    transition: filter 0.25s;
 }
-
-.lab-entry:hover img { filter: grayscale(0%); }
 
 .lab-entry h3 {
     font-size: 1.05rem;
@@ -1186,14 +1180,6 @@ pre code { background: none; padding: 0; }
 @media (max-width: 420px) {
     .brand { font-size: 0.64rem; }
     .figures .figure { border-right: none; padding-right: 0; margin-right: 1.6rem; }
-}
-
-/* ── タッチ端末（hover なし）────────────────── */
-
-@media (hover: none) {
-    .work-media img,
-    .art-grid img,
-    .lab-entry img { filter: none; }
 }
 
 /* ── motion 配慮 ─────────────────────────── */
