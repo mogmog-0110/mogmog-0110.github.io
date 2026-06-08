@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja" style="background-color: #fcfcfb;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fcfcfb">
+    <title>FLUID DROP | Shiggy</title>
+    <meta name="description" content="盤面の物性そのものが変わる落ちものパズル。GPU 物理（PB-MPM の DirectX 12 移植・65,536 粒子）の上に落ちものルールを載せた、MitiruEngine 製の完成ゲーム。">
+
+    <style>
+        html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
+    </style>
+
+    <!-- meta:social -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shiggy's Portfolio">
+    <meta property="og:title" content="FLUID DROP | Shiggy">
+    <meta property="og:description" content="盤面の物性そのものが変わる落ちものパズル。GPU 物理（PB-MPM の DX12 移植）の上に落ちものルールを載せた MitiruEngine 製ゲーム。">
+    <meta property="og:url" content="https://mogmog-0110.github.io/fluid-drop.html">
+    <link rel="canonical" href="https://mogmog-0110.github.io/fluid-drop.html">
+    <meta property="og:image" content="https://mogmog-0110.github.io/images/fluiddrop_1.webp">
+    <meta property="og:image:width" content="960">
+    <meta property="og:image:height" content="720">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FLUID DROP | Shiggy">
+    <meta name="twitter:description" content="盤面の物性そのものが変わる落ちものパズル。GPU 物理の上に落ちものルールを載せた MitiruEngine 製ゲーム。">
+    <meta name="twitter:image" content="https://mogmog-0110.github.io/images/fluiddrop_1.webp">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/site.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
+
+    <div class="frame">
+        <header class="site-head">
+            <div class="inner">
+                <a class="brand" href="index.html">mogmog-0110.github.io</a>
+                <ul class="menu">
+                    <li><a href="engine.html">engine</a></li>
+                    <li><a href="labs.html">lab</a></li>
+                    <li><a href="research.html">research</a></li>
+                    <li><a href="portfolio.html" class="current">works</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <main id="main">
+            <section class="page-head">
+                <p class="file-line">/ works / fluid-drop</p>
+                <h1>FLUID DROP</h1>
+                <p class="lede">
+                    とけて、かたまる。<strong>盤面の物性そのものが変わる</strong>落ちものパズルです。GPU 物理（PB-MPM・最大 65,536 粒子）の上に古典の落ちものルールを載せ、自作の <a href="engine.html" class="soft-link">MitiruEngine</a> で動かしています。物理が「演出」ではなく「ルールそのもの」になることを狙った作品です。
+                </p>
+                <div class="meta-line">
+                    <span>Released v1.0.2</span><span>2026年</span><span>個人開発</span><span>MitiruEngine</span><span>DirectX 12</span><span>PB-MPM</span>
+                </div>
+            </section>
+
+            <div class="sections">
+                <section class="sec">
+                    <h2>SCREENS</h2>
+                    <div class="sec-body">
+                        <div class="plate-grid">
+                            <a href="images/fluiddrop_title.webp" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/fluiddrop_title.webp" alt="FLUID DROP タイトル画面" width="960" height="720">
+                            </a>
+                            <a href="images/fluiddrop_2.webp" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/fluiddrop_2.webp" alt="カチカチ相 — 普通の落ちものパズルとして遊べる" width="960" height="720">
+                            </a>
+                            <a href="images/fluiddrop_1.webp" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/fluiddrop_1.webp" alt="ゼリー相 — 積んだブロックが溶けて流れる" width="960" height="720">
+                            </a>
+                            <a href="images/fluiddrop_3.webp" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/fluiddrop_3.webp" alt="再結晶した灰色の大地の上で続けるライン消し" width="960" height="720">
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>どんなゲームか</h2>
+                    <div class="sec-body">
+                        <p>
+                            世界の「やる気」が波のように満ち引きして、積んだブロックの材質が <strong>カチカチ → 硬ゼリー → 柔ゼリー → 液体</strong> へ連続変化します。相が変わると消去ルールも変わります。
+                        </p>
+                        <ul>
+                            <li><strong>カチカチ</strong> — 物理は時間停止。普通の落ちものパズルとして横一列を消す</li>
+                            <li><strong>硬ゼリー</strong> — 盤面がぷるぷる揺れ始める。形が保たれている間はラインも消せる</li>
+                            <li><strong>柔ゼリー〜液体</strong> — 積んだものが溶けて流れる。同色を壁から壁までつなぐと消える</li>
+                            <li><strong>再結晶</strong> — 冷えて固まると、流れた地形が灰色の「大地」として焼き直される。大地は消しても半額だが、直後 3 秒は得点 ×3 のコンボ窓が開く</li>
+                        </ul>
+                        <p>
+                            「溶ける前に消すか、流してから固めて整地するか」── 波を読んで戦略を切り替えるのがこのゲームの核です。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>やったこと</h2>
+                    <div class="sec-body">
+                        <ul>
+                            <li>EA 公開の <a href="https://github.com/electronicarts/pbmpm" target="_blank" rel="noopener" class="soft-link">PB-MPM</a>（WebGPU 実装）を DirectX 12 へ移植 ── compute カーネル 8 本、間接ディスパッチ、bukkit 空間分割をそのまま HLSL / DX12 API に書き直し</li>
+                            <li>その物理の上にゲーム層を実装: SRS 回転（壁蹴り）、7-bag 乱数、DAS、ホールド、T スピン判定、着地時のピース粒子化</li>
+                            <li>相転移システム: 凍結相は物理を完全停止（時間停止＝鉄の感触）、溶解相は物理再開。閾値はヒステリシス付きで明滅を防止</li>
+                            <li>描画: 粒子をメタボール蓄積（MRT）→ しきい値合成するトゥーン調パイプライン。落下ピースも粒子と同密度のスプラットで描いて質感を統一</li>
+                            <li>HUD は HTML/CSS（CEF オーバーレイ）、BGM/SE は波形生成のチップチューン（やる気と連動して音程が崩れる）</li>
+                            <li>決定論リプレイを回帰テストとして使う開発フロー（後述）と、配布パッケージング（実行一式 zip）</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>設計</h2>
+                    <div class="sec-body">
+                        <p>責務は 4 つに割っています。</p>
+
+<pre><code>GPU (DX12 compute)   物理。PB-MPM 8 カーネル + 間接ディスパッチ
+CPU (C++)            ルール。ピース操作・消去判定・スコア・相の波
+HTML/CSS (CEF)       見た目。HUD は状態 push を受けて描くだけ
+JSON 風 signal       C++ → JS は一方向 push のみ。ロジックは C++ が単独所有</code></pre>
+
+                        <p>
+                            CPU 側の当たり判定は「前フレームの格子 readback」を使います。GPU との同期点を増やさず、1 フレームの遅延を許容する設計判断です。占有判定は二重モデルにしました ── 凍結相はセル帳簿（<code>frozenOcc</code>）でビタッと決定的に、溶解相は粒子の平均質量で有機的に。「カチッと嵌まる」と「ぬるっと沈む」が同じコードパスに同居しません。
+                        </p>
+                        <p>
+                            モジュール構成は 1 関心事 = 1 ファイル。GPU 資源一式（<code>PbmpmGpu</code>）、ピース操作（<code>PieceControl</code>）、消去判定（<code>LineClear</code>）、入力（<code>InputCapture</code>）…と分かれ、<code>main.cpp</code> は約 400 行の「フレームの呼び順」だけが残る組み立て役です。実はこの形は後付けで、5,200 行の単一ファイルから<strong>挙動を 1 ビットも変えずに</strong>分割しました（方法は次節）。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>苦労した点</h2>
+                    <div class="sec-body">
+                        <ul>
+                            <li><strong>DX12 のリソース状態管理</strong> ── バッファは COMMON 生成 → 暗黙プロモーション → 提出完了でディケイ、という暗黙ルールを CPU 側で正確に追跡しないと、デバッグレイヤでコマンドリストの Close が失敗してデバイスロストする。ディスクリプタテーブルに未初期化スロットが 1 枠混ざるだけでも <code>DXGI_ERROR_INVALID_CALL</code> で落ちる（全スロットをダミーで先埋めして解決）</li>
+                            <li><strong>readback の帯域</strong> ── 消去判定のために粒子バッファを毎フレーム CPU へ読み戻すが、全量（5.2MB）コピーするとフレーム時間が揺れて落下がかくつく。使用中の範囲だけコピーする方式に変更</li>
+                            <li><strong>着地の整定</strong> ── 「次の位置が衝突するか」だけで判定すると、小数位相次第で最大 1 セル浮く / めり込む。整数スナップ後に「めり込んでいれば押し上げ・浮いていれば引き下げ」の両方向走査で解決。ゴーストピースも整数スナップしないと毎フレームぶるぶる震える</li>
+                            <li><strong>溶解相のハードドロップ</strong> ── 接地プローブが波立った水面を素通りし、プール内部に粒子を重ね打ち → 圧力爆発で「ブロック射出」になる。ピース本体の重なり判定で止める方式に変更</li>
+                            <li><strong>フレームペーシング</strong> ── flip モデルの Present(1) は CPU を確実にはブロックしない（実測 1600fps）。絶対時刻で 16.667ms を刻み、大幅な遅延時だけ再同期するリミッタを自作</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>ポイント: 決定論とリプレイを「テスト」にする</h2>
+                    <div class="sec-body">
+                        <p>
+                            一番気に入っているのは開発フローです。乱数は固定シードの線形合同法、入力は毎フレームのスナップショットとして記録・再生できるので、<strong>同じ入力列からは bit-exact に同じゲームが再現されます</strong>。これは Debug / Release の最適化を跨いでも崩れません。
+                        </p>
+                        <p>
+                            これを回帰テストに使いました。リプレイ 4 本（ライン消し / 結晶化 / 波 1 周など）の最終状態 ──「フレーム数・スコア・ピース数・粒子数」の完全一致 ── をゲートにして、5,216 行の <code>main.cpp</code> を 414 行まで分割する大規模リファクタを、各ステップごとにゲートを通しながら完走しています。GPU 物理を含むゲームで「挙動が 1 ビットも変わっていない」ことを機械的に証明できるのは、決定論を最初から設計に入れたからこそです。
+                        </p>
+<pre><code>[line]        replay done: frames=540  score=1440 pieces=5  particles=1440
+[session01]   replay done: frames=381  score=0    pieces=2  particles=1152
+[wave80]      replay done: frames=5000 score=4503 pieces=17 particles=4032
+[crystallize] replay done: frames=1800 score=4503 pieces=8  particles=4608
+              → リファクタ前後・Debug/Release 間で全行が完全一致</code></pre>
+                        <div class="link-row">
+                            <a href="https://github.com/mogmog-0110/Fluid-Drop" target="_blank" rel="noopener">GitHub（ソース）→</a>
+                            <a href="https://github.com/mogmog-0110/Fluid-Drop/releases" target="_blank" rel="noopener">ダウンロード（Releases）→</a>
+                            <a href="portfolio.html">← Works に戻る</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="site-foot">
+            <p>&copy; 川村優弥 / Shiggy</p>
+            <p>fujimiya0110☆gmail.com（☆→@） · <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">github</a></p>
+        </footer>
+    </div>
+
+    <script src="assets/js/back-to-top.js"></script>
+</body>
+
+</html>
