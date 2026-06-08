@@ -667,6 +667,201 @@ pre code { background: none; padding: 0; }
 
 .work-body .go:hover { color: var(--ink-sub); border-color: var(--ink-sub); }
 
+/* ── Works：縮小カード（中間層の作品）────────── */
+
+.mini-grid {
+    list-style: none;
+    margin: 0 !important;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--rule-soft);
+    border-left: 1px solid var(--rule-soft);
+}
+
+.mini {
+    border-right: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    margin: 0 !important;
+}
+
+.mini-open {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr) auto;
+    gap: 0.9rem;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    transition: background 0.15s;
+}
+
+.mini-open:hover { background: var(--wash); }
+
+.mini-thumb {
+    width: 56px;
+    height: 42px;
+    object-fit: cover;
+    border: 1px solid var(--rule-soft);
+    filter: grayscale(100%);
+    transition: filter 0.2s;
+}
+
+.mini-open:hover .mini-thumb { filter: grayscale(0%); }
+
+.mini-thumb.ph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    background: repeating-linear-gradient(45deg, transparent 0 5px, var(--rule-soft) 5px 6px);
+    text-align: center;
+    line-height: 1.3;
+    padding: 0 2px;
+}
+
+.mini-text { min-width: 0; }
+
+.mini-title {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+}
+
+.mini-line {
+    display: block;
+    font-size: 0.74rem;
+    line-height: 1.6;
+    color: var(--ink-sub);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mini-plus {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+}
+
+.mini-open:hover .mini-plus { color: var(--ink); }
+
+@media (max-width: 600px) {
+    .mini-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Works：一行リンク（小物のツールなど）──────── */
+
+.link-list { list-style: none; margin: 0 !important; }
+
+.link-list li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem 0.9rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--rule-soft);
+    margin: 0 !important;
+}
+
+.link-list li:first-child { border-top: 1px solid var(--rule-soft); }
+
+.link-list a {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 1px;
+}
+
+.link-list a:hover { color: var(--ink-sub); border-color: var(--ink-sub); }
+
+.link-list .ll-note {
+    font-size: 0.76rem;
+    color: var(--ink-sub);
+}
+
+/* ── Works：サムネ・ライトボックス（イラスト）──── */
+
+.thumb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+    gap: 0.5rem;
+    margin: 1rem 0 0;
+}
+
+.thumb-grid button {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border: 1px solid var(--rule-soft);
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.thumb-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.25s;
+}
+
+.thumb-grid button:hover img { filter: grayscale(0%); }
+
+@media (hover: none) {
+    .mini-thumb, .thumb-grid img { filter: none; }
+}
+
+@media (max-width: 720px) {
+    .thumb-grid { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 0.4rem; }
+}
+
+/* ── Works：畳んだ創作（クリックで一覧モーダル）── */
+
+.creative-row {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: baseline;
+}
+
+.creative-row:first-child { border-top: 1px solid var(--rule-soft); }
+
+.creative-row > .cr-label {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+}
+
+.creative-row > .cr-label .cr-count {
+    color: var(--ink-faint);
+    margin-left: 0.5em;
+    font-weight: 500;
+}
+
+@media (max-width: 600px) {
+    .creative-row { grid-template-columns: 1fr; gap: 0.5rem; }
+}
+
 /* ── ギャラリー ──────────────────────────── */
 
 .art-grid {
