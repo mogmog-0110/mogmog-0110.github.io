@@ -71,11 +71,18 @@
                             <span>開発中</span><span>C++20</span><span>Windows</span><span>独自ライセンス（使用自由 / 改変・再配布不可）</span>
                         </div>
                         <p>
-                            下の画面は、このエンジンで作ったサンプルのブロック崩しです。ボールやブロックの動きは C++ で、上のスコア・残機・レベルの表示は HTML と CSS で書かれています。
+                            このエンジンは <strong>2D と GPU 3D の両方</strong>を 1 つの API で描き、画面（HUD・メニュー）は HTML / CSS で書けます。下は同梱の 3D デモ —— 立方体・球・板を <code>s.drawMesh</code> で並べただけで、<strong>影（シャドウマップ）とアンチエイリアス（MSAA）</strong>付きで描かれます。左上の文字は 2D の HUD です。
                         </p>
                         <figure class="plate">
-                            <img src="images/engine/breakout.webp" alt="MitiruEngine で作ったブロック崩しのプレイ画面。カラフルなブロックの壁とボール、上部にスコア・残機・レベルの表示" fetchpriority="high" width="1280" height="720">
-                            <figcaption>このエンジンで作ったブロック崩し。ゲーム本体は C++、画面上部の表示は HTML/CSS。</figcaption>
+                            <img src="images/engine/hello3d_shadow.webp" alt="MitiruEngine の GPU 3D デモ。足場の上に立方体・球・色とりどりのピラーが並び、それぞれが地面にやわらかい影を落としている。左上に『MitiruEngine 3D』の 2D HUD。" fetchpriority="high" width="1280" height="720">
+                            <figcaption>同梱デモ <code>hello3d</code>。GPU 3D を<strong>影・MSAA 付き</strong>で描き、文字（HUD）は 2D で上に重なる。<code>draw</code> の中で <code>s.camera3D</code> / <code>s.drawMesh</code> を呼ぶだけ。</figcaption>
+                        </figure>
+                        <p>
+                            2D も同じ書き方で。下はこのエンジンで作ったブロック崩しで、ボールやブロックの動きは C++、上のスコア・残機・レベルの表示は HTML と CSS です。
+                        </p>
+                        <figure class="plate">
+                            <img src="images/engine/breakout.webp" alt="MitiruEngine で作ったブロック崩しのプレイ画面。カラフルなブロックの壁とボール、上部にスコア・残機・レベルの表示" loading="lazy" width="1280" height="720">
+                            <figcaption>ゲーム本体は C++、画面上部の HUD は HTML/CSS。</figcaption>
                         </figure>
                         <div class="figures">
                             <div class="figure"><b>2,600+</b><span>自動テスト</span></div>
