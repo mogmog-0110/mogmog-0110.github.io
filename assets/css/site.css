@@ -495,6 +495,18 @@ figure.plate figcaption {
     margin-top: 0.6rem;
 }
 
+/* ── 図解（インライン SVG）─ モノクロ、線と書体だけ ───── */
+figure.dgm-wrap { margin: 1.6rem 0; }
+svg.dgm { display: block; width: 100%; height: auto; }
+.dgm .box  { fill: var(--paper);     stroke: var(--rule);    stroke-width: 1.4; }
+.dgm .boxy { fill: var(--wash);      stroke: var(--ink-sub); stroke-width: 1.4; }
+.dgm .lbl  { fill: var(--ink);       font: 600 13px var(--sans); }
+.dgm .sub  { fill: var(--ink-sub);   font: 11px var(--sans); }
+.dgm .mono { fill: var(--ink-sub);   font-family: var(--mono); font-size: 11px; }
+.dgm .arr  { stroke: var(--ink-sub); stroke-width: 1.4; fill: none; }
+.dgm .ln   { stroke: var(--rule);    stroke-width: 1.4; }
+.dgm text  { letter-spacing: 0.02em; }
+
 .plate-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
