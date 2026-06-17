@@ -78,12 +78,12 @@
                             <figcaption>このエンジンで作ったブロック崩し。ゲーム本体は C++、画面上部の表示は HTML/CSS。</figcaption>
                         </figure>
                         <div class="figures">
-                            <div class="figure"><b>7</b><span>描画バックエンド</span></div>
-                            <div class="figure"><b>5</b><span>対応プラットフォーム</span></div>
                             <div class="figure"><b>2,600+</b><span>自動テスト</span></div>
                             <div class="figure"><b>1,000+</b><span>コミット</span></div>
+                            <div class="figure"><b>2D + 3D</b><span>同じエンジンで描画</span></div>
+                            <div class="figure"><b>5 秒</b><span>巻き戻せる開発ツール</span></div>
                         </div>
-                        <p class="fine">数値は 2026 年 6 月時点。描画は OpenGL / DirectX 11・12 / Vulkan / WebGL / WebGPU を同じ書き方で切り替えられます。</p>
+                        <p class="fine">数値は 2026 年 6 月時点。描画は <strong>DirectX 12 を主軸</strong>に、DirectX 11 フォールバックを備えます。バックエンドは内部で <code>IDevice</code> として抽象化していて OpenGL / Vulkan / WebGL / WebGPU の実装も持ちますが、ゲームを通して安定して描けるのは現状 DirectX 12 / 11 です。</p>
                     </div>
                 </section>
 
@@ -154,7 +154,7 @@ MITIRU_GAME(MyGame)   // この 1 行でエンジンに繋がる</code></pre>
                     <div class="sec-body">
                         <p class="sec-intro">いちばんの特徴 ── 巻き戻して、観察できる</p>
                         <p>
-                            プレイ中に T キーを押すと、<strong>直前 5 秒を 1 フレームずつ巻き戻して見られます</strong>。「なぜか HP が減った」というとき、その瞬間まで戻って、何が起きたかを目で確認できます。
+                            プレイの裏で状態は毎フレーム記録されていて、開発ツールの<strong>時間軸ウィンドウ</strong>（ホスト側から開く別窓）で<strong>直前 5 秒を 1 フレームずつ巻き戻して見られます</strong>。「なぜか HP が減った」というとき、その瞬間まで戻って、何が起きたかを目で確認できます。観察用のツールはゲーム画面とは独立した窓に分けてあり、プレイ中のキー操作とは競合しません。
                         </p>
                         <figure class="plate">
                             <img src="images/engine/hello_game_timetravel.webp" alt="タイムトラベル中の画面。下部に −37 frames・−0.62s と書かれた巻き戻しバー、右に押されたキーの履歴一覧" loading="lazy" width="1280" height="720">
@@ -184,6 +184,9 @@ MITIRU_GAME(MyGame)   // この 1 行でエンジンに繋がる</code></pre>
                             </li>
                             <li>
                                 同梱デモ「timetravel_demo」 ── 巻き戻し・記録再生・AI 観測をその場で触れる、エンジンの看板機能のショーケース
+                            </li>
+                            <li>
+                                同梱デモ「hello3d」 ── GPU の 3D（影・MSAA 付き）を、ゲームの <code>draw</code> の中で <code>s.camera3D</code> / <code>s.drawMesh</code> を呼ぶだけで出せる例。2D の HUD はその上に重なる
                             </li>
                             <li>
                                 <a href="npr-lines.html">NPR 輪郭線の時間安定化</a> ── アニメ調の輪郭線がチラつく問題への実験（Lab）。実験台としてもこのエンジンを使っています
