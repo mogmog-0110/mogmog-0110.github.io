@@ -309,6 +309,43 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                             </svg>
                             <figcaption>1 個の flat POD を毎フレーム記録するだけ ── 巻き戻し・録画リプレイ・観察が同じ源から生まれる。</figcaption>
                         </figure>
+                        <p class="sec-intro">副作用 ── 構造的にキャッシュに優しい</p>
+                        <p>
+                            flat POD の縛りには、決定性とは別の御利益が付いてきます ── <strong>キャッシュ効率</strong>です。状態が連続したバイト列だと、
+                        </p>
+                        <ul>
+                            <li><strong>ポインタ追跡が消える</strong> ── データキャッシュミスの最大の原因は、参照を辿ってヒープのあちこちへ飛ぶこと。flat POD はそれをしません</li>
+                            <li><strong>毎フレームのヒープ確保がゼロ</strong> ── <code>FixedVec</code> はインライン領域なので、確保のヒッチも断片化も出ません</li>
+                            <li><strong>小さな状態が常駐する</strong> ── 数 KB の状態を毎フレーム舐めるので、キャッシュにホットなまま居座ります（時間的・空間的局所性）</li>
+                        </ul>
+                        <figure class="dgm-wrap">
+                            <svg class="dgm" viewBox="0 0 760 185" role="img" aria-label="キャッシュライン上のアクセスパターンの対比。上『ポインタ追跡（飛び飛び）』は同じ 4 回のアクセスでも離れたセル（別々のキャッシュライン）を引くのでミスしやすい。下『連続アクセス（flat POD / SoA）』は隣り合うセルに順番にアクセスし、1 ライン読むと隣も乗りプリフェッチが先読みするのでミスしにくい。">
+                                <text class="mono" x="380" y="20" text-anchor="middle">ポインタ追跡（飛び飛び）</text>
+                                <rect class="boxy" x="142" y="34" width="56" height="30"/>
+                                <rect class="box"  x="202" y="34" width="56" height="30"/>
+                                <rect class="box"  x="262" y="34" width="56" height="30"/>
+                                <rect class="boxy" x="322" y="34" width="56" height="30"/>
+                                <rect class="box"  x="382" y="34" width="56" height="30"/>
+                                <rect class="boxy" x="442" y="34" width="56" height="30"/>
+                                <rect class="box"  x="502" y="34" width="56" height="30"/>
+                                <rect class="boxy" x="562" y="34" width="56" height="30"/>
+                                <text class="sub" x="380" y="84" text-anchor="middle">同じ 4 回でも別々のラインを引く → ミスしやすい</text>
+                                <text class="mono" x="380" y="114" text-anchor="middle">連続アクセス（flat POD / SoA）</text>
+                                <rect class="boxy" x="142" y="126" width="56" height="30"/>
+                                <rect class="boxy" x="202" y="126" width="56" height="30"/>
+                                <rect class="boxy" x="262" y="126" width="56" height="30"/>
+                                <rect class="boxy" x="322" y="126" width="56" height="30"/>
+                                <rect class="box"  x="382" y="126" width="56" height="30"/>
+                                <rect class="box"  x="442" y="126" width="56" height="30"/>
+                                <rect class="box"  x="502" y="126" width="56" height="30"/>
+                                <rect class="box"  x="562" y="126" width="56" height="30"/>
+                                <text class="sub" x="380" y="176" text-anchor="middle">1 ライン読むと隣も乗る・プリフェッチ → ミスしにくい</text>
+                            </svg>
+                            <figcaption>塗りつぶしが「触ったデータ」。飛び飛び（上）は毎回ちがうキャッシュラインを引くが、連続（下）は 1 ラインに複数のデータが乗り、先読みも効く。</figcaption>
+                        </figure>
+                        <p>
+                            ただし flat POD が保証するのは「連続」までで、自動で最適ではありません。<code>FixedVec&lt;Enemy, N&gt;</code> のような<strong>配列の構造体（AoS）</strong>だと、敵 1 体の座標だけ舐めたくても構造体まるごとがラインに乗ります。大量エンティティのホットループを本気で詰めるなら、次の一手は <strong>SoA（構造体の配列）</strong> ── 座標は座標、HP は HP を別々の連続配列に分け、SIMD とプリフェッチが 100% 効く形にします。Unity DOTS / Unreal Mass のような ECS や、data-oriented design が突き詰めている領域です。
+                        </p>
                         <p class="fine">
                             代償は「トップの <code>struct</code> に <code>std::string</code> / <code>std::vector</code> / ポインタ / 画像を直接持てない」こと。長さの要る所は固定長の <code>FixedString</code> / <code>FixedVec</code> を使い、画像などはグローバル／別オブジェクトに分けます。この縛りこそが、上の力を生みます。
                         </p>
