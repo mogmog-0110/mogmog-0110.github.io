@@ -222,7 +222,70 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                             <figcaption>実機の録画（左＝エディタ / 中央＝ゲーム / 右＝観察窓）。1 行で観察窓が開き、状態がライブで映る。</figcaption>
                         </figure>
                         <p>
-                            これらが成立するのは、エンジンの構造上の約束のおかげです ── ゲームの状態を、ポインタや可変長を持たない 1 個の <strong>flat POD</strong>（ただの数値のかたまり）にまとめておく。そうすると「全状態をまるごと保存・復元する」が単純なコピーになり、巻き戻し・録画リプレイ・観察が同じ 1 つの仕組みから生まれます。あとから足した機能ではなく、設計の最初からこれが目的です。
+                            なぜ巻き戻しや録画リプレイが、こんなに素直にできるのでしょう? ── その秘密は、ゲームの状態を 1 個の <strong>flat POD</strong> に置く、という設計の約束にあります。次のセクションで、その原理を。
+                        </p>
+                    </div>
+                </section>
+
+                <!-- ── flat POD の原理 ────────────────────────── -->
+                <section class="sec">
+                    <h2>原理 ── 状態を 1 個の flat POD に</h2>
+                    <div class="sec-body">
+                        <p class="sec-intro">巻き戻し・録画・観察が成り立つ、たった 1 つの約束</p>
+                        <p>
+                            前のセクションの「巻き戻し」「録画リプレイ」「ライブ観察」は、別々に作った機能ではありません。すべて <strong>1 つの約束</strong>から生まれています ── ゲームの状態を、<strong>flat POD</strong>（Plain Old Data）にまとめておくこと。
+                        </p>
+                        <p>
+                            flat POD とは、ざっくり言えば「<strong>ポインタも可変長コンテナも持たない、固定サイズの数値のかたまり</strong>」です。<code>int</code> / <code>float</code> と固定長配列だけで作った <code>struct</code> ── <code>std::string</code> や <code>std::vector</code>、ヒープへのポインタは入れません。すると、その状態は<strong>メモリ上で 1 本の連続したバイト列</strong>になります。ここがすべての鍵です。
+                        </p>
+                        <figure class="dgm-wrap">
+                            <svg class="dgm" viewBox="0 0 760 220" role="img" aria-label="左は『散らばった状態』。状態オブジェクトがポインタで Player・敵配列・Item 配列をヒープ上のあちこちに参照していて、まるごと保存するには参照を辿った深いコピーが要る。右は『flat POD』。t・playerX・score・stars が 1 本の連続したバイト列に並んでいて、memcpy 一発でコピー・比較・復元できる、という対比の図。">
+                                <defs><marker id="pa" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#999da4"/></marker></defs>
+                                <!-- 左パネル：散らばった状態 -->
+                                <text class="mono" x="186" y="20" text-anchor="middle">散らばった状態（ふつう）</text>
+                                <rect class="box" x="150" y="36" width="76" height="32" rx="4"/>
+                                <text class="lbl" x="188" y="57" text-anchor="middle">状態</text>
+                                <rect class="box" x="20"  y="118" width="92" height="30" rx="4"/>
+                                <text class="sub" x="66"  y="138" text-anchor="middle">Player（heap）</text>
+                                <rect class="box" x="140" y="150" width="92" height="30" rx="4"/>
+                                <text class="sub" x="186" y="170" text-anchor="middle">敵 [ ]（heap）</text>
+                                <rect class="box" x="262" y="118" width="98" height="30" rx="4"/>
+                                <text class="sub" x="311" y="138" text-anchor="middle">Item [ ]（heap）</text>
+                                <path class="arr" style="stroke-dasharray:4 3" d="M170,68 L80,116" marker-end="url(#pa)"/>
+                                <path class="arr" style="stroke-dasharray:4 3" d="M188,68 L186,148" marker-end="url(#pa)"/>
+                                <path class="arr" style="stroke-dasharray:4 3" d="M206,68 L300,116" marker-end="url(#pa)"/>
+                                <text class="sub" x="186" y="204" text-anchor="middle">ポインタを辿る → まるごと保存できない</text>
+                                <!-- 仕切り -->
+                                <line class="ln" x1="384" y1="30" x2="384" y2="196"/>
+                                <!-- 右パネル：flat POD -->
+                                <text class="mono" x="574" y="20" text-anchor="middle">flat POD（1 かたまり）</text>
+                                <rect class="boxy" x="412" y="92" width="80" height="46"/>
+                                <text class="mono" x="452" y="119" text-anchor="middle">t</text>
+                                <rect class="boxy" x="492" y="92" width="80" height="46"/>
+                                <text class="mono" x="532" y="119" text-anchor="middle">playerX</text>
+                                <rect class="boxy" x="572" y="92" width="80" height="46"/>
+                                <text class="mono" x="612" y="119" text-anchor="middle">score</text>
+                                <rect class="boxy" x="652" y="92" width="86" height="46"/>
+                                <text class="mono" x="695" y="119" text-anchor="middle">stars[ ]</text>
+                                <text class="sub" x="574" y="166" text-anchor="middle">連続したバイト列（固定長・ポインタ無し）</text>
+                                <text class="sub" x="574" y="204" text-anchor="middle">memcpy 一発でコピー・比較・復元</text>
+                            </svg>
+                            <figcaption>左は参照を辿らないと全体が分からない（深いコピーが要る）。右は 1 本のバイト列なので、状態をまるごと扱う操作がただのバイト操作になる。</figcaption>
+                        </figure>
+                        <p>
+                            連続したバイト列であることが効いてきます。状態が「あちこちのヒープに散らばったオブジェクトをポインタで辿る」形だと、全体を保存するには参照を 1 つずつ追って深いコピーが要ります。でも flat POD なら ──
+                        </p>
+                        <ul>
+                            <li><strong>保存</strong> ＝ そのバイト列を <code>memcpy</code> で 1 回コピーするだけ</li>
+                            <li><strong>差分</strong> ＝ <code>memcmp</code> でフレーム間の変化が取れる</li>
+                            <li><strong>巻き戻し</strong> ＝ 過去のバイト列を現在へ <code>memcpy</code> で書き戻すだけ</li>
+                            <li><strong>JSON 化（観察）</strong> ＝ フィールドのオフセットを読むだけ</li>
+                        </ul>
+                        <p>
+                            つまり「状態をまるごと扱う」が、特別な仕掛けではなく<strong>ただのバイト操作</strong>になります。だから巻き戻しも録画も観察も、別々ではなく同じ 1 つの土台の上に乗ります。
+                        </p>
+                        <p>
+                            動き方はこうです。<code>MITIRU_GAME(struct)</code> はコンパイル時に「その <code>struct</code> が本当に flat POD か」を <code>static_assert</code> で検査します（違反するとビルドが通りません）。実行中、ホストは毎フレーム状態のバイト列を<strong>リングバッファ</strong>に記録。巻き戻しは過去のバイト列を書き戻すだけ。録画リプレイは「ある時点のスナップショット＋それ以降の入力（これも記録済み）」を流し直すと、決定論的に<strong>同じ結果が bit 単位で再現</strong>されます。観察は <code>MITIRU_REFLECT</code> でフィールドを名前付きの JSON にして覗きます。
                         </p>
                         <figure class="dgm-wrap">
                             <svg class="dgm" viewBox="0 0 760 170" role="img" aria-label="flat POD の状態を毎フレーム ring buffer に記録すると、巻き戻し・録画リプレイ・観察（AI 可視化）の 3 つが同じ仕組みから生まれる、という図。">
@@ -232,20 +295,24 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                                 <text class="sub" x="105" y="98" text-anchor="middle">数値 1 かたまり</text>
                                 <rect class="box"  x="250" y="56" width="170" height="58" rx="5"/>
                                 <text class="lbl" x="335" y="80" text-anchor="middle">ring buffer</text>
-                                <text class="sub" x="335" y="98" text-anchor="middle">毎フレーム記録</text>
+                                <text class="sub" x="335" y="98" text-anchor="middle">毎フレーム memcpy</text>
                                 <line class="arr" x1="190" y1="85" x2="248" y2="85" marker-end="url(#a3)"/>
                                 <rect class="box" x="500" y="16" width="240" height="40" rx="5"/>
-                                <text class="lbl" x="620" y="41" text-anchor="middle">巻き戻し</text>
+                                <text class="lbl" x="620" y="41" text-anchor="middle">巻き戻し（書き戻す）</text>
                                 <rect class="box" x="500" y="66" width="240" height="40" rx="5"/>
-                                <text class="lbl" x="620" y="91" text-anchor="middle">録画リプレイ（テスト）</text>
+                                <text class="lbl" x="620" y="91" text-anchor="middle">録画リプレイ（bit 一致）</text>
                                 <rect class="box" x="500" y="116" width="240" height="40" rx="5"/>
                                 <text class="lbl" x="620" y="141" text-anchor="middle">ライブ観察（AI 可視化）</text>
                                 <path class="arr" d="M420,85 L460,85 L460,36 L498,36" marker-end="url(#a3)"/>
                                 <path class="arr" d="M420,85 L460,85 L460,86 L498,86" marker-end="url(#a3)"/>
                                 <path class="arr" d="M420,85 L460,85 L460,136 L498,136" marker-end="url(#a3)"/>
                             </svg>
-                            <figcaption>状態を 1 個の flat POD に置く ── それだけで、巻き戻し・録画リプレイ・観察が同じ源から生まれる。</figcaption>
+                            <figcaption>1 個の flat POD を毎フレーム記録するだけ ── 巻き戻し・録画リプレイ・観察が同じ源から生まれる。</figcaption>
                         </figure>
+                        <p class="fine">
+                            代償は「トップの <code>struct</code> に <code>std::string</code> / <code>std::vector</code> / ポインタ / 画像を直接持てない」こと。長さの要る所は固定長の <code>FixedString</code> / <code>FixedVec</code> を使い、画像などはグローバル／別オブジェクトに分けます。この縛りこそが、上の力を生みます。
+                        </p>
+                        <div class="note"><strong>これが差別化の核です。</strong> 状態が数千のオブジェクトに散らばったエンジンでは、「全状態をまるごと読む／戻す」が原理的に作れません。最初から状態を 1 個の flat POD に縛ったからこそ、巻き戻し・録画リプレイ・AI 観測が同じ仕組みで成立します。</div>
                     </div>
                 </section>
 
