@@ -60,6 +60,9 @@
                 <p class="lede">
                     3DCG・物理シミュレーションの分野から「これ、どう解くんだろう」という問題を自分で見つけてきて、<a href="engine.html" class="soft-link">自作エンジン</a>の上で解決アプローチを実装してみる実験置き場です。タイトルをクリックするとデモと簡単な説明が開きます。
                 </p>
+                <p class="note">
+                    これらの実験では、実装に AI（LLM）を積極的に使っています。「何を作るか・どう確かめるか」は自分で決め、論文や研究コードの読解・自作エンジンへの移植・GPU 特有のデバッグを AI と相談しながら進めました。一人では手の届かない研究実装に手元から触れにいく ── その進め方も含めての実験です。
+                </p>
             </section>
 
             <ul class="lab-list" id="lab-list"></ul>
@@ -99,8 +102,8 @@
                 { type: "img", src: "images/pbmpm/metaball.webp", w: 444, h: 182,
                   alt: "同じプールをメタボールで表面化して描画したカット",
                   caption: "同じプールをメタボールで表面化して描いたカット。粒子のままでも、滑らかな表面としても出せる。" },
-                { type: "img", src: "images/pbmpm/game.webp", w: 960, h: 720,
-                  alt: "PB-MPM を土台に作った落ちものパズル（開発中）",
+                { type: "img", src: "images/fluiddrop_2.webp", w: 960, h: 720,
+                  alt: "PB-MPM を土台に作った落ちものパズル FLUID DROP",
                   caption: "この PB-MPM をそのままルールにした落ちものパズル（<a href='fluid-drop.html'>FLUID DROP</a>）も作った。積んだブロックが時間経過の「波」でゼリー → 液体 と溶けて混ざり、冷えるとまた固まる。流体の物性そのものが攻略になる落ちものゲームで、上の実験がそのまま土台になっている。" }
             ],
             links: [
