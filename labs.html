@@ -87,6 +87,24 @@
     // ── 実験エントリ。追加するときはここにオブジェクトを 1 つ足すだけ ──
     const LABS = [
         {
+            id: "wboit",
+            title: "ソートしない半透明 ── DX12 で Weighted-Blended OIT を実装し、順序非依存をテストで証明",
+            thumb: "images/oit/wboit_quads.webp", thumbW: 256, thumbH: 256,
+            blurb: "半透明の合成は描画順に依存し、物体が交差・相互貫入すると back-to-front ソート自体が破綻する。McGuire-Bavoil の weighted-blended OIT を自作エンジンの DX12 に実装し、「描画順を逆にしても合成結果が ≤2/255 しか変わらない」を実 GPU テストで機械的に証明した。",
+            tags: ["DirectX 12", "HLSL", "OIT", "Transparency"],
+            meta: "2026 | MitiruEngine（DirectX 12）",
+            problem: "半透明物体の合成は描画順に依存する。正しく見せるには毎フレーム奥→手前にソートする必要があるが、物体が交差したり相互に重なる（A が B の手前かつ奥）と、ソートする順序そのものが定義できず破綻する。煙やパーティクルのように大量・動的な半透明では特に重い。",
+            approach: "ソートを捨てる weighted-blended OIT（McGuire & Bavoil 2013）を DX12 に実装した。透明物体を 2 枚の RT に蓄積する ── accum(RGBA16F) に Σ(premultiplied color × 深度weight)、reveal(R16F) に Π(1−alpha)。加算と乗算はどちらも可換なので、合成結果は描画順に依存しない。最後にフルスクリーンで composite して背景へ重ねる。検証は実 DX12 デバイスをヘッドレスで起こし、3 枚の重なる半透明矩形を「前→後」「後→前」の 2 通りで描いて読み戻し、両者のピクセル差が ≤2/255（accum の浮動小数の加算順の差だけ）であることを assert した ── 通常の alpha ブレンドなら順序で桁違いにズレる。これが OIT の本質「ソートせずに正しく合成できる」の機械的な証明になっている。再利用可能な部品として実装し、エンジンのテストスイートに常駐させている。",
+            media: [
+                { type: "img", src: "images/oit/wboit_quads.webp", w: 256, h: 256,
+                  alt: "DX12 Weighted-Blended OIT で合成した3枚の重なる半透明矩形",
+                  caption: "実 DX12 で合成した 3 枚の半透明矩形（赤・緑・青、各 alpha 0.6）。重なった領域が正しく混色している。この同じ絵が、描画順を入れ替えても ≤2/255 で再現することをテストで保証している ── 半透明をソートしていない。" }
+            ],
+            links: [
+                { label: "Weighted-Blended OIT (McGuire & Bavoil, JCGT 2013)", href: "https://jcgt.org/published/0002/02/09/" }
+            ]
+        },
+        {
             id: "pb-mpm",
             title: "EA SEED の PB-MPM を手元で動かす ── WebGPU 研究実装を DirectX 12 へ移植",
             thumb: "images/pbmpm/thumb.webp", thumbW: 444, thumbH: 155,
