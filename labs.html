@@ -87,6 +87,24 @@
     // ── 実験エントリ。追加するときはここにオブジェクトを 1 つ足すだけ ──
     const LABS = [
         {
+            id: "gaussian-splatting",
+            title: "写真から起こした3Dを実時間で回す ── 3D Gaussian Splatting を自作エンジンへ実装",
+            thumb: "images/gsplat/thumb.webp", thumbW: 960, thumbH: 540,
+            blurb: "写真から再構成した点群（3D Gaussian Splatting）は、公開ビューアが WebGL/CUDA 中心で、自作のゲームエンジンに載せた例はほとんど無い。約26万個の異方性ガウシアンを EWA 楕円射影で描き、毎フレームの奥行きソートを O(N) のバケットソートに置き換えて、DirectX 12 上で滑らかに周回できるようにした。",
+            tags: ["DirectX 12", "HLSL", "Gaussian Splatting", "Neural Rendering"],
+            meta: "2026 | MitiruEngine（DirectX 12）",
+            problem: "3D Gaussian Splatting（3DGS, SIGGRAPH 2023）は、写真の集合から3Dシーンを「無数の半透明な楕円体（ガウシアン）」として再構成し、メッシュより速く写実的に描ける手法で、いまの実時間ニューラルレンダリングの主役。ただし扱いには癖がある ── (1) 1シーンが数十万〜数百万個の異方性ガウシアンででき、各々を画面に正しい楕円として射影（EWA）する必要がある。(2) 半透明なので毎フレーム奥→手前に並べ替えないと色が壊れるが、素朴な std::sort は O(N log N) で点数が増えると重い。(3) 公開実装は WebGL/CUDA の研究コードが中心で、自前のゲームエンジン（DirectX 12）に載せて『自分のシーンの一部』として扱える形にした例は少ない。まず自分のエンジンで動かし、土台に使えるか確かめたかった。",
+            approach: "antimatter15 の `.splat` 形式（32B/点）をパースして GPU の StructuredBuffer に展開し、各ガウシアンの3D共分散 R·S·Sᵀ·Rᵀ を射影ヤコビアンで2Dへ落として conic（楕円）にし、インスタンス化した矩形へ描く（EWA スプラッティング・プリマルチプライ合成・4×MSAA・FP16）。毎フレームの奥行きソートは std::sort をやめ、視点深度を2048バケットに振り分けるカウンティングソート（O(N)）に置換 ── 数十万点でも実時間で奥→手前順を保つ。実データ特有の問題にも手を入れた: 再構成ノイズ（孤立した遠方点・grazing で白く尾を引く巨大な点・ほぼ透明な点）を中央値/パーセンタイル基準で読み込み時に自動除去。被写体が変な向きで再構成されていても主成分分析（PCA）で自動的に立て直し、側面がカメラを向くよう整列する。色も、splat は焼き込み済みの完成色なのでエンジンの ACES トーンマップを逆補正して生の鮮やかさで出す。シーンは Nike シューズ（約26万点）で、境界球から自動フレーミングして周回・ズームできる（録画）。",
+            media: [
+                { type: "video", src: "videos/gsplat_orbit.mp4",
+                  caption: "自作エンジン（DirectX 12）上で 3D Gaussian Splatting シーン（Nike シューズ・約26万点）を実時間で周回した実機録画。EWA 楕円射影＋O(N) 深度バケットソートで、半透明な楕円体の集合が破綻なく奥→手前へ合成される。点群を PCA で立て直し、ACES 逆補正で元の鮮やかな色を出している。" }
+            ],
+            links: [
+                { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/realtime-gaussian-splatting" },
+                { label: "3D Gaussian Splatting (Kerbl et al., SIGGRAPH 2023)", href: "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/" }
+            ]
+        },
+        {
             id: "wboit",
             title: "ソートしない半透明 ── ふつうは描画順で壊れる透明を、順番に依存しない方法で描く",
             thumb: "images/oit/wboit_compare.webp", thumbW: 836, thumbH: 334,
