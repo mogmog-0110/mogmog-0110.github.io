@@ -362,7 +362,12 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                             正面は 2D + HTML/CSS ですが、3D も同じ書き方で出せます。<code>draw</code> の中で <code>s.camera3D</code> でカメラを決め、<code>s.drawMesh</code> でメッシュ（立方体・球・板・読み込んだモデル）を置くだけ。あとはエンジンの GPU 3D レンダラーが、<strong>影（シャドウマップ）とアンチエイリアス（MSAA）</strong>付きで描きます。文字（HUD）は 2D でその上に重なります。
                         </p>
                         <figure class="plate">
-                            <img src="images/engine/hello3d.webp" alt="MitiruEngine で動く GPU 3D デモ。足場の上に回転する立方体と追従して周回する球、奥に色とりどりのピラーが並び、それぞれが地面にやわらかい影を落としている。カメラがゆっくり周回し、エッジはなめらかにアンチエイリアスされている実機の録画。" loading="lazy" decoding="async">
+                            <video autoplay loop muted playsinline preload="metadata"
+                                   poster="images/engine/hello3d.webp" width="1280" height="720"
+                                   aria-label="MitiruEngine の GPU 3D デモ hello3d の実機録画。足場の上の立方体・周回する球・色とりどりのピラーが影（シャドウマップ）と MSAA 付きで描かれ、半透明キューブが順序非依存で重なり、カメラがゆっくり周回する。">
+                                <source src="videos/hello3d.mp4" type="video/mp4">
+                                <img src="images/engine/hello3d.webp" alt="MitiruEngine で動く GPU 3D デモ。足場の上に回転する立方体と追従して周回する球、奥に色とりどりのピラーが並び、それぞれが地面にやわらかい影を落としている。" loading="lazy" decoding="async">
+                            </video>
                             <figcaption>同梱デモ <code>hello3d</code> の実機録画。GPU 3D を影・MSAA 付きで描画。<code>s.light3D</code> で光の向きを変えると影もその向きに伸びる。</figcaption>
                         </figure>
                         <p>

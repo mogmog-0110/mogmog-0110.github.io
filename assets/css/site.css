@@ -610,11 +610,13 @@ pre code { background: none; padding: 0; }
     .work-list .work:nth-child(odd) { border-right: none; }
 }
 
-.work-media img {
+.work-media img,
+.work-media video {
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
     border: 1px solid var(--rule-soft);
+    display: block;
 }
 
 .work-media .ph {
