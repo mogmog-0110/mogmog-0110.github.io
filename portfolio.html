@@ -76,13 +76,13 @@
                     <div class="work-list">
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/live2d/official-vs-mine.webp" alt="左=自作 D3D12 / 右=公式 Cubism D3D11 サンプル。描画が一致している" width="731" height="574">
+                                <img loading="lazy" decoding="async" src="images/live2d/haru.webp" alt="背景ステージ込みで公式フレーミングのモデルを D3D12 で表示" width="960" height="539">
                             </div>
                             <div class="work-body">
                                 <h3>Live2D × Direct3D 12</h3>
                                 <p class="work-meta">2026年 · 個人開発 · MitiruEngine / DirectX 12 / Cubism SDK 5</p>
                                 <p>
-                                    Live2D 公式 SDK が対応していない <strong>Direct3D 12</strong> へ、公式レンダラ（<code>CubismRenderer_D3D11</code>）を忠実移植。マスク・オフスクリーン・advanced blend まで作り込み、<strong>公式 D3D11 サンプルと描画が一致</strong>するところまで持っていきました。
+                                    Live2D 公式 SDK が対応していない <strong>Direct3D 12</strong> へ、公式レンダラ <code>CubismRenderer_D3D11</code> の描画手順を読み解き、<strong>一つずつ D3D12 で再実装</strong>。クリッピングマスク・オフスクリーン・advanced blend を含むフルセットの移植です。
                                 </p>
                                 <p class="tags">MitiruEngine / DirectX 12 / Live2D Cubism 5 / Renderer</p>
                                 <a href="live2d-d3d12.html" class="go">詳細を見る →</a>

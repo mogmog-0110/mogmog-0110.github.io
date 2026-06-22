@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fcfcfb">
     <title>Live2D × Direct3D 12 | Shiggy</title>
-    <meta name="description" content="Live2D 公式 SDK が対応していない Direct3D 12 へ、公式レンダラ（CubismRenderer_D3D11）を忠実移植した実装。公式 D3D11 サンプルと描画が一致するところまで作り込みました。自作エンジン MitiruEngine の一部です。">
+    <meta name="description" content="Live2D 公式 SDK が対応していない Direct3D 12 へ、公式レンダラ CubismRenderer_D3D11 の描画手順を読み解いて一つずつ再実装した記録。クリッピングマスク・オフスクリーン・advanced blend まで含むフルセットの移植です。">
 
     <style>
         html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
@@ -17,16 +17,16 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shiggy's Portfolio">
     <meta property="og:title" content="Live2D × Direct3D 12 | Shiggy">
-    <meta property="og:description" content="公式が対応していない Direct3D 12 へ Live2D 公式レンダラを忠実移植。公式 D3D11 サンプルと描画一致まで作り込んだ、MitiruEngine 製の実装。">
+    <meta property="og:description" content="公式が対応していない Direct3D 12 へ、Live2D 公式レンダラの描画手順を一つずつ再実装。マスク・オフスクリーン・advanced blend を含むフルセットの移植。">
     <meta property="og:url" content="https://mogmog-0110.github.io/live2d-d3d12.html">
     <link rel="canonical" href="https://mogmog-0110.github.io/live2d-d3d12.html">
-    <meta property="og:image" content="https://mogmog-0110.github.io/images/live2d/official-vs-mine.webp">
-    <meta property="og:image:width" content="731">
-    <meta property="og:image:height" content="574">
+    <meta property="og:image" content="https://mogmog-0110.github.io/images/live2d/haru.webp">
+    <meta property="og:image:width" content="960">
+    <meta property="og:image:height" content="539">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Live2D × Direct3D 12 | Shiggy">
-    <meta name="twitter:description" content="公式が対応していない Direct3D 12 へ Live2D 公式レンダラを忠実移植。公式 D3D11 サンプルと描画一致まで作り込んだ、MitiruEngine 製の実装。">
-    <meta name="twitter:image" content="https://mogmog-0110.github.io/images/live2d/official-vs-mine.webp">
+    <meta name="twitter:description" content="公式が対応していない Direct3D 12 へ、Live2D 公式レンダラの描画手順を一つずつ再実装。マスク・オフスクリーン・advanced blend を含むフルセットの移植。">
+    <meta name="twitter:image" content="https://mogmog-0110.github.io/images/live2d/haru.webp">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,7 +58,7 @@
                 <p class="file-line">/ works / live2d-d3d12</p>
                 <h1>Live2D × Direct3D 12</h1>
                 <p class="lede">
-                    自作の <a href="engine.html" class="soft-link">MitiruEngine</a> は Direct3D 12 製ですが、<strong>Live2D の公式 SDK は D3D12 に対応していません</strong>（OpenGL / D3D11 / D3D9 / Metal / Vulkan のみ）。なので、公式の D3D11 レンダラ（<code>CubismRenderer_D3D11</code>）を <strong>D3D12 へ自分で移植</strong>しました。目標はひとつ ── <strong>公式サンプルとまったく同じ絵が D3D12 で出ること</strong>。
+                    自作の <a href="engine.html" class="soft-link">MitiruEngine</a> は Direct3D 12 製ですが、Live2D 公式 SDK は <strong>D3D12 に対応していません</strong>（OpenGL / D3D11 / D3D9 / Metal / Vulkan のみ）。そこで、公式の D3D11 レンダラ <code>CubismRenderer_D3D11</code> が内部で何をしているかを読み解き、その<strong>描画手順を一つずつ D3D12 で再実装</strong>しました。Cubism 5 のクリッピングマスク・オフスクリーングループ・advanced blend を含む、フルセットの移植です。
                 </p>
                 <div class="meta-line">
                     <span>2026年</span><span>個人開発</span><span>MitiruEngine</span><span>DirectX 12</span><span>Cubism SDK 5</span>
@@ -67,63 +67,66 @@
 
             <div class="sections">
                 <section class="sec">
-                    <h2>公式 D3D11 と並べて、同じ絵になった</h2>
+                    <h2>動いているもの</h2>
                     <div class="sec-body">
-                        <a href="images/live2d/official-vs-mine.webp" target="_blank">
-                            <img loading="lazy" decoding="async" src="images/live2d/official-vs-mine.webp" alt="左=自作 D3D12 / 右=公式 Cubism D3D11 サンプル。同じモデルのタップ演出が一致している" width="731" height="574" style="width:100%;height:auto;border-radius:8px;">
+                        <a href="images/live2d/haru.webp" target="_blank">
+                            <img loading="lazy" decoding="async" src="images/live2d/haru.webp" alt="背景ステージ込みで公式フレーミングのモデルを D3D12 で表示" width="960" height="539" style="width:100%;height:auto;border-radius:8px;">
                         </a>
                         <p style="margin-top:.8em;">
-                            <strong>左が自作（D3D12）、右が公式の Cubism D3D11 サンプル</strong>です。モデル "Ren" のタップ演出で、胸元のホログラム表示まで含めて一致しています。Live2D 公式のサンプルは「どのプラットフォームでも同じ絵が出る」よう設計されているので、その基準にこちらも合わせにいきました。
-                        </p>
-                        <div class="plate-grid">
-                            <a href="images/live2d/haru.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/live2d/haru.webp" alt="背景ステージ込みでモデルを公式フレーミングで表示したクリーンな描画" width="960" height="539">
-                            </a>
-                            <a href="images/live2d/ren.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/live2d/ren.webp" alt="Ren のホログラム — advanced blend を多用した演出" width="260" height="430">
-                            </a>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="sec">
-                    <h2>「壊れて見える」が、じつは設計どおりだった話</h2>
-                    <div class="sec-body">
-                        <p>
-                            移植の途中、Ren というモデルのタップ演出だけ、胸元に変な青い図形が出て「明らかにバグってる」状態でした。原因を追っていくと ── それは <code>PartHologram</code> という<strong>もともと設計されたホログラム演出</strong>で、モデルのバグではありませんでした。
-                        </p>
-                        <p>
-                            ただこの演出、Cubism 5 のレンダリング機能をほぼ全部使い切る重さで、<strong>198 枚のドロウアブルのうち 20 枚が「advanced blend」</strong>（Multiply / HardLight / Color / AddGlow ＋ Atop / Out といった高度な合成）を使い、さらに<strong>マスク付きのオフスクリーングループ</strong>を多用していました。私の移植がそこまで追いついていなかったので、平らな青い板に潰れて「壊れて見えていた」わけです。
-                        </p>
-                        <p>
-                            これらを公式の <code>CubismBlendMode.fx</code> どおりに（18 カラー × 5 アルファの合成を per-pixel で）実装しきって、初めて公式と同じ絵になりました。<strong>「ホログラムが崩れている＝モデルの異常」ではなく「自分の実装の不足」だった</strong>、と公式サンプルと並べて初めて切り分けられた ── というのが、作っていていちばん腑に落ちた瞬間でした。確かめる相手（公式の絵）があると、こういう判断ができるんだなと。
+                            背景ステージ・公式相当のフレーミング・マウス追従・タップモーション・物理・目パチ・呼吸まで含めて、8 体の公式モデル（Haru / Hiyori / Mao / Mark / Natori / Ren / Rice / Wanko）が D3D12 上で動きます。クリッピングマスク・オフスクリーン・advanced blend を使うモデルも含みます。
                         </p>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>移植した中身</h2>
+                    <h2>公式 D3D11 レンダラは何をしているか</h2>
                     <div class="sec-body">
                         <p>
-                            公式の D3D11 レンダラの設計に、できるだけ忠実に従いました。とくに効いたのは次のあたりです。
+                            Cubism のモデルは、テクスチャの貼られたメッシュ（<strong>ドロウアブル</strong>）の集まりです。各ドロウアブルは「描画順・不透明度・ブレンドモード・どのマスクで切り抜くか・どのオフスクリーンに属すか」といった情報を持ち、これらは<strong>モーションに応じて毎フレーム変わります</strong>。公式の <code>CubismRenderer_D3D11</code> は、これを次の段で描いています。
                         </p>
                         <ul>
-                            <li><strong>描画ループ（DrawObjectLoop）</strong> — ドロウアブルとオフスクリーンを描画順で1本のストリームにまとめてフラットに走査する、公式と同じ構造に。描画順は<strong>モーション中に毎フレーム変わる</strong>ので、毎フレーム並べ替え直す（最初これを load 時に固定していて、タップの瞬間だけ重なり順が崩れていました）。</li>
-                            <li><strong>クリッピングマスク</strong> — 被クリップごとに 256² の高精度マスクへ形状を描き、それでクリップ。多マスクなモデルでも目などの境界が崩れないよう、高精度経路に統一。</li>
-                            <li><strong>オフスクリーングループ（Cubism 5）</strong> — パートの集合を自前の描画先へまとめて、親へ「ブレンド＋不透明度＋乗算/スクリーン色」で合成（入れ子対応）。</li>
-                            <li><strong>per-drawable advanced blend</strong> — 18 カラー × 5 アルファ（Porter-Duff）の合成を、合成先をコピーして per-pixel シェーダで。Ren のホログラムの正体はここ。</li>
-                            <li><strong>三重バッファリング</strong> — エンジンは3フレーム同時進行なので、CPU が毎フレーム書く頂点・定数バッファは3重化しないと、GPU 読み中に上書きして全体がちらつきます（これでマスク/オフスクリーンの破綻もまとめて直りました）。</li>
+                            <li><strong>描画順の走査（DrawObjectLoop）</strong> — ドロウアブルとオフスクリーンを <code>csmGetRenderOrders</code> の順で1本のストリームにまとめ、<code>_currentOffscreen</code> という入れ子の状態を持ちながらフラットに走査する。</li>
+                            <li><strong>クリッピングマスク</strong> — あるドロウアブルが別のドロウアブル（の形）で切り抜かれる場合、マスク形状を専用バッファに先に描き、本体を描くときに <code>(1 − mask)</code> を掛けて切り抜く。</li>
+                            <li><strong>オフスクリーングループ（Cubism 5）</strong> — パートの集合を一旦自前のレンダーターゲットへまとめて描き、親へ「ブレンドモード＋不透明度＋乗算/スクリーン色」で合成する（入れ子可）。</li>
+                            <li><strong>advanced blend</strong> — Normal / Add / Multiply 以外の高度な合成は、固定機能のブレンドでは表せない。そこで合成先（描いている下地）をコピーし、専用シェーダで <strong>18 種のカラー合成 × 5 種のアルファ合成</strong>を1ピクセルずつ計算する。</li>
                         </ul>
                         <p>
-                            8 体の公式モデル（Haru / Hiyori / Mao / Mark / Natori / Ren / Rice / Wanko）で、公式サンプル相当のフレーミング・マウス追従・タップモーション・物理・目パチ・呼吸まで含めて確認しました。
+                            公式サンプルは、この一連を GL / D3D11 / Metal / Vulkan の各バックエンドで「同じ絵」が出るように作られています。D3D12 はそこに無いので、同じ手順を D3D12 の API で書き直す、というのがこの移植です。
                         </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>D3D12 へ、一つずつなぞって実装</h2>
+                    <div class="sec-body">
+                        <p>公式の各段を、対応する D3D12 の機能でそのまま再現しました。</p>
+                        <ul>
+                            <li><strong>DrawObjectLoop</strong> — 同じフラット走査＋オフスクリーン連鎖で移植。描画順は毎フレーム変わるので<strong>毎フレーム並べ替え直す</strong>（ここを読み込み時に固定すると、タップなど強いモーションの瞬間に重なり順が崩れる）。</li>
+                            <li><strong>クリッピングマスク</strong> — 高精度経路（被クリップごとに 256² のマスクバッファへ形状を描く）で実装。マスク生成行列（model→マスク NDC）とサンプリング行列（model→UV、Y 反転）を公式 <code>SetupMatrixForHighPrecision</code> と同じ式で算出。</li>
+                            <li><strong>オフスクリーングループ</strong> — 各グループが自前のレンダーターゲットを持ち、親へブレンド合成。マスク付きオフスクリーンにも対応。</li>
+                            <li><strong>advanced blend</strong> — 公式シェーダ <code>CubismBlendMode.fx</code> の 18 カラー × 5 アルファ（Porter-Duff）をそのまま HLSL へ移植。非互換ブレンドのドロウアブルは「下地コピー → 専用シェーダで合成 → 結果で置き換え」する。ブレンドモード値は <code>color = mode &amp; 0xFF</code> / <code>alpha = (mode &gt;&gt; 8) &amp; 0xFF</code> でデコード。</li>
+                            <li><strong>細部の規約合わせ</strong> — 頂点・乗算済みアルファ（premultiplied）・ブレンドステート・MVP 規約（行優先 <code>mul(pos, M)</code>、UV の Y 反転）・テクスチャフォーマット（<code>R8G8B8A8_UNORM</code> 非 sRGB）まで、公式 D3D11 と一つずつ突き合わせて揃えました。</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>D3D12 ならではの工夫</h2>
+                    <div class="sec-body">
+                        <p>D3D11 では中で隠れていて、D3D12 だと自分で面倒を見る必要があった部分です。</p>
+                        <ul>
+                            <li><strong>三重バッファリング</strong> — エンジンは 3 フレームを同時進行（frames-in-flight）させています。CPU が毎フレーム書き込む頂点バッファ・定数バッファを、GPU が前のフレームを読んでいる最中に上書きしないよう、<strong>3 重に持つ</strong>必要があります。ここを単一バッファにすると、半分書きかけのデータを GPU が読んで全体がちらつき、マスクやオフスクリーンの合成も崩れます（D3D11 ドライバが内部で吸収してくれていた所）。</li>
+                            <li><strong>明示的なリソース状態管理</strong> — レンダーターゲット⇄シェーダリソースの遷移、advanced blend の下地コピーに使う <code>COPY_SOURCE</code> / <code>COPY_DEST</code> の遷移などを、描画段の境界で<strong>自分でバリアを張って</strong>管理します。</li>
+                            <li><strong>ルートシグネチャ・ディスクリプタヒープ・PSO の事前設計</strong> — マスク用 SRV・下地コピー用 SRV を含むルートシグネチャ、ブレンド種別 × カリングの組み合わせ分のパイプラインステート（PSO）を事前に生成。D3D11 のように状態をその場で切り替えるのではなく、あらかじめ全パターンを用意しておく D3D12 の流儀に合わせています。</li>
+                            <li><strong>マスクバッファの精度選択</strong> — 多くのマスクを持つモデルでも目などの境界が崩れないよう、低精度のタイル分割パッキングではなく、被クリップごとにフルバッファへ描く高精度経路に統一しました。</li>
+                        </ul>
                         <div class="link-row">
-                            <a href="https://github.com/mogmog-0110/live2d-cubism-d3d12" target="_blank" rel="noopener">GitHub（ソース・解説）→</a>
+                            <a href="https://github.com/mogmog-0110/live2d-cubism-d3d12" target="_blank" rel="noopener">GitHub（ソース）→</a>
                             <a href="https://www.live2d.com/sdk/about/" target="_blank" rel="noopener">Cubism SDK について →</a>
                             <a href="portfolio.html">← Works に戻る</a>
                         </div>
                         <p style="font-size:.85em;opacity:.7;margin-top:1.4em;border-top:1px solid #e5e5e2;padding-top:1em;">
-                            <strong>クレジット</strong>：本実装は Live2D Cubism SDK を使用しています（© Live2D Inc.）。掲載スクリーンショットのモデル（Haru / Ren など）は Live2D Inc. の無償提供サンプルモデルで、<a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_jp.html" target="_blank" rel="noopener" class="soft-link">Live2D Free Material License Agreement</a> に基づき表示しています。比較画像の右側は公式 Cubism D3D11 サンプルの実行画面です。リポジトリには SDK 本体・モデルファイルは<strong>同梱していません</strong>（再配布なし）。Cubism SDK / Core の利用は各 <a href="https://www.live2d.com/eula/live2d-sdk-license-agreement_jp.html" target="_blank" rel="noopener" class="soft-link">SDK 使用許諾</a> に従います。
+                            <strong>クレジット</strong>：本実装は Live2D Cubism SDK を使用しています（© Live2D Inc.）。掲載スクリーンショットのモデルは Live2D Inc. の無償提供サンプルモデルで、<a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_jp.html" target="_blank" rel="noopener" class="soft-link">Live2D Free Material License Agreement</a> に基づき表示しています。リポジトリには SDK 本体・モデルファイルは<strong>同梱していません</strong>（再配布なし）。Cubism SDK / Core の利用は各 <a href="https://www.live2d.com/eula/live2d-sdk-license-agreement_jp.html" target="_blank" rel="noopener" class="soft-link">SDK 使用許諾</a> に従います。
                         </p>
                     </div>
                 </section>
