@@ -75,16 +75,19 @@
                 <section class="sec">
                     <h2>SCREENS</h2>
                     <div class="sec-body">
-                        <p>MitiruEngine 版の実機画面。タイトルから調理シーンまで、見えているもの（HUD・注文票・食材棚・プレート上のクレープ）はすべて HTML/CSS で描画しています。</p>
+                        <p>MitiruEngine 版の実機画面。タイトル・調理・ノベル・日締めまで、見えているもの（朝の厨房の背景、食材棚、注文ヒロインの立ち絵と吹き出し、プレート上に重ねていくクレープ、ドリンクのジューサー、結果画面の売上・好感度）は<strong>すべて HTML/CSS で描画</strong>しています。</p>
                         <div class="plate-grid">
                             <a href="images/kc_engine_title.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/kc_engine_title.webp" alt="タイトル画面 — かえるくれーぷ" width="1280" height="720">
+                                <img loading="lazy" decoding="async" src="images/kc_engine_title.webp" alt="タイトル画面 — ヒロイン3人とロゴ" width="1280" height="720">
                             </a>
                             <a href="images/kc_engine_cooking.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/kc_engine_cooking.webp" alt="調理シーン — 注文どおりに仕上げたクレープ" width="1280" height="720">
+                                <img loading="lazy" decoding="async" src="images/kc_engine_cooking.webp" alt="調理シーン — 注文ヒロインの吹き出し・作りかけのクレープ・ジューサー" width="1280" height="720">
                             </a>
-                            <a href="images/kc_engine_cooking2.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/kc_engine_cooking2.webp" alt="調理シーン — 食材を乗せている途中" width="1280" height="720">
+                            <a href="images/kc_engine_novel.webp" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/kc_engine_novel.webp" alt="ノベルパート — ヒロインとの会話" width="1280" height="720">
+                            </a>
+                            <a href="images/kc_engine_result.webp" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/kc_engine_result.webp" alt="シフト結果 — 売上・目標・ヒロイン好感度" width="1280" height="720">
                             </a>
                         </div>
                     </div>
@@ -105,7 +108,7 @@
                             <li>夜のノベル（オプション）</li>
                             <li>セーブして翌朝へ</li>
                         </ol>
-                        <p class="fine">※ 上記は目指している完成形です。現在 MitiruEngine 版で実際に遊べるのは ③ クッキングシフトの中核部分で、ノベル・メインメニュー・日次ループは設計を固めながら実装を進めている段階です。</p>
+                        <p class="fine">※ 上記は目指している完成形です。現在 MitiruEngine 版では ③ クッキングシフトを中核に、① 朝のノベル・④ シフト結果（期限付きの総売上目標とヒロイン好感度）・⑥ 翌日への日次ループが骨組みまで動いており、② メインメニューと本編シナリオを順に作り込んでいる段階です。</p>
                     </div>
                 </section>
 
@@ -114,7 +117,10 @@
                     <div class="sec-body">
                         <h3>クッキングパート</h3>
                         <p>
-                            マウス / タッチでクレープを作るアクション。食材棚のフルーツ・ソース・ホイップ・トッピングをプレートへドラッグして組み立てます。プレートの上ではレイヤーが重なって 1 枚のクレープに合成され、注文票の「のせるもの」と一致したら提供。余分が乗っていたり足りないと評価が下がり、待たせすぎるとお客さんは帰ってしまいます。注文ごとにヒロインが立ち、待ち時間ゲージとごきげんが変化します。
+                            マウス / タッチでクレープを作るアクション。食材棚のフルーツ・ソース・ホイップ・トッピング・アイスをプレートへドラッグして組み立てます。プレートの上ではレイヤーが重なって 1 枚のクレープに合成され、注文と一致したら包んでヒロインへ提供。余分が乗っていたり足りないと評価が下がり、待たせすぎるとお客さんは帰ってしまいます。注文ごとにヒロインが立ち絵で並んで吹き出しから注文し、待ち時間ゲージとごきげん（表情）が変化します。吹き出しにマウスを乗せると、必要な具材がアイコン＋名前のチェックリストで開きます。
+                        </p>
+                        <p>
+                            クレープに加えて、まな板でフルーツを刻んでジューサーにかけたり、エスプレッソでコーヒーを淹れたりするドリンクの調理もあり、注文は「クレープ単品」「クレープ＋ジュース」など複数品に組まれます。複数の注文をリアルタイムにさばきながら、営業最終日までの<strong>総売上目標</strong>を目指す構成です。
                         </p>
 
                         <h3>ノベルパート + メインメニュー</h3>
@@ -159,9 +165,6 @@
                             <a href="images/kc_3.webp" target="_blank">
                                 <img loading="lazy" decoding="async" src="images/kc_3.webp" alt="Godot 版 スクリーンショット 3" width="1277" height="721">
                             </a>
-                            <a href="images/kc_4.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/kc_4.webp" alt="Godot 版 スクリーンショット 4" width="1284" height="718">
-                            </a>
                         </div>
                     </div>
                 </section>
@@ -196,10 +199,15 @@
                         <ul>
                             <li>コミケ 106 で Godot 版の体験版を配布</li>
                             <li>MitiruEngine 版のゲームコード（DLL 単位、ホットリロード対応）</li>
-                            <li>クッキングシーン（HTML/CSS UI、ドラッグ&amp;ドロップ、レシピ判定、注文待ち、売上・チップ）</li>
-                            <li>注文ヒロイン（マリア / ライカ / サチ / エリザベス）と待ち時間ゲージ</li>
+                            <li>クッキングシーン（HTML/CSS UI、ドラッグ&amp;ドロップ、レシピ判定、注文待ち、売上・チップ・コンボ）</li>
+                            <li>焼き工程・まな板でのフルーツカット・トッピング合成・包んで提供</li>
+                            <li>ドリンクのステーション（ジューサー / エスプレッソ）と、クレープ＋ドリンクの複数品注文</li>
+                            <li>注文ヒロイン（マリア / ライカ / サチ / エリザベス）の立ち絵・吹き出し・待ち時間ゲージ・表情変化</li>
+                            <li>注文メニューのホバーで具材アイコン＋名前のチェックリスト表示</li>
                             <li>プレート上のクレープのレイヤー合成（食材を乗せると見た目が変わる）</li>
-                            <li>1 日の営業ループ（開店 → 注文をさばく → 日替り結果）</li>
+                            <li>期限付きの総売上目標（達成 / 未達の判定）と、提供で上がるヒロイン好感度</li>
+                            <li>ノベルパートの骨組み（タイトル → 朝のノベル → 調理 → 結果 のループ）</li>
+                            <li>ステーション強化のアップグレード機構（焼き場・まな板・ジューサー等のレベル）</li>
                             <li>朝のダイナーをテーマにしたデザインシステム</li>
                         </ul>
                         <p>
