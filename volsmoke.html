@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja" style="background-color: #fcfcfb;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fcfcfb">
+    <title>3D 煙＆炎のリアルタイム GPU シミュレーション | Shiggy</title>
+    <meta name="description" content="グリッド上で Navier-Stokes を GPU で解き、密度・温度場をボリュームレイマーチで描く煙＆炎のリアルタイムデモ。古典手法を自作エンジン MitiruEngine 上にフルスクラッチ実装した。">
+
+    <style>
+        html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
+    </style>
+
+    <!-- meta:social -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shiggy's Portfolio">
+    <meta property="og:title" content="3D 煙＆炎のリアルタイム GPU シミュレーション | Shiggy">
+    <meta property="og:description" content="グリッド上で Navier-Stokes を GPU で解き、密度・温度場をボリュームレイマーチで描く煙＆炎のリアルタイムデモ。">
+    <meta property="og:url" content="https://mogmog-0110.github.io/volsmoke.html">
+    <link rel="canonical" href="https://mogmog-0110.github.io/volsmoke.html">
+    <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="3D 煙＆炎のリアルタイム GPU シミュレーション | Shiggy">
+    <meta name="twitter:description" content="Navier-Stokes + ボリュームレイマーチの煙＆炎を自作エンジンに実装。">
+    <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/site.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
+
+    <div class="frame">
+        <header class="site-head">
+            <div class="inner">
+                <a class="brand" href="index.html">mogmog-0110.github.io</a>
+                <ul class="menu">
+                    <li><a href="engine.html">engine</a></li>
+                    <li><a href="labs.html" class="current">lab</a></li>
+                    <li><a href="research.html">research</a></li>
+                    <li><a href="portfolio.html">works</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <main id="main">
+            <section class="page-head">
+                <p class="file-line">/ lab</p>
+                <h1>3D 煙＆炎のリアルタイム GPU シミュレーション</h1>
+                <p class="lede">
+                    <strong>3D グリッド上で流体方程式 (Navier-Stokes) を GPU で解き、できた密度・温度場をボリュームレイマーチで立体的に描く、煙と炎のリアルタイムデモです。</strong>
+                </p>
+                <p class="lede" style="margin-top: 0.8rem;">
+                    流体ソルバ・炎の発光・ボリューム描画・自己影・インタラクティブ UI までを一式、<a href="engine.html" class="soft-link">自作エンジン</a>の DX12 コンピュート基盤の上にフルスクラッチで実装しました。手法そのものは映画・ゲームで長く使われてきた古典 (後述) ですが、論文を読んで自分の手で動くところまで通したのが主眼です。
+                </p>
+                <div class="meta-line" style="margin-top: 1.6rem; margin-bottom: 0;">
+                    <span>Experiment</span><span>C++20 / HLSL</span><span>DirectX 12 Compute</span><span>MitiruEngine</span><span>2026</span>
+                </div>
+            </section>
+
+            <div class="sections">
+                <section class="sec">
+                    <h2>作ったもの</h2>
+                    <div class="sec-body">
+                        <p>
+                            128³ のボクセルグリッドを毎フレーム GPU で更新し、立ち上る炎と煙をリアルタイムに描画します。
+                            ウィンドウ内のスライダーで浮力・冷却・乱流・発光・色などをその場で変えられ、
+                            複数のプリセットを横に並べて同時に見比べることもできます。
+                        </p>
+                        <figure class="plate">
+                            <video src="images/volsmoke/fire.mp4" autoplay loop muted playsinline width="1280" height="720"></video>
+                            <figcaption>炎のプリセット (実機レンダリングを録画)。火元が白熱し、上昇しながら冷えて橙→赤→煙へ遷移する。揺らぎはすべて流体シミュレーションの結果で、テクスチャアニメーションではない。</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>手法</h2>
+                    <div class="sec-body">
+                        <p>1 フレームで以下を順に GPU コンピュートシェーダで解きます。全フィールド (速度・密度・温度・圧力) は 3D テクスチャに置き、CPU へ戻さず GPU 上で完結させています。</p>
+
+                        <h3>① グリッド流体シミュレーション (Stable Fluids)</h3>
+                        <p>
+                            速度場を「移流 → 外力 → 圧力射影」で更新します。移流は semi-Lagrangian (速度を逆向きに辿って値を拾う) で無条件に安定。
+                            非圧縮 (= 体積保存) を満たすために、速度の発散を計算し、ポアソン方程式を <strong>Jacobi 法 40 反復</strong>で解いて圧力を求め、その勾配を引いて発散ゼロの流れに直します。煙・温度もこの速度場で一緒に流します。
+                        </p>
+
+                        <h3>② 渦 confinement (乱流ディテールの復元)</h3>
+                        <p>
+                            グリッド法は数値拡散で細かい渦が潰れ、放っておくと「のっぺりした層流の一本柱」になりがちです。
+                            そこで速度場の回転 (渦度) を計算し、その大きさが増す方向へ小さな力を足し戻して、消えかけた渦を強調します。
+                            これで炎が舌のように巻き、煙がもくもくと崩れる乱流のディテールが戻ります。
+                        </p>
+
+                        <h3>③ 炎の色 = 黒体放射</h3>
+                        <p>
+                            炎の色は温度で決まります。火源に与えた熱が上昇とともに冷えていく過程を、温度 → 色 (暗赤 → 赤 → 橙 → 黄 → 白) のグラデーションに写像して発光させています。
+                            温度のスケールと色テーブルを差し替えるだけで、橙の焚き火から青いガス炎まで作り分けられます。
+                        </p>
+
+                        <h3>④ ボリュームレイマーチ + 自己影</h3>
+                        <p>
+                            描画はカメラから光線を飛ばし、グリッドを小刻みにサンプリングしながら色を積算します。
+                            煙は密度に応じて光を吸収 (Beer–Lambert)、炎は温度の発光を加算。
+                            さらに各サンプル点から光源方向へ二段目の短い光線を飛ばして「そこへ届く光の量」を測り、
+                            <strong>煙の自己影</strong>を付けることで、平面的でない立体感を出しています。
+                        </p>
+
+                        <figure class="plate">
+                            <img src="images/volsmoke/presets5.png" alt="炎・青い炎・松明・煙の比較" loading="lazy" width="1600" height="700">
+                            <figcaption>同じソルバで、火源の温度・冷却・色・密度を変えて作り分けたプリセット (左から 炎 / 青い炎 / 松明 / 煙)。</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>デモ（横並び比較・ライブ調整）</h2>
+                    <div class="sec-body">
+                        <p>
+                            それぞれ独立にシミュレートした複数のシムを横に並べ、同時に走らせて見比べられます。
+                            ウィンドウ内で並べる数 (1〜4) と各タイルのプリセットを切り替えられ、コマンドの打ち直しは不要です。
+                        </p>
+                        <figure class="plate">
+                            <video src="images/volsmoke/compare.mp4" autoplay loop muted playsinline width="1500" height="720"></video>
+                            <figcaption>炎・青い炎・煙を 3 つ同時に (それぞれ別の 128³ シム / 実機レンダリングを録画)。</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>この技術の立ち位置</h2>
+                    <div class="sec-body">
+                        <p>
+                            正直に書くと、ここで使った手法はどれも最先端の研究ではなく、確立された古典です。
+                            グリッド流体は Stam の Stable Fluids (1999)、煙と渦 confinement は Fedkiw ら (2001)、炎は Nguyen ら (2002)、
+                            GPU での実時間 3D 化は GPU Gems 3 (2007) が原典で、映画やゲームの煙・炎の土台になっています。
+                        </p>
+                        <p>
+                            このデモの価値は新規性ではなく、<strong>その古典パイプラインを論文から起こして、自作の DX12 エンジンの上で動くところまで一通り実装した</strong>こと ──
+                            コンピュートシェーダ、3D テクスチャの取り回し、ボリューム描画、リアルタイムの調整 UI を自分で組んだ点にあります。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>リンク</h2>
+                    <div class="sec-body">
+                        <div class="link-row" style="margin-top: 0;">
+                            <a href="https://github.com/mogmog-0110/volsmoke" target="_blank" rel="noopener">GitHub (volsmoke) →</a>
+                            <a href="engine.html">MitiruEngine →</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="site-foot">
+            <p>&copy; 川村優弥 / Shiggy</p>
+            <p>fujimiya0110☆gmail.com（☆→@） · <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">github</a></p>
+        </footer>
+    </div>
+
+    <script src="assets/js/back-to-top.js"></script>
+</body>
+
+</html>
