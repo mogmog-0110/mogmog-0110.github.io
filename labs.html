@@ -88,9 +88,9 @@
     const LABS = [
         {
             id: "mitiru-why",
-            title: "リプレイが壊れた『原因』を自動特定する ── mitiru why",
+            title: "「再現しないバグ」の原因を自動で名指しする ── mitiru why",
             thumb: "images/mitiru_why_demo.gif", thumbW: 700, thumbH: 446,
-            blurb: "決定論リプレイが壊れたとき、従来は「どこで」食い違ったかは分かっても「なぜ・どの処理が原因か」は人手で追うしかなかった。flat-POD な単一状態 + 決定論を土台に、分岐したフレーム・フィールド・そして原因の処理(phase)まで全自動で特定する開発ツールを自作エンジンに実装し、実機のリプレイ経路で実証した。",
+            blurb: "ゲームで一番つらい『自分の環境では再現しないバグ』。原因探しに print を仕込んで何日も溶ける…を、プレイの記録から 1 コマンドで『犯人はこの処理だ』と関数名で名指しするツールを、自作エンジンに実装した。何日もの当て推量が数秒になる。",
             tags: ["C++20", "Determinism", "Replay", "Dev Tooling", "MitiruEngine"],
             meta: "2026 | MitiruEngine",
             problem: "ゲーム/シムで最も時間を溶かすのが「再現しないバグ」と「リプレイ・ロールバック・ネット同期を壊す非決定性」。MitiruEngine は状態を flat-POD な単一の GameMemory に集め、同じ入力なら bit-exact に再現するので分岐は機械的に検出できる。だが従来は「どのフレームの・どのフィールドが」食い違ったかまでは出せても、「なぜ・どの処理が原因か」が分からず、そこから先は人手で当たりをつけるしかなかった。",
@@ -103,26 +103,10 @@
                   alt: "mitiru why が replay の分岐をフレーム・フィールド・原因 phase まで特定したターミナル出力",
                   caption: "そのときの実際のターミナル出力。frame 2 / 変わった値 clockBits / 原因 phase「clock_read」を全自動で出している。" }
             ],
-            code: {
-                caption: "ゲーム側の opt-in (これだけで原因 phase が出せるようになる):",
-                snippet:
-`// update 内: 処理の頭ごとに phase を申告するだけ
-const uint32_t sz = sizeof(*this);
-g_blame.beginFrame(this, sz);
-g_blame.phase(this, sz, "input");      /* 入力 */
-g_blame.phase(this, sz, "physics");    /* 物理 */
-g_blame.phase(this, sz, "clock_read"); /* ← ここで時計を読むと非決定 */
-g_blame.endFrame(this, sz);
-
-// host が分岐 byte の「最後の書き手」を引くための窓口
-extern "C" const char* mitiru_why_blame_at(uint32_t off) {
-    return g_blame.whoWrote(off).c_str();
-}`,
-                links: [
-                    { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/mitiru-why" },
-                    { label: "MitiruEngine 本体", href: "https://github.com/mogmog-0110/MitiruEngine" }
-                ]
-            }
+            links: [
+                { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/mitiru-why" },
+                { label: "MitiruEngine 本体", href: "https://github.com/mogmog-0110/MitiruEngine" }
+            ]
         },
         {
             id: "live2d-directml",
