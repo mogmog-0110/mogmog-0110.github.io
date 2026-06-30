@@ -61,7 +61,7 @@
                     <strong>3D グリッド上で流体方程式 (Navier-Stokes) を GPU で解き、できた密度・温度場をボリュームレイマーチで立体的に描く、煙と炎のリアルタイムデモです。</strong>
                 </p>
                 <p class="lede" style="margin-top: 0.8rem;">
-                    流体ソルバ・炎の発光・ボリューム描画・自己影・インタラクティブ UI までを一式、<a href="engine.html" class="soft-link">自作エンジン</a>の DX12 コンピュート基盤の上にフルスクラッチで実装しました。手法そのものは映画・ゲームで長く使われてきた古典 (後述) ですが、論文を読んで自分の手で動くところまで通したのが主眼です。
+                    流体ソルバ・炎の発光・ボリューム描画・自己影・インタラクティブ UI までを一式、<a href="engine.html" class="soft-link">自作エンジン</a>の DX12 コンピュート基盤の上に実装しました。
                 </p>
                 <div class="meta-line" style="margin-top: 1.6rem; margin-bottom: 0;">
                     <span>Experiment</span><span>C++20 / HLSL</span><span>DirectX 12 Compute</span><span>MitiruEngine</span><span>2026</span>
@@ -138,16 +138,11 @@
                 </section>
 
                 <section class="sec">
-                    <h2>この技術の立ち位置</h2>
+                    <h2>下敷きにした手法</h2>
                     <div class="sec-body">
                         <p>
-                            正直に書くと、ここで使った手法はどれも最先端の研究ではなく、確立された古典です。
-                            グリッド流体は Stam の Stable Fluids (1999)、煙と渦 confinement は Fedkiw ら (2001)、炎は Nguyen ら (2002)、
-                            GPU での実時間 3D 化は GPU Gems 3 (2007) が原典で、映画やゲームの煙・炎の土台になっています。
-                        </p>
-                        <p>
-                            このデモの価値は新規性ではなく、<strong>その古典パイプラインを論文から起こして、自作の DX12 エンジンの上で動くところまで一通り実装した</strong>こと ──
-                            コンピュートシェーダ、3D テクスチャの取り回し、ボリューム描画、リアルタイムの調整 UI を自分で組んだ点にあります。
+                            グリッド流体は Stam の Stable Fluids (1999)、煙と渦 confinement は Fedkiw ら (2001)、
+                            炎は Nguyen ら (2002)、GPU での実時間 3D 化は GPU Gems 3 (2007)。
                         </p>
                     </div>
                 </section>
