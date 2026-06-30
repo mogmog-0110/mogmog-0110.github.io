@@ -87,28 +87,6 @@
     // ── 実験エントリ。追加するときはここにオブジェクトを 1 つ足すだけ ──
     const LABS = [
         {
-            id: "mitiru-why",
-            title: "「再現しないバグ」の原因を自動で名指しする ── mitiru why",
-            thumb: "images/mitiru_why_demo.gif", thumbW: 700, thumbH: 446,
-            blurb: "ゲームで一番つらい『自分の環境では再現しないバグ』。原因探しに print を仕込んで何日も溶ける…を、プレイの記録から 1 コマンドで『犯人はこの処理だ』と関数名で名指しするツールを、自作エンジンに実装した。何日もの当て推量が数秒になる。",
-            tags: ["C++20", "Determinism", "Replay", "Dev Tooling", "MitiruEngine"],
-            meta: "2026 | MitiruEngine",
-            problem: "ゲーム/シムで最も時間を溶かすのが「再現しないバグ」と「リプレイ・ロールバック・ネット同期を壊す非決定性」。MitiruEngine は状態を flat-POD な単一の GameMemory に集め、同じ入力なら bit-exact に再現するので分岐は機械的に検出できる。だが従来は「どのフレームの・どのフィールドが」食い違ったかまでは出せても、「なぜ・どの処理が原因か」が分からず、そこから先は人手で当たりをつけるしかなかった。",
-            approach: "分岐の特定を 3 層に分けた。(1) 時間=どのフレームで初めて食い違うか (host が毎フレーム録画値と memcmp)。(2) フィールド=どの値が変わったか (reflection で byte→named field)。ここまでは既存機能の再利用。新規はその上の (3) 原因=その byte を「最後に書いた処理(phase)」の特定。ゲームが update 内で軽量に phase を申告すると、各 phase 境界で状態を snapshot して差分を取り「byte→最後に書いた phase」のマップを DLL 内だけで構築する (エンジン本体への依存を持たない・debug 専用)。host は分岐を検出すると、その byte の最後の書き手をゲームに問い合わせて報告する。比較対象: rr は CPU 命令止まり、既存のゲーム replay は分岐の検出止まり ── 意味的なゲーム状態の『原因の処理』まで辿るのは、flat-POD + 決定論 + reflection が揃うこのエンジンだからできる。",
-            media: [
-                { type: "img", src: "images/mitiru_why_demo.gif", w: 700, h: 446,
-                  alt: "why_demo を録画→再生した実機 capture の動画。3コマ目で『時計を読む処理』が録画(緑)と再生(赤)で違う色になり、mitiru why が原因を clock_read と名指しする",
-                  caption: "動作デモ (実機 capture): 同じ操作を録画 → 再生する。点の動きは両者一致するが、3 コマ目で『時計を読む処理』が走ると、録画は緑・再生は赤とパネルの色が食い違う。mitiru why はその瞬間を捕まえ、原因の処理を『clock_read』と名指しする。" },
-                { type: "img", src: "images/mitiru_why_demo.webp", w: 1040, h: 560,
-                  alt: "mitiru why が replay の分岐をフレーム・フィールド・原因 phase まで特定したターミナル出力",
-                  caption: "そのときの実際のターミナル出力。frame 2 / 変わった値 clockBits / 原因 phase「clock_read」を全自動で出している。" }
-            ],
-            links: [
-                { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/mitiru-why" },
-                { label: "MitiruEngine 本体", href: "https://github.com/mogmog-0110/MitiruEngine" }
-            ]
-        },
-        {
             id: "live2d-directml",
             title: "D3D12 上の Live2D 描画に DirectML 推論をパイプライン内（CPU 往復なし）で適用する",
             thumb: "images/live2d/depth-form.webp", thumbW: 720, thumbH: 876,
