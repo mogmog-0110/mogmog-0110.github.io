@@ -94,7 +94,7 @@
             tags: ["DirectX 12", "Work Graphs", "HLSL SM6.8", "Procedural"],
             meta: "2026 | 単独 DirectX 12 (Agility SDK)",
             problem: "従来の GPU 実行は CPU が dispatch 回数を固定で並べる形で、「実行時にどれだけ仕事が増えるか決まる再帰」は表しにくかった。Work Graphs（D3D12, 2024）は GPU 上のシェーダのノードが自分で次のノードを起動でき（親→子、再帰も可）、枝分かれのようなデータ依存の展開を GPU 側で完結できる。まだ使用例の少ない新 API に、再帰プロシージャル生成という本領が効く題材を載せて、動くところまで実装した。",
-            approach: "(1) 生成: Branch ノードが枝 1 本を capsule バッファへ atomic append し、深さが残っていれば円錐状に散らした子 record を自分自身へ emit する（NodeMaxRecursionDepth）。GPU だけで再帰的に木構造が展開される。thread-launch ノードは出力レコード合計 128B 以下という制約があり、子は最大 3 本に。(2) 描画: 生成された capsule 群の union SDF をスフィアトレースし、法線・soft shadow・AO で陰影付け、発光プリセット（稲妻）は emissive + bloom で光らせる。(3) 成長アニメ: 各枝に「生まれる深さ割合」を持たせ、成長前線を根→先端へ動かして伸ばす。同じ再帰グラフのパラメータ（分岐数・広がり・長さ比・ねじれ・深さ・色）を変えるだけで樹 / 珊瑚 / 藪 / 稲妻を出し分ける。RTX 5070 Ti で Work Graphs Tier 1.0、全部コンピュート（レイトレ専用コア不要）。",
+            approach: "(1) 生成: Branch ノードが枝 1 本を capsule バッファへ atomic append し、深さが残っていれば円錐状に散らした子 record を自分自身へ emit する（NodeMaxRecursionDepth）。GPU だけで再帰的に木構造が展開される。thread-launch ノードは出力レコード合計 128B 以下という制約があり、子は最大 3 本に。(2) 描画: 生成された capsule 群の union SDF をスフィアトレースし、法線・soft shadow・AO で陰影付け、発光プリセット（稲妻）は emissive + bloom で光らせる。(3) 成長アニメ: 各枝に「生まれる深さ割合」を持たせ、成長前線を根→先端へ動かして伸ばす。同じ再帰グラフのパラメータ（分岐数・広がり・長さ比・ねじれ・深さ・色）を変えるだけで樹 / 珊瑚 / 藪 / 稲妻を出し分ける。実行ファイルはそのまま起動すると窓が開き、プリセット・生成パラメータ・成長・カメラをその場で変えられる（パラメータ変更で Work Graph が即再生成、内部描画解像度も調整可）。RTX 5070 Ti で Work Graphs Tier 1.0、全部コンピュート（レイトレ専用コア不要）。",
             media: [
                 { type: "video", src: "images/wg/growth.mp4",
                   caption: "樹 / 珊瑚 / 稲妻が根から先端へ育つ（実機録画）。この「育つ」動き自体が GPU の再帰展開。稲妻は発光 + bloom。" },
