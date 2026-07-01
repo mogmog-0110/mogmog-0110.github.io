@@ -87,6 +87,28 @@
     // ── 実験エントリ。追加するときはここにオブジェクトを 1 つ足すだけ ──
     const LABS = [
         {
+            id: "radiance-cascades",
+            title: "ノイズ無しのリアルタイム大域照明 ── Radiance Cascades を DX12 コンピュートで",
+            thumb: "images/rc/thumb.png", thumbW: 512, thumbH: 288,
+            blurb: "2D シーンに置いた光と壁から、光が回り込む大域照明 (色のにじみ・柔らかい半影) を、ノイズを出さずリアルタイムで解く。2024 年発表の Radiance Cascades を、レイトレ専用コア無し・すべて DX12 のコンピュートシェーダで実装した。空間と角度の細かさをトレードオフした階層を、遠→近へ合成する。",
+            tags: ["DirectX 12", "HLSL", "Compute Shader", "Global Illumination"],
+            meta: "2026 | MitiruEngine（DirectX 12 コンピュート）",
+            problem: "光が回り込む大域照明 (壁の裏に落ちる柔らかい影、近くの面への色のにじみ) は、素朴にはピクセルごとに無数のレイを飛ばして光を集める必要があり、本数が足りないとノイズや縞が出る。レイトレ専用コアを使う手もあるが、ここでは使わずに解きたい。2024 年発表の Radiance Cascades は、この大域照明をノイズ無しかつ安価に解く手法。照明は自分にとって新しい領域で、まず自作エンジンの上で動かして確かめた。",
+            approach: "肝は空間解像度と角度解像度のトレードオフ。近距離の光は空間を細かく角度は粗く、遠距離は角度を細かく空間は粗くて足りる。そこで放射輝度を、この配分を段階的に変えた階層 (cascade) で表す。各 cascade は (1) 決まった距離区間だけレイを飛ばし (区間レイキャスト)、(2) 全 cascade が同じ要素数になるよう probe×方向を 1 枚の RGBA16F テクスチャに詰め、(3) 遠い cascade から近い cascade へ probe をバイリニア補間しながら合成 (マージ) する。最下段を解いて画面の照明にし、HDR・ブルーム・トーンマップで仕上げる。全ピクセルから全方位レイを飛ばすのと同等の絵を、階層のおかげで安く・ノイズ無しで得られる。すべてコンピュートシェーダで完結し、レイトレ専用コアは不要。窓内ではマウスで光や壁をドラッグして描き足せる。",
+            media: [
+                { type: "video", src: "images/rc/rc.mp4",
+                  caption: "光源を動かすと大域照明と影がなめらかに追従する (実機レンダリングを録画)。ノイズは乗らない。" },
+                { type: "img", src: "images/rc/compare.png", w: 1034, h: 334,
+                  alt: "ナイーブと Radiance Cascades の比較",
+                  caption: "左: 各ピクセルから全方位にレイを飛ばした素朴な方法 (離散レイの縞が出る) / 右: Radiance Cascades (なめらか)。同じシーン。" }
+            ],
+            links: [
+                { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/radiancecascades" },
+                { label: "Radiance Cascades (A. Sannikov, 2024)", href: "https://github.com/Raikiri/RadianceCascadesPaper" }
+            ],
+            more: "radiancecascades.html"
+        },
+        {
             id: "volsmoke",
             title: "立ち上る煙と炎 ── グリッド流体を GPU で解いてボリュームレイマーチで描く",
             thumb: "images/volsmoke/thumb.png", thumbW: 1280, thumbH: 720,

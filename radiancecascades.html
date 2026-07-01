@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja" style="background-color: #fcfcfb;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fcfcfb">
+    <title>Radiance Cascades — ノイズ無しリアルタイム大域照明 | Shiggy</title>
+    <meta name="description" content="2024 年の Radiance Cascades を、RT コア無し・すべて DX12 コンピュートで実装。2D シーンの光が回り込む大域照明をノイズ無し・リアルタイムで解く。自作エンジン MitiruEngine 上に構築。">
+
+    <style>
+        html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
+    </style>
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shiggy's Portfolio">
+    <meta property="og:title" content="Radiance Cascades — ノイズ無しリアルタイム大域照明 | Shiggy">
+    <meta property="og:description" content="2024 年の Radiance Cascades を RT コア無し・DX12 コンピュートで実装した実験。">
+    <meta property="og:url" content="https://mogmog-0110.github.io/radiancecascades.html">
+    <link rel="canonical" href="https://mogmog-0110.github.io/radiancecascades.html">
+    <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Radiance Cascades — ノイズ無しリアルタイム大域照明 | Shiggy">
+    <meta name="twitter:description" content="2024 年の Radiance Cascades を DX12 コンピュートで実装。">
+    <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/site.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
+
+    <div class="frame">
+        <header class="site-head">
+            <div class="inner">
+                <a class="brand" href="index.html">mogmog-0110.github.io</a>
+                <ul class="menu">
+                    <li><a href="engine.html">engine</a></li>
+                    <li><a href="labs.html" class="current">lab</a></li>
+                    <li><a href="research.html">research</a></li>
+                    <li><a href="portfolio.html">works</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <main id="main">
+            <section class="page-head">
+                <p class="file-line">/ lab</p>
+                <h1>Radiance Cascades ── ノイズ無しのリアルタイム大域照明</h1>
+                <p class="lede">
+                    <strong>2D シーンに置いた光と壁から、光が回り込む大域照明 (色のにじみ・柔らかい半影) を、ノイズを出さずにリアルタイムで解く実装です。</strong>
+                </p>
+                <p class="lede" style="margin-top: 0.8rem;">
+                    2024 年に発表された Radiance Cascades という手法を、レイトレ専用コアを使わず<strong>すべて DX12 のコンピュートシェーダ</strong>で組みました。照明は自分にとって新しい領域で、<a href="engine.html" class="soft-link">自作エンジン</a>の DX12 基盤の上に一式を実装しています。
+                </p>
+                <div class="meta-line" style="margin-top: 1.6rem; margin-bottom: 0;">
+                    <span>Experiment</span><span>C++20 / HLSL</span><span>DirectX 12 Compute</span><span>Global Illumination</span><span>2026</span>
+                </div>
+            </section>
+
+            <div class="sections">
+                <section class="sec">
+                    <h2>作ったもの</h2>
+                    <div class="sec-body">
+                        <p>
+                            光源や壁を置くと、その光が空間に回り込み、壁の裏に柔らかい影を落とし、近くの面に色がにじみます。
+                            レイを飛ばして光を集める素朴な方法だと、レイの本数が足りずノイズや縞が出ますが、
+                            Radiance Cascades はそれをノイズ無しで、しかも桁違いに安く解きます。
+                        </p>
+                        <figure class="plate">
+                            <video src="images/rc/rc.mp4" autoplay loop muted playsinline width="1024" height="576"></video>
+                            <figcaption>光源を動かすと大域照明と影がなめらかに追従する (実機レンダリングを録画)。ノイズは乗らない。</figcaption>
+                        </figure>
+                        <figure class="plate">
+                            <img src="images/rc/compare.png" alt="ナイーブと Radiance Cascades の比較" loading="lazy" width="1034" height="334">
+                            <figcaption>左: 各ピクセルから全方位にレイを飛ばした素朴な方法 (離散レイの縞が出る) / 右: Radiance Cascades (なめらか)。同じシーン。</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>仕組み</h2>
+                    <div class="sec-body">
+                        <p>
+                            肝は「空間の細かさと角度の細かさのトレードオフ」です。近くの光は空間的に細かく・角度は粗くて足り、
+                            遠くの光は角度を細かく・空間は粗くて足ります。そこで放射輝度を、この配分を段階的に変えた<strong>階層 (cascade)</strong> で表します。
+                        </p>
+                        <ul>
+                            <li>各 cascade で、決まった距離区間だけレイを飛ばす (区間レイキャスト)</li>
+                            <li>各 cascade は同じ要素数になるよう設計し、1 枚のテクスチャに probe × 方向を詰める</li>
+                            <li>遠い cascade から近い cascade へ、probe をバイリニア補間しながら合成 (マージ) していく</li>
+                            <li>最下段を解いて画面の照明にし、HDR・ブルーム・トーンマップで仕上げる</li>
+                        </ul>
+                        <p>
+                            これで、全ピクセルから無数のレイを飛ばすのと同等の絵を、階層のおかげで安く・ノイズ無しで得られます。
+                            レイトレ専用コアは使わず、すべてコンピュートシェーダで完結します。
+                        </p>
+                        <figure class="plate">
+                            <img src="images/rc/still.png" alt="Radiance Cascades の出力" loading="lazy" width="512" height="288">
+                            <figcaption>3 色の光源が空間を満たし、壁が柔らかい影を落とし、色がにじむ。窓内ではドラッグで光や壁を描き足せる。</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>参考</h2>
+                    <div class="sec-body">
+                        <p>Alexander Sannikov, "Radiance Cascades" (2024)。</p>
+                        <div class="link-row" style="margin-top: 0.8rem;">
+                            <a href="https://github.com/mogmog-0110/radiancecascades" target="_blank" rel="noopener">GitHub (radiancecascades) →</a>
+                            <a href="engine.html">MitiruEngine →</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="site-foot">
+            <p>&copy; 川村優弥 / Shiggy</p>
+            <p>fujimiya0110☆gmail.com（☆→@） · <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">github</a></p>
+        </footer>
+    </div>
+
+    <script src="assets/js/back-to-top.js"></script>
+</body>
+
+</html>
