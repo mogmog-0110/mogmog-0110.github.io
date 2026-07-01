@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja" style="background-color: #fcfcfb;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fcfcfb">
+    <title>Work Graphs で育てる ── GPU 再帰プロシージャル生成 | Shiggy</title>
+    <meta name="description" content="2024 年に D3D12 に入った Work Graphs を使い、GPU が枝を再帰的に自己生成して樹・珊瑚・稲妻を育てる。生成した形状の SDF をレイマーチで描画。">
+
+    <style>
+        html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
+    </style>
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shiggy's Portfolio">
+    <meta property="og:title" content="Work Graphs で育てる ── GPU 再帰プロシージャル生成 | Shiggy">
+    <meta property="og:description" content="D3D12 Work Graphs (2024) で GPU が枝を再帰的に自己生成し、樹・珊瑚・稲妻を育てる実験。">
+    <meta property="og:url" content="https://mogmog-0110.github.io/wggrow.html">
+    <link rel="canonical" href="https://mogmog-0110.github.io/wggrow.html">
+    <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Work Graphs で育てる ── GPU 再帰プロシージャル生成 | Shiggy">
+    <meta name="twitter:description" content="D3D12 Work Graphs (2024) で再帰プロシージャル生成。">
+    <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/site.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
+
+    <div class="frame">
+        <header class="site-head">
+            <div class="inner">
+                <a class="brand" href="index.html">mogmog-0110.github.io</a>
+                <ul class="menu">
+                    <li><a href="engine.html">engine</a></li>
+                    <li><a href="labs.html" class="current">lab</a></li>
+                    <li><a href="research.html">research</a></li>
+                    <li><a href="portfolio.html">works</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <main id="main">
+            <section class="page-head">
+                <p class="file-line">/ lab</p>
+                <h1>Work Graphs で育てる ── GPU が枝を再帰生成する</h1>
+                <p class="lede">
+                    <strong>GPU 自身が枝を再帰的に生成して、樹・珊瑚・稲妻を育てるプロシージャル生成デモです。</strong>
+                </p>
+                <p class="lede" style="margin-top: 0.8rem;">
+                    2024 年に DirectX 12 に入ったばかりの新しい仕組み <strong>Work Graphs</strong>（GPU 上のシェーダが自分で次の仕事を生成・展開できる）を使いました。まだ実例の少ない新 API に「再帰プロシージャル生成」という題材を載せて、動くところまで実装しています。生成した形状は SDF レイマーチで描画。
+                </p>
+                <div class="meta-line" style="margin-top: 1.6rem; margin-bottom: 0;">
+                    <span>Experiment</span><span>C++20 / HLSL SM6.8</span><span>DirectX 12 Work Graphs</span><span>Procedural</span><span>2026</span>
+                </div>
+            </section>
+
+            <div class="sections">
+                <section class="sec">
+                    <h2>作ったもの</h2>
+                    <div class="sec-body">
+                        <p>
+                            1 本の種から、GPU が枝を再帰的に枝分かれさせて構造を育てます。パラメータ（分岐数・広がり・長さ比・ねじれ・深さ・色）を
+                            変えるだけで、同じ再帰グラフから樹・珊瑚・藪・稲妻が出てきます。下は根から先端へ育っていく様子で、
+                            この「育つ」動き自体が Work Graphs の再帰展開そのものです。
+                        </p>
+                        <figure class="plate">
+                            <video src="images/wg/growth.mp4" autoplay loop muted playsinline width="1140" height="400"></video>
+                            <figcaption>樹 / 珊瑚 / 稲妻が根から先端へ育つ（実機レンダリングを録画）。同じ再帰グラフのパラメータ違い。稲妻は発光 + bloom。</figcaption>
+                        </figure>
+                        <figure class="plate">
+                            <img src="images/wg/presets.png" alt="樹・珊瑚・藪・稲妻のプリセット" loading="lazy" width="546" height="546">
+                            <figcaption>同じ Work Graph からパラメータだけ変えて出し分けたプリセット（樹 / 珊瑚 / 藪 / 稲妻）。</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>なぜ Work Graphs か</h2>
+                    <div class="sec-body">
+                        <p>
+                            従来の GPU 実行は、CPU が「このシェーダを何回動かす」と回数を固定で決めて並べる形でした。
+                            Work Graphs（2024）は、<strong>GPU 上のシェーダのノードが自分で次のノードを起動できる</strong> ── 親ノードが子ノードを生み、
+                            それがまた子を生む、という再帰・データ依存の仕事の増え方を GPU 側で完結できます。
+                        </p>
+                        <p>
+                            枝分かれは「どれだけ仕事が増えるか実行時に決まる再帰」そのもので、Work Graphs の本領がまっすぐ効く題材です。
+                            まだ使用例が少ない新 API に、この生成を載せて動かすところまで実装したのが主眼です。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>仕組み</h2>
+                    <div class="sec-body">
+                        <ul>
+                            <li><strong>生成 (Work Graph)</strong>: <code>Branch</code> ノードが枝 1 本を capsule バッファへ atomic append し、深さが残っていれば円錐状に散らした子 record を自分自身へ emit（<code>NodeMaxRecursionDepth</code>）。GPU だけで再帰的に木構造が展開される。</li>
+                            <li><strong>描画 (compute)</strong>: 生成された capsule 群の union SDF をスフィアトレース。法線・soft shadow・AO で陰影を付け、発光プリセットは emissive + bloom で光らせる。</li>
+                            <li><strong>成長アニメ</strong>: 各枝に「生まれる深さ割合」を持たせ、成長前線を根 → 先端へ動かして伸ばす。</li>
+                        </ul>
+                        <figure class="plate">
+                            <video src="images/wg/tree.mp4" autoplay loop muted playsinline width="640" height="640"></video>
+                            <figcaption>樹が育つ様子（単体）。幹 → 枝 → 先端の順に、GPU の再帰展開に沿って伸びていく。</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>リンク</h2>
+                    <div class="sec-body">
+                        <div class="link-row" style="margin-top: 0;">
+                            <a href="https://github.com/mogmog-0110/wggrow" target="_blank" rel="noopener">GitHub (wggrow) →</a>
+                            <a href="https://devblogs.microsoft.com/directx/d3d12-work-graphs/" target="_blank" rel="noopener">D3D12 Work Graphs (Microsoft, 2024) →</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="site-foot">
+            <p>&copy; 川村優弥 / Shiggy</p>
+            <p>fujimiya0110☆gmail.com（☆→@） · <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">github</a></p>
+        </footer>
+    </div>
+
+    <script src="assets/js/back-to-top.js"></script>
+</body>
+
+</html>
