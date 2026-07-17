@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja" style="background-color: #fcfcfb;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fcfcfb">
+    <title>写真から作った 3D をアニメ塗りにする ── Gaussian Splatting のセルシェーディング | Shiggy</title>
+    <meta name="description" content="写真群から再構成した 3D (Gaussian Splatting) にアニメ調の陰影 (セルシェーディング) を安定して乗せる実験。陰影を決める形を見た目から分離し、ちらつきを定量計測した。">
+
+    <style>
+        html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
+    </style>
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shiggy's Portfolio">
+    <meta property="og:title" content="写真から作った 3D をアニメ塗りにする ── Gaussian Splatting のセルシェーディング | Shiggy">
+    <meta property="og:description" content="Gaussian Splatting にセルシェーディングを安定して乗せる実験。陰影を決める形を見た目から分離する。">
+    <meta property="og:url" content="https://mogmog-0110.github.io/gsplat-toon.html">
+    <link rel="canonical" href="https://mogmog-0110.github.io/gsplat-toon.html">
+    <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="写真から作った 3D をアニメ塗りにする ── Gaussian Splatting のセルシェーディング | Shiggy">
+    <meta name="twitter:description" content="Gaussian Splatting にセルシェーディングを安定して乗せる実験。">
+    <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/site.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
+
+    <div class="frame">
+        <header class="site-head">
+            <div class="inner">
+                <a class="brand" href="index.html">mogmog-0110.github.io</a>
+                <ul class="menu">
+                    <li><a href="engine.html">engine</a></li>
+                    <li><a href="labs.html" class="current">lab</a></li>
+                    <li><a href="research.html">research</a></li>
+                    <li><a href="portfolio.html">works</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <main id="main">
+            <section class="page-head">
+                <p class="file-line">/ lab</p>
+                <h1>写真から作った 3D をアニメ塗りにする</h1>
+                <p class="lede">
+                    <strong>写真群から再構成した 3D (Gaussian Splatting) に、アニメ調の陰影 ── はっきりした明暗の帯・ベタ塗り・輪郭線 ── を安定して乗せる実験です。</strong>
+                </p>
+                <p class="lede" style="margin-top: 0.8rem;">
+                    Gaussian Splatting は「半透明の粒」を何十万個も重ねて本物そっくりの 3D を作る手法ですが、粒の向き (法線) はノイズだらけで、そのままアニメ調の陰影を計算すると帯がガタつき、カメラを動かすと画面全体がちらつきます。この実験では<strong>陰影を決める形を、見た目の粒とは別に持つ</strong>ことでこれを解き、ちらつきを数値でも比較しました。
+                </p>
+                <div class="meta-line" style="margin-top: 1.6rem; margin-bottom: 0;">
+                    <span>Experiment</span><span>C++20 / HLSL</span><span>DirectX 12</span><span>3D Gaussian Splatting</span><span>2026</span>
+                </div>
+            </section>
+
+            <div class="sections">
+                <section class="sec">
+                    <h2>作ったもの</h2>
+                    <div class="sec-body">
+                        <p>
+                            下は粒で作ったテストシーン (毛の生えた球・柱・床・輪) に光を一周させた比較です。
+                            <strong>左が素朴なやり方</strong> (粒の向きをそのまま使う)、<strong>右がこの実験の方式</strong>。
+                            左は陰影の帯が崩れてまだらに明滅し、右は帯が形に沿って静かに掃いていきます。
+                        </p>
+                        <figure class="plate">
+                            <img src="images/gspt/hero_light_synthetic.gif" alt="光を一周させた比較。左は帯が崩れ、右は帯が形に沿って動く" width="1028" height="288" loading="lazy">
+                            <figcaption>光を一周させた比較 (実機レンダリング)。左 = 粒の向きをそのまま使用、右 = 本方式。</figcaption>
+                        </figure>
+                        <p>
+                            写真から再構成した実データでも動きます。下は研究でよく使われる盆栽の撮影データ (MipNeRF360) を切り出してアニメ塗りにしたもの。
+                        </p>
+                        <figure class="plate">
+                            <img src="images/gspt/hero_light.gif" alt="盆栽の実データに光を一周させた比較" width="1028" height="288" loading="lazy">
+                            <figcaption>実データ (盆栽) で光を一周。左 = 素朴なやり方は画面全体が明滅する。右 = 本方式。</figcaption>
+                        </figure>
+                        <figure class="plate">
+                            <img src="images/gspt/bonsai_30000_cam2_flat.png" alt="盆栽をベタ塗り化した静止画" width="1140" height="641" loading="lazy">
+                            <figcaption>盆栽の静止画。明暗の帯 + 色のベタ化 + 輪郭線を合成した状態。</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>何が難しいか</h2>
+                    <div class="sec-body">
+                        <p>
+                            アニメ調の陰影は「明るい / 影」を<strong>段差</strong>で塗り分けます。段差はわずかな向きの違いを白黒の反転に増幅するので、
+                            粒の向きがノイズだらけの Gaussian Splatting とは根本的に相性が悪い。粒ごとに塗り分けてから重ねると、
+                            今度は半透明の混ざり合いで段差そのものが溶けて消えます。ゲームのアニメ調 3D が顔の法線を手作業で編集したり
+                            専用の影テクスチャを描いたりするのは、まさにこの増幅と戦うためです。写真から自動で作られる再構成データには、
+                            その手作業の入り口がありません。
+                        </p>
+                        <figure class="plate">
+                            <img src="images/gspt/hero_synthetic.png" alt="素朴なやり方と本方式の比較" width="1140" height="360" loading="lazy">
+                            <figcaption>左 = 粒の向きをそのまま段差に通した結果 (帯が崩れる)。中 = 本方式 (帯と輪郭線)。右 = さらにベタ塗り化。</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>仕組み ── 陰影を決める形を分離する</h2>
+                    <div class="sec-body">
+                        <p>
+                            粒の集まりを一度 3D の格子に写して大きくぼかし、<strong>物体を包む滑らかな面</strong>を作ります。
+                            陰影の帯はこの面の向きから画素ごとに計算し、色は元の粒から取る。つまり
+                            「<strong>見た目は元の粒のまま、陰影だけ滑らかな分身が担当する</strong>」という分業です。
+                            ぼかしの強さがそのまま「陰影の形をどこまで単純化するか」の調整つまみになります。
+                            仕上げに、色のまだらを均すベタ塗り化、面の切れ目から引く輪郭線、撮影時に写り込んだ照明を割り戻す補正を重ねています。
+                        </p>
+                        <p>
+                            必要なら球やカプセルを手で置いて、その部分だけ陰影の形を差し替えることもできます
+                            (ゲームが顔だけ専用の影を持つのと同じ役割分担)。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>ちらつきを数値で分ける</h2>
+                    <div class="sec-body">
+                        <p>
+                            「帯が安定した」を目視で終わらせないため、カメラを一定速度で回しながら
+                            <strong>陰影の帯が反転した画素の割合</strong>を毎フレーム数えました。さらに回転速度を半分にしてもう一度計測すると、
+                            光と形の関係で正しく動いた分は半分になり、ノイズによるちらつきはそのまま残る ── この差から
+                            <strong>ちらつきの成分だけを取り出せます</strong>。実データ (盆栽) では、素朴なやり方のちらつき成分が 2.1% / フレームなのに対し、
+                            本方式は 0.19% でした (約 11 分の 1)。
+                        </p>
+                        <figure class="plate">
+                            <img src="images/gspt/bonsai_30000_stability_flips_splat.png" alt="素朴なやり方の反転ヒートマップ" width="1140" height="641" loading="lazy">
+                            <figcaption>カメラ回転中に帯が反転した場所の累積 (明るいほど頻繁)。素朴なやり方は画面のほぼ全域が明滅している。</figcaption>
+                        </figure>
+                        <figure class="plate">
+                            <img src="images/gspt/bonsai_30000_stability_flips_proxy.png" alt="本方式の反転ヒートマップ" width="1140" height="641" loading="lazy">
+                            <figcaption>本方式の同じ計測。反転は帯の境界が正しく動いた細い筋に限られる。</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>学びと限界</h2>
+                    <div class="sec-body">
+                        <p>
+                            帯の安定という目的は数値で達成できた一方、「アニメのイラストに見えるか」には距離が残りました。
+                            拾ってきた撮影データは色に照明が焼き付いていて、割り戻し補正では取り切れません。
+                            出力は「アニメ絵」というより「陰影処理を通した写真」に留まり、その先はアルゴリズムよりも
+                            被写体選びと絵作りの領域だと分かったのが、この実験の一番の収穫です。
+                            ちらつきを速度の違う 2 回の計測で分解する評価方法は、他のスタイル描画の検証にもそのまま使えます。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>リンク</h2>
+                    <div class="sec-body">
+                        <ul>
+                            <li><a href="https://github.com/mogmog-0110/gs-proxy-toon" target="_blank" rel="noopener">コード一式 (GitHub)</a></li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="site-foot">
+            <p>&copy; 川村優弥 / Shiggy</p>
+            <p>fujimiya0110☆gmail.com（☆→@） · <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">github</a></p>
+        </footer>
+    </div>
+</body>
+
+</html>
