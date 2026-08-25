@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fcfcfb">
-    <title>写真から作った 3D をアニメ塗りにする ── Gaussian Splatting のセルシェーディング | Shiggy</title>
+    <title>写真から作った 3D をアニメ塗りにする：Gaussian Splatting のセルシェーディング | Shiggy</title>
     <meta name="description" content="写真群から再構成した 3D (Gaussian Splatting) にアニメ調の陰影 (セルシェーディング) を安定して乗せる実験。陰影を決める形を見た目から分離し、ちらつきを定量計測した。">
 
     <style>
@@ -15,7 +15,7 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shiggy's Portfolio">
-    <meta property="og:title" content="写真から作った 3D をアニメ塗りにする ── Gaussian Splatting のセルシェーディング | Shiggy">
+    <meta property="og:title" content="写真から作った 3D をアニメ塗りにする：Gaussian Splatting のセルシェーディング | Shiggy">
     <meta property="og:description" content="Gaussian Splatting にセルシェーディングを安定して乗せる実験。陰影を決める形を見た目から分離する。">
     <meta property="og:url" content="https://mogmog-0110.github.io/gsplat-toon.html">
     <link rel="canonical" href="https://mogmog-0110.github.io/gsplat-toon.html">
@@ -23,7 +23,7 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="写真から作った 3D をアニメ塗りにする ── Gaussian Splatting のセルシェーディング | Shiggy">
+    <meta name="twitter:title" content="写真から作った 3D をアニメ塗りにする：Gaussian Splatting のセルシェーディング | Shiggy">
     <meta name="twitter:description" content="Gaussian Splatting にセルシェーディングを安定して乗せる実験。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
 
@@ -55,7 +55,7 @@
                 <p class="file-line">/ lab</p>
                 <h1>写真から作った 3D をアニメ塗りにする</h1>
                 <p class="lede">
-                    <strong>写真群から再構成した 3D (Gaussian Splatting) に、アニメ調の陰影 ── はっきりした明暗の帯・ベタ塗り・輪郭線 ── を安定して乗せる実験です。</strong>
+                    <strong>写真群から再構成した 3D (Gaussian Splatting) に、アニメ調の陰影（はっきりした明暗の帯・ベタ塗り・輪郭線）を安定して乗せる実験です。</strong>
                 </p>
                 <p class="lede" style="margin-top: 0.8rem;">
                     Gaussian Splatting は「半透明の粒」を何十万個も重ねて本物そっくりの 3D を作る手法ですが、粒の向き (法線) はノイズだらけで、そのままアニメ調の陰影を計算すると帯がガタつき、カメラを動かすと画面全体がちらつきます。この実験では<strong>陰影を決める形を、見た目の粒とは別に持つ</strong>ことでこれを解き、ちらつきを数値でも比較しました。
@@ -71,7 +71,7 @@
                     <div class="sec-body">
                         <p>
                             下は粒で作ったテストシーン (毛の生えた球・柱・床・輪) に光を一周させた比較です。
-                            <strong>左が素朴なやり方</strong> (粒の向きをそのまま使う)、<strong>右がこの実験の方式</strong>。
+                            左が素朴なやり方 (粒の向きをそのまま使う)、右がこの実験の方式。
                             左は陰影の帯が崩れてまだらに明滅し、右は帯が形に沿って静かに掃いていきます。
                         </p>
                         <figure class="plate">
@@ -96,10 +96,10 @@
                     <h2>何が難しいか</h2>
                     <div class="sec-body">
                         <p>
-                            アニメ調の陰影は「明るい / 影」を<strong>段差</strong>で塗り分けます。段差はわずかな向きの違いを白黒の反転に増幅するので、
+                            アニメ調の陰影は「明るい / 影」を段差で塗り分けます。段差はわずかな向きの違いを白黒の反転に増幅するので、
                             粒の向きがノイズだらけの Gaussian Splatting とは根本的に相性が悪い。粒ごとに塗り分けてから重ねると、
                             今度は半透明の混ざり合いで段差そのものが溶けて消えます。ゲームのアニメ調 3D が顔の法線を手作業で編集したり
-                            専用の影テクスチャを描いたりするのは、まさにこの増幅と戦うためです。写真から自動で作られる再構成データには、
+                            専用の影テクスチャを描いたりするのは、この増幅と戦うためです。写真から自動で作られる再構成データには、
                             その手作業の入り口がありません。
                         </p>
                         <figure class="plate">
@@ -110,10 +110,10 @@
                 </section>
 
                 <section class="sec">
-                    <h2>仕組み ── 陰影を決める形を分離する</h2>
+                    <h2>仕組み：陰影を決める形を分離する</h2>
                     <div class="sec-body">
                         <p>
-                            粒の集まりを一度 3D の格子に写して大きくぼかし、<strong>物体を包む滑らかな面</strong>を作ります。
+                            粒の集まりを一度 3D の格子に写して大きくぼかし、物体を包む滑らかな面を作ります。
                             陰影の帯はこの面の向きから画素ごとに計算し、色は元の粒から取る。つまり
                             「<strong>見た目は元の粒のまま、陰影だけ滑らかな分身が担当する</strong>」という分業です。
                             ぼかしの強さがそのまま「陰影の形をどこまで単純化するか」の調整つまみになります。
@@ -131,9 +131,9 @@
                     <div class="sec-body">
                         <p>
                             「帯が安定した」を目視で終わらせないため、カメラを一定速度で回しながら
-                            <strong>陰影の帯が反転した画素の割合</strong>を毎フレーム数えました。さらに回転速度を半分にしてもう一度計測すると、
-                            光と形の関係で正しく動いた分は半分になり、ノイズによるちらつきはそのまま残る ── この差から
-                            <strong>ちらつきの成分だけを取り出せます</strong>。実データ (盆栽) では、素朴なやり方のちらつき成分が 2.1% / フレームなのに対し、
+                            陰影の帯が反転した画素の割合を毎フレーム数えました。さらに回転速度を半分にしてもう一度計測すると、
+                            光と形の関係で正しく動いた分は半分になり、ノイズによるちらつきはそのまま残る。この差から
+                            ちらつきの成分だけを取り出せます。実データ (盆栽) では、素朴なやり方のちらつき成分が 2.1% / フレームなのに対し、
                             本方式は 0.19% でした (約 11 分の 1)。
                         </p>
                         <figure class="plate">

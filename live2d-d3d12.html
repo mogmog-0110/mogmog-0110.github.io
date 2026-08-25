@@ -58,7 +58,7 @@
                 <p class="file-line">/ works / live2d-d3d12</p>
                 <h1>Live2D × Direct3D 12</h1>
                 <p class="lede">
-                    自作の <a href="engine.html" class="soft-link">MitiruEngine</a> は Direct3D 12 製ですが、Live2D 公式 SDK は <strong>D3D12 に対応していません</strong>（OpenGL / D3D11 / D3D9 / Metal / Vulkan のみ）。そこで、公式の D3D11 レンダラ <code>CubismRenderer_D3D11</code> が内部で何をしているかを読み解き、その<strong>描画手順を一つずつ D3D12 で再実装</strong>しました。Cubism 5 のクリッピングマスク・オフスクリーングループ・advanced blend を含む、フルセットの移植です。
+                    自作の <a href="engine.html" class="soft-link">MitiruEngine</a> は Direct3D 12 製ですが、Live2D 公式 SDK は D3D12 に対応していません（OpenGL / D3D11 / D3D9 / Metal / Vulkan のみ）。そこで、公式の D3D11 レンダラ <code>CubismRenderer_D3D11</code> が内部で何をしているかを読み解き、その<strong>描画手順を一つずつ D3D12 で再実装</strong>しました。Cubism 5 のクリッピングマスク・オフスクリーングループ・advanced blend を含む、フルセットの移植です。
                 </p>
                 <div class="meta-line">
                     <span>2026年</span><span>個人開発</span><span>MitiruEngine</span><span>DirectX 12</span><span>Cubism SDK 5</span>
@@ -82,13 +82,13 @@
                     <h2>公式 D3D11 レンダラは何をしているか</h2>
                     <div class="sec-body">
                         <p>
-                            Cubism のモデルは、テクスチャの貼られたメッシュ（<strong>ドロウアブル</strong>）の集まりです。各ドロウアブルは「描画順・不透明度・ブレンドモード・どのマスクで切り抜くか・どのオフスクリーンに属すか」といった情報を持ち、これらは<strong>モーションに応じて毎フレーム変わります</strong>。公式の <code>CubismRenderer_D3D11</code> は、これを次の段で描いています。
+                            Cubism のモデルは、テクスチャの貼られたメッシュ（ドロウアブル）の集まりです。各ドロウアブルは「描画順・不透明度・ブレンドモード・どのマスクで切り抜くか・どのオフスクリーンに属すか」といった情報を持ち、これらは<strong>モーションに応じて毎フレーム変わります</strong>。公式の <code>CubismRenderer_D3D11</code> は、これを次の段で描いています。
                         </p>
                         <ul>
-                            <li><strong>描画順の走査（DrawObjectLoop）</strong> — ドロウアブルとオフスクリーンを <code>csmGetRenderOrders</code> の順で1本のストリームにまとめ、<code>_currentOffscreen</code> という入れ子の状態を持ちながらフラットに走査する。</li>
-                            <li><strong>クリッピングマスク</strong> — あるドロウアブルが別のドロウアブル（の形）で切り抜かれる場合、マスク形状を専用バッファに先に描き、本体を描くときに <code>(1 − mask)</code> を掛けて切り抜く。</li>
-                            <li><strong>オフスクリーングループ（Cubism 5）</strong> — パートの集合を一旦自前のレンダーターゲットへまとめて描き、親へ「ブレンドモード＋不透明度＋乗算/スクリーン色」で合成する（入れ子可）。</li>
-                            <li><strong>advanced blend</strong> — Normal / Add / Multiply 以外の高度な合成は、固定機能のブレンドでは表せない。そこで合成先（描いている下地）をコピーし、専用シェーダで <strong>18 種のカラー合成 × 5 種のアルファ合成</strong>を1ピクセルずつ計算する。</li>
+                            <li><strong>描画順の走査（DrawObjectLoop）</strong>。ドロウアブルとオフスクリーンを <code>csmGetRenderOrders</code> の順で1本のストリームにまとめ、<code>_currentOffscreen</code> という入れ子の状態を持ちながらフラットに走査する。</li>
+                            <li><strong>クリッピングマスク</strong>。あるドロウアブルが別のドロウアブル（の形）で切り抜かれる場合、マスク形状を専用バッファに先に描き、本体を描くときに <code>(1 − mask)</code> を掛けて切り抜く。</li>
+                            <li><strong>オフスクリーングループ（Cubism 5）</strong>。パートの集合を一旦自前のレンダーターゲットへまとめて描き、親へ「ブレンドモード＋不透明度＋乗算/スクリーン色」で合成する（入れ子可）。</li>
+                            <li><strong>advanced blend</strong>。Normal / Add / Multiply 以外の高度な合成は、固定機能のブレンドでは表せない。そこで合成先（描いている下地）をコピーし、専用シェーダで 18 種のカラー合成 × 5 種のアルファ合成を1ピクセルずつ計算する。</li>
                         </ul>
                         <p>
                             公式サンプルは、この一連を GL / D3D11 / Metal / Vulkan の各バックエンドで「同じ絵」が出るように作られています。D3D12 はそこに無いので、同じ手順を D3D12 の API で書き直す、というのがこの移植です。
@@ -101,11 +101,11 @@
                     <div class="sec-body">
                         <p>公式の各段を、対応する D3D12 の機能でそのまま再現しました。</p>
                         <ul>
-                            <li><strong>DrawObjectLoop</strong> — 同じフラット走査＋オフスクリーン連鎖で移植。描画順は毎フレーム変わるので<strong>毎フレーム並べ替え直す</strong>（ここを読み込み時に固定すると、タップなど強いモーションの瞬間に重なり順が崩れる）。</li>
-                            <li><strong>クリッピングマスク</strong> — 高精度経路（被クリップごとに 256² のマスクバッファへ形状を描く）で実装。マスク生成行列（model→マスク NDC）とサンプリング行列（model→UV、Y 反転）を公式 <code>SetupMatrixForHighPrecision</code> と同じ式で算出。</li>
-                            <li><strong>オフスクリーングループ</strong> — 各グループが自前のレンダーターゲットを持ち、親へブレンド合成。マスク付きオフスクリーンにも対応。</li>
-                            <li><strong>advanced blend</strong> — 公式シェーダ <code>CubismBlendMode.fx</code> の 18 カラー × 5 アルファ（Porter-Duff）をそのまま HLSL へ移植。非互換ブレンドのドロウアブルは「下地コピー → 専用シェーダで合成 → 結果で置き換え」する。ブレンドモード値は <code>color = mode &amp; 0xFF</code> / <code>alpha = (mode &gt;&gt; 8) &amp; 0xFF</code> でデコード。</li>
-                            <li><strong>細部の規約合わせ</strong> — 頂点・乗算済みアルファ（premultiplied）・ブレンドステート・MVP 規約（行優先 <code>mul(pos, M)</code>、UV の Y 反転）・テクスチャフォーマット（<code>R8G8B8A8_UNORM</code> 非 sRGB）まで、公式 D3D11 と一つずつ突き合わせて揃えました。</li>
+                            <li><strong>DrawObjectLoop</strong>。同じフラット走査＋オフスクリーン連鎖で移植。描画順は毎フレーム変わるので毎フレーム並べ替え直す（ここを読み込み時に固定すると、タップなど強いモーションの瞬間に重なり順が崩れる）。</li>
+                            <li><strong>クリッピングマスク</strong>。高精度経路（被クリップごとに 256² のマスクバッファへ形状を描く）で実装。マスク生成行列（model→マスク NDC）とサンプリング行列（model→UV、Y 反転）を公式 <code>SetupMatrixForHighPrecision</code> と同じ式で算出。</li>
+                            <li><strong>オフスクリーングループ</strong>。各グループが自前のレンダーターゲットを持ち、親へブレンド合成。マスク付きオフスクリーンにも対応。</li>
+                            <li><strong>advanced blend</strong>。公式シェーダ <code>CubismBlendMode.fx</code> の 18 カラー × 5 アルファ（Porter-Duff）をそのまま HLSL へ移植。非互換ブレンドのドロウアブルは「下地コピー → 専用シェーダで合成 → 結果で置き換え」する。ブレンドモード値は <code>color = mode &amp; 0xFF</code> / <code>alpha = (mode &gt;&gt; 8) &amp; 0xFF</code> でデコード。</li>
+                            <li><strong>細部の規約合わせ</strong>。頂点・乗算済みアルファ（premultiplied）・ブレンドステート・MVP 規約（行優先 <code>mul(pos, M)</code>、UV の Y 反転）・テクスチャフォーマット（<code>R8G8B8A8_UNORM</code> 非 sRGB）まで、公式 D3D11 と一つずつ突き合わせて揃えました。</li>
                         </ul>
                     </div>
                 </section>
@@ -115,10 +115,10 @@
                     <div class="sec-body">
                         <p>D3D11 では中で隠れていて、D3D12 だと自分で面倒を見る必要があった部分です。</p>
                         <ul>
-                            <li><strong>三重バッファリング</strong> — エンジンは 3 フレームを同時進行（frames-in-flight）させています。CPU が毎フレーム書き込む頂点バッファ・定数バッファを、GPU が前のフレームを読んでいる最中に上書きしないよう、<strong>3 重に持つ</strong>必要があります。ここを単一バッファにすると、半分書きかけのデータを GPU が読んで全体がちらつき、マスクやオフスクリーンの合成も崩れます（D3D11 ドライバが内部で吸収してくれていた所）。</li>
-                            <li><strong>明示的なリソース状態管理</strong> — レンダーターゲット⇄シェーダリソースの遷移、advanced blend の下地コピーに使う <code>COPY_SOURCE</code> / <code>COPY_DEST</code> の遷移などを、描画段の境界で<strong>自分でバリアを張って</strong>管理します。</li>
-                            <li><strong>ルートシグネチャ・ディスクリプタヒープ・PSO の事前設計</strong> — マスク用 SRV・下地コピー用 SRV を含むルートシグネチャ、ブレンド種別 × カリングの組み合わせ分のパイプラインステート（PSO）を事前に生成。D3D11 のように状態をその場で切り替えるのではなく、あらかじめ全パターンを用意しておく D3D12 の流儀に合わせています。</li>
-                            <li><strong>マスクバッファの精度選択</strong> — 多くのマスクを持つモデルでも目などの境界が崩れないよう、低精度のタイル分割パッキングではなく、被クリップごとにフルバッファへ描く高精度経路に統一しました。</li>
+                            <li><strong>三重バッファリング</strong>。エンジンは 3 フレームを同時進行（frames-in-flight）させています。CPU が毎フレーム書き込む頂点バッファ・定数バッファを、GPU が前のフレームを読んでいる最中に上書きしないよう、3 重に持つ必要があります。ここを単一バッファにすると、半分書きかけのデータを GPU が読んで全体がちらつき、マスクやオフスクリーンの合成も崩れます（D3D11 ドライバが内部で吸収してくれていた所）。</li>
+                            <li><strong>明示的なリソース状態管理</strong>。レンダーターゲット⇄シェーダリソースの遷移、advanced blend の下地コピーに使う <code>COPY_SOURCE</code> / <code>COPY_DEST</code> の遷移などを、描画段の境界で自分でバリアを張って管理します。</li>
+                            <li><strong>ルートシグネチャ・ディスクリプタヒープ・PSO の事前設計</strong>。マスク用 SRV・下地コピー用 SRV を含むルートシグネチャ、ブレンド種別 × カリングの組み合わせ分のパイプラインステート（PSO）を事前に生成。D3D11 のように状態をその場で切り替えるのではなく、あらかじめ全パターンを用意しておく D3D12 の流儀に合わせています。</li>
+                            <li><strong>マスクバッファの精度選択</strong>。多くのマスクを持つモデルでも目などの境界が崩れないよう、低精度のタイル分割パッキングではなく、被クリップごとにフルバッファへ描く高精度経路に統一しました。</li>
                         </ul>
                         <div class="link-row">
                             <a href="https://github.com/mogmog-0110/live2d-cubism-d3d12" target="_blank" rel="noopener">GitHub（ソース）→</a>
@@ -126,7 +126,7 @@
                             <a href="portfolio.html">← Works に戻る</a>
                         </div>
                         <p style="font-size:.85em;opacity:.7;margin-top:1.4em;border-top:1px solid #e5e5e2;padding-top:1em;">
-                            <strong>クレジット</strong>：本実装は Live2D Cubism SDK を使用しています（© Live2D Inc.）。掲載スクリーンショットのモデルは Live2D Inc. の無償提供サンプルモデルで、<a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_jp.html" target="_blank" rel="noopener" class="soft-link">Live2D Free Material License Agreement</a> に基づき表示しています。リポジトリには SDK 本体・モデルファイルは<strong>同梱していません</strong>（再配布なし）。Cubism SDK / Core の利用は各 <a href="https://www.live2d.com/eula/live2d-sdk-license-agreement_jp.html" target="_blank" rel="noopener" class="soft-link">SDK 使用許諾</a> に従います。
+                            <strong>クレジット</strong>：本実装は Live2D Cubism SDK を使用しています（© Live2D Inc.）。掲載スクリーンショットのモデルは Live2D Inc. の無償提供サンプルモデルで、<a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_jp.html" target="_blank" rel="noopener" class="soft-link">Live2D Free Material License Agreement</a> に基づき表示しています。リポジトリには SDK 本体・モデルファイルは同梱していません（再配布なし）。Cubism SDK / Core の利用は各 <a href="https://www.live2d.com/eula/live2d-sdk-license-agreement_jp.html" target="_blank" rel="noopener" class="soft-link">SDK 使用許諾</a> に従います。
                         </p>
                     </div>
                 </section>

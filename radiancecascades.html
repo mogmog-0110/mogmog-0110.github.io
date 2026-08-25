@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fcfcfb">
-    <title>Radiance Cascades — ノイズ無しリアルタイム大域照明 | Shiggy</title>
+    <title>Radiance Cascades：ノイズ無しリアルタイム大域照明 | Shiggy</title>
     <meta name="description" content="2024 年の Radiance Cascades を、RT コア無し・すべて DX12 コンピュートで実装。2D シーンの光が回り込む大域照明をノイズ無し・リアルタイムで解く。自作エンジン MitiruEngine 上に構築。">
 
     <style>
@@ -15,7 +15,7 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shiggy's Portfolio">
-    <meta property="og:title" content="Radiance Cascades — ノイズ無しリアルタイム大域照明 | Shiggy">
+    <meta property="og:title" content="Radiance Cascades：ノイズ無しリアルタイム大域照明 | Shiggy">
     <meta property="og:description" content="2024 年の Radiance Cascades を RT コア無し・DX12 コンピュートで実装した実験。">
     <meta property="og:url" content="https://mogmog-0110.github.io/radiancecascades.html">
     <link rel="canonical" href="https://mogmog-0110.github.io/radiancecascades.html">
@@ -23,7 +23,7 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Radiance Cascades — ノイズ無しリアルタイム大域照明 | Shiggy">
+    <meta name="twitter:title" content="Radiance Cascades：ノイズ無しリアルタイム大域照明 | Shiggy">
     <meta name="twitter:description" content="2024 年の Radiance Cascades を DX12 コンピュートで実装。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
 
@@ -53,12 +53,12 @@
         <main id="main">
             <section class="page-head">
                 <p class="file-line">/ lab</p>
-                <h1>Radiance Cascades ── ノイズ無しのリアルタイム大域照明</h1>
+                <h1>Radiance Cascades：ノイズ無しのリアルタイム大域照明</h1>
                 <p class="lede">
                     <strong>2D シーンに置いた光と壁から、光が回り込む大域照明 (色のにじみ・柔らかい半影) を、ノイズを出さずにリアルタイムで解く実装です。</strong>
                 </p>
                 <p class="lede" style="margin-top: 0.8rem;">
-                    2024 年に発表された Radiance Cascades という手法を、レイトレ専用コアを使わず<strong>すべて DX12 のコンピュートシェーダ</strong>で組みました。照明は自分にとって新しい領域で、<a href="engine.html" class="soft-link">自作エンジン</a>の DX12 基盤の上に一式を実装しています。
+                    2024 年に発表された Radiance Cascades という手法を、レイトレ専用コアを使わずすべて DX12 のコンピュートシェーダで組みました。照明は自分にとって新しい領域で、<a href="engine.html" class="soft-link">自作エンジン</a>の DX12 基盤の上に一式を実装しています。
                 </p>
                 <div class="meta-line" style="margin-top: 1.6rem; margin-bottom: 0;">
                     <span>Experiment</span><span>C++20 / HLSL</span><span>DirectX 12 Compute</span><span>Global Illumination</span><span>2026</span>
@@ -90,7 +90,7 @@
                     <div class="sec-body">
                         <p>
                             肝は「空間の細かさと角度の細かさのトレードオフ」です。近くの光は空間的に細かく・角度は粗くて足り、
-                            遠くの光は角度を細かく・空間は粗くて足ります。そこで放射輝度を、この配分を段階的に変えた<strong>階層 (cascade)</strong> で表します。
+                            遠くの光は角度を細かく・空間は粗くて足ります。そこで放射輝度を、この配分を段階的に変えた階層 (cascade) で表します。
                         </p>
                         <ul>
                             <li>各 cascade で、決まった距離区間だけレイを飛ばす (区間レイキャスト)</li>
