@@ -212,11 +212,11 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                     <div class="sec-body">
                         <p class="sec-intro">過去のどの瞬間にも戻れる</p>
                         <p>
-                            プレイ中の状態は毎フレーム自動で記録されています。開発ツールの時間軸ウィンドウ（ゲームとは別の窓）で値の履歴がグラフになり、グラフの過去をクリックすると、ゲームが<strong>その瞬間の状態へまるごと巻き戻ります</strong>。「なぜか HP が減った」を、その手前まで戻って目で確かめられます。
+                            プレイ中の状態は毎フレーム自動で記録されています。開発ツールの巻き戻し窓（ゲームとは別の窓）で値の履歴がグラフになり、グラフの過去をクリックすると、ゲームが<strong>その瞬間の状態へまるごと巻き戻ります</strong>。「なぜか HP が減った」を、その手前まで戻って目で確かめられます。
                         </p>
                         <figure class="plate">
-                            <img src="images/engine/catch_timetravel.webp" alt="左にゲーム、右に時間軸ウィンドウ。ふつうに遊ぶと右の窓に playerX の履歴グラフが伸び、グラフの過去をクリックするとゲームがその瞬間の状態へ巻き戻り、プレイヤーの位置も画面もその時のまま再現される実機の録画。" loading="lazy" decoding="async" width="1500" height="618">
-                            <figcaption>実機の録画（左＝ゲーム / 右＝時間軸ウィンドウ）。履歴グラフの過去をクリック → ゲームがその瞬間へ巻き戻る。</figcaption>
+                            <img src="images/engine/catch_timetravel.webp" alt="左にゲーム、右に巻き戻し窓。ふつうに遊ぶと右の窓に playerX の履歴グラフが伸び、グラフの過去をクリックするとゲームがその瞬間の状態へ巻き戻り、プレイヤーの位置も画面もその時のまま再現される実機の録画。" loading="lazy" decoding="async" width="1500" height="618">
+                            <figcaption>実機の録画（左＝ゲーム / 右＝巻き戻し窓）。履歴グラフの過去をクリック → ゲームがその瞬間へ巻き戻る。</figcaption>
                         </figure>
                         <p>
                             同じ仕組みで、走らせたまま観察窓を開けば、<code>playerX</code> や <code>score</code> といった状態をライブで覗けます。さらに、プレイ中の入力はすべて記録されているので、<strong>同じプレイをあとからそっくり再生</strong>できます。「たまにしか出ないバグ」を録画して何度でも再現する、テストとして毎回流す、といった使い方ができます。
@@ -290,6 +290,9 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                         </p>
                         <p>
                             動き方はこうです。<code>MITIRU_GAME(struct)</code> はコンパイル時に「その <code>struct</code> が本当に flat POD か」を <code>static_assert</code> で検査します（違反するとビルドが通りません）。実行中、ホストは毎フレーム状態のバイト列をリングバッファに記録。巻き戻しは過去のバイト列を書き戻すだけ。録画リプレイは「ある時点のスナップショット＋それ以降の入力（これも記録済み）」を流し直すと、決定論的に<strong>同じ結果が bit 単位で再現</strong>されます。観察は <code>MITIRU_REFLECT</code> でフィールドを名前付きの JSON にして覗きます。
+                        </p>
+                        <p>
+                            この縛りは、全部のゲームに押し付けているわけではありません。DLL の入口を自分で書けば、<code>std::vector</code> でも <code>std::string</code> でも持ったまま普通に動きます（エンジン付属のランチャー自身がその書き方です）。ただしそのとき状態はホストから見て「中身の分からないかたまり」になるので、巻き戻しも録画リプレイも観察も効きません。<strong>flat POD は制約であると同時に、3 つの機能と引き換える対価</strong>という位置づけです。
                         </p>
                         <figure class="dgm-wrap">
                             <svg class="dgm" viewBox="0 0 760 170" role="img" aria-label="flat POD の状態を毎フレーム ring buffer に記録すると、巻き戻し・録画リプレイ・観察（AI 可視化）の 3 つが同じ仕組みから生まれる、という図。">
