@@ -85,8 +85,11 @@
                         <figure class="plate">
                             <img src="images/npr/flicker_heatmap.webp" alt="チラつきヒートマップの before/after" loading="lazy" width="1292" height="180">
                             <figcaption>
-                                左から: 生の輪郭線 / 安定化後 / 無対策のチラつきヒートマップ（赤）/ 安定化後。
-                                フレーム間の残差を可視化すると、安定化でチラつき成分が減るのが見える。
+                                合成シルエットでの 4 面比較。左から: 生の輪郭線 / 安定化後 /
+                                無対策のフレーム間残差（赤、4 倍に強調）/ 安定化後の同じ残差。
+                                右端に残る赤い輪は、既定の安定化が出す halo。
+                                <code>floorRawGate</code> を入れると消える。
+                                上の減少率は目視ではなく自動テストの計測値。
                             </figcaption>
                         </figure>
                     </div>
