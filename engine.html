@@ -59,10 +59,10 @@
                 <p class="file-line">/ engine</p>
                 <h1>MitiruEngine</h1>
                 <p class="lede">
-                    ゲームを作るための道具を、自分で作っています。2022 年から学園祭やコミックマーケットでゲームを出してきて、そのうちゲームそのものより、それを作る道具のほうに興味が移りました。MitiruEngine はその延長で書いているものです。いまは自分のゲームもツールも、これで動かしています（<a href="fluid-drop.html">FLUID DROP</a>、<a href="oscar-gardening.html">オスカーのガーデニング</a>）。
+                    ゲームを作るための道具を、自分で作っています。2022 年から学園祭やコミックマーケットでゲームを出してきて、そのうちゲームそのものより、それを作る道具のほうに興味が移りました。MitiruEngine はその延長で書いているものです。いまは自分のゲームもツールも、これで動かしています。
                 </p>
                 <p class="lede">
-                    このページでは、実際に動いている画面と図で、中で何をしているのかを順に見せます。後半ほど技術的な話になります。
+                    このページでは、実際に動いている画面と図で、中で何をしているのかを順に見せます。後半ほど技術的な話になります。使い方や導入の手順は<a href="https://mogmog-0110.github.io/MitiruEngine/">エンジンの紹介サイト</a>にまとめてあります。
                 </p>
                 <div class="meta-line">
                     <span>開発中 (v0.31)</span><span>C++20</span><span>Windows</span><span>独自ライセンス（使用自由 / 改変・再配布不可）</span>
@@ -76,6 +76,10 @@
                     <h2>MitiruEngine とは</h2>
                     <div class="sec-body">
                         <p class="sec-intro">1 つのゲームを、得意な道具で分けて書く</p>
+                        <figure class="plate">
+                            <img src="images/engine/beko_gameplay.webp" alt="赤べこの横スクロールアクションの実機の録画。赤べこが石畳の上を走り、宙に浮いた古銭を拾い、起き上がり小法師の間を跳んでいく。左上に取得数のカウンタが出ている。" loading="lazy" decoding="async" width="680" height="382">
+                            <figcaption>このエンジンで動かしているゲームの一例（実機の録画）。赤べこ・小法師・古銭・石畳はスプライト、空はグラデーション、左上のカウンタは HTML / CSS です。</figcaption>
+                        </figure>
                         <p>
                             ゲームは「動くルール」と「見せる画面」でできています。MitiruEngine はそれを別々の言葉で書きます。ルールは速くて壊れにくい C++、画面はレイアウトが得意な HTML / CSS。データ（セリフや設定）は JSON。境界はうすく、状態の持ち主は常に C++ 側です。
                         </p>
@@ -151,6 +155,10 @@ struct StarCatch {
     void draw(Screen&amp; s) { /* プレイヤーや星を描く */ }
 };
 MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋がる</span></code></pre>
+                        <figure class="plate">
+                            <img src="images/engine/catch_sprite.webp" alt="左にコードエディタ、右に動いているゲームの 2 画面。draw の中で四角を描いていた行を s.sprite に書き換えると、右のゲームのプレイヤーと星が画像に変わる実機の録画。" loading="lazy" decoding="async" width="1600" height="530">
+                            <figcaption>左＝エディタ / 右＝ゲーム。<code>draw</code> の中の 1 行を書き換えると、四角だった見た目が画像に変わります。</figcaption>
+                        </figure>
                     </div>
                 </section>
 
@@ -185,11 +193,11 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                     </div>
                 </section>
 
-                <!-- ── §4 止めずに直す ────────────────────────── -->
+                <!-- ── §4 走らせたまま直す ────────────────────────── -->
                 <section class="sec">
-                    <h2>止めずに直す</h2>
+                    <h2>走らせたまま直す</h2>
                     <div class="sec-body">
-                        <p class="sec-intro">デバッガを付けずに、走らせたまま直す</p>
+                        <p class="sec-intro">ゲームを止めず、再起動もせずに</p>
                         <p>
                             ゲームのコードを保存すると、動いているゲームを止めずに反映されます。プレイヤーの速度・落下のはやさ・背景色を書き換えると、走ったまま変わり、スコアなどの状態は保たれます。「ちょっと速すぎる」を、止めて・直して・立ち上げ直す、を待たずに詰められます。
                         </p>
@@ -203,11 +211,11 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                     </div>
                 </section>
 
-                <!-- ── §5 巻き戻して観察する ───────────────────── -->
+                <!-- ── §5 5 秒前まで戻せる ───────────────────── -->
                 <section class="sec">
-                    <h2>巻き戻して、観察する</h2>
+                    <h2>5 秒前まで戻せる</h2>
                     <div class="sec-body">
-                        <p class="sec-intro">過去のどの瞬間にも戻れる</p>
+                        <p class="sec-intro">グラフの過去をクリックすると、その瞬間に戻る</p>
                         <p>
                             プレイ中の状態は毎フレーム自動で記録されています。開発ツールの巻き戻しウィンドウ（ゲームとは別の窓）で値の履歴がグラフになり、グラフの過去をクリックすると、ゲームが<strong>その瞬間の状態へまるごと巻き戻ります</strong>。「なぜか HP が減った」を、その手前まで戻って目で確かめられます。
                         </p>
@@ -313,7 +321,7 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                             </svg>
                             <figcaption>1 個の状態を毎フレーム記録するだけ。巻き戻し・録画リプレイ・観察が同じ源から生まれる。</figcaption>
                         </figure>
-                        <p class="sec-intro">副作用として、構造的にキャッシュに優しい</p>
+                        <p class="sec-intro">ついでに、速くもなる</p>
                         <p>
                             flat POD の縛りには、決定性とは別の御利益が付いてきます。<strong>キャッシュ効率</strong>です。状態が連続したバイト列だと、
                         </p>
@@ -386,7 +394,7 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
 
                 <!-- ── §7 実際に出せる ────────────────────────── -->
                 <section class="sec">
-                    <h2>実際に、ゲームを出せる</h2>
+                    <h2>このエンジンで作ったもの</h2>
                     <div class="sec-body">
                         <p>
                             エンジンは「実際にゲームを出せる道具」になっていてこそです。このエンジンの上で動いている作品を並べておきます。
