@@ -73,6 +73,15 @@
                             <h2>どんな絵が出るか</h2>
                             <div class="sec-body">
                                 <figure class="plate">
+                                    <video autoplay loop muted playsinline preload="metadata"
+                                           poster="images/makina/viewport.webp" width="1280" height="720"
+                                           aria-label="モデラーの画面。左のツリーに arm の階層、中央に腕のモデル、下にタイムライン。再生すると肘の関節が曲がり、前腕と手が持ち上がっていく。">
+                                        <source src="videos/makina_arm.mp4" type="video/mp4">
+                                        <img src="images/makina/viewport.webp" alt="モデラーの画面。左にツリー、中央にビューポート、右にプロパティ、下にタイムライン。肘を曲げた腕のモデルが表示されている。" loading="lazy" decoding="async" width="1280" height="720">
+                                    </video>
+                                    <figcaption>実際の画面（録画）。肘に打ったキーを再生すると、腕が曲がる。左のツリー、下のタイムラインも同じウィンドウの一部で、HTML と CSS で描いている。</figcaption>
+                                </figure>
+                                <figure class="plate">
                                     <img src="images/makina/flange.webp" alt="円盤状のフランジ部品。外周の縁とボルト穴のまわりが擦れて明るく光り、平らな面の窪みには汚れが溜まっている。" loading="lazy" decoding="async" width="1280" height="720">
                                     <figcaption>フランジ。縁が擦れて光り、窪みに汚れが溜まる。テクスチャは 1 枚も貼っていない。</figcaption>
                                 </figure>
@@ -86,11 +95,8 @@
                                     <a href="images/makina/penrose.webp" target="_blank">
                                         <img loading="lazy" decoding="async" src="images/makina/penrose.webp" alt="立方体を並べて組んだペンローズの三角形。ある角度から見ると輪が閉じて見える。" width="1280" height="720">
                                     </a>
-                                    <a href="images/makina/viewport.webp" target="_blank">
-                                        <img loading="lazy" decoding="async" src="images/makina/viewport.webp" alt="モデラーの画面。左にツリー、中央にビューポート、右にプロパティ、下にタイムラインが並び、肘を曲げた腕のモデルが表示されている。" width="1280" height="720">
-                                    </a>
                                 </div>
-                                <p class="fine">4 枚とも実機のレンダリング結果です。ペットボトルとペンローズの三角形は Grasp3D の課題を移したもの。右下はモデラーの画面で、ツリー・ビューポート・プロパティ・タイムラインという Grasp3D と同じ配置にしてあります。</p>
+                                <p class="fine">3 枚とも実機のレンダリング結果です。ペットボトルとペンローズの三角形は Grasp3D の課題を移したもの。画面の配置は、ツリー・ビューポート・プロパティ・タイムラインという Grasp3D と同じ並びにしてあります。</p>
                             </div>
                         </section>
 
