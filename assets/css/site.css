@@ -484,6 +484,7 @@ figure.plate { margin: 1.6rem 0; }
 figure.plate img,
 figure.plate video {
     width: 100%;
+    height: auto;
     border: 1px solid var(--rule-soft);
 }
 
@@ -1012,6 +1013,7 @@ pre code { background: none; padding: 0; }
 .modal-panel video,
 .modal-panel img.media {
     width: 100%;
+    height: auto;
     border: 1px solid var(--rule-soft);
     margin-top: 1.3rem;
 }
