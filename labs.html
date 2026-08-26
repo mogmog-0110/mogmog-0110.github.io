@@ -116,6 +116,29 @@
             more: "gsplat-toon.html"
         },
         {
+            id: "cluster-lod",
+            title: "数百億ポリゴンを実時間で：仮想ジオメトリレンダラをフルスクラッチで",
+            thumb: "images/clod/lion.webp", thumbW: 1280, thumbH: 720,
+            blurb: "Nanite 級の仮想ジオメトリを、公開情報だけから作り直した。886 億三角形のシーンを 720p で 0.51ms。クラックもポッピングも出ない連続 LOD を、メッシュレット LOD DAG と GPU 駆動の 2 段カリングで作る。",
+            tags: ["DirectX 12", "Mesh Shaders", "Virtual Geometry", "LOD"],
+            meta: "2026 | 単独 DirectX 12 (SM 6.6)",
+            problem: "映画品質のモデルをそのままゲームに置くと、三角形がピクセルより小さくなって GPU が破綻する。手で LOD を作れば継ぎ目 (クラック) が出るし、切り替わる瞬間に形が飛ぶ (ポッピング)。UE5 の Nanite はこれを解いたが、実装は公開されていない。Karis の SIGGRAPH 2021 講演で公開されている情報だけを頼りに、クリーンルームで作り直した。UE のソースは読んでいない。",
+            approach: "クラスタ (メッシュレット) を階層的に簡略化して DAG を作る。境界を交互にロックすることで、隣り合う LOD が同じ辺を共有し、クラックが原理的に出ない。実行時は 2 段でカリングする。まずインスタンスを錐台で落とし、次に group の 8 分木を GPU が走査して、LOD 剪定と two-pass HZB の遮蔽判定をクラスタ単位でかける。可視性は 64bit の atomic に深さと ID を詰めて 1 パスで解決し、小さすぎる三角形はハードウェアのラスタライザより自前のコンピュートのほうが速いので、投影直径を見て自動で振り分ける (4.4M 三角形で 0.161ms から 0.118ms)。正しさは機械で見ている。遮蔽カリングの on/off、SW と HW ラスタの混在切り替え、BVH と総当たりのどれを通しても、最終画像がピクセル単位で一致する。",
+            media: [
+                { type: "video", src: "videos/clod_teaser.mp4",
+                  caption: "Sponza を寄り引きしながら回したところ (実機録画)。近づいても遠ざかっても、継ぎ目も飛びも出ない。" },
+                { type: "img", src: "images/clod/grid.webp", w: 1280, h: 720,
+                  alt: "同じモデルを格子状に大量配置したシーン。奥まで密度が保たれている",
+                  caption: "dragon と bunny と buddha を 131,072 体並べた 886 億三角形のシーン。720p で GPU 0.51ms。" },
+                { type: "img", src: "images/clod/dragon.webp", w: 1280, h: 720,
+                  alt: "ドラゴンのモデルを素の粘土のような陰影で描いたもの",
+                  caption: "1 体だけを寄って見たところ。表面はメッシュレットに割れているが、継ぎ目は見えない。" }
+            ],
+            links: [
+                { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/cluster-lod-renderer" }
+            ]
+        },
+        {
             id: "work-graphs-grow",
             title: "GPU が枝を再帰生成する：Work Graphs でプロシージャル生成",
             thumb: "images/wg/thumb.webp", thumbW: 720, thumbH: 720,
