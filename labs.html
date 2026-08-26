@@ -106,7 +106,7 @@
                 { type: "img", src: "images/gspt/hero_light_synthetic.webp", w: 1028, h: 288,
                   alt: "光を一周させた比較。左は帯が崩れ、右は帯が形に沿って動く",
                   caption: "光を一周させた比較 (実機)。左 = 粒の向きをそのまま使用 (帯が崩れて明滅)、右 = 本方式 (帯が形に沿って掃く)。" },
-                { type: "img", src: "images/gspt/hero_bonsai.png", w: 1920, h: 360,
+                { type: "img", src: "images/gspt/hero_bonsai.webp", w: 1920, h: 360,
                   alt: "盆栽の実データでの比較",
                   caption: "実データ (MipNeRF360 盆栽)。左 = 素朴なやり方、中 = 本方式、右 = さらにベタ塗り化。" }
             ],
@@ -118,7 +118,7 @@
         {
             id: "work-graphs-grow",
             title: "GPU が枝を再帰生成する：Work Graphs でプロシージャル生成",
-            thumb: "images/wg/thumb.png", thumbW: 720, thumbH: 720,
+            thumb: "images/wg/thumb.webp", thumbW: 720, thumbH: 720,
             blurb: "2024 年に D3D12 に入ったばかりの Work Graphs（GPU 上のシェーダが自分で次の仕事を生成・展開できる新実行モデル）を使い、GPU が枝を再帰的に自己生成して樹・珊瑚・稲妻を育てる。生成した capsule 群の union SDF をレイマーチで描画。まだ実例の少ない新 API に、再帰プロシージャル生成という題材を載せた。",
             tags: ["DirectX 12", "Work Graphs", "HLSL SM6.8", "Procedural"],
             meta: "2026 | 単独 DirectX 12 (Agility SDK)",
@@ -127,7 +127,7 @@
             media: [
                 { type: "video", src: "images/wg/growth.mp4",
                   caption: "樹 / 珊瑚 / 稲妻が根から先端へ育つ（実機録画）。この「育つ」動き自体が GPU の再帰展開。稲妻は発光 + bloom。" },
-                { type: "img", src: "images/wg/presets.png", w: 546, h: 546,
+                { type: "img", src: "images/wg/presets.webp", w: 546, h: 546,
                   alt: "樹・珊瑚・藪・稲妻のプリセット",
                   caption: "同じ Work Graph からパラメータだけ変えて出し分けたプリセット（樹 / 珊瑚 / 藪 / 稲妻）。" }
             ],
@@ -140,7 +140,7 @@
         {
             id: "radiance-cascades",
             title: "ノイズ無しのリアルタイム大域照明：Radiance Cascades を DX12 コンピュートで",
-            thumb: "images/rc/thumb.png", thumbW: 512, thumbH: 288,
+            thumb: "images/rc/thumb.webp", thumbW: 512, thumbH: 288,
             blurb: "2D シーンに置いた光と壁から、光が回り込む大域照明 (色のにじみ・柔らかい半影) を、ノイズを出さずリアルタイムで解く。2024 年発表の Radiance Cascades を、レイトレ専用コア無し・すべて DX12 のコンピュートシェーダで実装した。空間と角度の細かさをトレードオフした階層を、遠→近へ合成する。",
             tags: ["DirectX 12", "HLSL", "Compute Shader", "Global Illumination"],
             meta: "2026 | MitiruEngine（DirectX 12 コンピュート）",
@@ -149,7 +149,7 @@
             media: [
                 { type: "video", src: "images/rc/rc.mp4",
                   caption: "光源を動かすと大域照明と影がなめらかに追従する (実機レンダリングを録画)。ノイズは乗らない。" },
-                { type: "img", src: "images/rc/compare.png", w: 1034, h: 334,
+                { type: "img", src: "images/rc/compare.webp", w: 1034, h: 334,
                   alt: "ナイーブと Radiance Cascades の比較",
                   caption: "左: 各ピクセルから全方位にレイを飛ばした素朴な方法 (離散レイの縞が出る) / 右: Radiance Cascades (なめらか)。同じシーン。" }
             ],
@@ -162,7 +162,7 @@
         {
             id: "volsmoke",
             title: "立ち上る煙と炎：グリッド流体を GPU で解いてボリュームレイマーチで描く",
-            thumb: "images/volsmoke/thumb.png", thumbW: 1280, thumbH: 720,
+            thumb: "images/volsmoke/thumb.webp", thumbW: 1280, thumbH: 720,
             blurb: "3D グリッド上で Navier-Stokes（Stam の安定流体）を GPU コンピュートで解き、できた密度・温度場をボリュームレイマーチで立体的に描く煙＆炎のリアルタイムデモ。渦 confinement で乱流のディテールを戻し、温度を黒体放射色で発光させ、光方向への二段目マーチで自己影を付けた。火源のパラメータを変えるだけで炎・青いガス炎・松明・煙を作り分け、窓内で複数を並べて比較できる。",
             tags: ["DirectX 12", "HLSL", "Compute Shader", "Fluid Sim", "Volume Rendering"],
             meta: "2026 | MitiruEngine（DirectX 12 コンピュート）",
@@ -173,7 +173,7 @@
                   caption: "炎のプリセット（実機レンダリングを録画）。火元が白熱し、上昇しながら冷えて橙→赤→煙へ遷移する。揺らぎはすべて流体シミュレーションの結果で、テクスチャアニメーションではない。" },
                 { type: "video", src: "images/volsmoke/compare.mp4",
                   caption: "炎・青い炎・煙を 3 つ同時に（それぞれ別の 128³ シム・実機録画）。同じソルバでパラメータだけ変えて作り分けている。" },
-                { type: "img", src: "images/volsmoke/presets5.png", w: 1600, h: 700,
+                { type: "img", src: "images/volsmoke/presets5.webp", w: 1600, h: 700,
                   alt: "炎・青い炎・松明・煙の比較",
                   caption: "火源の温度・冷却・色・密度を変えて作り分けたプリセット（左から 炎 / 青い炎 / 松明 / 煙）。" }
             ],
