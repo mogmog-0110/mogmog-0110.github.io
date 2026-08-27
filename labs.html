@@ -6,18 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fcfcfb">
     <title>Lab | Shiggy</title>
-    <meta name="description" content="3DCG・物理シミュレーションの問題を見つけて、自作エンジン MitiruEngine で解決アプローチを試す実験集。">
+    <meta name="description" content="3DCG・物理シミュレーションの課題を見つけ、自作エンジン MitiruEngine で実装・検証した記録。">
 
     <style>
         html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
     </style>
 
-    <!-- meta:social -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shiggy's Portfolio">
     <meta property="og:title" content="Lab | Shiggy">
-    <meta property="og:description" content="3DCG・物理シミュレーションの問題を、自作エンジンで解決アプローチする実験集。">
+    <meta property="og:description" content="3DCG・物理シミュレーションの課題を、自作エンジンで実装・検証した記録。">
     <meta property="og:url" content="https://mogmog-0110.github.io/labs.html">
     <link rel="canonical" href="https://mogmog-0110.github.io/labs.html">
     <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
@@ -25,15 +24,12 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Lab | Shiggy">
-    <meta name="twitter:description" content="3DCG・物理シミュレーションの問題を、自作エンジンで解決アプローチする実験集。">
+    <meta name="twitter:description" content="3DCG・物理シミュレーションの課題を、自作エンジンで実装・検証した記録。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
     <link rel="stylesheet" href="assets/css/site.css">
 </head>
 
@@ -56,19 +52,15 @@
         <main id="main">
             <section class="page-head">
                 <p class="file-line">/ lab</p>
-                <h1>実験室</h1>
+                <h1>実装と検証</h1>
                 <p class="lede">
-                    3DCG・物理シミュレーションの分野から「これ、どう解くんだろう」という問題を自分で見つけてきて、<a href="engine.html" class="soft-link">自作エンジン</a>の上で解決アプローチを実装してみる実験置き場です。タイトルをクリックするとデモと簡単な説明が開きます。
+                    3DCG・物理シミュレーションで見つけた課題を、論文や公開実装を調べながら<a href="engine.html" class="soft-link">自作エンジン</a>上で確かめた記録です。各項目を開くと、課題、実装方法、画像や動画を確認できます。
                 </p>
                 <p class="note">
-                    実験を回すための道具も自分で書いています。エンジンに載せたコードは
-                    <a href="https://github.com/mogmog-0110/mitiru-cli" target="_blank" rel="noopener" class="soft-link"><code>mitiru</code> コマンド</a>で起動し、
-                    当たりを付けたいときは<a href="engine.html" class="soft-link">観察ウィンドウ</a>から走らせたまま値を覗きます。
-                    下に並べた比較画像は、どれもウィンドウを開かずに書き出したもので、各リポジトリの <code>evidence/</code> に置いてあります。
-                    <code>mitiru replay --test</code> を通せば、同じ入力から同じ結果になることも画面を出さずに確かめられます。
+                    実験コードは<a href="https://github.com/mogmog-0110/mitiru-cli" target="_blank" rel="noopener" class="soft-link"><code>mitiru</code> コマンド</a>で起動します。実行中の値は<a href="engine.html" class="soft-link">観察ウィンドウ</a>で確認できます。比較画像は画面を開かずに書き出し、各リポジトリの <code>evidence/</code> に保存しています。<code>mitiru replay --test</code> では、同じ入力から同じ結果になることも画面を出さずに検証できます。
                 </p>
                 <p class="note">
-                    これらの実験では、実装に AI（LLM）を積極的に使っています。「何を作るか・どう確かめるか」は自分で決め、論文や研究コードの読解・自作エンジンへの移植・GPU 特有のデバッグを AI と相談しながら進めました。一人では手の届かない研究実装に手元から触れにいく。その進め方も含めての実験です。
+                    実装には AI（LLM）を利用しています。作る対象と検証方法は自分で決め、論文・研究コードの読解、自作エンジンへの移植、GPU 固有のデバッグを AI と相談しながら進めました。
                 </p>
             </section>
 
@@ -81,7 +73,6 @@
         </footer>
     </div>
 
-    <!-- モーダル -->
     <div class="modal-overlay" id="lab-modal-overlay">
         <div class="modal-panel" id="lab-modal" role="dialog" aria-modal="true">
             <button class="modal-close" id="lab-modal-close" aria-label="閉じる">×</button>
@@ -91,386 +82,315 @@
 
     <script>
     "use strict";
-    // 実験エントリ。追加するときはここにオブジェクトを 1 つ足す。
+
     const LABS = [
         {
-            id: "gsplat-toon",
-            title: "写真から作った 3D をアニメ塗りに：Gaussian Splatting のセルシェーディング",
+            title: "写真から再構成した 3D に、安定したアニメ調の陰影を付ける",
             thumb: "images/gspt/thumb.png", thumbW: 720, thumbH: 405,
-            blurb: "写真群から再構成した 3D (Gaussian Splatting) に、アニメ調の陰影 (明暗の帯・ベタ塗り・輪郭線) を安定して乗せる。粒の向きはノイズだらけで段差状の陰影と相性が最悪なので、陰影を決める形を見た目から分離する。粒の集まりをぼかした滑らかな面が陰影を担当し、色は元の粒から取る。ちらつきは回転速度を変えた 2 回の計測で分解し、素朴なやり方の約 1/11 に。",
+            summary: "Gaussian Splatting の粒が持つノイズの多い向きと、陰影を決める形状を分離。明暗の帯、ベタ塗り、輪郭線を実装し、ちらつきを素朴な方法の約 1/11 に抑えました。",
             tags: ["DirectX 12", "HLSL", "3D Gaussian Splatting", "NPR"],
             meta: "2026 | 単独 DirectX 12",
-            problem: "アニメ調の陰影は明るい / 影を段差で塗り分ける。段差はわずかな向きの違いを白黒の反転に増幅するため、粒の向きがノイジーな Gaussian Splatting にそのまま通すと帯がガタつき、カメラを動かすと画面全体が明滅する。粒ごとに塗ってから重ねると半透明の混ざりで段差自体が溶ける。ゲームのアニメ調 3D は顔の法線手編集や専用影テクスチャでこれと戦っているが、写真から自動再構成したデータにはその手作業の入り口が無い。",
-            approach: "陰影を決める形を見た目から分離する。粒の集まりを 3D 格子に写して大きくぼかし、物体を包む滑らかな面を作る。陰影の帯はこの面の向きから画素ごとに計算し、色は元の粒から取る (ぼかしの強さ = 陰影の形をどこまで単純化するかの調整つまみ)。仕上げに色のまだらを均すベタ塗り化・面の切れ目からの輪郭線・撮影時に焼き付いた照明の割り戻しを重ねる。評価はカメラを一定速度で回して帯が反転した画素割合を計測し、回転速度半分の再計測との差分でちらつき成分だけを分離した。実データでは素朴なやり方 2.1%/フレームに対し 0.19% (約 1/11)。一方「アニメのイラストに見えるか」には距離が残り、その先はアルゴリズムより被写体選びと絵作りの領域だと分かったのが一番の収穫。",
+            problem: "Gaussian Splatting の粒の向きをそのまま使うと、段階的な陰影が小さな向きの差を反転として増幅します。帯が乱れ、カメラ移動時には画面が明滅します。粒ごとに塗ってから重ねる方法では、半透明の合成によって明暗の段差も崩れます。",
+            approach: "粒の集合を 3D 格子へ写してぼかし、物体を包む滑らかな面を作りました。陰影はこの面の向きから画素単位で計算し、色は元の粒から取得します。色のまだらを均す処理、面の切れ目を使う輪郭線、撮影時の照明を割り戻す処理も加えました。カメラを一定速度で回し、速度を半分にした計測との差からちらつき成分を分離。実データでは反転画素が 2.1%/フレームから 0.19%/フレームになりました。",
             media: [
-                { type: "img", src: "images/gspt/hero_light_synthetic.webp", w: 1028, h: 288,
-                  alt: "光を一周させた比較。左は帯が崩れ、右は帯が形に沿って動く",
-                  caption: "光を一周させた比較 (実機)。左 = 粒の向きをそのまま使用 (帯が崩れて明滅)、右 = 本方式 (帯が形に沿って掃く)。" },
-                { type: "img", src: "images/gspt/hero_bonsai.webp", w: 1920, h: 360,
-                  alt: "盆栽の実データでの比較",
-                  caption: "実データ (MipNeRF360 盆栽)。左 = 素朴なやり方、中 = 本方式、右 = さらにベタ塗り化。" }
+                ["img", "images/gspt/hero_light_synthetic.webp", 1028, 288, "光を一周させた比較", "光を一周させた実機比較。左は粒の向きを使用、右は滑らかな面の向きを使用。"],
+                ["img", "images/gspt/hero_bonsai.webp", 1920, 360, "盆栽データでの比較", "MipNeRF360 盆栽。左から、素朴な方法、滑らかな面を使う方法、ベタ塗り処理を加えた結果。"]
             ],
-            links: [
-                { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/gs-proxy-toon" }
-            ],
+            links: [["コード一式", "https://github.com/mogmog-0110/gs-proxy-toon"]],
             more: "gsplat-toon.html"
         },
         {
-            id: "cluster-lod",
-            title: "数百億ポリゴンを実時間で：仮想ジオメトリレンダラをフルスクラッチで",
+            title: "886 億三角形を 0.51ms で描く仮想ジオメトリレンダラ",
             thumb: "images/clod/lion.webp", thumbW: 1280, thumbH: 720,
-            blurb: "Nanite 級の仮想ジオメトリを、公開情報だけから作り直した。886 億三角形のシーンを 720p で 0.51ms。クラックもポッピングも出ない連続 LOD を、メッシュレット LOD DAG と GPU 駆動の 2 段カリングで作る。",
+            summary: "公開資料をもとに、メッシュレット LOD DAG と GPU 駆動の二段カリングを実装。LOD の継ぎ目と形の飛びを防ぎ、886 億三角形のシーンを 720p・0.51ms で描画しました。",
             tags: ["DirectX 12", "Mesh Shaders", "Virtual Geometry", "LOD"],
-            meta: "2026 | 単独 DirectX 12 (SM 6.6)",
-            problem: "映画品質のモデルをそのままゲームに置くと、三角形がピクセルより小さくなって GPU が破綻する。手で LOD を作れば継ぎ目 (クラック) が出るし、切り替わる瞬間に形が飛ぶ (ポッピング)。UE5 の Nanite はこれを解いたが、実装は公開されていない。Karis の SIGGRAPH 2021 講演で公開されている情報だけを頼りに、クリーンルームで作り直した。UE のソースは読んでいない。",
-            approach: "クラスタ (メッシュレット) を階層的に簡略化して DAG を作る。境界を交互にロックすることで、隣り合う LOD が同じ辺を共有し、クラックが原理的に出ない。実行時は 2 段でカリングする。まずインスタンスを錐台で落とし、次に group の 8 分木を GPU が走査して、LOD 剪定と two-pass HZB の遮蔽判定をクラスタ単位でかける。可視性は 64bit の atomic に深さと ID を詰めて 1 パスで解決し、小さすぎる三角形はハードウェアのラスタライザより自前のコンピュートのほうが速いので、投影直径を見て自動で振り分ける (4.4M 三角形で 0.161ms から 0.118ms)。正しさは機械で見ている。遮蔽カリングの on/off、SW と HW ラスタの混在切り替え、BVH と総当たりのどれを通しても、最終画像がピクセル単位で一致する。",
+            meta: "2026 | 単独 DirectX 12（SM 6.6）",
+            problem: "高密度モデルをそのまま描くと、三角形がピクセルより小さくなり処理効率が低下します。手作業の LOD では継ぎ目や切り替え時の形の飛びが起きます。UE5 の Nanite はこの課題を扱いますが、実装は公開されていません。",
+            approach: "SIGGRAPH 2021 の講演資料をもとにクリーンルームで実装しました。クラスタを階層的に簡略化して DAG を作り、隣接 LOD が同じ辺を共有するよう辺を交互に固定します。実行時はインスタンスの錐台カリング後、GPU が group の 8 分木を走査し、LOD 選択と two-pass HZB の遮蔽判定します。深さと ID は 64bit atomic にまとめ、小さな三角形はコンピュートでラスタライズします。4.4M 三角形では 0.161ms から 0.118ms になりました。遮蔽判定の有無、ソフトウェア・ハードウェア描画、BVH・総当たりの各経路で最終画像が一致することも検証しています。",
             media: [
-                { type: "video", src: "videos/clod_teaser.mp4",
-                  caption: "Sponza を寄り引きしながら回したところ (実機録画)。近づいても遠ざかっても、継ぎ目も飛びも出ない。" },
-                { type: "img", src: "images/clod/grid.webp", w: 1280, h: 720,
-                  alt: "同じモデルを格子状に大量配置したシーン。奥まで密度が保たれている",
-                  caption: "dragon と bunny と buddha を 131,072 体並べた 886 億三角形のシーン。720p で GPU 0.51ms。" },
-                { type: "img", src: "images/clod/dragon.webp", w: 1280, h: 720,
-                  alt: "ドラゴンのモデルを素の粘土のような陰影で描いたもの",
-                  caption: "1 体だけを寄って見たところ。表面はメッシュレットに割れているが、継ぎ目は見えない。" }
+                ["video", "videos/clod_teaser.mp4", 0, 0, "", "Sponza を寄り引きしながら回した実機録画。"],
+                ["img", "images/clod/grid.webp", 1280, 720, "モデルを大量配置したシーン", "dragon、bunny、buddha を 131,072 体配置。合計 886 億三角形、720p で GPU 0.51ms。"],
+                ["img", "images/clod/dragon.webp", 1280, 720, "ドラゴンのモデル", "モデルへ寄った表示。メッシュレット間の継ぎ目は見えません。"]
             ],
-            links: [
-                { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/cluster-lod-renderer" }
-            ]
+            links: [["コード一式", "https://github.com/mogmog-0110/cluster-lod-renderer"]]
         },
         {
-            id: "work-graphs-grow",
-            title: "GPU が枝を再帰生成する：Work Graphs でプロシージャル生成",
+            title: "Work Graphs で GPU 上の再帰的な枝分かれを実装する",
             thumb: "images/wg/thumb.webp", thumbW: 720, thumbH: 720,
-            blurb: "2024 年に D3D12 に入ったばかりの Work Graphs（GPU 上のシェーダが自分で次の仕事を生成・展開できる新実行モデル）を使い、GPU が枝を再帰的に自己生成して樹・珊瑚・稲妻を育てる。生成した capsule 群の union SDF をレイマーチで描画。まだ実例の少ない新 API に、再帰プロシージャル生成という題材を載せた。",
+            summary: "GPU 上のシェーダが次の処理を起動できる Work Graphs を使い、樹・珊瑚・藪・稲妻を再帰生成。生成した capsule 群を union SDF として描画しました。",
             tags: ["DirectX 12", "Work Graphs", "HLSL SM6.8", "Procedural"],
-            meta: "2026 | 単独 DirectX 12 (Agility SDK)",
-            problem: "従来の GPU 実行は CPU が dispatch 回数を固定で並べる形で、「実行時にどれだけ仕事が増えるか決まる再帰」は表しにくかった。Work Graphs（D3D12, 2024）は GPU 上のシェーダのノードが自分で次のノードを起動でき（親→子、再帰も可）、枝分かれのようなデータ依存の展開を GPU 側で完結できる。まだ使用例の少ない新 API に、再帰プロシージャル生成という本領が効く題材を載せて、動くところまで実装した。",
-            approach: "(1) 生成: Branch ノードが枝 1 本を capsule バッファへ atomic append し、深さが残っていれば円錐状に散らした子 record を自分自身へ emit する（NodeMaxRecursionDepth）。GPU だけで再帰的に木構造が展開される。thread-launch ノードは出力レコード合計 128B 以下という制約があり、子は最大 3 本に。(2) 描画: 生成された capsule 群の union SDF をスフィアトレースし、法線・soft shadow・AO で陰影付け、発光プリセット（稲妻）は emissive + bloom で光らせる。(3) 成長アニメ: 各枝に「生まれる深さ割合」を持たせ、成長前線を根→先端へ動かして伸ばす。同じ再帰グラフのパラメータ（分岐数・広がり・長さ比・ねじれ・深さ・色）を変えるだけで樹 / 珊瑚 / 藪 / 稲妻を出し分ける。実行ファイルはそのまま起動すると窓が開き、プリセット・生成パラメータ・成長・カメラをその場で変えられる（パラメータ変更で Work Graph が即再生成、内部描画解像度も調整可）。RTX 5070 Ti で Work Graphs Tier 1.0、全部コンピュート（レイトレ専用コア不要）。",
+            meta: "2026 | 単独 DirectX 12（Agility SDK）",
+            problem: "従来の GPU 処理は CPU が dispatch 数を決めるため、実行中に処理量が決まる再帰を表現しにくい構成でした。D3D12 Work Graphs では、GPU 上のノードが次のノードを起動できます。",
+            approach: "Branch ノードが枝を capsule バッファへ atomic append し、残りの深さに応じて子 record を同じノードへ emit します。thread-launch ノードの出力 record 合計 128B 制限に合わせ、子は最大 3 本です。生成結果は union SDF としてスフィアトレースし、法線、soft shadow、AO、emissive、bloom を適用しました。各枝には生成時点となる深さの割合を持たせ、根から先端へ伸びる表示にしています。分岐数、角度、長さ比、ねじれ、深さ、色を変えて各プリセットを生成します。RTX 5070 Ti、Work Graphs Tier 1.0 で、描画を含めすべてコンピュート処理です。",
             media: [
-                { type: "video", src: "images/wg/growth.mp4",
-                  caption: "樹 / 珊瑚 / 稲妻が根から先端へ育つ（実機録画）。この「育つ」動き自体が GPU の再帰展開。稲妻は発光 + bloom。" },
-                { type: "img", src: "images/wg/presets.webp", w: 546, h: 546,
-                  alt: "樹・珊瑚・藪・稲妻のプリセット",
-                  caption: "同じ Work Graph からパラメータだけ変えて出し分けたプリセット（樹 / 珊瑚 / 藪 / 稲妻）。" }
+                ["video", "images/wg/growth.mp4", 0, 0, "", "樹、珊瑚、稲妻を根から先端へ生成する実機録画。"],
+                ["img", "images/wg/presets.webp", 546, 546, "四つのプリセット", "同じ Work Graph のパラメータを変えた樹、珊瑚、藪、稲妻。"]
             ],
             links: [
-                { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/wggrow" },
-                { label: "D3D12 Work Graphs (Microsoft, 2024)", href: "https://devblogs.microsoft.com/directx/d3d12-work-graphs/" }
+                ["コード一式", "https://github.com/mogmog-0110/wggrow"],
+                ["D3D12 Work Graphs", "https://devblogs.microsoft.com/directx/d3d12-work-graphs/"]
             ],
             more: "wggrow.html"
         },
         {
-            id: "radiance-cascades",
-            title: "ノイズ無しのリアルタイム大域照明：Radiance Cascades を DX12 コンピュートで",
+            title: "Radiance Cascades でノイズのないリアルタイム大域照明を解く",
             thumb: "images/rc/thumb.webp", thumbW: 512, thumbH: 288,
-            blurb: "2D シーンに置いた光と壁から、光が回り込む大域照明 (色のにじみ・柔らかい半影) を、ノイズを出さずリアルタイムで解く。2024 年発表の Radiance Cascades を、レイトレ専用コア無し・すべて DX12 のコンピュートシェーダで実装した。空間と角度の細かさをトレードオフした階層を、遠→近へ合成する。",
+            summary: "2D シーンの回り込み光、色のにじみ、柔らかな半影を、DirectX 12 のコンピュートシェーダだけで計算。レイトレース専用コアは使用していません。",
             tags: ["DirectX 12", "HLSL", "Compute Shader", "Global Illumination"],
             meta: "2026 | MitiruEngine（DirectX 12 コンピュート）",
-            problem: "光が回り込む大域照明 (壁の裏に落ちる柔らかい影、近くの面への色のにじみ) は、素朴にはピクセルごとに無数のレイを飛ばして光を集める必要があり、本数が足りないとノイズや縞が出る。レイトレ専用コアを使う手もあるが、ここでは使わずに解きたい。2024 年発表の Radiance Cascades は、この大域照明をノイズ無しかつ安価に解く手法。照明は自分にとって新しい領域で、まず自作エンジンの上で動かして確かめた。",
-            approach: "肝は空間解像度と角度解像度のトレードオフ。近距離の光は空間を細かく角度は粗く、遠距離は角度を細かく空間は粗くて足りる。そこで放射輝度を、この配分を段階的に変えた階層 (cascade) で表す。各 cascade がやることは 3 つ。(1) 決まった距離区間だけレイを飛ばす (区間レイキャスト)。(2) 全 cascade が同じ要素数になるよう、probe×方向を 1 枚の RGBA16F テクスチャへ詰める。(3) 遠い cascade から近い cascade へ、probe をバイリニア補間しながら合成する (マージ)。最下段を解いて画面の照明にし、HDR・ブルーム・トーンマップで仕上げる。全ピクセルから全方位レイを飛ばすのと同等の絵を、階層のおかげで安く・ノイズ無しで得られる。すべてコンピュートシェーダで完結し、レイトレ専用コアは不要。窓内ではマウスで光や壁をドラッグして描き足せる。",
+            problem: "大域照明を各ピクセルから多数のレイで求めると、レイが不足した場合にノイズや縞が出ます。Radiance Cascades は、空間方向と角度方向の解像度配分を距離に応じて変える手法です。",
+            approach: "近距離は空間を細かく角度を粗く、遠距離は空間を粗く角度を細かくした階層を作りました。各階層では、指定距離だけのレイキャスト、probe と方向の RGBA16F テクスチャへの格納、遠い階層から近い階層へのバイリニア補間付き合成します。最下層を画面の照明とし、HDR、ブルーム、トーンマップを適用します。光と壁は実行中にマウスで追加・移動できます。",
             media: [
-                { type: "video", src: "images/rc/rc.mp4",
-                  caption: "光源を動かすと大域照明と影がなめらかに追従する (実機レンダリングを録画)。ノイズは乗らない。" },
-                { type: "img", src: "images/rc/compare.webp", w: 1034, h: 334,
-                  alt: "ナイーブと Radiance Cascades の比較",
-                  caption: "左: 各ピクセルから全方位にレイを飛ばした素朴な方法 (離散レイの縞が出る) / 右: Radiance Cascades (なめらか)。同じシーン。" }
+                ["video", "images/rc/rc.mp4", 0, 0, "", "光源の移動に大域照明と影が追従する実機録画。"],
+                ["img", "images/rc/compare.webp", 1034, 334, "二方式の比較", "左は各ピクセルから全方位へ離散的にレイを飛ばす方法、右は Radiance Cascades。"]
             ],
             links: [
-                { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/radiancecascades" },
-                { label: "Radiance Cascades (A. Sannikov, 2024)", href: "https://github.com/Raikiri/RadianceCascadesPaper" }
+                ["コード一式", "https://github.com/mogmog-0110/radiancecascades"],
+                ["Radiance Cascades", "https://github.com/Raikiri/RadianceCascadesPaper"]
             ],
             more: "radiancecascades.html"
         },
         {
-            id: "volsmoke",
-            title: "立ち上る煙と炎：グリッド流体を GPU で解いてボリュームレイマーチで描く",
+            title: "3D グリッド流体で煙と炎をリアルタイム計算する",
             thumb: "images/volsmoke/thumb.webp", thumbW: 1280, thumbH: 720,
-            blurb: "3D グリッド上で Navier-Stokes（Stam の安定流体）を GPU コンピュートで解き、できた密度・温度場をボリュームレイマーチで立体的に描く煙＆炎のリアルタイムデモ。渦 confinement で乱流のディテールを戻し、温度を黒体放射色で発光させ、光方向への二段目マーチで自己影を付けた。火源のパラメータを変えるだけで炎・青いガス炎・松明・煙を作り分け、窓内で複数を並べて比較できる。",
+            summary: "Navier–Stokes 方程式を GPU で解き、密度と温度をボリュームレイマーチで描画。炎、青い炎、松明、煙を同じソルバの設定変更で作り分けました。",
             tags: ["DirectX 12", "HLSL", "Compute Shader", "Fluid Sim", "Volume Rendering"],
             meta: "2026 | MitiruEngine（DirectX 12 コンピュート）",
-            problem: "煙や炎の見た目は、グリッド上で流体方程式を解き、その密度・温度をボリュームとして描くのが定番（映画・ゲームの土台）。グリッド流体は Stam の Stable Fluids（1999）、煙と渦 confinement は Fedkiw ら（2001）、炎は Nguyen ら（2002）、GPU での実時間 3D 化は GPU Gems 3（2007）が下敷き。この一式を自分の DX12 エンジンの上で動くところまで実装した。",
-            approach: "128³ グリッドを毎フレーム GPU で更新する。速度場は 移流（semi-Lagrangian）→ 浮力 → 渦 confinement → 圧力射影（発散を計算しポアソンを Jacobi 40 反復で解いて勾配を引く＝非圧縮化）の順。煙・温度も同じ速度場で流す。描画はカメラから光線を飛ばし、煙は密度で光を吸収（Beer–Lambert）、炎は温度を黒体放射色（暗赤→赤→橙→黄→白）に写像して発光を加算。各サンプルから光源方向へ二段目の短い光線を飛ばして煙の自己影を付ける。全フィールド（速度・密度・温度・圧力）は 3D テクスチャに置き CPU へ戻さず GPU 上で完結。火源の温度・冷却・色・密度を変えるだけで、橙の焚き火／青いガス炎／松明／煙／色付き煙を作り分けられ、ウィンドウ内のスライダーとレイアウト切替で複数を同時に並べて比較できる。",
+            problem: "煙と炎を、Stam の Stable Fluids、Fedkiw らの煙と渦 confinement、Nguyen らの炎、GPU Gems 3 の実時間 3D 化を参照して自作の DirectX 12 エンジンへ実装しました。",
+            approach: "128³ グリッドの速度場を、semi-Lagrangian 移流、浮力、渦 confinement、圧力射影の順で更新します。圧力射影では発散を求め、ポアソン方程式を Jacobi 法で 40 回反復して圧力勾配を引きます。密度と温度も同じ速度場で移流します。描画では Beer–Lambert 則による吸収、温度から黒体放射色への変換、光源方向への二段目のレイによる自己影を計算します。速度、密度、温度、圧力は 3D テクスチャに置き、CPU へ戻しません。",
             media: [
-                { type: "video", src: "images/volsmoke/fire.mp4",
-                  caption: "炎のプリセット（実機レンダリングを録画）。火元が白熱し、上昇しながら冷えて橙→赤→煙へ遷移する。揺らぎはすべて流体シミュレーションの結果で、テクスチャアニメーションではない。" },
-                { type: "video", src: "images/volsmoke/compare.mp4",
-                  caption: "炎・青い炎・煙を 3 つ同時に（それぞれ別の 128³ シム・実機録画）。同じソルバでパラメータだけ変えて作り分けている。" },
-                { type: "img", src: "images/volsmoke/presets5.webp", w: 1600, h: 700,
-                  alt: "炎・青い炎・松明・煙の比較",
-                  caption: "火源の温度・冷却・色・密度を変えて作り分けたプリセット（左から 炎 / 青い炎 / 松明 / 煙）。" }
+                ["video", "images/volsmoke/fire.mp4", 0, 0, "", "炎のプリセットを描画した実機録画。"],
+                ["video", "images/volsmoke/compare.mp4", 0, 0, "", "炎、青い炎、煙を別々の 128³ シミュレーションで同時に計算。"],
+                ["img", "images/volsmoke/presets5.webp", 1600, 700, "四種類のプリセット", "火源の温度、冷却、色、密度を変えた炎、青い炎、松明、煙。"]
             ],
-            links: [
-                { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/volsmoke" }
-            ],
+            links: [["コード一式", "https://github.com/mogmog-0110/volsmoke"]],
             more: "volsmoke.html"
         },
         {
-            id: "live2d-directml",
-            title: "D3D12 上の Live2D 描画に DirectML 推論をパイプライン内（CPU 往復なし）で適用する",
+            title: "Live2D の描画結果へ、CPU 往復なしで DirectML 推論を適用する",
             thumb: "images/live2d/depth-form.webp", thumbW: 720, thumbH: 876,
-            blurb: "D3D12 上の Live2D 描画結果に、DirectML 推論を後処理として適用する実装。CPU 往復ゼロの in-pipeline 推論パスを組み、シャープンと単眼深度ベースのリライティングを実装した。汎用の単眼深度はフラットなセル塗りからキャラの立体をほぼ復元しないが、キャラ領域にクロップすると概形が出る。後処理はいずれも完成済みのピクセルを変更する。",
+            summary: "DirectX 12 上の Live2D 描画に、DirectML の推論処理を組み込みました。輝度シャープンと、単眼深度を使う加算リライティングを実装しています。",
             tags: ["DirectX 12", "DirectML", "ONNX Runtime", "Live2D"],
             meta: "2026 | MitiruEngine（DirectX 12）",
-            problem: "自作の D3D12 エンジンに Live2D を移植した（公式は D3D12 非対応 → works）。その描画結果に、DirectML の推論をレンダリングパイプラインの一段として CPU 往復なしで適用できるか、また完成済みの 2D 絵に対する後処理としてどう働くかを実装して確かめた。Live2D はドロウアブル単位で作り込まれた絵を動かす形式で、後処理は各ピクセルを推論結果で変更する。",
-            approach: "(1) raw DirectML で backbuffer → compute(NCHW pack) → DirectML 演算 → compute(unpack) → 合成 までを、同一コマンドリスト上で実装した。CPU への往復は無い。演算を差し替えれば効果が変わる。(2) 学習済み単眼深度（Depth-Anything-V2-Small）を ONNX Runtime + DirectML EP で別スレッド非同期ロードし、フレーム境界で読み戻して深度テクスチャへ反映。実装した後処理は二つ。1) シャープン: チャンネル独立シャープンは色付きエッジで色フリンジが出るため、輝度成分のみのアンシャープに変更（色は変更しない）。2) リライティング: 単眼深度から法線を推定し可動光源でライティング、元のピクセルは変更せず加算のみ（強度0で入力に一致）。深度の挙動は、全画面入力では背景の奥行きを推定しフラットなキャラは平面のまま出るが（学習データが写真のため）、キャラ領域にクロップすると人物の概形が出る。推論を最終ピクセルではなくパラメータ（リグ）の駆動に使えば元の絵は変更しないが、それは本実装（後処理）の範囲には含まない。",
+            problem: "DirectX 12 へ移植した Live2D の描画結果に、DirectML 推論をレンダリング処理の一段として適用できるかを検証しました。完成した 2D 画像を対象とするため、後処理は各ピクセルを変更します。",
+            approach: "raw DirectML では backbuffer、NCHW pack、DirectML 演算、unpack、合成を同一コマンドリストで実行し、CPU 往復をなくしました。Depth-Anything-V2-Small は ONNX Runtime と DirectML EP で別スレッドから読み込み、フレーム切り替え時に深度テクスチャへ反映します。シャープンは色フリンジを避けるため輝度成分だけに適用。リライティングは深度から法線を求め、元のピクセルを維持したまま光を加算します。全画面入力では背景の奥行きが推定され、キャラクターは平面に近い結果でした。キャラクター領域へクロップすると人物の概形が得られました。",
             media: [
-                { type: "image", src: "images/live2d/depth-fullscene.webp",
-                  caption: "全画面入力。汎用の単眼深度は背景（部屋）の奥行きを推定し、フラットなセル塗りのキャラは平面として出る（左=入力 / 中=深度 / 右=法線）。" },
-                { type: "image", src: "images/live2d/depth-form.webp",
-                  caption: "キャラ領域にクロップした入力。人物の概形（胴体が手前、シルエット端が奥）が推定される（左=入力クロップ / 右=推定深度）。これを法線に用いて加算リライトをかける。" },
-                { type: "image", src: "images/live2d/unsharp.webp",
-                  caption: "シャープン。チャンネル独立シャープン由来の色フリンジは輝度アンシャープでは出ない（左=OFF / 右=ON）。" }
+                ["img", "images/live2d/depth-fullscene.webp", 0, 0, "全画面入力の深度推定", "全画面入力。左から入力、推定深度、推定深度から求めた法線。"],
+                ["img", "images/live2d/depth-form.webp", 0, 0, "クロップ入力の深度推定", "キャラクター領域へクロップした入力と推定深度。"],
+                ["img", "images/live2d/unsharp.webp", 0, 0, "シャープンの比較", "輝度アンシャープの無効時と有効時の比較。"]
             ],
             links: [
-                { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/live2d-directml-lab" },
-                { label: "D3D12 レンダラ移植 (works)", href: "live2d-d3d12.html" }
+                ["コード一式", "https://github.com/mogmog-0110/live2d-directml-lab"],
+                ["D3D12 レンダラ移植", "live2d-d3d12.html"]
             ]
         },
         {
-            id: "gaussian-splatting",
-            title: "写真から起こした3Dを実時間で回す：3D Gaussian Splatting を自作エンジンへ実装",
+            title: "3D Gaussian Splatting を自作の DirectX 12 エンジンへ実装する",
             thumb: "images/gsplat/thumb.webp", thumbW: 960, thumbH: 540,
-            blurb: "写真から再構成した点群（3D Gaussian Splatting）は、公開ビューアが WebGL/CUDA 中心で、自作のゲームエンジンに載せた例はほとんど無い。約26万個の異方性ガウシアンを EWA 楕円射影で描き、毎フレームの奥行きソートを O(N) のバケットソートに置き換えて、DirectX 12 上で滑らかに周回できるようにした。",
+            summary: "約 26 万個の異方性ガウシアンを EWA 楕円射影で描画。毎フレームの奥行きソートを O(N) のバケットソートに置き換えました。",
             tags: ["DirectX 12", "HLSL", "Gaussian Splatting", "Neural Rendering"],
             meta: "2026 | MitiruEngine（DirectX 12）",
-            problem: "3D Gaussian Splatting（3DGS, SIGGRAPH 2023）は、写真の集合から3Dシーンを「無数の半透明な楕円体（ガウシアン）」として再構成し、メッシュより速く写実的に描ける手法で、いまの実時間ニューラルレンダリングの主役。ただし扱いには癖がある。(1) 1シーンが数十万〜数百万個の異方性ガウシアンででき、各々を画面に正しい楕円として射影（EWA）する必要がある。(2) 半透明なので毎フレーム奥→手前に並べ替えないと色が壊れるが、素朴な std::sort は O(N log N) で点数が増えると重い。(3) 公開実装は WebGL/CUDA の研究コードが中心で、自前のゲームエンジン（DirectX 12）に載せて『自分のシーンの一部』として扱える形にした例は少ない。まず自分のエンジンで動かし、土台に使えるか確かめたかった。",
-            approach: "antimatter15 の `.splat` 形式（32B/点）をパースして、GPU の StructuredBuffer へ展開する。各ガウシアンの3D共分散 R·S·Sᵀ·Rᵀ は、射影ヤコビアンで2Dへ落として conic（楕円）にする。あとはインスタンス化した矩形へ描くだけ。EWA スプラッティング、プリマルチプライ合成、4×MSAA、FP16。毎フレームの奥行きソートは std::sort をやめ、視点深度を2048バケットに振り分けるカウンティングソート（O(N)）に置換した。数十万点でも実時間で奥→手前順を保つ。実データ特有の問題にも手を入れた: 再構成ノイズ（孤立した遠方点・grazing で白く尾を引く巨大な点・ほぼ透明な点）を中央値/パーセンタイル基準で読み込み時に自動除去。被写体が変な向きで再構成されていても主成分分析（PCA）で自動的に立て直し、側面がカメラを向くよう整列する。色も、splat は焼き込み済みの完成色なのでエンジンの ACES トーンマップを逆補正して生の鮮やかさで出す。シーンは Nike シューズ（約26万点）で、境界球から自動フレーミングして周回・ズームできる（録画）。",
+            problem: "3D Gaussian Splatting は写真群からシーンを半透明な異方性ガウシアンとして再構成します。各点を正しい楕円として画面へ射影し、毎フレーム奥から手前へ並べる必要があります。点数が増えると O(N log N) の一般的なソートが負荷になります。",
+            approach: "antimatter15 の .splat 形式を読み、32B/点のデータを StructuredBuffer へ展開。3D 共分散 R·S·Sᵀ·Rᵀ を射影ヤコビアンで 2D の conic に変換し、インスタンス化した矩形へ EWA スプラッティングします。プリマルチプライ合成、4×MSAA、FP16 を使用。深度は 2048 個のバケットへ分け、O(N) で奥から手前へ並べます。孤立点、巨大な点、ほぼ透明な点は中央値とパーセンタイルを基準に除去し、PCA で向きを整えます。ACES トーンマップの逆補正と自動フレーミングも実装しました。",
             media: [
-                { type: "video", src: "videos/gsplat_orbit.mp4",
-                  caption: "自作エンジン（DirectX 12）上で 3D Gaussian Splatting シーン（Nike シューズ・約26万点）を実時間で周回した実機録画。EWA 楕円射影＋O(N) 深度バケットソートで、半透明な楕円体の集合が破綻なく奥→手前へ合成される。点群を PCA で立て直し、ACES 逆補正で元の鮮やかな色を出している。" }
+                ["video", "videos/gsplat_orbit.mp4", 0, 0, "", "Nike シューズの約 26 万点を、自作エンジン上で周回表示した実機録画。"]
             ],
             links: [
-                { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/realtime-gaussian-splatting" },
-                { label: "3D Gaussian Splatting (Kerbl et al., SIGGRAPH 2023)", href: "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/" }
+                ["コード一式", "https://github.com/mogmog-0110/realtime-gaussian-splatting"],
+                ["3D Gaussian Splatting 論文", "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/"]
             ]
         },
         {
-            id: "wboit",
-            title: "ソートしない半透明：ふつうは描画順で壊れる透明を、順番に依存しない方法で描く",
+            title: "描画順に依存しない半透明表現を実装する",
             thumb: "images/oit/wboit_compare.webp", thumbW: 836, thumbH: 334,
-            blurb: "半透明（ガラスや煙）を重ねて描くには、ふつう「奥から手前へ」順に描く必要がある。でも物どうしが重なり合うとその順番が決められず、色が変わったりちらついたりする。順番を捨てて足し算・掛け算だけで混ぜる手法（Weighted-Blended OIT）を自作エンジンの DX12 3D に実装し、順番に依存しないことをテストで確かめた。",
+            summary: "交差する半透明物体を並べ替えずに合成する Weighted-Blended OIT を実装。描画順を変えても結果が一致することを GPU テストで確認しました。",
             tags: ["DirectX 12", "HLSL", "Transparency", "OIT"],
             meta: "2026 | MitiruEngine（DirectX 12）",
-            problem: "半透明を正しく重ねるには、ふつう「奥のものから手前のものへ」の順に描く必要がある（後ろのガラス → 前のガラス）。ところが物どうしが交差したり相互に重なると、「どちらが奥か」が画面の場所ごとに違ってしまい、並べ替える順番そのものが決められなくなる。結果、カメラやモデルが少し動くだけで色がパッと切り替わる・ちらつく、といった破綻が起きる。上の比較画像の ① と ② は、まったく同じ 3 枚の半透明板を「描く順番だけ」変えたもの。中央の重なりが青っぽくなったり赤っぽくなったり、結果が変わってしまっているのが見える。これがふつうの半透明の弱点。",
-            approach: "そこで「並べ替え」自体をやめる手法が Weighted-Blended OIT（McGuire & Bavoil 2013）。半透明を 2 枚の作業バッファに貯める。片方に『色 ×（奥行きで決まる重み）』の足し算、もう片方に『(1−透明度)』の掛け算。足し算も掛け算も順番を入れ替えても答えが同じ（可換）なので、どんな順で描いても結果が一致する（比較画像の ③）。最後にこの 2 枚を合わせて画面へ重ねるだけ。\n\n実際に GPU で「同じ絵を前→後／後→前の 2 通りで描いて、ピクセル差が ≤2/255 しかない」ことを自動テストで確かめた（ふつうの方式なら順番で桁違いにズレる＝①②）。さらにこの仕組みを再利用できる部品にまとめ、自作エンジンの DX12 3D レンダラーに組み込んだ。半透明メッシュも不透明と同じライティング・影で陰影が付き、奥の不透明な柱や床にはちゃんと隠される（録画）。",
+            problem: "通常の半透明合成には奥から手前への描画順が必要です。物体が交差すると、前後関係が画面内で変わるため一つの順序を決められず、色の変化やちらつきが起きます。",
+            approach: "Weighted-Blended OIT では、色と深度由来の重みを加算するバッファと、1−透明度を乗算するバッファを使います。加算と乗算は処理順を入れ替えても結果が変わらないため、最後に二つを合成すれば描画順への依存を避けられます。同じ場面を前後二通りの順番で GPU 描画して読み戻し、ピクセル差が 2/255 以下であることを自動テストしました。実装は再利用可能な処理として DirectX 12 の 3D レンダラへ組み込み、不透明物体による遮蔽、照明、影にも対応しています。",
             media: [
-                { type: "img", src: "images/oit/wboit_compare.webp", w: 836, h: 334,
-                  alt: "ふつうの半透明（①②）は描画順で結果が変わるが、OIT（③）は変わらない比較",
-                  caption: "同じ 3 枚の半透明板を描いた結果。①② は描く順番だけを変えたもので、中央の重なりの色が変わってしまっている（ふつうの方式は順番に依存する）。③ は OIT で、どの順番でも同じ結果になる。" },
-                { type: "video", src: "images/oit/wboit_orbit.webm",
-                  caption: "自作エンジンの DX12 3D シーンに OIT を組み込んだ実機録画。重なる半透明キューブが正しく混色し、奥の不透明な柱・床に深度で隠され、ライティングと影も受ける。カメラが回っても破綻しない。" },
-                { type: "img", src: "images/oit/wboit_quads.webp", w: 256, h: 256,
-                  alt: "順序非依存をテストで証明する最小ケース",
-                  caption: "テストが実際に検証している最小ケース。3 枚の半透明板を 2 通りの順番で GPU 描画して読み戻し、差が ≤2/255 であることを機械的に assert している。" }
+                ["img", "images/oit/wboit_compare.webp", 836, 334, "半透明合成の比較", "同じ三枚の半透明板を描画。通常方式は順序で結果が変わり、OIT は同じ結果になります。"],
+                ["video", "images/oit/wboit_orbit.webm", 0, 0, "", "DirectX 12 の 3D シーンへ OIT を組み込んだ実機録画。"],
+                ["img", "images/oit/wboit_quads.webp", 256, 256, "自動テスト用の場面", "三枚の半透明板を二通りの順序で描く自動テスト。"]
             ],
-            links: [
-                { label: "Weighted-Blended OIT (McGuire & Bavoil, JCGT 2013)", href: "https://jcgt.org/published/0002/02/09/" }
-            ]
+            links: [["Weighted-Blended OIT 論文", "https://jcgt.org/published/0002/02/09/"]]
         },
         {
-            id: "pb-mpm",
-            title: "EA SEED の PB-MPM を手元で動かす：WebGPU 研究実装を DirectX 12 へ移植",
+            title: "EA SEED の PB-MPM を WebGPU から DirectX 12 へ移植する",
             thumb: "images/pbmpm/thumb.webp", thumbW: 444, thumbH: 155,
-            blurb: "砂・雪・粘体をリアルタイムに解く EA SEED の MPM ソルバ（SIGGRAPH 2024）は、公開実装が WebGPU の研究コードのみ。これを自作エンジンの DirectX 12 / HLSL へ「行単位で忠実に」移植し、液体・弾性・砂・粘体の 4 材質が別々の物性として 60fps で解けるところまで再現した。この実験が次の制作につながった。",
-            tags: ["DirectX 12", "HLSL", "Compute Shader", "MPM", "物理シム"],
+            summary: "SIGGRAPH 2024 の研究実装を HLSL へ移植。液体、弾性体、砂、粘体を同じソルバで計算し、1.7 万粒子を 60fps で動かしました。",
+            tags: ["DirectX 12", "HLSL", "Compute Shader", "MPM", "物理シミュレーション"],
             meta: "2026 | MitiruEngine（DirectX 12 コンピュート）",
-            problem: "EA SEED の PB-MPM（Position-Based MPM, SIGGRAPH 2024）は、砂・雪・泥・粘弾性体をリアルタイムに扱える Material Point Method を、位置ベースの制約ループに作り直した手法。任意のタイムステップでも破綻せず、実装も比較的シンプルなのが特徴。ただし公開されているのは WebGPU の研究実装で、ネイティブ GPU（DirectX / Vulkan）での再現はほとんど無い。論文とブラウザデモを見るだけでは、自分のゲームの土台に使えるかどうかまでは分からなかったので、まず自分の環境で動かしてみることにした。",
-            approach: "公式の WebGPU / WGSL 実装（BSD-3-Clause）を、式だけでなく行単位で忠実に DirectX 12 / HLSL へ翻訳した（過去に式だけ移植して挙動が合わず失敗した反省から）。粒子→グリッド→粒子を 1 ディスパッチに融合した g2p2g、6×6+ハロ1 のタイル（bukkit）への粒子再ビン、3 枚の格子のリングローテーション、GPU 側エミッション。公式アーキテクチャをそのまま移植している。結果、液体・弾性・砂・粘体の 4 材質が、砂は粒として積もり／液体は広がり／弾性体は形を保つ、と別々の物性として 60fps・1.7 万粒子で安定して解ける。移植で効いたのは自作エンジンの録画リプレイ（同じ入力なら結果が bit 単位で一致する）で、グリッド書き込み順に起因する非決定性を差分として炙り出せた。DX12 / HLSL 固有の罠も複数踏んだ。例えば HLSL の atan2(0,0) が NaN を返し、無変形の弾性体で 2×2 SVD が壊れて「粒子が空中で凍結」する（WGSL は 0 を返すので公式では起きない）／未初期化ディスクリプタがテーブル内にあるだけでデバイスロスト、など。この『一本のソルバから複数の物性が出る』のが面白く、後の落ちものパズル制作につながった。EA の移植部は BSD-3-Clause に従い帰属表示の上で利用している。",
+            problem: "EA SEED の PB-MPM は、砂、雪、泥、粘弾性体を扱う Material Point Method を位置ベースの制約ループとして構成した手法です。公開実装は WebGPU 版の研究コードだったため、DirectX 12 で再現できるか確かめました。",
+            approach: "公式の WebGPU・WGSL 実装を行単位で DirectX 12・HLSL へ移植しました。粒子から格子、格子から粒子への処理を一つの dispatch にまとめた g2p2g、6×6 とハロ 1 のタイルへの粒子再分類、三枚の格子のリングローテーション、GPU 側エミッションを再現しています。HLSL の atan2(0,0) が NaN になる差異や、未初期化ディスクリプタによるデバイスロストにも対処しました。録画リプレイを使い、同じ入力に対する bit 単位の差から格子書き込み順の非決定性を検出しました。EA の移植部分は BSD-3-Clause に従って帰属表示しています。",
             media: [
-                { type: "video", src: "videos/pbmpm_materials.mp4",
-                  caption: "移植した PB-MPM が解く 4 材質を上から流し込んだ実機録画。砂（黄）は粒として積もり、液体（青）は広がってならされ、弾性体（緑）は塊のまま形を保ち、粘体（桃）はとろりと沈む。すべて同じ 1 本のソルバが解いている（DirectX 12 コンピュート・60fps）。" },
-                { type: "img", src: "images/pbmpm/metaball.webp", w: 444, h: 182,
-                  alt: "同じプールをメタボールで表面化して描画したカット",
-                  caption: "同じプールをメタボールで表面化して描いたカット。粒子のままでも、滑らかな表面としても出せる。" },
-                { type: "video", src: "videos/fluiddrop_melt.mp4",
-                  caption: "この PB-MPM をそのままルールにした落ちものパズル（<a href='fluid-drop.html'>FLUID DROP</a>）も作った。積んだブロックが時間経過の「波」でゼリー → 液体 と溶けて混ざり、冷えるとまた固まる。流体の物性そのものが攻略になる落ちものゲームで、上の実験がそのまま土台になっている（実機の録画）。" }
+                ["video", "videos/pbmpm_materials.mp4", 0, 0, "", "砂、液体、弾性体、粘体を同じソルバで計算した実機録画。"],
+                ["img", "images/pbmpm/metaball.webp", 444, 182, "メタボール表示", "同じ粒子をメタボールで表面化した表示。"],
+                ["video", "videos/fluiddrop_melt.mp4", 0, 0, "", "PB-MPM をルールへ使った落ちものパズル「FLUID DROP」の実機録画。"]
             ],
             links: [
-                { label: "PB-MPM 論文 (EA SEED, SIGGRAPH 2024)", href: "https://media.contentapi.ea.com/content/dam/ea/seed/presentations/seed-siggraph2024-pbmpm-paper.pdf" }
+                ["PB-MPM 論文", "https://media.contentapi.ea.com/content/dam/ea/seed/presentations/seed-siggraph2024-pbmpm-paper.pdf"],
+                ["FLUID DROP", "fluid-drop.html"]
             ]
         },
         {
-            id: "sdf-face-shadow",
-            title: "上下の光に応答するアニメ顔影：SDF しきい値マップの仰角拡張",
+            title: "上下の光にも反応するアニメ顔用 SDF 影マップ",
             thumb: "images/sdf-face/compare_up.webp", thumbW: 1500, thumbH: 500,
-            blurb: "アニメ顔の定番「SDF 顔影マップ」は光の左右にしか反応せず、上下の光では顔だけがのっぺりしたまま環境から浮く。マップを方位角×仰角の 2D に拡張し、テクスチャ参照 2 回のままレイトレース相当の影の応答を得た。",
+            summary: "光の左右方向だけを扱う SDF 顔影マップを、方位角と仰角の二次元へ拡張。テクスチャ参照二回で、上下からの光に応じた影を出します。",
             tags: ["DirectX 11", "NPR", "Cel Shading", "SDF", "VRM"],
             meta: "2026 | DirectX 11 スタンドアロンデモ",
-            problem: "セルルックのアニメ顔では、顔の影を法線からではなく「SDF しきい値マップ」というテクスチャで制御するのが業界の定番。ただしこのマップは光の方位角（左右）のみを軸にした 1 次元の仕組みで、仰角（上下）は扱わないのが標準になっている。そのため、夕日や下からの照明のシーンで、体や背景には上下の陰影が付くのに顔だけがのっぺりと浮く。",
-            approach: "しきい値マップを方位角×仰角の 2D に拡張し、仰角ごとのスライスを補間して参照する。シェーダ側の追加コストはテクスチャ参照が 1 回増えるだけ（計 2 fetch）。検証は 3 方式の比較で行った。STANDARD（業界標準・仰角無反応）/ PROPOSED（仰角スライス補間）/ REFERENCE（レイトレースによる正解）。同カメラ・同光源で方式だけを差し替えると、PROPOSED は REFERENCE と同構造の影（上光での眉下・鼻下、下光でのホラー表現）をしきい値マップのコストのまま再現する。多灯の合成と、手描きキーフレームでの検証は未了で、その意味でまだ「実験」として提示する。",
+            problem: "一般的な SDF 顔影マップは光の方位角だけを扱うため、上下方向の照明に反応しません。夕日や下方からの照明では、体や背景の陰影が変化しても顔の影は変わりません。",
+            approach: "しきい値マップを方位角と仰角の二次元へ拡張し、仰角ごとのスライスを補間して参照します。追加コストはテクスチャ参照一回で、合計二回です。STANDARD、PROPOSED、レイトレースによる REFERENCE を同じカメラと光源で比較しました。提案方式では、上方光の眉下・鼻下や下方光の影を再現しました。多灯合成と手描きキーフレームによる検証は未実施です。",
             media: [
-                { type: "img", src: "images/sdf-face/compare_up.webp", w: 1500, h: 500,
-                  alt: "上光での 3 方式比較（業界標準・提案・レイトレース正解）",
-                  caption: "上からの光（仰角 +50°）。左: 業界標準。仰角に反応せずのっぺり / 中: 提案。眉下・鼻下に影が落ちる / 右: レイトレース正解。同カメラ・同光源で、差はシェーディング方式のみ。モデル: アリシア・ソリッド（© DWANGO Co., Ltd. / ニコニ立体ちゃん）。" },
-                { type: "img", src: "images/sdf-face/compare_down.webp", w: 1500, h: 500,
-                  alt: "下光での 3 方式比較",
-                  caption: "下からの光（仰角 −50°、いわゆるホラー下光）。左: 業界標準 / 中: 提案 / 右: 正解。標準は下光でも昼間の顔のままになる。" },
-                { type: "img", src: "images/sdf-face/threshold_maps.webp", w: 1200, h: 600,
-                  alt: "仰角 0° と +60° のしきい値マップ",
-                  caption: "提案手法の中身: 仰角ごとに焼いたしきい値マップ（左: 仰角 0° / 右: +60°）。この間を補間して参照する。" }
+                ["img", "images/sdf-face/compare_up.webp", 1500, 500, "上方光での三方式比較", "上方からの光。左から標準方式、提案方式、レイトレースによる参照結果。モデル: アリシア・ソリッド（© DWANGO Co., Ltd. / ニコニ立体ちゃん）。"],
+                ["img", "images/sdf-face/compare_down.webp", 1500, 500, "下方光での三方式比較", "下方からの光。左から標準方式、提案方式、参照結果。"],
+                ["img", "images/sdf-face/threshold_maps.webp", 1200, 600, "仰角別のしきい値マップ", "仰角 0° と +60° のしきい値マップ。"]
             ],
-            links: [
-                { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/sdf-face-shadow" }
-            ]
+            links: [["コード一式", "https://github.com/mogmog-0110/sdf-face-shadow"]]
         },
         {
-            id: "sim-render-seam",
-            title: "物理と描画の継ぎ目：モーションベクタの嘘を可視化する",
+            title: "物理補間とモーションベクタの食い違いを可視化する",
             thumb: "images/seam/framegen_generated.webp", thumbW: 1000, thumbH: 1000,
-            blurb: "固定タイムステップの物理を可変レート表示に補間して見せるとき、「画面に見せた動き」と「エンジンが申告するモーションベクタ」が食い違う。その食い違いがどの後段処理でどう画になるかを、実機 GPU デモで可視化・実測した。TAA はこのズレをほぼ吸収できる一方、フレーム生成では破綻として表に出てしまう、という結果になった。",
+            summary: "固定タイムステップの物理を補間表示した際に、表示上の動きとモーションベクタが食い違う問題を実測。TAA とフレーム生成への影響を比較しました。",
             tags: ["DirectX 11", "VRM", "VMD", "TAA", "Frame Generation"],
             meta: "2026 | DirectX 11 スタンドアロンデモ",
-            problem: "物理シミュレーションは固定タイムステップで回し、表示はその間を補間する。ゲームの定番構成。このとき画面に出した動きと、TAA やフレーム生成（DLSS3/FSR3 系）へ渡すモーションベクタ(MV)の申告が食い違う。「ティック由来の MV」「MV=0」「提示状態由来の MV」のどれを申告するかで後段の画がどう変わるかは、まとまった資料が少ない。",
-            approach: "DX11 のスタンドアロンデモを書き、VRM モデルに VMD ダンスを CPU スキニングで再生。画面を左右に分割して MV の申告方法だけを変え、TAA / 簡易フレーム生成 / MV 可視化の 3 ビューで比較した。決定的な CPU 計測ハーネスも併設。結果はネガティブ寄りだったが、そこも含めて書いておく。(1) 近傍クランプ付き TAA は MV の嘘をほぼ吸収する（実測でほぼフラット）。(2) フレーム生成はクランプが無いので嘘を素通しし、過大 MV はスカートや脚の破断・振動、MV=0 は実効 fps 半減のガタつきとして直撃する。(3) 大手エンジンの標準経路では提示状態由来の MV は事実上実装済みで、嘘が残るのはレンダラが変形を追跡しない場所（Unity Cloth の MV=0、GPU パーティクル、カスタムコンピュート変形など）。数値では、提示 MV はティック MV 比で再投影残差 −86%、ジャダー指標は最新値提示の 1/65。",
+            problem: "物理シミュレーションを固定間隔で更新し、その間を補間して表示すると、画面上の動きと TAA・フレーム生成へ渡すモーションベクタが一致しない場合があります。ティック由来、ゼロ、提示状態由来の各ベクトルが後段処理へ与える影響を調べました。",
+            approach: "DirectX 11 のデモで VRM モデルへ VMD ダンスを CPU スキニングで適用し、画面左右でモーションベクタの申告方法だけを変更。TAA、簡易フレーム生成、ベクトル可視化を比較しました。近傍クランプ付き TAA は差をほぼ吸収しましたが、フレーム生成では、過大な値がスカートや脚の破断・振動、ゼロが実効フレームレート半減相当のがたつきとして現れました。提示状態由来の値はティック由来に比べ再投影残差が 86% 減り、ジャダー指標は最新値提示の 1/65 でした。",
             media: [
-                { type: "img", src: "images/seam/framegen_real.webp", w: 1000, h: 1000,
-                  alt: "実描画フレーム（左右 2 つの MV モード）",
-                  caption: "実描画フレーム。左右どちらの MV モードでもモデルは無傷。" },
-                { type: "img", src: "images/seam/framegen_generated.webp", w: 1000, h: 1000,
-                  alt: "フレーム生成による生成フレーム。過大 MV 側でスカートと脚が破断",
-                  caption: "フレーム生成が捏造したフレーム（上と同一瞬間・同一モデル、差は MV の申告のみ）。左半分＝過大 MV ではスカートと脚が破断し、右半分＝提示 MV では軽微。モデル: アリシア・ソリッド（© DWANGO Co., Ltd. / ニコニ立体ちゃん）。" }
+                ["img", "images/seam/framegen_real.webp", 1000, 1000, "実描画フレーム", "二つのモーションベクタ方式で描いた実フレーム。"],
+                ["img", "images/seam/framegen_generated.webp", 1000, 1000, "フレーム生成結果", "同じ時点の生成フレーム。左は過大な値、右は提示状態由来の値。モデル: アリシア・ソリッド（© DWANGO Co., Ltd. / ニコニ立体ちゃん）。"]
             ],
-            links: [
-                { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/sim-render-seam" }
-            ]
+            links: [["コード一式", "https://github.com/mogmog-0110/sim-render-seam"]]
         },
         {
-            id: "npr-temporal",
-            title: "トゥーン輪郭線の時間安定化",
+            title: "動く 3D モデルのトゥーン輪郭線を時間方向に安定させる",
             thumb: "images/npr/toon_compare_alicia.webp", thumbW: 968, thumbH: 320,
-            blurb: "3D から自動生成した輪郭線はアニメでチラつく。TAA の考え方（motion vector 再投影）を輪郭線チャネルに応用して安定化してみた。VRM 比較ビューアと、風で揺れる布のリアルタイムデモ付き。",
-            tags: ["NPR", "TAA", "物理シム", "C++20"],
+            summary: "画面上で抽出した輪郭線をモーションベクタで再投影し、瞬間的に欠けた部分だけを補完。VRM モデルと風で変形する布で検証しました。",
+            tags: ["NPR", "TAA", "物理シミュレーション", "C++20"],
             meta: "2026 | MitiruEngine",
-            problem: "screen-space で抽出した輪郭線（深度段差・法線の折れ）は、カメラやモデルが動くとフレームごとに線が明滅・分断されてチラつく。特に布のシワのような「変形で動的に生まれる線」は、定番の背面法では原理的に描けず、テクスチャにも事前に描けないため、screen-space 検出が唯一の手段になる。",
-            approach: "TAA と同じく motion vector で前フレームの線を再投影し、objectId で「同じ物体の線か」を検証してから合成。G-buffer の velocity / objectId チャネル、前フレーム保持、変形メッシュ用の per-vertex velocity、安定化パス（CPU/GPU）までエンジンに一式実装。デモは VRM モデルのターンテーブル比較と、Verlet 布 + ランダム突風のリアルタイム Game DLL の 2 本。チラつき −63% などの数値は自動テストで固定。",
+            problem: "深度差や法線差から画面上で抽出する輪郭線は、カメラやモデルが動くと明滅・分断します。布のしわのように変形によって現れる線は、背面法や事前作成テクスチャでは扱えません。",
+            approach: "前フレームの線をモーションベクタで再投影し、objectId が一致する履歴だけを合成しました。G-buffer の velocity・objectId、前フレーム保持、変形メッシュの頂点別 velocity、CPU・GPU の安定化処理を実装しています。現在の線が明確な画素は変更せず、前フレームに線があり、現在も近傍に線がある場合だけ欠落を補完します。VRM ターンテーブルと Verlet 布・ランダム突風のデモで比較し、ちらつき 63% 減などの値を自動テストで固定しました。",
             media: [
-                { type: "video", src: "images/npr/toon_alicia_turntable.webm",
-                  caption: "VRM モデル（ニコニ立体ちゃん ©dwango）のターンテーブル比較。左: 背面法+内側線（無安定化）/ 中: 背面法のみ / 右: +安定化。" },
-                { type: "video", src: "images/npr/cloth_demo.webm",
-                  caption: "布のシワ線（72f ループ）。左: 背面法のみ（開いたメッシュでは外形線すら出ない）/ 中: +シワ線（無安定化）/ 右: +安定化。リアルタイム版は Game DLL として実装、Space で突風。" },
-                { type: "img", src: "images/npr/flicker_heatmap.webp", w: 1292, h: 180,
-                  alt: "チラつきヒートマップの before/after",
-                  caption: "チラつきの可視化（フレーム間の再投影残差）。赤が明滅成分。左 2 枚が輪郭線、右 2 枚がヒートマップ（無対策 → 安定化）。" }
+                ["video", "images/npr/toon_alicia_turntable.webm", 0, 0, "", "VRM モデルの比較。左から無安定化、背面法のみ、安定化あり。モデル: ニコニ立体ちゃん（© DWANGO）。"],
+                ["video", "images/npr/cloth_demo.webm", 0, 0, "", "布の比較。左から背面法のみ、しわ線あり・無安定化、安定化あり。"],
+                ["img", "images/npr/flicker_heatmap.webp", 1292, 180, "ちらつきの可視化", "フレーム間の再投影残差。赤い部分が明滅成分です。"]
             ],
-            code: {
-                caption: "安定化の核（dropout-filling）: くっきり出ている線は触らず、「前フレームに線があり、近くで線が生きている」瞬間的な欠落だけを補填する。",
-                snippet:
-`// raw がくっきり出ている画素はそのまま（線をぼかさない）
-if (raw[i] >= p.fillThreshold) continue;
-
-// motion vector で前フレームの対応位置へ
-float sx = x - velocity.x, sy = y - velocity.y;
-if (!inScreen(sx, sy)) continue;
-if (prevObjectId(sx, sy) != objectId(x, y)) continue; // 別物体の履歴は使わない
-
-float hist = bilinear(prevStable, sx, sy);
-if (hist < p.histThreshold) continue;            // 前フレームに線が無い
-if (neighborMaxRaw(x, y) < p.supportThreshold)   // 線が死んでいる
-    continue;
-
-// 瞬間的な欠落だけを減衰付きで補填（消えた線は数フレームでフェード）
-out[i] = max(raw[i], hist * p.decay);`,
-                links: [
-                    { label: "コード一式 (GitHub)", href: "https://github.com/mogmog-0110/npr-line-stabilization" },
-                    { label: "布デモ (demo/windy_cloth)", href: "https://github.com/mogmog-0110/npr-line-stabilization/tree/main/demo/windy_cloth" },
-                    { label: "計測ハーネス (harness)", href: "https://github.com/mogmog-0110/npr-line-stabilization/tree/main/harness" }
-                ]
-            },
+            links: [
+                ["コード一式", "https://github.com/mogmog-0110/npr-line-stabilization"],
+                ["布デモ", "https://github.com/mogmog-0110/npr-line-stabilization/tree/main/demo/windy_cloth"],
+                ["計測ハーネス", "https://github.com/mogmog-0110/npr-line-stabilization/tree/main/harness"]
+            ],
             more: "npr-lines.html"
         }
     ];
 
-    // 一覧生成
     const list = document.getElementById("lab-list");
+
     for (const lab of LABS) {
         const entry = document.createElement("li");
         entry.className = "lab-entry";
-        entry.setAttribute("tabindex", "0");
+        entry.tabIndex = 0;
         entry.setAttribute("role", "button");
         entry.setAttribute("aria-haspopup", "dialog");
-        entry.setAttribute("aria-label", `${lab.title} の詳細を開く`);
+        entry.setAttribute("aria-label", `${lab.title}の詳細を開く`);
         entry.innerHTML = `
-            <div class="lab-media">
+            <div class="media">
                 <img src="${lab.thumb}" alt="" width="${lab.thumbW}" height="${lab.thumbH}" loading="lazy">
             </div>
-            <div class="lab-text">
+            <div class="sec-body">
                 <h3>${lab.title}<span class="open-hint">OPEN +</span></h3>
                 <div class="lab-tags">${lab.tags.join(" / ")}</div>
-                <p>${lab.blurb}</p>
+                <p>${lab.summary}</p>
             </div>`;
         entry.addEventListener("click", () => openModal(lab, entry));
-        entry.addEventListener("keydown", e => {
-            if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
+        entry.addEventListener("keydown", event => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
                 openModal(lab, entry);
             }
         });
         list.appendChild(entry);
     }
 
-    // モーダル
     const overlay = document.getElementById("lab-modal-overlay");
     const panel = document.getElementById("lab-modal");
     const content = document.getElementById("lab-modal-content");
-    const closeBtn = document.getElementById("lab-modal-close");
+    const closeButton = document.getElementById("lab-modal-close");
     let lastOpener = null;
 
-    function escapeHtml(s) {
-        return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    }
-
     function openModal(lab, opener) {
-        lastOpener = opener || null;
-        const media = lab.media.map(m => m.type === "video"
-            ? `<video src="${m.src}" autoplay loop muted playsinline></video>
-               <div class="media-caption">${m.caption}</div>`
-            : `<img class="media" src="${m.src}" alt="${m.alt || ""}"${m.w ? ` width="${m.w}" height="${m.h}"` : ""} loading="lazy">
-               <div class="media-caption">${m.caption}</div>`
+        lastOpener = opener;
+
+        const media = lab.media.map(item => {
+            const [type, src, width, height, alt, caption] = item;
+            const element = type === "video"
+                ? `<video class="media" src="${src}" autoplay loop muted playsinline controls></video>`
+                : `<img class="media" src="${src}" alt="${alt}"${width ? ` width="${width}" height="${height}"` : ""} loading="lazy">`;
+            return `<div class="m-shots">${element}<p class="media-caption">${caption}</p></div>`;
+        }).join("");
+
+        const links = lab.links.map(([label, href]) =>
+            `<a href="${href}"${href.startsWith("http") ? ' target="_blank" rel="noopener"' : ""}>${label} →</a>`
         ).join("");
-        const code = lab.code ? `
-            <div class="m-block" style="margin-top: 1.6rem;"><b>コード</b><p>${lab.code.caption}</p></div>
-            <pre><code>${escapeHtml(lab.code.snippet)}</code></pre>
-            <div class="link-row" style="margin-top: 0.8rem;">${lab.code.links.map(l =>
-                `<a href="${l.href}" target="_blank" rel="noopener">${l.label} →</a>`).join("")}</div>` : "";
-        const links = lab.links ? `
-            <div class="link-row">${lab.links.map(l =>
-                `<a href="${l.href}" target="_blank" rel="noopener">${l.label} →</a>`).join("")}</div>` : "";
+
         const more = lab.more
-            ? `<div class="link-row"><a href="${lab.more}">もっと詳しく →</a></div>` : "";
+            ? `<div class="link-row"><a href="${lab.more}">詳細ページを見る →</a></div>`
+            : "";
+
         content.innerHTML = `
             <h2>${lab.title}</h2>
-            <div class="m-meta">${lab.meta}</div>
-            <div class="m-block"><b>問題</b><p>${lab.problem}</p></div>
-            <div class="m-block"><b>アプローチ</b><p>${lab.approach}</p></div>
-            ${media}${code}${links}${more}`;
+            <p class="m-meta">${lab.meta}</p>
+            <div class="m-block"><b>課題</b><p>${lab.problem}</p></div>
+            <div class="m-block"><b>実装と検証</b><p>${lab.approach}</p></div>
+            ${media}
+            <div class="link-row">${links}</div>
+            ${more}`;
+
         panel.setAttribute("aria-label", lab.title);
         overlay.classList.add("open");
         document.body.style.overflow = "hidden";
-        closeBtn.focus();
+        closeButton.focus();
     }
+
     function closeModal() {
         overlay.classList.remove("open");
-        content.innerHTML = ""; // 動画停止
+        content.innerHTML = "";
         document.body.style.overflow = "";
-        if (lastOpener) { lastOpener.focus(); lastOpener = null; }
+        if (lastOpener) {
+            lastOpener.focus();
+            lastOpener = null;
+        }
     }
-    closeBtn.addEventListener("click", closeModal);
-    overlay.addEventListener("click", e => { if (e.target === overlay) closeModal(); });
-    document.addEventListener("keydown", e => {
+
+    closeButton.addEventListener("click", closeModal);
+    overlay.addEventListener("click", event => {
+        if (event.target === overlay) closeModal();
+    });
+
+    document.addEventListener("keydown", event => {
         if (!overlay.classList.contains("open")) return;
-        if (e.key === "Escape") { closeModal(); return; }
-        if (e.key !== "Tab") return;
-        // focus trap: モーダル内の最初/最後の要素で折り返す
-        const focusables = panel.querySelectorAll(
-            'button, a[href], video, [tabindex]:not([tabindex="-1"])');
-        if (!focusables.length) return;
-        const first = focusables[0];
-        const last = focusables[focusables.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-            e.preventDefault(); last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-            e.preventDefault(); first.focus();
+
+        if (event.key === "Escape") {
+            closeModal();
+            return;
+        }
+
+        if (event.key !== "Tab") return;
+
+        const focusable = panel.querySelectorAll(
+            'button, a[href], video[controls], [tabindex]:not([tabindex="-1"])'
+        );
+        if (!focusable.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
         }
     });
     </script>

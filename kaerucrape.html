@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fcfcfb">
     <title>かえるくれーぷ（Kaeru Crepe）| Shiggy</title>
-    <meta name="description" content="クレープを作りながらヒロインたちと親睦を深める美少女ゲーム × クッキングゲーム。自作の MitiruEngine 上で、UI をすべて HTML/CSS で組み上げた完成作。">
+    <meta name="description" content="クレープ作りとヒロインとの交流を組み合わせた、美少女ゲーム × クッキングゲーム。自作の MitiruEngine を使い、HTML/CSS でゲーム画面を実装しています。">
 
     <style>
         html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
@@ -17,7 +17,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shiggy's Portfolio">
     <meta property="og:title" content="かえるくれーぷ（Kaeru Crepe）| Shiggy">
-    <meta property="og:description" content="クレープを作りながらヒロインたちと親睦を深める美少女ゲーム × クッキングゲーム。自作の MitiruEngine 上で UI をすべて HTML/CSS で組み上げた完成作。">
+    <meta property="og:description" content="クレープ作りとヒロインとの交流を組み合わせた、美少女ゲーム × クッキングゲーム。自作の MitiruEngine を使い、HTML/CSS でゲーム画面を実装しています。">
     <meta property="og:url" content="https://mogmog-0110.github.io/kaerucrape.html">
     <link rel="canonical" href="https://mogmog-0110.github.io/kaerucrape.html">
     <meta property="og:image" content="https://mogmog-0110.github.io/images/kc_engine_cooking.webp">
@@ -25,7 +25,7 @@
     <meta property="og:image:height" content="720">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="かえるくれーぷ（Kaeru Crepe）| Shiggy">
-    <meta name="twitter:description" content="クレープを作りながらヒロインたちと親睦を深める美少女ゲーム × クッキングゲーム。自作の MitiruEngine 上で UI をすべて HTML/CSS で組み上げた完成作。">
+    <meta name="twitter:description" content="クレープ作りとヒロインとの交流を組み合わせた、美少女ゲーム × クッキングゲーム。自作の MitiruEngine を使い、HTML/CSS でゲーム画面を実装しています。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/kc_engine_cooking.webp">
 
     <!-- Fonts -->
@@ -58,180 +58,177 @@
                 <p class="file-line">/ works / kaeru-crepe</p>
                 <h1>かえるくれーぷ（Kaeru Crepe）</h1>
                 <p class="lede">
-                    クレープを作りながらヒロインたちと親睦を深める <strong>美少女ゲーム × クッキングゲーム</strong>。注文どおりにフルーツ・ソース・ホイップ・トッピングを乗せてお客さんを笑顔にする調理パートと、ヒロインとの会話を進めるノベルパートを行き来する 2 モード構成です。
+                    クレープ店の運営とヒロインとの交流を描く、<strong>美少女ゲーム × クッキングゲーム</strong>です。注文に合わせてクレープやドリンクを作る調理パートと、会話を進めるノベルパートで構成しています。
                 </p>
                 <p class="lede">
-                    Godot で書いた最初のバージョンをコミックマーケット 106 で無料配布したあと、自作の <a href="engine.html" class="soft-link">MitiruEngine</a> へ全面移植。<strong>UI とゲーム画面をすべて HTML/CSS で組み上げ</strong>、調理の中核をプレイ可能な形まで仕上げました。
+                    Godot で制作した体験版をコミックマーケット 106 で無料配布した後、自作の <a href="engine.html" class="soft-link">MitiruEngine</a> へ移植しました。MitiruEngine 版では、ゲーム画面と UI を HTML/CSS で実装しています。
                 </p>
                 <div class="meta-line">
-                    <span>Playable</span><span>MitiruEngine</span><span>HTML / CSS UI</span><span>クッキング × ノベル</span><span>Team (2人)</span>
+                    <span>開発中</span>
+                    <span>MitiruEngine</span>
+                    <span>HTML / CSS</span>
+                    <span>C++</span>
+                    <span>2人チーム</span>
                 </div>
                 <div class="link-row">
-                    <a href="https://drive.google.com/drive/folders/1dFSFwuPCTnQW0YqZxIDM-JfFe8dWzBm9?usp=sharing" target="_blank" rel="noopener">体験版（Godot 版）ダウンロード →</a>
+                    <a href="https://drive.google.com/drive/folders/1dFSFwuPCTnQW0YqZxIDM-JfFe8dWzBm9?usp=sharing" target="_blank" rel="noopener">体験版（Godot 版）をダウンロード →</a>
                 </div>
             </section>
 
             <div class="sections">
                 <section class="sec">
-                    <h2>SCREENS</h2>
+                    <h2>MitiruEngine 版</h2>
                     <div class="sec-body">
-                        <p>MitiruEngine 版の実機画面。タイトル・調理・ノベル・日締めまで、見えているもの（朝の厨房の背景、食材棚、注文ヒロインの立ち絵と吹き出し、プレート上に重ねていくクレープ、ドリンクのジューサー、結果画面の売上・好感度）はすべて HTML/CSS で描画しています。</p>
+                        <p class="sec-intro">
+                            タイトル、調理、ノベル、シフト結果までの画面です。各画像はクリックすると拡大できます。
+                        </p>
                         <div class="plate-grid">
                             <a href="images/kc_engine_title.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/kc_engine_title.webp" alt="タイトル画面。ヒロイン3人とロゴ" width="1280" height="720">
+                                <img loading="lazy" decoding="async" src="images/kc_engine_title.webp" alt="MitiruEngine版のタイトル画面" width="1280" height="720">
                             </a>
                             <a href="images/kc_engine_cooking.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/kc_engine_cooking.webp" alt="調理シーン。注文ヒロインの吹き出し・作りかけのクレープ・ジューサー" width="1280" height="720">
+                                <img loading="lazy" decoding="async" src="images/kc_engine_cooking.webp" alt="MitiruEngine版の調理画面" width="1280" height="720">
                             </a>
                             <a href="images/kc_engine_novel.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/kc_engine_novel.webp" alt="ノベルパート。ヒロインとの会話" width="1280" height="720">
+                                <img loading="lazy" decoding="async" src="images/kc_engine_novel.webp" alt="MitiruEngine版のノベル画面" width="1280" height="720">
                             </a>
                             <a href="images/kc_engine_result.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/kc_engine_result.webp" alt="シフト結果。売上・目標・ヒロイン好感度" width="1280" height="720">
+                                <img loading="lazy" decoding="async" src="images/kc_engine_result.webp" alt="MitiruEngine版のシフト結果画面" width="1280" height="720">
                             </a>
                         </div>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>コンセプト</h2>
+                    <h2>ゲーム概要</h2>
                     <div class="sec-body">
                         <p>
-                            傾いたクレープ屋を、ヒロインたちと一緒に立て直していくゲーム。日々の店の運営と、ヒロインとの会話やイベントを行き来する構造です。舞台は朝のダイナーです。やわらかい朝日と、磨いたクロームのカウンター。けばけばしくない、清潔で前向きなトーンを画面全体の基調にしています。
+                            傾いたクレープ店を、ヒロインたちと一緒に立て直していくゲームです。注文をリアルタイムで処理するクッキングシフトと、朝や夜のノベルを行き来しながら日々を進めます。
                         </p>
-                        <p>1 日のループはおおむね次のとおり。</p>
-                        <ol>
-                            <li>朝のノベル（章イベントが入る日も）</li>
-                            <li>メインメニュー（控室の机から、ホワイトボード・ノート・PC などをパンで切り替え）</li>
-                            <li>クッキングシフト（リアルタイムで複数の注文をさばく）</li>
-                            <li>シフト終了結果（注文の達成・失敗・売上・チップ・コンボ最高記録）</li>
-                            <li>夜のノベル（オプション）</li>
-                            <li>セーブして翌朝へ</li>
-                        </ol>
-                        <p class="fine">※ 上記は目指している完成形です。現在 MitiruEngine 版では ③ クッキングシフトを中核に、① 朝のノベル・④ シフト結果（期限付きの総売上目標とヒロイン好感度）・⑥ 翌日への日次ループが骨組みまで動いており、② メインメニューと本編シナリオを順に作り込んでいる段階です。</p>
-                    </div>
-                </section>
 
-                <section class="sec">
-                    <h2>2 つのモード</h2>
-                    <div class="sec-body">
                         <h3>クッキングパート</h3>
                         <p>
-                            マウス / タッチでクレープを作るアクション。食材棚のフルーツ・ソース・ホイップ・トッピング・アイスをプレートへドラッグして組み立てます。プレートの上ではレイヤーが重なって 1 枚のクレープに合成され、注文と一致したら包んでヒロインへ提供。余分が乗っていたり足りないと評価が下がり、待たせすぎるとお客さんは帰ってしまいます。注文ごとにヒロインが立ち絵で並んで吹き出しから注文し、待ち時間ゲージとごきげん（表情）が変化します。吹き出しにマウスを乗せると、必要な具材がアイコン＋名前のチェックリストで開きます。
+                            マウスまたはタッチで食材を動かし、注文に合うクレープを作ります。フルーツ、ソース、ホイップ、トッピング、アイスを組み合わせ、完成した商品を提供します。
                         </p>
                         <p>
-                            クレープに加えて、まな板でフルーツを刻んでジューサーにかけたり、エスプレッソでコーヒーを淹れたりするドリンクの調理もあり、注文は「クレープ単品」「クレープ＋ジュース」など複数品に組まれます。複数の注文をリアルタイムにさばきながら、営業最終日までの総売上目標を目指す構成です。
+                            注文には待ち時間があり、完成内容や提供までの時間が評価に影響します。注文票では必要な具材を確認できます。クレープのほか、フルーツジュースやコーヒーを含む複数品の注文もあります。
                         </p>
 
-                        <h3>ノベルパート + メインメニュー</h3>
+                        <h3>ノベルパート</h3>
                         <p>
-                            シフトの合間に控室の机に戻り、ホワイトボードでストーリーを進めたり、ノートで日記を読み返したり、ラップトップで設定を開いたり、ピンボードでギャラリーを覗いたりします。視点は前・上・下・左・右の 5 方向で、それぞれに 1 つの主要オブジェクト（ホワイトボード／ノート／ラップトップ／壁の写真／キッチン入口）が割り当てられています。視線移動はカメラパン + 軽いブラーで「ぬるっと」切り替わります。
+                            調理の前後にヒロインとの会話を進めます。現在の MitiruEngine 版では、タイトルから朝のノベル、調理、シフト結果、翌日へ進む流れが動作しています。
+                        </p>
+                        <p class="fine">
+                            メインメニューと本編シナリオは制作中です。
                         </p>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>UI をすべて HTML / CSS で</h2>
+                    <h2>担当とチーム</h2>
                     <div class="sec-body">
-                        <p>
-                            本作の見どころは、<strong>ゲーム画面そのものを HTML / CSS で書いている</strong>ことです。MitiruEngine は CEF（Chromium 埋め込み）を画面合成に使えるので、HUD・注文票・食材棚・プレートのレイヤー合成・評価トーストといった UI を、ふだんの Web 開発と同じ HTML / CSS で組めます。
-                        </p>
-                        <p>
-                            状態は C++ 側（ゲームロジック）が一手に持ち、エンジンが宣言的バインダ（<code>data-m-*</code> 属性）経由で DOM に流し込む設計です。たとえば注文の必要食材は <code>data-m-show</code> でチップの表示を切り替え、プレート上のクレープは <code>data-m-class</code> で食材レイヤーの重なりを切り替えます。<strong>ゲーム固有の手書き JavaScript はドラッグの配線 1 箇所だけ</strong>。合否判定や売上計算といったロジックは JS に一切持たせず、C++ に集約しています。
-                        </p>
-                        <p>
-                            HTML → C++ はドラッグの着地やボタン操作が「シグナル」として届き、C++ → HTML は状態の push のみ。境界を薄く保つことで、見た目（CSS）とルール（C++）が混ざらないようにしています。
+                        <p>2人で開発しています。</p>
+                        <ul>
+                            <li>川村優弥：企画、シナリオ、エンジン、ゲームコード、システム、UI 実装、進行管理</li>
+                            <li>チームメンバー：キャラクターデザイン、イラスト</li>
+                        </ul>
+                        <p class="fine">
+                            チームメンバーの詳細は、本人の許諾の都合により掲載していません。
                         </p>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>Godot から MitiruEngine への移行</h2>
+                    <h2>HTML / CSS で作るゲーム画面</h2>
                     <div class="sec-body">
                         <p>
-                            最初は Godot で書き始めました。マルチプラットフォーム書き出しや商用ライセンスの軽さ、GDScript の書き味の良さなど、十分な利点があったからです。コミックマーケット 106 で配布したのもこの Godot 版です。
+                            MitiruEngine は CEF（Chromium Embedded Framework）を画面合成に利用できます。本作では、HUD、注文票、食材棚、プレート、結果表示などを HTML/CSS で組みました。
                         </p>
                         <p>
-                            そのあと、自作の MitiruEngine が <a href="hato.html">ハトを育てよう（リメイク）</a> で実際にゲームを動かせる段階に来たのを見て、本作も MitiruEngine 側に移しました。自分のエンジンで自分のゲームを完成形まで持っていく、というのがその先に取りたい姿だからです。移行にあたって、調理シーンとレシピ・食材データを現エンジンの仕様（DLL 単位のゲームコード + HTML/CSS UI + ホットリロード）へ作り直し、実機で動く形まで仕上げました。
+                            ゲームの状態とルールは C++ 側で管理し、宣言的バインダの <code>data-m-*</code> 属性を通して DOM に反映します。ゲーム固有の JavaScript は、ドラッグ操作を接続する 1 箇所だけです。
                         </p>
-                        <p class="fine">コミックマーケット 106 で配布した Godot 版のスクリーンショット。</p>
+                        <p>
+                            HTML から C++ へはドラッグの着地やボタン操作をシグナルとして送り、C++ から HTML へは状態を渡します。画面表現とゲームロジックを分けて管理する構成です。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>実装した主な機能</h2>
+                    <div class="sec-body">
+                        <ul>
+                            <li>DLL 単位のゲームコードとホットリロード</li>
+                            <li>食材のドラッグ＆ドロップとレシピ判定</li>
+                            <li>注文の待ち時間、売上、チップ、コンボ</li>
+                            <li>焼き工程、フルーツのカット、トッピングの合成、商品の提供</li>
+                            <li>ジューサーとエスプレッソのドリンクステーション</li>
+                            <li>クレープとドリンクを組み合わせた複数品注文</li>
+                            <li>注文票の具材チェックリスト</li>
+                            <li>クレープの食材レイヤー合成</li>
+                            <li>期限付きの総売上目標とヒロイン好感度</li>
+                            <li>タイトル、朝のノベル、調理、結果の日次ループ</li>
+                            <li>各調理ステーションのアップグレード機構</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>データと開発基盤</h2>
+                    <div class="sec-body">
+                        <h3>デザインシステム</h3>
+                        <p>
+                            配色、文字、余白、角丸、影の値を、<code>DESIGN.md</code> の YAML フロントマターにまとめています。
+                        </p>
+
+                        <h3>レシピと食材</h3>
+                        <p>
+                            レシピは必要食材、価格、難易度、注文するヒロインを持つテーブルとして定義しています。食材は 1 種類を 1 bit で表し、注文とプレートの状態をビットマスクで比較します。
+                        </p>
+
+                        <h3>ゲーム状態</h3>
+                        <p>
+                            ゲーム状態を、ポインタや可変長データを持たない flat な POD にまとめています。セーブ、巻き戻し、自動リプレイへ利用できる構成です。
+                        </p>
+
+                        <h3>アセット管理</h3>
+                        <p>
+                            アセットのキーと URL をマニフェストで分離し、コードを変更せずに差し替えられるようにしています。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>Godot 版からの移植</h2>
+                    <div class="sec-body">
+                        <p>
+                            最初のバージョンは Godot で制作し、コミックマーケット 106 で体験版を配布しました。その後、調理シーンとレシピ・食材データを MitiruEngine の構成へ作り直しました。
+                        </p>
+                        <p>
+                            MitiruEngine 版では、DLL のゲームコード、HTML/CSS の UI、ホットリロードを使い、調理パートをプレイできる状態まで実装しています。
+                        </p>
+                        <p class="fine">コミックマーケット 106 で配布した Godot 版の画面です。</p>
                         <div class="plate-grid">
                             <a href="images/kc_1.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/kc_1.webp" alt="Godot 版 タイトル画面" width="1277" height="726">
+                                <img loading="lazy" decoding="async" src="images/kc_1.webp" alt="Godot版の画面 1" width="1277" height="726">
                             </a>
                             <a href="images/kc_2.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/kc_2.webp" alt="Godot 版のノベルパート。カウンターの向こうに 3 人のヒロインが並び、「みんな ようこそかえるくれーぷへ！！」の台詞" width="1280" height="724">
+                                <img loading="lazy" decoding="async" src="images/kc_2.webp" alt="Godot版の画面 2" width="1280" height="724">
                             </a>
                             <a href="images/kc_3.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/kc_3.webp" alt="Godot 版のノベルパート。シルクハットに口ひげの黒い人物が椅子に座り、「セト おいおい、もうちょっと丁寧に扱ってくれよな。捕虜じゃないんだぜ？」の台詞" width="1277" height="721">
+                                <img loading="lazy" decoding="async" src="images/kc_3.webp" alt="Godot版の画面 3" width="1277" height="721">
                             </a>
                         </div>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>インフラ周り</h2>
-                    <div class="sec-body">
-                        <p>「ゲーム本編を作るための足場」も自分で整えています。</p>
-                        <ul>
-                            <li>デザインシステム ―
-                                <code>DESIGN.md</code> 1 ファイルに YAML フロントマターで配色・タイポ・スペーシング・角丸・影のトークンを宣言。朝のダイナーの配色（Butter Cream / Morning Yolk / Booth Red / Mint Shake …）はこのトークンから引いています。
-                            </li>
-                            <li>レシピ・食材データ ―
-                                レシピは「必要食材のビットマスク + 価格 + 難易度 + 注文ヒロイン」のテーブルで定義。食材は 1 種 = 1 bit で、プレートの状態も注文も同じビットマスクで表現するので、合否判定がそのまま集合演算になります。
-                            </li>
-                            <li>決定論とリプレイ ―
-                                ゲーム状態を flat な POD（ポインタや可変長を持たないデータ）にまとめてあるので、セーブ・巻き戻し・自動リプレイがそのまま乗ります。
-                            </li>
-                            <li>アセットマニフェスト ―
-                                キーと URL を分離してあるので、差し替えはコード変更なしで効きます。
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section class="sec">
-                    <h2>完成までの歩み</h2>
+                    <h2>現在の状況</h2>
                     <div class="sec-body">
                         <p>
-                            コミケ 106 で Godot 版を配布したあと、コア体験を MitiruEngine 上で作り直し、調理シーンを実機で遊べる形まで仕上げました。下記が現時点で動いている要素です。
+                            MitiruEngine 版の調理パートと日次ループは動作しており、メインメニュー、本編シナリオ、最終アートを順に追加しています。完成版は学園祭での展示を予定しています。
                         </p>
-                        <ul>
-                            <li>コミケ 106 で Godot 版の体験版を配布</li>
-                            <li>MitiruEngine 版のゲームコード（DLL 単位、ホットリロード対応）</li>
-                            <li>クッキングシーン（HTML/CSS UI、ドラッグ&amp;ドロップ、レシピ判定、注文待ち、売上・チップ・コンボ）</li>
-                            <li>焼き工程・まな板でのフルーツカット・トッピング合成・包んで提供</li>
-                            <li>ドリンクのステーション（ジューサー / エスプレッソ）と、クレープ＋ドリンクの複数品注文</li>
-                            <li>注文ヒロイン（マリア / ライカ / サチ / エリザベス）の立ち絵・吹き出し・待ち時間ゲージ・表情変化</li>
-                            <li>注文メニューのホバーで具材アイコン＋名前のチェックリスト表示</li>
-                            <li>プレート上のクレープのレイヤー合成（食材を乗せると見た目が変わる）</li>
-                            <li>期限付きの総売上目標（達成 / 未達の判定）と、提供で上がるヒロイン好感度</li>
-                            <li>ノベルパートの骨組み（タイトル → 朝のノベル → 調理 → 結果 のループ）</li>
-                            <li>ステーション強化のアップグレード機構（焼き場・まな板・ジューサー等のレベル）</li>
-                            <li>朝のダイナーをテーマにしたデザインシステム</li>
-                        </ul>
                         <p>
-                            完成版は学園祭での展示を予定しており、シナリオ本文と最終アートを順に流し込んでボリュームを足していく段階です。差し替えやすい構造（マニフェスト分離・データ駆動）を先に作ってあるので、コンテンツは出来たそばから載せられます。
-                        </p>
-                    </div>
-                </section>
-
-                <section class="sec">
-                    <h2>制作チーム</h2>
-                    <div class="sec-body">
-                        <p>2 人で進めているチーム開発です。役割分担は次のとおり。</p>
-                        <ul>
-                            <li>川村優弥（自分）。企画、シナリオ、エンジン側、ゲームコード、システム、UI 実装、進行管理</li>
-                            <li>もう一名。キャラクターデザインとイラスト（メンバーの許諾の都合上、ここでは詳細は伏せています）</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section class="sec">
-                    <h2>エンジン側の文脈</h2>
-                    <div class="sec-body">
-                        <p>
-                            本作と並行して、自作の <a href="engine.html">MitiruEngine</a> を開発しています。前作のリメイクである <a href="hato.html">ハトを育てよう</a> をエンジン上で完成形まで持っていったので、本作も同じエンジンで仕上げるのが自然な流れになりました。
+                            本作と並行して、自作の <a href="engine.html">MitiruEngine</a> を開発しています。前作のリメイクである <a href="hato.html">ハトを育てよう</a> も、同じエンジン上で制作しました。
                         </p>
                         <div class="link-row">
                             <a href="portfolio.html">← Works に戻る</a>

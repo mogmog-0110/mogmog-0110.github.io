@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fcfcfb">
-    <title>Work Graphs で育てる：GPU 再帰プロシージャル生成 | Shiggy</title>
-    <meta name="description" content="2024 年に D3D12 に入った Work Graphs を使い、GPU が枝を再帰的に自己生成して樹・珊瑚・稲妻を育てる。生成した形状の SDF をレイマーチで描画。">
+    <title>Work Graphs による GPU 再帰プロシージャル生成 | Shiggy</title>
+    <meta name="description" content="DirectX 12 Work Graphs を使い、GPU 上で枝を再帰生成するデモ。樹・珊瑚・藪・稲妻を生成し、SDF レイマーチで描画します。">
 
     <style>
         html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
@@ -15,16 +15,16 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shiggy's Portfolio">
-    <meta property="og:title" content="Work Graphs で育てる：GPU 再帰プロシージャル生成 | Shiggy">
-    <meta property="og:description" content="D3D12 Work Graphs (2024) で GPU が枝を再帰的に自己生成し、樹・珊瑚・稲妻を育てる実験。">
+    <meta property="og:title" content="Work Graphs による GPU 再帰プロシージャル生成 | Shiggy">
+    <meta property="og:description" content="DirectX 12 Work Graphs を使い、GPU 上で枝を再帰生成するデモ。">
     <meta property="og:url" content="https://mogmog-0110.github.io/wggrow.html">
     <link rel="canonical" href="https://mogmog-0110.github.io/wggrow.html">
     <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Work Graphs で育てる：GPU 再帰プロシージャル生成 | Shiggy">
-    <meta name="twitter:description" content="D3D12 Work Graphs (2024) で再帰プロシージャル生成。">
+    <meta name="twitter:title" content="Work Graphs による GPU 再帰プロシージャル生成 | Shiggy">
+    <meta name="twitter:description" content="DirectX 12 Work Graphs を使った再帰プロシージャル生成。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,87 +53,97 @@
         <main id="main">
             <section class="page-head">
                 <p class="file-line">/ lab</p>
-                <h1>Work Graphs で育てる：GPU が枝を再帰生成する</h1>
+                <h1>Work Graphs で枝を再帰生成する</h1>
                 <p class="lede">
-                    <strong>GPU 自身が枝を再帰的に生成して、樹・珊瑚・稲妻を育てるプロシージャル生成デモです。</strong>
+                    <strong>GPU が枝分かれを繰り返し、樹・珊瑚・藪・稲妻を生成するプロシージャル生成デモです。</strong>
                 </p>
-                <p class="lede" style="margin-top: 0.8rem;">
-                    2024 年に DirectX 12 に入ったばかりの新しい仕組み Work Graphs（GPU 上のシェーダが自分で次の仕事を生成・展開できる）を使いました。まだ実例の少ない新 API に「再帰プロシージャル生成」という題材を載せて、動くところまで実装しています。生成した形状は SDF レイマーチで描画。
+                <p class="lede">
+                    2024 年に DirectX 12 に導入された Work Graphs を使用しました。GPU 上のシェーダが次の処理を起動する機能により、枝の生成を GPU 内で再帰的に進めます。生成した形状は SDF レイマーチで描画します。
                 </p>
-                <div class="meta-line" style="margin-top: 1.6rem; margin-bottom: 0;">
-                    <span>Experiment</span><span>C++20 / HLSL SM6.8</span><span>DirectX 12 Work Graphs</span><span>Procedural</span><span>2026</span>
+                <div class="meta-line">
+                    <span>Experiment</span>
+                    <span>C++20 / HLSL SM6.8</span>
+                    <span>DirectX 12 Work Graphs</span>
+                    <span>Procedural</span>
+                    <span>2026</span>
                 </div>
             </section>
 
             <div class="sections">
                 <section class="sec">
-                    <h2>作ったもの</h2>
+                    <h2>完成したデモ</h2>
                     <div class="sec-body">
                         <p>
-                            1 本の種から、GPU が枝を再帰的に枝分かれさせて構造を育てます。パラメータ（分岐数・広がり・長さ比・ねじれ・深さ・色）を
-                            変えるだけで、同じ再帰グラフから樹・珊瑚・藪・稲妻が出てきます。下は根から先端へ育っていく様子で、
-                            この「育つ」動き自体が Work Graphs の再帰展開そのものです。
+                            1 本の種から枝を分岐させ、根元から先端へ伸びる構造を生成します。分岐数、広がり、長さ比、ねじれ、深さ、色を変更することで、同じ再帰グラフから複数の形を作れます。
                         </p>
+
                         <figure class="plate">
                             <video src="images/wg/growth.mp4" autoplay loop muted playsinline width="1140" height="400"></video>
-                            <figcaption>樹 / 珊瑚 / 稲妻が根から先端へ育つ（実機レンダリングを録画）。同じ再帰グラフのパラメータ違い。稲妻は発光 + bloom。</figcaption>
+                            <figcaption>樹・珊瑚・稲妻の成長アニメーション。実機で描画した映像です。</figcaption>
                         </figure>
+
                         <figure class="plate">
-                            <img src="images/wg/presets.webp" alt="樹・珊瑚・藪・稲妻のプリセット" loading="lazy" width="728" height="728">
-                            <figcaption>同じ Work Graph からパラメータだけ変えて出し分けたプリセット（樹 / 珊瑚 / 藪 / 稲妻）。</figcaption>
+                            <img src="images/wg/presets.webp" alt="樹、珊瑚、藪、稲妻の各プリセット" loading="lazy" width="728" height="728">
+                            <figcaption>同じ Work Graph のパラメータを変更して生成した、樹・珊瑚・藪・稲妻のプリセット。</figcaption>
                         </figure>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>なぜ Work Graphs か</h2>
+                    <h2>Work Graphs を使った理由</h2>
                     <div class="sec-body">
                         <p>
-                            従来の GPU 実行は、CPU が「このシェーダを何回動かす」と回数を固定で決めて並べる形でした。
-                            Work Graphs（2024）は、<strong>GPU 上のシェーダのノードが自分で次のノードを起動できる</strong>。親ノードが子ノードを生み、
-                            それがまた子を生む、という再帰・データ依存の仕事の増え方を GPU 側で完結できます。
+                            従来の GPU 実行では、CPU がシェーダの実行回数を決めて処理を並べます。Work Graphs では、GPU 上のシェーダノードが次のノードを起動できます。
                         </p>
                         <p>
-                            枝分かれは「どれだけ仕事が増えるか実行時に決まる再帰」そのもので、Work Graphs の本領がまっすぐ効く題材です。
-                            まだ使用例が少ない新 API に、この生成を載せて動かすところまで実装したのが主眼です。
+                            枝の数は実行中の分岐によって増えます。親の枝が子の枝を作り、その子がさらに枝を作る処理を、CPU に戻さず GPU 内で進めるために Work Graphs を採用しました。
                         </p>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>仕組み</h2>
+                    <h2>実装</h2>
                     <div class="sec-body">
                         <ul>
-                            <li>生成 (Work Graph): <code>Branch</code> ノードが枝 1 本を capsule バッファへ atomic append し、深さが残っていれば円錐状に散らした子 record を自分自身へ emit（<code>NodeMaxRecursionDepth</code>）。GPU だけで再帰的に木構造が展開される。</li>
-                            <li>描画 (compute): 生成された capsule 群の union SDF をスフィアトレース。法線・soft shadow・AO で陰影を付け、発光プリセットは emissive + bloom で光らせる。</li>
-                            <li>成長アニメ: 各枝に「生まれる深さ割合」を持たせ、成長前線を根 → 先端へ動かして伸ばす。</li>
+                            <li>
+                                <strong>枝の生成：</strong>
+                                Work Graph の <code>Branch</code> ノードが、枝を表す capsule をバッファへ atomic append します。残りの深さに応じて子 record を同じノードへ emit し、<code>NodeMaxRecursionDepth</code> を使って再帰処理を制御します。
+                            </li>
+                            <li>
+                                <strong>描画：</strong>
+                                compute shader で capsule 群の union SDF をスフィアトレースします。法線、soft shadow、AO で陰影を付け、発光プリセットには emissive と bloom を使います。
+                            </li>
+                            <li>
+                                <strong>アニメーション：</strong>
+                                各枝に生成される深さの割合を持たせ、表示範囲を根元から先端へ進めます。
+                            </li>
                         </ul>
+
                         <figure class="plate">
                             <video src="images/wg/tree.mp4" autoplay loop muted playsinline width="640" height="640"></video>
-                            <figcaption>樹が育つ様子（単体）。幹 → 枝 → 先端の順に、GPU の再帰展開に沿って伸びていく。</figcaption>
+                            <figcaption>幹、枝、先端の順に伸びる樹の成長アニメーション。</figcaption>
                         </figure>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>その場でいじれる</h2>
+                    <h2>操作できる項目</h2>
                     <div class="sec-body">
                         <p>
-                            ビルドした実行ファイルはそのまま起動すると窓が開き、プリセット（樹・珊瑚・藪・稲妻）や生成パラメータ
-                            （分岐数・深さ・広がり・ねじれ・色・発光）を窓の中でその場で変えられます。パラメータを動かすたびに
-                            Work Graph が即座に構造を再生成します。ドラッグで回転、ホイールでズーム、成長アニメの再生・リセットも可能。
-                            コマンド引数は不要で、画像や動画を書き出すときだけフラグを使います。内部描画解像度を窓と分けて上げ下げできる
-                            ので、負荷も実機で調整できます。
+                            実行ファイルを起動すると、樹・珊瑚・藪・稲妻のプリセットを選択できます。分岐数、深さ、広がり、ねじれ、色、発光も画面内で変更でき、変更のたびに Work Graph が構造を再生成します。
+                        </p>
+                        <p>
+                            ドラッグによる回転、ホイールによるズーム、成長アニメーションの再生とリセットに対応しています。内部描画解像度はウィンドウの大きさとは別に調整できます。通常の起動にコマンド引数は不要で、画像や動画を書き出す場合のみフラグを使います。
                         </p>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>リンク</h2>
+                    <h2>関連リンク</h2>
                     <div class="sec-body">
-                        <div class="link-row" style="margin-top: 0;">
-                            <a href="https://github.com/mogmog-0110/wggrow" target="_blank" rel="noopener">GitHub (wggrow) →</a>
-                            <a href="https://devblogs.microsoft.com/directx/d3d12-work-graphs/" target="_blank" rel="noopener">D3D12 Work Graphs (Microsoft, 2024) →</a>
+                        <div class="link-row">
+                            <a href="https://github.com/mogmog-0110/wggrow" target="_blank" rel="noopener">ソースコード：GitHub (wggrow) →</a>
+                            <a href="https://devblogs.microsoft.com/directx/d3d12-work-graphs/" target="_blank" rel="noopener">DirectX 公式記事：D3D12 Work Graphs (Microsoft, 2024) →</a>
                         </div>
                     </div>
                 </section>

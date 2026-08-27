@@ -12,7 +12,6 @@
         html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
     </style>
 
-    <!-- meta:social -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shiggy's Portfolio">
@@ -28,12 +27,9 @@
     <meta name="twitter:description" content="川村優弥のゲーム作品とツール。MitiruEngine、かえるクレープ、ハトを育てよう（リメイク）など。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
     <link rel="stylesheet" href="assets/css/site.css">
 </head>
 
@@ -57,601 +53,385 @@
             <section class="page-head">
                 <p class="file-line">/ works</p>
                 <h1>作品</h1>
-                <p class="lede">
-                    学部から現在まで作ってきたもの。とくに力を入れたものは専用ページに、その他のゲーム・ツールや創作はクリックで開く詳細にまとめています。多くはリーダーや主担当として、企画から実装まで手を動かしています。
-                </p>
-                <p class="note">※ 一部はチーム制作で、メンバーの許諾の都合により遊べないものもあります。</p>
+                <p class="lede">ゲーム、描画技術、制作を支えるツールを中心に、学部時代から現在までの成果をまとめています。</p>
+                <p class="note">個人制作に加え、企画・実装・リーダーなどを担当したチーム制作を掲載しています。一部の作品は、メンバーの許諾の都合により配布していません。</p>
             </section>
 
             <div class="sections">
-                <!-- ============================================== -->
-                <!-- Featured（専用ページへ）                        -->
-                <!-- ============================================== -->
                 <section class="sec">
-                    <h2>FEATURED</h2>
+                    <h2>主な作品</h2>
                     <div class="sec-body">
-                        <p class="sec-intro">自作の MitiruEngine 上で動かしている、とくに力を入れたもの。いずれもエンジン上で実際に動いていて、各項目に専用ページがあります。</p>
+                        <p class="sec-intro">自作ゲームエンジン MitiruEngine を使った作品と、描画技術に関する開発です。各作品の詳細は専用ページで紹介しています。</p>
                     </div>
 
                     <div class="work-list">
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/oscar/water.webp" alt="じょうろが芽に水をかけているところ。左では白い花が 2 つ咲きそろい、右にはこれから水をやる芽が並んでいる。右上でオスカーが親指を立てている" width="1280" height="720">
+                                <img loading="lazy" decoding="async" src="images/oscar/water.webp" alt="オスカーのガーデニングのゲーム画面" width="1280" height="720">
                             </div>
                             <div class="work-body">
                                 <h3>オスカーのガーデニング</h3>
-                                <p class="work-meta">In Development · 2026年 · 個人開発 · MitiruEngine / C++20 / DirectX 12</p>
-                                <p>
-                                    <strong>まいたリズムが、そのまま次の小節で返ってくる</strong>タイミングゲーム。オスカーが 1 小節かけて種をまき、次の小節で流れてきた芽にプレイヤーが水をやります。ゲームの全状態を 1 個の構造体に閉じ込めたことで、巻き戻し・録画リプレイ・実行中の観測が同じ仕組みから出てきます。
-                                </p>
+                                <p class="work-meta">開発中 · 2026年 · 個人開発 · MitiruEngine / C++20 / DirectX 12</p>
+                                <p>種をまいたタイミングが、次の小節で水やりのリズムになるゲームです。ゲームの全状態を一つの構造体にまとめ、巻き戻し、録画リプレイ、実行中の観測を同じ仕組みで扱っています。</p>
                                 <p class="tags">MitiruEngine / C++20 / DirectX 12 / HTML+CSS HUD / Rhythm</p>
-                                <a href="oscar-gardening.html" class="go">詳細を見る →</a>
+                                <a href="oscar-gardening.html">詳細を見る →</a>
                             </div>
                         </article>
 
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/live2d/haru.webp" alt="背景ステージ込みで公式フレーミングのモデルを D3D12 で表示" width="960" height="539">
+                                <img loading="lazy" decoding="async" src="images/live2d/haru.webp" alt="Live2D モデルを Direct3D 12 で表示した画面" width="960" height="539">
                             </div>
                             <div class="work-body">
                                 <h3>Live2D × Direct3D 12</h3>
                                 <p class="work-meta">2026年 · 個人開発 · MitiruEngine / DirectX 12 / Cubism SDK 5</p>
-                                <p>
-                                    Live2D 公式 SDK が対応していない Direct3D 12 へ、公式レンダラ <code>CubismRenderer_D3D11</code> の描画手順を読み解き、<strong>一つずつ D3D12 で再実装</strong>。クリッピングマスク・オフスクリーン・advanced blend を含むフルセットの移植です。
-                                </p>
+                                <p>Live2D Cubism SDK の Direct3D 11 向けレンダラーを読み解き、描画処理を Direct3D 12 で再実装しました。クリッピングマスク、オフスクリーン、advanced blend を含みます。</p>
                                 <p class="tags">MitiruEngine / DirectX 12 / Live2D Cubism 5 / Renderer</p>
-                                <a href="live2d-d3d12.html" class="go">詳細を見る →</a>
+                                <a href="live2d-d3d12.html">詳細を見る →</a>
                             </div>
                         </article>
 
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/fluiddrop_card.webp" alt="FLUID DROP。積んだブロックがゼリーや液体に変わる落ちものパズル" width="960" height="720">
+                                <img loading="lazy" decoding="async" src="images/fluiddrop_card.webp" alt="FLUID DROP のゲーム画面" width="960" height="720">
                             </div>
                             <div class="work-body">
                                 <h3>FLUID DROP</h3>
                                 <p class="work-meta">Released v1.0.2 · 2026年 · 個人開発 · MitiruEngine / DirectX 12 / PB-MPM</p>
-                                <p>
-                                    とけて、かたまる。<strong>積んだブロックが、途中でゼリーや液体に変わっていく</strong>落ちものパズル。ふだんは演出に使われがちな流体シミュレーション（PB-MPM）を、消し方そのものに組み込んでみた一作です。
-                                </p>
+                                <p>積んだブロックがゼリーや液体へ変化する落ちものパズルです。流体シミュレーションの PB-MPM を、ブロックを消す仕組みに組み込みました。</p>
                                 <p class="tags">MitiruEngine / DirectX 12 / PB-MPM / CEF / Puzzle</p>
-                                <a href="fluid-drop.html" class="go">詳細を見る →</a>
+                                <a href="fluid-drop.html">詳細を見る →</a>
                             </div>
                         </article>
 
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/hato_3.webp" alt="ハトを育てよう（リメイク）の育成画面。あそぶ/べんきょう/ごはん/筋トレ/しかる のアクションとハトのステータス" width="1599" height="895">
+                                <img loading="lazy" decoding="async" src="images/hato_3.webp" alt="ハトを育てようの育成画面" width="1599" height="895">
                             </div>
                             <div class="work-body">
                                 <h3>ハトを育てよう（MitiruEngine リメイク）</h3>
                                 <p class="work-meta">Released (Remake) · 2026年 · 個人開発 · MitiruEngine CEF Hybrid</p>
-                                <p>
-                                    2023 年に TyranoScript で書いた原作を、自作の MitiruEngine 上で完全移植 + 追加要素を入れたリメイク版。バックログ、既読管理、セーブロードまで実装。MitiruEngine が「実際にゲームを出せる道具」であることの実証作品でもあります。
-                                </p>
+                                <p>2023年に TyranoScript で制作した育成ゲームを MitiruEngine へ移植し、追加要素を加えたリメイクです。バックログ、既読管理、セーブ、ロードも実装しています。</p>
                                 <p class="tags">MitiruEngine / CEF / mitiru.novel / Visual Novel</p>
-                                <a href="hato.html" class="go">詳細を見る →</a>
+                                <a href="hato.html">詳細を見る →</a>
                             </div>
                         </article>
 
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/kc_engine_title.webp" alt="かえるくれーぷ（Kaeru Crepe）のタイトル画面。カエルのロゴと『朝のダイナーで、注文どおりのクレープを作ってお客さんを笑顔に。』" width="1280" height="720">
+                                <img loading="lazy" decoding="async" src="images/kc_engine_title.webp" alt="かえるくれーぷのタイトル画面" width="1280" height="720">
                             </div>
                             <div class="work-body">
                                 <h3>かえるくれーぷ（Kaeru Crepe）</h3>
-                                <p class="work-meta">Playable · 2026年 · チーム開発（2人）· MitiruEngine · 担当: 企画 / シナリオ / 実装全般</p>
-                                <p>
-                                    クレープを作りながらヒロインたちと親睦を深める 美少女ゲーム × クッキングゲーム。コミックマーケット 106 で配布した Godot 版を経て、自作の MitiruEngine へ全面移植。UI とゲーム画面をすべて HTML/CSS で組み上げ、調理の中核を実機で遊べる形まで仕上げました。
-                                </p>
+                                <p class="work-meta">Playable · 2026年 · チーム開発（2人）· 担当：企画 / シナリオ / 実装全般</p>
+                                <p>クレープ作りと物語を組み合わせたゲームです。コミックマーケット106で配布した Godot 版を MitiruEngine へ移植し、UIとゲーム画面を HTML/CSS で構築しました。</p>
                                 <p class="tags">MitiruEngine / HTML+CSS UI / Cooking / Visual Novel</p>
-                                <a href="kaerucrape.html" class="go">詳細を見る →</a>
+                                <a href="kaerucrape.html">詳細を見る →</a>
                             </div>
                         </article>
 
                         <article class="work">
                             <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/makina/flange.webp" alt="Makina で描いたフランジ部品。外周の縁とボルト穴のまわりが擦れて明るく光り、平らな面の窪みに汚れが溜まっている。" width="1280" height="720">
+                                <img loading="lazy" decoding="async" src="images/makina/flange.webp" alt="Makina の表示画面" width="1280" height="720">
                             </div>
                             <div class="work-body">
                                 <h3>Makina</h3>
                                 <p class="work-meta">開発中 · 2026年 · 個人開発 · C++20 / DirectX 12 / SDF レイマーチ</p>
-                                <p>
-                                    形を組み合わせて立体を作るモデラー。<strong>汚れや摩耗を、あとから絵で描き足さずに形そのものから計算します</strong>。授業で使った Java 製のツール Grasp3D を直して機能を足し、それを C++ へ移すところから始まりました。同じ形を 3 通りの独立した方法で描いて突き合わせ、移植が正しいことを確かめています。作った形はそのまま MitiruEngine へ渡せます。
-                                </p>
+                                <p>形を組み合わせて立体を作るモデラーです。汚れや摩耗を形状から計算します。Java 製ツール Grasp3D の修正と機能追加から始め、C++へ移植しました。作成した形は MitiruEngine へ渡せます。</p>
                                 <p class="tags">C++20 / DirectX 12 / SDF / CSG / MitiruEngine</p>
-                                <a href="makina.html" class="go">詳細を見る →</a>
+                                <a href="makina.html">詳細を見る →</a>
                             </div>
                         </article>
                     </div>
                 </section>
 
-                <!-- ============================================== -->
-                <!-- Other Games（縮小カード → モーダル）            -->
-                <!-- ============================================== -->
                 <section class="sec">
-                    <h2>GAMES</h2>
+                    <h2>ゲーム</h2>
                     <div class="sec-body">
-                        <p class="sec-intro">学部時代から書いてきた個人・チーム制作。タイトルをクリックすると詳細が開きます。</p>
+                        <p class="sec-intro">学部時代から制作してきた個人・チーム作品です。</p>
                     </div>
 
-                    <ul class="mini-grid">
-                        <li class="mini">
-                            <button type="button" class="mini-open" data-modal="m-down">
-                                <img class="mini-thumb" src="images/down_1.webp" alt="" width="56" height="42" loading="lazy" decoding="async">
-                                <span class="mini-text"><span class="mini-title">Down into...</span><span class="mini-line">怪物から逃げる倉庫番系パズル</span></span>
-                                <span class="mini-plus">+</span>
-                            </button>
-                            <template id="m-down">
-                                <h2>Down into...</h2>
-                                <p class="m-meta">2022年夏 · チーム開発（5人）· 2ヶ月 · 担当: プログラム / グラフィック</p>
-                                <div class="m-shots">
-                                    <a href="images/down_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/down_1.webp" alt="タイトル画面。月明かりの差す部屋のソファに王冠が転がっていて、START と EXIT が並ぶ" width="1600" height="935"></a>
-                                    <a href="images/down_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/down_2.webp" alt="紫のドット絵の部屋を見下ろした画面。本棚とタンスが壁際に並び、中央に主人公、床には家具と紙が散らばっている" width="1335" height="826"></a>
-                                    <a href="images/down_3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/down_3.webp" alt="横長の部屋。主人公の左に星形のオブジェクトがあり、下の壁ぎわに丸い怪物が一列に並んでいる" width="1416" height="754"></a>
-                                    <a href="images/down_4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/down_4.webp" alt="レンガ壁の部屋。主人公のまわりに石像と岩と怪物が配置されたパズル面" width="1156" height="835"></a>
-                                </div>
-                                <div class="m-block"><p>怪物から逃げながら塔の脱出を目指す倉庫番系パズル。C++ と Siv3D を使った初めてのチーム開発作品。会津大学・蒼翔祭 2022、コミックマーケット 101 にて無料頒布。</p></div>
-                                <p class="fine">C++ / Siv3D / Puzzle</p>
-                            </template>
-                        </li>
+                    <div class="work-list">
+                        <article class="work">
+                            <div class="work-body">
+                                <h3>Down into...</h3>
+                                <p class="work-meta">2022年夏 · チーム開発（5人）· 2ヶ月 · 担当：プログラム / グラフィック</p>
+                                <p>怪物から逃げながら塔の脱出を目指す倉庫番系パズルです。C++とSiv3Dを使った初めてのチーム開発作品で、会津大学・蒼翔祭2022とコミックマーケット101で無料頒布しました。</p>
+                                <p class="tags">C++ / Siv3D / Puzzle</p>
+                            </div>
+                            <div class="figures">
+                                <a href="images/down_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/down_1.webp" alt="Down into... のタイトル画面" width="1600" height="935"></a>
+                                <a href="images/down_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/down_2.webp" alt="Down into... のゲーム画面 1" width="1335" height="826"></a>
+                                <a href="images/down_3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/down_3.webp" alt="Down into... のゲーム画面 2" width="1416" height="754"></a>
+                                <a href="images/down_4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/down_4.webp" alt="Down into... のゲーム画面 3" width="1156" height="835"></a>
+                            </div>
+                        </article>
 
-                        <li class="mini">
-                            <button type="button" class="mini-open" data-modal="m-hato-orig">
-                                <img class="mini-thumb" src="images/hato_1.webp" alt="" width="56" height="42" loading="lazy" decoding="async">
-                                <span class="mini-text"><span class="mini-title">ハトを育てよう（原作版）</span><span class="mini-line">TyranoScript 製の育成ゲーム原作</span></span>
-                                <span class="mini-plus">+</span>
-                            </button>
-                            <template id="m-hato-orig">
-                                <h2>ハトを育てよう（原作版）</h2>
-                                <p class="m-meta">2023年春 · 個人開発 · 2日 · TyranoScript</p>
-                                <div class="m-shots">
-                                    <a href="images/hato_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/hato_1.webp" alt="タイトル画面。手書き文字で「ハトを育てよう 製作・shiggy」、下に「やる」「やらない」の丸いボタン" width="1596" height="898"></a>
-                                    <a href="images/hato_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/hato_2.webp" alt="導入の会話。画面いっぱいに手描きのハトが立ち、下の帯に「ハト ……ホロ」の台詞。左上に「すきっぷ」" width="1596" height="899"></a>
-                                    <a href="images/hato_3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/hato_3.webp" alt="育成画面。左に「あそぶ／べんきょう／ごはん／筋トレ／しかる」のボタン、中央にハト、右に「1 日目」と筋肉 0・知能 0・体重 350 のステータス" width="1599" height="895"></a>
-                                    <a href="images/hato_4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/hato_4.webp" alt="結末のひとつ。リボンと首輪を着けたハトが餌皿の前に立ち、周りに本とダンベル。台詞は「あなた やっぱりふつうが一番だよね！」" width="1594" height="889"></a>
-                                </div>
-                                <div class="m-block"><p>ハトを育てるマルチエンディング育成ゲーム。TyranoScript で書いた原作版。蒼翔祭 2023 にて展示。<a href="hato.html">この作品は後に MitiruEngine でリメイク</a>されています。</p></div>
-                                <p class="fine">TyranoScript / Visual Novel</p>
-                                <div class="link-row">
-                                    <a href="https://drive.google.com/drive/folders/1dFSFwuPCTnQW0YqZxIDM-JfFe8dWzBm9?usp=sharing" target="_blank" rel="noopener">ダウンロード →</a>
-                                </div>
-                            </template>
-                        </li>
+                        <article class="work">
+                            <div class="work-body">
+                                <h3>ハトを育てよう（原作版）</h3>
+                                <p class="work-meta">2023年春 · 個人開発 · 2日 · TyranoScript</p>
+                                <p>ハトを育てるマルチエンディング育成ゲームです。蒼翔祭2023で展示し、後に<a href="hato.html">MitiruEngineでリメイク</a>しました。</p>
+                                <p class="tags">TyranoScript / Visual Novel</p>
+                                <a href="https://drive.google.com/drive/folders/1dFSFwuPCTnQW0YqZxIDM-JfFe8dWzBm9?usp=sharing" target="_blank" rel="noopener">ダウンロード →</a>
+                            </div>
+                            <div class="figures">
+                                <a href="images/hato_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/hato_1.webp" alt="ハトを育てようのタイトル画面" width="1596" height="898"></a>
+                                <a href="images/hato_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/hato_2.webp" alt="ハトを育てようの会話画面" width="1596" height="899"></a>
+                                <a href="images/hato_3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/hato_3.webp" alt="ハトを育てようの育成画面" width="1599" height="895"></a>
+                                <a href="images/hato_4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/hato_4.webp" alt="ハトを育てようの結末画面" width="1594" height="889"></a>
+                            </div>
+                        </article>
 
-                        <li class="mini">
-                            <button type="button" class="mini-open" data-modal="m-416">
-                                <img class="mini-thumb" src="images/416_1.webp" alt="タイトル画面。粗い点描で描いた瓦礫の街に立つ少女と街灯、右上に「416」、中央に Click to Start" width="56" height="42" loading="lazy" decoding="async">
-                                <span class="mini-text"><span class="mini-title">416</span><span class="mini-line">ヴァンサバ風ローグライク</span></span>
-                                <span class="mini-plus">+</span>
-                            </button>
-                            <template id="m-416">
-                                <h2>416</h2>
-                                <p class="m-meta">2023年夏 · チーム開発（2人）· 2ヶ月 · 担当: リーダー / プログラム</p>
-                                <div class="m-shots">
-                                    <a href="images/416_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/416_1.webp" alt="タイトル画面。粗い点描で描いた瓦礫の街に立つ少女と街灯、右上に「416」、中央に Click to Start" width="1276" height="956"></a>
-                                    <a href="images/416_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/416_2.webp" alt="操作説明。ドット絵の暗い迷宮に主人公と敵。「マウスを動かして敵の方向に照準を合わせる。左クリックで通常弾を発射する」" width="1278" height="956"></a>
-                                    <a href="images/416_3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/416_3.webp" alt="操作説明の続き。右に HP バーと LEVEL 3、魔法書のスロット。「マウス右クリックで特殊弾を発射する。特殊弾は敵を倒したときに落とす魔法書を入手することで使用可能になる」" width="1270" height="943"></a>
-                                    <a href="images/416_4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/416_4.webp" alt="プレイ画面。青紫の迷宮を主人公が進み、右に地図・HP バー・LEVEL 1・魔法書スロット・残機 3 の表示" width="1277" height="956"></a>
-                                </div>
-                                <div class="m-block"><p>たくさんの迫りくる化け物を倒すヴァンサバ風ローグライク。初めてのプロジェクトリーダー経験。蒼翔祭 2023、コミックマーケット 103 にて無料頒布。</p></div>
-                                <p class="fine">C++ / Siv3D / Roguelike</p>
-                            </template>
-                        </li>
+                        <article class="work">
+                            <div class="work-body">
+                                <h3>416</h3>
+                                <p class="work-meta">2023年夏 · チーム開発（2人）· 2ヶ月 · 担当：リーダー / プログラム</p>
+                                <p>迫りくる化け物を倒すローグライクです。初めてプロジェクトリーダーを担当し、蒼翔祭2023とコミックマーケット103で無料頒布しました。</p>
+                                <p class="tags">C++ / Siv3D / Roguelike</p>
+                            </div>
+                            <div class="figures">
+                                <a href="images/416_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/416_1.webp" alt="416 のタイトル画面" width="1276" height="956"></a>
+                                <a href="images/416_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/416_2.webp" alt="416 の操作説明画面 1" width="1278" height="956"></a>
+                                <a href="images/416_3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/416_3.webp" alt="416 の操作説明画面 2" width="1270" height="943"></a>
+                                <a href="images/416_4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/416_4.webp" alt="416 のゲーム画面" width="1277" height="956"></a>
+                            </div>
+                        </article>
 
-                        <li class="mini">
-                            <button type="button" class="mini-open" data-modal="m-sugar">
-                                <img class="mini-thumb" src="images/shugar_1.webp" alt="タイトル画面。パステルの手描きお菓子工場を背景に「ぐるぐる！シュガー☆ふぁくとりー」のロゴ、下に「あそびかた」「すたーと」「やめる」の丸いボタン" width="56" height="42" loading="lazy" decoding="async">
-                                <span class="mini-text"><span class="mini-title">ぐるぐる☆しゅがーふぁくとりー</span><span class="mini-line">回転ドーナツの落ちものパズル</span></span>
-                                <span class="mini-plus">+</span>
-                            </button>
-                            <template id="m-sugar">
-                                <h2>ぐるぐる☆しゅがーふぁくとりー</h2>
-                                <p class="m-meta">2024年春 · チーム開発（3人）· 2ヶ月 · 担当: プログラム / グラフィック</p>
-                                <div class="m-shots">
-                                    <a href="images/shugar_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/shugar_1.webp" alt="タイトル画面。パステルの手描きお菓子工場を背景に「ぐるぐる！シュガー☆ふぁくとりー」のロゴ、下に「あそびかた」「すたーと」「やめる」の丸いボタン" width="1600" height="900"></a>
-                                    <a href="images/sugar_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/sugar_2.webp" alt="プレイ画面。中央のドーナツの周りに色とりどりの輪切りキャンディが並び、線でつないでいる。上にベルトコンベア、右に残り時間 103 とスコア、エプロン姿の少女が「4 コつなげてね！」" width="1600" height="899"></a>
-                                    <a href="images/sugar_3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/sugar_3.webp" alt="遊び方の説明。「時間経過か右クリックでキャンディが落ちるよ！」の文と、ベルトコンベアから落ちてくるキャンディを指す矢印" width="1600" height="898"></a>
-                                    <a href="images/sugar_4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/sugar_4.webp" alt="遊び方の説明。「同じ色のキャンディを指定の個数つなげて消そう！」の文と、同色のキャンディを線でつないでいる図" width="1600" height="899"></a>
-                                </div>
-                                <div class="m-block"><p>落ちてくる飴玉を回転するドーナツを使ってくっつける落ちものパズル。初めての Unity 開発。蒼翔祭 2024 にて展示。</p></div>
-                                <p class="fine">C# / Unity / Puzzle</p>
-                            </template>
-                        </li>
+                        <article class="work">
+                            <div class="work-body">
+                                <h3>ぐるぐる☆しゅがーふぁくとりー</h3>
+                                <p class="work-meta">2024年春 · チーム開発（3人）· 2ヶ月 · 担当：プログラム / グラフィック</p>
+                                <p>落ちてくる飴玉を、回転するドーナツに付けて消す落ちものパズルです。初めての Unity 開発作品で、蒼翔祭2024に展示しました。</p>
+                                <p class="tags">C# / Unity / Puzzle</p>
+                            </div>
+                            <div class="figures">
+                                <a href="images/shugar_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/shugar_1.webp" alt="ぐるぐる☆しゅがーふぁくとりーのタイトル画面" width="1600" height="900"></a>
+                                <a href="images/sugar_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/sugar_2.webp" alt="ぐるぐる☆しゅがーふぁくとりーのゲーム画面" width="1600" height="899"></a>
+                                <a href="images/sugar_3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/sugar_3.webp" alt="ぐるぐる☆しゅがーふぁくとりーの説明画面 1" width="1600" height="898"></a>
+                                <a href="images/sugar_4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/sugar_4.webp" alt="ぐるぐる☆しゅがーふぁくとりーの説明画面 2" width="1600" height="899"></a>
+                            </div>
+                        </article>
 
-                        <li class="mini">
-                            <button type="button" class="mini-open" data-modal="m-voronoi">
-                                <img class="mini-thumb" src="images/vs_1.webp" alt="" width="56" height="42" loading="lazy" decoding="async">
-                                <span class="mini-text"><span class="mini-title">VoronoiShortestPathSolver</span><span class="mini-line">ボロノイ図で最短経路探索</span></span>
-                                <span class="mini-plus">+</span>
-                            </button>
-                            <template id="m-voronoi">
-                                <h2>VoronoiShortestPathSolver</h2>
-                                <p class="m-meta">2024年春 · 個人開発 · 1週間</p>
-                                <div class="m-shots">
-                                    <a href="images/vs_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/vs_1.webp" alt="色分けされたボロノイ図。左の赤い始点から右の青い終点まで、境界線を伝う黄色い経路が引かれている" width="1272" height="704"></a>
-                                    <a href="images/vs_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/vs_2.webp" alt="母点の配置を変えたボロノイ図。経路が中央でいったん下へ回り込んでから終点へ向かう" width="1274" height="710"></a>
-                                    <a href="images/vs_3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/vs_3.webp" alt="経路が図の上端近くまで大きく迂回する例。障害物の密な中央部を避けている" width="1266" height="691"></a>
-                                    <a href="images/vs_4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/vs_4.webp" alt="セルが大きめの配置。経路が中央をほぼ横切って終点へ届いている" width="1269" height="707"></a>
-                                </div>
-                                <div class="m-block"><p>ボロノイ図を用いた最短経路探索シミュレーション。「ビジュアルコンピューティングのための幾何学」という授業で得た知見をもとに作成。点（母点）がいくつか与えられたとき、どの点に一番近いかによって平面を分割したものをボロノイ図といい、それを用いて最短経路を探索する試み。</p></div>
-                                <p class="fine">C++ / Siv3D / OpenCV</p>
-                                <div class="link-row">
-                                    <a href="https://github.com/mogmog-0110/VoronoiShortestPathSolver" target="_blank" rel="noopener">GitHub →</a>
-                                </div>
-                            </template>
-                        </li>
+                        <article class="work">
+                            <div class="work-body">
+                                <h3>VoronoiShortestPathSolver</h3>
+                                <p class="work-meta">2024年春 · 個人開発 · 1週間</p>
+                                <p>ボロノイ図を使った最短経路探索シミュレーションです。「ビジュアルコンピューティングのための幾何学」の授業で得た知見をもとに作成しました。</p>
+                                <p class="tags">C++ / Siv3D / OpenCV</p>
+                                <a href="https://github.com/mogmog-0110/VoronoiShortestPathSolver" target="_blank" rel="noopener">GitHub →</a>
+                            </div>
+                            <div class="figures">
+                                <a href="images/vs_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/vs_1.webp" alt="VoronoiShortestPathSolver の実行画面 1" width="1272" height="704"></a>
+                                <a href="images/vs_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/vs_2.webp" alt="VoronoiShortestPathSolver の実行画面 2" width="1274" height="710"></a>
+                                <a href="images/vs_3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/vs_3.webp" alt="VoronoiShortestPathSolver の実行画面 3" width="1266" height="691"></a>
+                                <a href="images/vs_4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/vs_4.webp" alt="VoronoiShortestPathSolver の実行画面 4" width="1269" height="707"></a>
+                            </div>
+                        </article>
 
-                        <li class="mini">
-                            <button type="button" class="mini-open" data-modal="m-dodo">
-                                <img class="mini-thumb" src="images/dodo_1.webp" alt="" width="56" height="42" loading="lazy" decoding="async">
-                                <span class="mini-text"><span class="mini-title">劇場版ぱんドドド―ド</span><span class="mini-line">おばか育成アクション</span></span>
-                                <span class="mini-plus">+</span>
-                            </button>
-                            <template id="m-dodo">
-                                <h2>劇場版ぱんドドド―ド</h2>
-                                <p class="m-meta">2024年夏 · チーム開発（6人）· 2ヶ月 · 担当: リーダー / 設計 / ステージ制作ツール</p>
-                                <div class="m-shots">
-                                    <a href="images/dodo_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/dodo_1.webp" alt="手描きのタイトル画面。「劇場版ぱんドドド―ド デストロイよアイジャぱいで the ファイナル」と、赤字で「右クリックでスタートだ!!!!」" width="1190" height="892"></a>
-                                    <a href="images/dodo_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/dodo_2.webp" alt="会津大学の構内を撮った写真に、ドット絵のキャラクターとモンスターを合成した会話シーン。右手前に赤髪のキャラクターが大きく描かれている" width="1182" height="891"></a>
-                                    <a href="images/dodo_3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/dodo_3.webp" alt="育成画面。中央に赤髪のキャラクター、右に残り日数・たいりょく・こうげき・すばやさ・所持金、下に「ごはん」「腕立て伏せ」「ランニング」などの行動ボタンが並ぶ" width="1190" height="891"></a>
-                                    <a href="images/dodo_4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/dodo_4.webp" alt="横スクロールのアクション面。灰色のビル街を背景に、ブロックとトゲの上を走る主人公。下の会話欄に「バッテリーは満タン！いい調子！」" width="1176" height="872"></a>
-                                </div>
-                                <div class="m-block"><p>キャラクターを育成して、アクションに挑む新感覚おばか育成アクション。プロジェクトリーダーとしてチームメンバーのサポートをしながら開発。Unity のようなコンポーネントシステムを参考に設計し、ステージ制作ツールを別途作成。モンスターに支配された会津大学を、企画開発部のマスコットキャラクター「ぱんどど」を育成してモンスター退治するというストーリー。</p></div>
-                                <p class="fine">C++ / Siv3D / Action</p>
-                            </template>
-                        </li>
+                        <article class="work">
+                            <div class="work-body">
+                                <h3>劇場版ぱんドドド―ド</h3>
+                                <p class="work-meta">2024年夏 · チーム開発（6人）· 2ヶ月 · 担当：リーダー / 設計 / ステージ制作ツール</p>
+                                <p>キャラクターを育成してアクションへ挑むゲームです。チームを支援しながら開発し、コンポーネントシステムを参考にした設計と、専用のステージ制作ツールを担当しました。</p>
+                                <p class="tags">C++ / Siv3D / Action</p>
+                            </div>
+                            <div class="figures">
+                                <a href="images/dodo_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/dodo_1.webp" alt="劇場版ぱんドドド―ドのタイトル画面" width="1190" height="892"></a>
+                                <a href="images/dodo_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/dodo_2.webp" alt="劇場版ぱんドドド―ドの会話画面" width="1182" height="891"></a>
+                                <a href="images/dodo_3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/dodo_3.webp" alt="劇場版ぱんドドド―ドの育成画面" width="1190" height="891"></a>
+                                <a href="images/dodo_4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/dodo_4.webp" alt="劇場版ぱんドドド―ドのアクション画面" width="1176" height="872"></a>
+                            </div>
+                        </article>
 
-                        <li class="mini">
-                            <button type="button" class="mini-open" data-modal="m-vimove">
-                                <img class="mini-thumb" src="images/vimove_1.webp" alt="" width="56" height="42" loading="lazy" decoding="async">
-                                <span class="mini-text"><span class="mini-title">Vimove</span><span class="mini-line">Vim 操作で解く迷路ゲーム</span></span>
-                                <span class="mini-plus">+</span>
-                            </button>
-                            <template id="m-vimove">
-                                <h2>Vimove</h2>
-                                <p class="m-meta">2024年冬 · 個人開発 · 1週間</p>
-                                <div class="m-shots">
-                                    <a href="images/vimove_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/vimove_1.webp" alt="黒背景のタイトル画面。VIMOVE の下に START と EXIT、最下部に J:↓ K:↑ H:← L:→ のキー割り当て" width="795" height="795"></a>
-                                    <a href="images/vimove_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/vimove_2.webp" alt="# の並びでカニの形に組まれた迷路。赤い P が自機、黄色い G がゴール" width="797" height="798"></a>
-                                    <a href="images/vimove_3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/vimove_3.webp" alt="カタツムリの形の迷路。渦巻きの殻の外周に P、中心に G がある" width="797" height="799"></a>
-                                    <a href="images/vimove_4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/vimove_4.webp" alt="尻尾を立てた猫の形の迷路。左端に G、胴体の右側に P" width="796" height="808"></a>
-                                </div>
-                                <div class="m-block"><p>Vim の操作方法でクリアを目指す迷路ゲーム。Vim の上下左右移動（h, j, k, l）で迷路をクリアする。Vim の操作感に慣れるために作成。あらかじめ用意した数十ステージと、全ステージクリア後に開放されるエンドレスモード（ランダムで迷路を生成）で遊べる。</p></div>
-                                <p class="fine">C++ / Siv3D / Game</p>
-                                <div class="link-row">
-                                    <a href="downloads/Vimove.zip">ダウンロード →</a>
-                                </div>
-                            </template>
-                        </li>
+                        <article class="work">
+                            <div class="work-body">
+                                <h3>Vimove</h3>
+                                <p class="work-meta">2024年冬 · 個人開発 · 1週間</p>
+                                <p>Vimの上下左右移動キー（h、j、k、l）で迷路を解くゲームです。用意した数十ステージと、全ステージクリア後に開放されるランダム生成のエンドレスモードを収録しています。</p>
+                                <p class="tags">C++ / Siv3D / Game</p>
+                                <a href="downloads/Vimove.zip">ダウンロード →</a>
+                            </div>
+                            <div class="figures">
+                                <a href="images/vimove_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/vimove_1.webp" alt="Vimove のタイトル画面" width="795" height="795"></a>
+                                <a href="images/vimove_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/vimove_2.webp" alt="Vimove の迷路画面 1" width="797" height="798"></a>
+                                <a href="images/vimove_3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/vimove_3.webp" alt="Vimove の迷路画面 2" width="797" height="799"></a>
+                                <a href="images/vimove_4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/vimove_4.webp" alt="Vimove の迷路画面 3" width="796" height="808"></a>
+                            </div>
+                        </article>
 
-                        <li class="mini">
-                            <button type="button" class="mini-open" data-modal="m-graphwalker">
-                                <img class="mini-thumb" src="images/gw_1.webp" alt="タイトル画面。淡い緑の背景に「Graph Walker」の題字、下に「ステージ 1」「ステージ 2」「ステージ 3」「やめる」のボタン" width="56" height="42" loading="lazy" decoding="async">
-                                <span class="mini-text"><span class="mini-title">GraphWalker</span><span class="mini-line">数式でグラフを描くパズル</span></span>
-                                <span class="mini-plus">+</span>
-                            </button>
-                            <template id="m-graphwalker">
-                                <h2>GraphWalker</h2>
-                                <p class="m-meta">2025年春 · 個人開発 · 1週間</p>
-                                <div class="m-shots">
-                                    <a href="images/gw_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/gw_1.webp" alt="タイトル画面。淡い緑の背景に「Graph Walker」の題字、下に「ステージ 1」「ステージ 2」「ステージ 3」「やめる」のボタン" width="1273" height="716"></a>
-                                    <a href="images/gw_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/gw_2.webp" alt="ステージ 1 の開始時。方眼の座標平面に自機の緑丸と、離れた足場の上のゴール旗。下に数式の入力欄 F(x) =、右に操作説明" width="1275" height="717"></a>
-                                    <a href="images/gw_3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/gw_3.webp" alt="ステージ 3。入力した F(x) = (2 * sin(x) + x) / 2 が赤い曲線として引かれ、その線をたどって左下の自機から右上のゴール旗へ向かう" width="1271" height="716"></a>
-                                    <a href="images/gw_4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/gw_4.webp" alt="ステージ 1 で F(x) = 1.1 を入力した状態。青い水平線が引かれ、自機とゴールの足場をつなぐ橋になっている。右の数式履歴に 1.1" width="1270" height="709"></a>
-                                </div>
-                                <div class="m-block"><p>数式を打ち込んでグラフを作成し、ゴールを目指すパズルアクション。Siv3D の数式パース機能を利用して、当たり判定のあるグラフを作成し、ゴールを目指す。数学が苦手な後輩を見て発案。グラフをもっと身近なものにしようという意図でアクションゲームにした。</p></div>
-                                <p class="fine">C++ / Siv3D / Educational</p>
-                                <div class="link-row">
-                                    <a href="https://github.com/mogmog-0110/GraphWalker" target="_blank" rel="noopener">GitHub →</a>
-                                </div>
-                            </template>
-                        </li>
-                    </ul>
+                        <article class="work">
+                            <div class="work-body">
+                                <h3>GraphWalker</h3>
+                                <p class="work-meta">2025年春 · 個人開発 · 1週間</p>
+                                <p>数式を入力して当たり判定のあるグラフを描き、ゴールを目指すパズルアクションです。Siv3Dの数式パース機能を利用しています。</p>
+                                <p class="tags">C++ / Siv3D / Educational</p>
+                                <a href="https://github.com/mogmog-0110/GraphWalker" target="_blank" rel="noopener">GitHub →</a>
+                            </div>
+                            <div class="figures">
+                                <a href="images/gw_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/gw_1.webp" alt="GraphWalker のタイトル画面" width="1273" height="716"></a>
+                                <a href="images/gw_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/gw_2.webp" alt="GraphWalker のステージ画面 1" width="1275" height="717"></a>
+                                <a href="images/gw_3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/gw_3.webp" alt="GraphWalker のステージ画面 2" width="1271" height="716"></a>
+                                <a href="images/gw_4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/gw_4.webp" alt="GraphWalker のステージ画面 3" width="1270" height="709"></a>
+                            </div>
+                        </article>
+                    </div>
                 </section>
 
-                <!-- ============================================== -->
-                <!-- Tools / Engines（縮小カード → モーダル）        -->
-                <!-- ============================================== -->
                 <section class="sec">
-                    <h2>TOOLS &amp; ENGINES</h2>
+                    <h2>ツール・エンジン</h2>
                     <div class="sec-body">
-                        <p class="sec-intro">中心にあるのは自作の C++20 / header-only ゲームエンジン <a href="engine.html">MitiruEngine</a>（詳細は Engine ページ）。その周辺で必要に迫られて書いた道具です。</p>
-                    </div>
+                        <p class="sec-intro">中心となるのは、C++20で開発しているheader-onlyの自作ゲームエンジン<a href="engine.html">MitiruEngine</a>です。ここでは、エンジンや研究、制作のために開発した周辺ツールを紹介します。</p>
 
-                    <ul class="mini-grid">
-                        <li class="mini">
-                            <button type="button" class="mini-open" data-modal="m-cli">
-                                <span class="mini-thumb ph">mitiru</span>
-                                <span class="mini-text"><span class="mini-title">mitiru-cli</span><span class="mini-line">Cargo 風のエンジン CLI</span></span>
-                                <span class="mini-plus">+</span>
-                            </button>
-                            <template id="m-cli">
-                                <h2>mitiru-cli</h2>
-                                <p class="m-meta">Tool · 個人開発 · Go · Cargo 風 CLI</p>
-                                <div class="m-block"><p>MitiruEngine プロジェクトを CMake に触らずに作って・ビルドして・走らせる CLI。<code>mitiru new</code> / <code>mitiru build</code> / <code>mitiru run</code> の 3 コマンドだけで、Cargo や <code>go run</code> の感覚でゲームを書き始められる。エンジンキャッシュと TOML 設定の管理も裏で面倒見ます。</p></div>
-                                <p class="fine">Go / CLI / CMake</p>
-                                <div class="link-row">
-                                    <a href="https://github.com/mogmog-0110/mitiru-cli" target="_blank" rel="noopener">GitHub →</a>
-                                </div>
-                            </template>
-                        </li>
+                        <div class="lab-list">
+                            <article class="lab-entry">
+                                <h3>mitiru-cli</h3>
+                                <p class="m-meta">個人開発 · Go · Cargo風CLI</p>
+                                <p>MitiruEngineのプロジェクト作成、ビルド、実行するCLIです。<code>mitiru new</code>、<code>mitiru build</code>、<code>mitiru run</code>を備え、エンジンキャッシュとTOML設定も管理します。</p>
+                                <p class="lab-tags">Go / CLI / CMake</p>
+                                <a href="https://github.com/mogmog-0110/mitiru-cli" target="_blank" rel="noopener">GitHub →</a>
+                            </article>
 
-                        <li class="mini">
-                            <button type="button" class="mini-open" data-modal="m-lsdj">
-                                <span class="mini-thumb ph">.SAV</span>
-                                <span class="mini-text"><span class="mini-title">lsdj-project</span><span class="mini-line">チップチューン補助ツール 2 種</span></span>
-                                <span class="mini-plus">+</span>
-                            </button>
-                            <template id="m-lsdj">
-                                <h2>lsdj-project</h2>
-                                <p class="m-meta">Tool · 個人開発 · C++ + Web · チップチューン補助</p>
-                                <div class="m-block"><p>ゲームボーイの音楽ソフト LSDJ（Little Sound Dj）でチップチューンを書くための道具立て 2 種。① ブラウザ上で stem 分離とピッチ検出をかけて譜面を並べる耳コピビューア、② 単旋律 MIDI を <code>.sav</code> 形式に変換する C++ コンバータ（フレーズ重複排除、チェイン最適化付き）。</p></div>
-                                <p class="fine">C++ / MIDI / LSDJ / Web</p>
-                                <div class="link-row">
-                                    <a href="https://github.com/mogmog-0110/lsdj-project" target="_blank" rel="noopener">GitHub →</a>
-                                </div>
-                            </template>
-                        </li>
+                            <article class="lab-entry">
+                                <h3>lsdj-project</h3>
+                                <p class="m-meta">個人開発 · C++ + Web</p>
+                                <p>LSDJでチップチューンを制作するためのツールです。ブラウザ上でstem分離とピッチ検出するビューアと、単旋律MIDIを<code>.sav</code>形式へ変換するC++コンバータを収録しています。</p>
+                                <p class="lab-tags">C++ / MIDI / LSDJ / Web</p>
+                                <a href="https://github.com/mogmog-0110/lsdj-project" target="_blank" rel="noopener">GitHub →</a>
+                            </article>
 
-                        <li class="mini">
-                            <button type="button" class="mini-open" data-modal="m-athena">
-                                <span class="mini-thumb ph">ATHENA</span>
-                                <span class="mini-text"><span class="mini-title">AthenaRenderer</span><span class="mini-line">DirectX 12 自作レンダラー</span></span>
-                                <span class="mini-plus">+</span>
-                            </button>
-                            <template id="m-athena">
-                                <h2>AthenaRenderer</h2>
-                                <p class="m-meta">Tool · 個人開発 · DirectX 12 ベース · 研究向け描画フレームワーク</p>
-                                <div class="m-block"><p>DirectX 12 をベースにした自作レンダラー / 研究用描画フレームワーク。レンダリングパイプラインの理解を深めるために作成。シェーディング、ライティング、テクスチャマッピングを実装してグラフィックスプログラミングの基礎を整理。</p></div>
-                                <p class="fine">C++ / DirectX 12 / Graphics</p>
-                                <div class="link-row">
-                                    <a href="https://github.com/mogmog-0110/AthenaRenderer" target="_blank" rel="noopener">GitHub →</a>
-                                </div>
-                            </template>
-                        </li>
+                            <article class="lab-entry">
+                                <h3>AthenaRenderer</h3>
+                                <p class="m-meta">個人開発 · DirectX 12 · 研究向け描画フレームワーク</p>
+                                <p>レンダリングパイプラインを学ぶために開発したレンダラーです。シェーディング、ライティング、テクスチャマッピングを実装しています。</p>
+                                <p class="lab-tags">C++ / DirectX 12 / Graphics</p>
+                                <a href="https://github.com/mogmog-0110/AthenaRenderer" target="_blank" rel="noopener">GitHub →</a>
+                            </article>
 
-                        <li class="mini">
-                            <button type="button" class="mini-open" data-modal="m-mser">
-                                <span class="mini-thumb ph">MSER</span>
-                                <span class="mini-text"><span class="mini-title">mser-cpp</span><span class="mini-line">定常判定アルゴリズム実装</span></span>
-                                <span class="mini-plus">+</span>
-                            </button>
-                            <template id="m-mser">
-                                <h2>mser-cpp</h2>
-                                <p class="m-meta">Tool · 個人開発 · 研究用アルゴリズム実装</p>
-                                <div class="m-block"><p>シミュレーションが定常状態に達したかを統計的に判定するアルゴリズム MSER の C++ 実装。BDA 2025 投稿論文での解析に使用。</p></div>
-                                <p class="fine">C++ / Algorithm / Research</p>
-                                <div class="link-row">
-                                    <a href="https://github.com/mogmog-0110/mser-cpp" target="_blank" rel="noopener">GitHub →</a>
-                                </div>
-                            </template>
-                        </li>
+                            <article class="lab-entry">
+                                <h3>mser-cpp</h3>
+                                <p class="m-meta">個人開発 · 研究用アルゴリズム実装</p>
+                                <p>シミュレーションが定常状態に達したかを統計的に判定するMSERのC++実装です。BDA 2025投稿論文の解析に使用しました。</p>
+                                <p class="lab-tags">C++ / Algorithm / Research</p>
+                                <a href="https://github.com/mogmog-0110/mser-cpp" target="_blank" rel="noopener">GitHub →</a>
+                            </article>
 
-                        <li class="mini">
-                            <button type="button" class="mini-open" data-modal="m-reslinker">
-                                <img class="mini-thumb" src="images/res_1.webp" alt="" width="56" height="42" loading="lazy" decoding="async">
-                                <span class="mini-text"><span class="mini-title">VisualResourceLinkerForSiv3D</span><span class="mini-line">Siv3D リソース管理を GUI で自動化</span></span>
-                                <span class="mini-plus">+</span>
-                            </button>
-                            <template id="m-reslinker">
-                                <h2>VisualResourceLinkerForSiv3D</h2>
-                                <p class="m-meta">Tool · 個人開発 · C++ / Siv3D / ImGui · 2025年夏 · 2日</p>
-                                <div class="m-shots">
-                                    <a href="images/res_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/res_1.webp" alt="ツールの画面。Required タブに engine/shader/d3d11 以下のシェーダが一覧表示されている" width="996" height="748"></a>
-                                    <a href="images/res_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/res_2.webp" alt="Custom タブを開いた状態にファイル選択ダイアログが重なり、Resource.rc と自動生成された .bak が並んでいる" width="997" height="781"></a>
+                            <article class="lab-entry">
+                                <h3>VisualResourceLinkerForSiv3D</h3>
+                                <p class="m-meta">2025年夏 · 個人開発 · 2日</p>
+                                <p>Siv3Dのリソース管理をGUIで自動化するツールです。設計にはMVCを採用しました。</p>
+                                <p class="lab-tags">C++ / Siv3D / ImGui</p>
+                                <a href="https://github.com/mogmog-0110/VisualResourceLinkerForSiv3D" target="_blank" rel="noopener">GitHub →</a>
+                                <div class="figures">
+                                    <a href="images/res_1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/res_1.webp" alt="VisualResourceLinkerForSiv3D の画面 1" width="996" height="748"></a>
+                                    <a href="images/res_2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/res_2.webp" alt="VisualResourceLinkerForSiv3D の画面 2" width="997" height="781"></a>
                                 </div>
-                                <div class="m-block"><p>Siv3D のリソース管理を GUI で自動化するツール。配布されていた類似ツールがリンク切れだったので自作。設計は MVC。</p></div>
-                                <p class="fine">C++ / Siv3D / ImGui</p>
-                                <div class="link-row">
-                                    <a href="https://github.com/mogmog-0110/VisualResourceLinkerForSiv3D" target="_blank" rel="noopener">GitHub →</a>
-                                </div>
-                            </template>
-                        </li>
-                    </ul>
+                            </article>
+                        </div>
 
-                    <div class="sec-body">
                         <h3>小さな道具</h3>
-                        <p class="sec-intro">数日〜1週間で書いた小物。必要に迫られて作り、公開しているもの。</p>
                         <ul class="link-list">
                             <li>
                                 <a href="https://github.com/mogmog-0110/imgui-s3d-wrapper" target="_blank" rel="noopener">imgui-s3d-wrapper →</a>
-                                <span class="ll-note">Dear ImGui を Siv3D で即使う最小テンプレート</span>
+                                <span class="ll-note">Dear ImGuiをSiv3Dで使うための最小テンプレート</span>
                             </li>
                             <li>
                                 <a href="https://github.com/mogmog-0110/NeonVector" target="_blank" rel="noopener">NeonVector →</a>
-                                <span class="ll-note">ベクタースキャン表示を DirectX 12 で再現</span>
+                                <span class="ll-note">ベクタースキャン表示をDirectX 12で再現</span>
                             </li>
                             <li>
                                 <a href="https://github.com/mogmog-0110/DimensionEditor" target="_blank" rel="noopener">DimensionEditor →</a>
-                                <span class="ll-note">ルームと注目オブジェクトを JSON 編集する Siv3D + ImGui 製シーンエディタ（MVC）</span>
+                                <span class="ll-note">ルームと注目オブジェクトをJSONで編集するSiv3D・ImGui製シーンエディタ</span>
                             </li>
                             <li>
                                 <a href="https://github.com/mogmog-0110/NativeEngine" target="_blank" rel="noopener">NativeEngine →</a>
-                                <span class="ll-note">世界の端が反対側に繋がる境界を、そのまま扱える剛体物理エンジン。C++17、外部依存なし</span>
+                                <span class="ll-note">世界の端が反対側につながる境界を扱う、C++17製の剛体物理エンジン</span>
                             </li>
                             <li>
                                 <a href="https://github.com/mogmog-0110/winreel" target="_blank" rel="noopener">winreel →</a>
-                                <span class="ll-note">ウィンドウを連番画像に録画する CLI。Windows Graphics Capture を使うので、録画ソフトだと黒くなる DirectX 12 / OpenGL の窓もそのまま撮れる</span>
+                                <span class="ll-note">ウィンドウを連番画像として録画するCLI</span>
                             </li>
                             <li>
                                 <a href="https://github.com/mogmog-0110/winmove" target="_blank" rel="noopener">winmove →</a>
-                                <span class="ll-note">画面外や別モニタで開いてしまった窓を、一覧から選んで移す小さなツール</span>
+                                <span class="ll-note">画面外や別モニターで開いたウィンドウを一覧から選んで移動するツール</span>
                             </li>
                         </ul>
                     </div>
                 </section>
 
-                <!-- ============================================== -->
-                <!-- Creative（畳んで → モーダル）                   -->
-                <!-- ============================================== -->
                 <section class="sec">
-                    <h2>ART &amp; TEXTS</h2>
+                    <h2>イラスト・Live2D</h2>
                     <div class="sec-body">
-                        <p class="sec-intro">ゲーム以外の創作。サムネ・タイトルをクリックすると拡大・あらすじが開きます。</p>
+                        <p class="sec-intro">ゲームやソフトウェア以外の制作です。各画像をクリックすると原寸で開きます。</p>
 
                         <div class="creative-row">
                             <div class="cr-label">イラスト<span class="cr-count">15</span></div>
-                            <div>
-                                <div class="thumb-grid">
-                                    <button type="button" data-img="images/art1.webp" data-cap="イラスト 1"><img loading="lazy" decoding="async" src="images/art1.webp" alt="猫の日に描いたイラスト。猫耳と猫のマスクを着けた女の子が、水色の背景の前で青いフリルの衣装でポーズをとっている" width="768" height="1024"></button>
-                                    <button type="button" data-img="images/art2.webp" data-cap="イラスト 2"><img loading="lazy" decoding="async" src="images/art2.webp" alt="白い長髪でオレンジの瞳の女の子のバストアップ。人差し指を口元に添えて笑っている。背景は水玉模様" width="768" height="768"></button>
-                                    <button type="button" data-img="images/art3.webp" data-cap="イラスト 3"><img loading="lazy" decoding="async" src="images/art3.webp" alt="金髪の女の子の全身。白いブラウスに水色のチェックのスカート、腰に茶色のカーディガンを巻いている" width="1013" height="1600"></button>
-                                    <button type="button" data-img="images/art4.webp" data-cap="イラスト 4"><img loading="lazy" decoding="async" src="images/art4.webp" alt="「姫海棠はたて」を二枚ぶん描いたイラスト。左は携帯を構え、右は両手でピースをして笑っている" width="1600" height="1131"></button>
-                                    <button type="button" data-img="images/art5.webp" data-cap="イラスト 5"><img loading="lazy" decoding="async" src="images/art5.webp" alt="クリスマスのイラスト。サンタ帽をかぶった獣耳のキャラクターが黒いセーターで立ち、窓辺にツリーとプレゼントが見える" width="1131" height="1600"></button>
-                                    <button type="button" data-img="images/art6.webp" data-cap="イラスト 6"><img loading="lazy" decoding="async" src="images/art6.webp" alt="「うどんげ」。兎耳で薄紫の長髪のキャラクターが、灰色のジャケットと白いスカートで口元に手を当てて立っている" width="1200" height="1600"></button>
-                                    <button type="button" data-img="images/art7.webp" data-cap="イラスト 7"><img loading="lazy" decoding="async" src="images/art7.webp" alt="「ヘカーティア・ラピスラズリ」。赤い髪の女の子の顔のアップ。星の髪飾りと金の鎖、背景は赤" width="1280" height="1280"></button>
-                                    <button type="button" data-img="images/art8.webp" data-cap="イラスト 8"><img loading="lazy" decoding="async" src="images/art8.webp" alt="水色の髪に大きなリボンのキャラクターが、氷の結晶に囲まれて横たわっている。下端に使った色のパレットを添えた" width="1600" height="1200"></button>
-                                    <button type="button" data-img="images/art9.webp" data-cap="イラスト 9"><img loading="lazy" decoding="async" src="images/art9.webp" alt="企画開発部の部員募集ポスター。黒髪の女の子が両手を顔の横に添え、まわりにゲームパッドやうさぎのアイコンが散っている" width="1131" height="1600"></button>
-                                    <button type="button" data-img="images/art10.webp" data-cap="イラスト 10"><img loading="lazy" decoding="async" src="images/art10.webp" alt="部員募集ポスターの別案。ゲーム機とノートPCを敷き詰めた背景の上に、セーラー服の女の子が手を広げて浮かんでいる" width="1131" height="1600"></button>
-                                    <button type="button" data-img="images/art11.webp" data-cap="イラスト 11"><img loading="lazy" decoding="async" src="images/art11.webp" alt="兎耳で紫の長髪のキャラクターが、片目をつぶって笑っている。背景に満月と竹" width="1131" height="1600"></button>
-                                    <button type="button" data-img="images/art12.webp" data-cap="イラスト 12"><img loading="lazy" decoding="async" src="images/art12.webp" alt="白い帽子と赤い服、宝石の付いた翼のキャラクターが、熊のぬいぐるみを提げてむっとした顔で立っている" width="1200" height="1600"></button>
-                                    <button type="button" data-img="images/art13.webp" data-cap="イラスト 13"><img loading="lazy" decoding="async" src="images/art13.webp" alt="黒髪でセーラー服の女の子が、携帯を見ながら「おはよ〜」と言っているバストアップ" width="1200" height="1600"></button>
-                                    <button type="button" data-img="images/art14.webp" data-cap="イラスト 14"><img loading="lazy" decoding="async" src="images/art14.webp" alt="ドット絵。宝石の翼を持つ金髪のキャラクターが、床に座って膝を抱えている" width="640" height="400"></button>
-                                    <button type="button" data-img="images/art15.webp" data-cap="イラスト 15"><img loading="lazy" decoding="async" src="images/art15.webp" alt="ドット絵。青空を背景に、金髪の女の子が風に髪をなびかせて笑っている。あおりの構図" width="768" height="1024"></button>
-                                </div>
+                            <div class="thumb-grid">
+                                <a href="images/art1.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art1.webp" alt="イラスト 1" width="768" height="1024"></a>
+                                <a href="images/art2.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art2.webp" alt="イラスト 2" width="768" height="768"></a>
+                                <a href="images/art3.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art3.webp" alt="イラスト 3" width="1013" height="1600"></a>
+                                <a href="images/art4.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art4.webp" alt="イラスト 4" width="1600" height="1131"></a>
+                                <a href="images/art5.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art5.webp" alt="イラスト 5" width="1131" height="1600"></a>
+                                <a href="images/art6.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art6.webp" alt="イラスト 6" width="1200" height="1600"></a>
+                                <a href="images/art7.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art7.webp" alt="イラスト 7" width="1280" height="1280"></a>
+                                <a href="images/art8.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art8.webp" alt="イラスト 8" width="1600" height="1200"></a>
+                                <a href="images/art9.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art9.webp" alt="イラスト 9" width="1131" height="1600"></a>
+                                <a href="images/art10.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art10.webp" alt="イラスト 10" width="1131" height="1600"></a>
+                                <a href="images/art11.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art11.webp" alt="イラスト 11" width="1131" height="1600"></a>
+                                <a href="images/art12.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art12.webp" alt="イラスト 12" width="1200" height="1600"></a>
+                                <a href="images/art13.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art13.webp" alt="イラスト 13" width="1200" height="1600"></a>
+                                <a href="images/art14.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art14.webp" alt="イラスト 14" width="640" height="400"></a>
+                                <a href="images/art15.webp" target="_blank"><img loading="lazy" decoding="async" src="images/art15.webp" alt="イラスト 15" width="768" height="1024"></a>
                             </div>
                         </div>
 
                         <div class="creative-row">
                             <div class="cr-label">Live2D<span class="cr-count">1</span></div>
                             <div>
-                                <ul class="mini-grid">
-                                    <li class="mini">
-                                        <button type="button" class="mini-open" data-modal="m-live2d">
-                                            <img class="mini-thumb" src="images/myModel.webp" alt="" width="56" height="42" loading="lazy" decoding="async">
-                                            <span class="mini-text"><span class="mini-title">自作 Live2D モデル</span><span class="mini-line">自創作キャラのモデル</span></span>
-                                            <span class="mini-plus">+</span>
-                                        </button>
-                                        <template id="m-live2d">
-                                            <h2>自作 Live2D モデル</h2>
-                                            <p class="m-meta">個人制作 · Live2D Cubism</p>
-                                            <img class="media" src="images/myModel.webp" alt="猫耳の付いた桃色の髪のキャラクターの全身立ち絵。紺のブルゾンの下に「洗いたてのシャツ」と書かれた白いTシャツ" width="1214" height="1600">
-                                            <div class="m-block"><p>Live2D への興味から作った自創作キャラのモデル。横や斜めを向いたときのパラメータ設計の難しさを体感し、SDK の保守という現在の実務（株式会社 Live2D で Cubism SDK for Native (C++) まわりのアルバイト）に興味が繋がった制作です。</p></div>
-                                        </template>
-                                    </li>
-                                </ul>
+                                <h3>自作 Live2D モデル</h3>
+                                <p class="m-meta">個人制作 · Live2D Cubism</p>
+                                <a href="images/myModel.webp" target="_blank"><img class="media" loading="lazy" decoding="async" src="images/myModel.webp" alt="自作 Live2D モデル" width="1214" height="1600"></a>
+                                <p>Live2Dへの興味から制作した自創作キャラクターのモデルです。この制作を通してパラメータ設計の難しさを体感し、現在は株式会社Live2DでCubism SDK for Native（C++）周辺のアルバイトをしています。</p>
                             </div>
                         </div>
+                    </div>
+                </section>
 
-                        <div class="creative-row">
-                            <div class="cr-label">小説・TRPG<span class="cr-count">7</span></div>
-                            <div>
-                                <ul class="mini-grid">
-                                    <li class="mini">
-                                        <button type="button" class="mini-open" data-modal="m-novel1">
-                                            <span class="mini-thumb ph">TXT</span>
-                                            <span class="mini-text"><span class="mini-title">泡のゆりかご、風のうた</span><span class="mini-line">SF短編</span></span>
-                                            <span class="mini-plus">+</span>
-                                        </button>
-                                        <template id="m-novel1">
-                                            <h2>泡のゆりかご、風のうた</h2>
-                                            <p class="m-meta">SF短編</p>
-                                            <div class="m-block"><p>『秘密』『水槽』『鯨』の三つのお題で書いた作品。</p></div>
-                                            <div class="link-row">
-                                                <a href="downloads/リハビリ作品 『鯨・秘密・水槽』.txt" target="_blank">本文を読む →</a>
-                                            </div>
-                                        </template>
-                                    </li>
+                <section class="sec">
+                    <h2>小説・TRPG</h2>
+                    <div class="sec-body">
+                        <p class="sec-intro">短編小説と、オリジナルのTRPG作品です。</p>
 
-                                    <li class="mini">
-                                        <button type="button" class="mini-open" data-modal="m-novel2">
-                                            <span class="mini-thumb ph">TXT</span>
-                                            <span class="mini-text"><span class="mini-title">君と渚と永遠と</span><span class="mini-line">どんでん返しミステリー</span></span>
-                                            <span class="mini-plus">+</span>
-                                        </button>
-                                        <template id="m-novel2">
-                                            <h2>君と渚と永遠と</h2>
-                                            <p class="m-meta">最後の一文ですべてが変わる短編ミステリー</p>
-                                            <div class="m-block"><p>どんでん返しもの。よくあるラブストーリーと思いきや……。</p></div>
-                                            <div class="link-row">
-                                                <a href="downloads/君と渚と永遠と.txt" target="_blank">本文を読む →</a>
-                                            </div>
-                                        </template>
-                                    </li>
-
-                                    <li class="mini">
-                                        <button type="button" class="mini-open" data-modal="m-novel3">
-                                            <span class="mini-thumb ph">TXT</span>
-                                            <span class="mini-text"><span class="mini-title">最近、猫を飼い始めた。</span><span class="mini-line">短編</span></span>
-                                            <span class="mini-plus">+</span>
-                                        </button>
-                                        <template id="m-novel3">
-                                            <h2>最近、猫を飼い始めた。</h2>
-                                            <p class="m-meta">短編</p>
-                                            <div class="m-block"><p>「最近、猫を飼い始めた。」で始まり「そういえば、人間だった。」で終わる作品を書くというお題で作った物語。</p></div>
-                                            <div class="link-row">
-                                                <a href="downloads/最近、猫を飼い始めた。.txt" target="_blank">本文を読む →</a>
-                                            </div>
-                                        </template>
-                                    </li>
-
-                                    <li class="mini">
-                                        <button type="button" class="mini-open" data-modal="m-novel4">
-                                            <span class="mini-thumb ph">TXT</span>
-                                            <span class="mini-text"><span class="mini-title">犬の惑星</span><span class="mini-line">短編SF</span></span>
-                                            <span class="mini-plus">+</span>
-                                        </button>
-                                        <template id="m-novel4">
-                                            <h2>犬の惑星</h2>
-                                            <p class="m-meta">短編SF</p>
-                                            <div class="m-block"><p>星新一っぽい作品が書きたかった。</p></div>
-                                            <div class="link-row">
-                                                <a href="downloads/犬の惑星.txt" target="_blank">本文を読む →</a>
-                                            </div>
-                                        </template>
-                                    </li>
-
-                                    <li class="mini">
-                                        <button type="button" class="mini-open" data-modal="m-novel5">
-                                            <span class="mini-thumb ph">TXT</span>
-                                            <span class="mini-text"><span class="mini-title">それは綺麗だった</span><span class="mini-line">短編</span></span>
-                                            <span class="mini-plus">+</span>
-                                        </button>
-                                        <template id="m-novel5">
-                                            <h2>それは綺麗だった</h2>
-                                            <p class="m-meta">短編</p>
-                                            <div class="m-block"><p>「それは綺麗だった。」で始まり「明日なんか来なければいいのに。」で終わる作品を書くというお題で作った物語。</p></div>
-                                            <div class="link-row">
-                                                <a href="downloads/それは綺麗だった.txt" target="_blank">本文を読む →</a>
-                                            </div>
-                                        </template>
-                                    </li>
-
-                                    <li class="mini">
-                                        <button type="button" class="mini-open" data-modal="m-novel6">
-                                            <span class="mini-thumb ph">TXT</span>
-                                            <span class="mini-text"><span class="mini-title">一世一代のあみだくじ</span><span class="mini-line">どんでん返しミステリー</span></span>
-                                            <span class="mini-plus">+</span>
-                                        </button>
-                                        <template id="m-novel6">
-                                            <h2>一世一代のあみだくじ</h2>
-                                            <p class="m-meta">最後の一文ですべてが変わる短編ミステリー</p>
-                                            <div class="m-block"><p>どんでん返しもののお題で作った作品。</p></div>
-                                            <div class="link-row">
-                                                <a href="downloads/一世一代のあみだくじ.txt" target="_blank">本文を読む →</a>
-                                            </div>
-                                        </template>
-                                    </li>
-
-                                    <li class="mini">
-                                        <button type="button" class="mini-open" data-modal="m-trpg">
-                                            <span class="mini-thumb ph">ZIP</span>
-                                            <span class="mini-text"><span class="mini-title">私がバナナを食べた日</span><span class="mini-line">TRPG（マーダーミステリー）</span></span>
-                                            <span class="mini-plus">+</span>
-                                        </button>
-                                        <template id="m-trpg">
-                                            <h2>私がバナナを食べた日</h2>
-                                            <p class="m-meta">オリジナルの TRPG（マーダーミステリー）</p>
-                                            <div class="m-block"><p>プレイ人数 5 人（GM 1 人、プレイヤー 4 人）。プレイ時間 4 時間程度。病院に入院した四人の患者が各々の目標を持って、それを隠しながらクリアを目指す TRPG。</p></div>
-                                            <div class="link-row">
-                                                <a href="downloads/私がバナナを食べた日.zip" target="_blank">ダウンロード →</a>
-                                            </div>
-                                        </template>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        <ul class="link-list">
+                            <li>
+                                <a href="downloads/リハビリ作品 『鯨・秘密・水槽』.txt" target="_blank">泡のゆりかご、風のうた →</a>
+                                <span class="ll-note">「秘密」「水槽」「鯨」の三つのお題で書いたSF短編</span>
+                            </li>
+                            <li>
+                                <a href="downloads/君と渚と永遠と.txt" target="_blank">君と渚と永遠と →</a>
+                                <span class="ll-note">最後の一文ですべてが変わる短編ミステリー</span>
+                            </li>
+                            <li>
+                                <a href="downloads/最近、猫を飼い始めた。.txt" target="_blank">最近、猫を飼い始めた。 →</a>
+                                <span class="ll-note">指定された書き出しと結びから制作した短編</span>
+                            </li>
+                            <li>
+                                <a href="downloads/犬の惑星.txt" target="_blank">犬の惑星 →</a>
+                                <span class="ll-note">短編SF</span>
+                            </li>
+                            <li>
+                                <a href="downloads/それは綺麗だった.txt" target="_blank">それは綺麗だった →</a>
+                                <span class="ll-note">指定された書き出しと結びから制作した短編</span>
+                            </li>
+                            <li>
+                                <a href="downloads/一世一代のあみだくじ.txt" target="_blank">一世一代のあみだくじ →</a>
+                                <span class="ll-note">どんでん返しを題材にした短編ミステリー</span>
+                            </li>
+                            <li>
+                                <a href="downloads/私がバナナを食べた日.zip" target="_blank">私がバナナを食べた日 →</a>
+                                <span class="ll-note">GM1人、プレイヤー4人、プレイ時間4時間程度のTRPG（マーダーミステリー）</span>
+                            </li>
+                        </ul>
                     </div>
                 </section>
             </div>
@@ -661,14 +441,6 @@
             <p>&copy; 川村優弥 / Shiggy</p>
             <p>fujimiya0110☆gmail.com（☆→@） · <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">github</a></p>
         </footer>
-    </div>
-
-    <!-- 作品詳細モーダル -->
-    <div class="modal-overlay" id="work-modal">
-        <div class="modal-panel" role="dialog" aria-modal="true" aria-label="作品の詳細">
-            <button type="button" class="modal-close" aria-label="閉じる">×</button>
-            <div class="modal-content"></div>
-        </div>
     </div>
 
     <script src="assets/js/back-to-top.js"></script>

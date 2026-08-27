@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fcfcfb">
     <title>オスカーのガーデニング | Shiggy</title>
-    <meta name="description" content="オスカーがまいたリズムを、次の小節で水やりとして返す。呼びかけと応答のタイミングゲーム。自作エンジン MitiruEngine の上で、ゲームの全状態を 1 個の構造体に閉じ込めて作りました。">
+    <meta name="description" content="オスカーが示すリズムを、次の小節で水やりとして返すタイミングゲーム。自作ゲームエンジン MitiruEngine 上で開発しています。">
 
     <style>
         html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
@@ -17,7 +17,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shiggy's Portfolio">
     <meta property="og:title" content="オスカーのガーデニング | Shiggy">
-    <meta property="og:description" content="オスカーがまいたリズムを、次の小節で水やりとして返す。呼びかけと応答のタイミングゲーム。自作エンジン MitiruEngine 製。">
+    <meta property="og:description" content="オスカーが示すリズムを、次の小節で水やりとして返すタイミングゲーム。自作ゲームエンジン MitiruEngine 製。">
     <meta property="og:url" content="https://mogmog-0110.github.io/oscar-gardening.html">
     <link rel="canonical" href="https://mogmog-0110.github.io/oscar-gardening.html">
     <meta property="og:image" content="https://mogmog-0110.github.io/images/oscar/title.webp">
@@ -25,7 +25,7 @@
     <meta property="og:image:height" content="720">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="オスカーのガーデニング | Shiggy">
-    <meta name="twitter:description" content="オスカーがまいたリズムを、次の小節で水やりとして返す。呼びかけと応答のタイミングゲーム。自作エンジン MitiruEngine 製。">
+    <meta name="twitter:description" content="オスカーが示すリズムを、次の小節で水やりとして返すタイミングゲーム。自作ゲームエンジン MitiruEngine 製。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/oscar/title.webp">
 
     <!-- Fonts -->
@@ -58,21 +58,28 @@
                 <p class="file-line">/ works / oscar-gardening</p>
                 <h1>オスカーのガーデニング</h1>
                 <p class="lede">
-                    まいたリズムが、そのまま次の小節で返ってくる。オスカーが 1 小節ぶんのリズムで種をまき、次の小節で同じ位置へ流れてきた芽に、プレイヤーが水をやります。まく音と水やりの音は別の小節に入るので互いに濁らず、まいたリズムが呼びかけとして聴こえ、それを 1 小節後に返す形になります。自作の <a href="engine.html" class="soft-link">MitiruEngine</a> の上で、ゲームの全状態を 1 個の構造体に閉じ込めて作りました。
+                    オスカーが種をまくリズムを聴き、次の小節で同じ位置へ届く芽に水をやるタイミングゲームです。種まきと水やりの音を別の小節に分け、呼びかけと応答の形にしました。自作の <a href="engine.html" class="soft-link">MitiruEngine</a> 上で、ゲームの全状態を 1 個の構造体にまとめて開発しています。
                 </p>
                 <div class="meta-line">
-                    <span>In Development</span><span>2026年</span><span>個人開発</span><span>MitiruEngine</span><span>C++20</span><span>DirectX 12</span><span>HTML / CSS HUD</span>
+                    <span>開発中</span>
+                    <span>2026年</span>
+                    <span>個人開発</span>
+                    <span>MitiruEngine</span>
+                    <span>C++20</span>
+                    <span>DirectX 12</span>
+                    <span>HTML / CSS HUD</span>
                 </div>
             </section>
 
             <div class="sections">
                 <section class="sec">
-                    <h2>プレイの様子</h2>
+                    <h2>プレイ動画</h2>
                     <div class="sec-body">
-                        <p>実際に遊んでいるところの録画です。オスカーの説明から始まって、種をまき、流れてくる芽にじょうろのリズムを合わせます。</p>
+                        <p>オスカーの説明、種まき、流れてくる芽に合わせた水やりまでを収録しています。</p>
                         <video controls preload="none" playsinline
                                poster="images/oscar/play.webp"
-                               width="1280" height="720" style="width:100%;height:auto;border-radius:8px;">
+                               width="1280" height="720"
+                               style="width:100%;height:auto;border-radius:8px;">
                             <source src="videos/oscar_demo.mp4" type="video/mp4">
                             お使いのブラウザは動画再生に対応していません。<a href="videos/oscar_demo.mp4">ダウンロード</a>
                         </video>
@@ -80,97 +87,130 @@
                 </section>
 
                 <section class="sec">
-                    <h2>SCREENS</h2>
+                    <h2>スクリーンショット</h2>
                     <div class="sec-body">
                         <div class="plate-grid">
                             <a href="images/oscar/title.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/oscar/title.webp" alt="庭の柵に吊るされた木の立て札に「オスカーのガーデニング」の題字が出ているタイトル演出" width="1280" height="720">
+                                <img loading="lazy" decoding="async" src="images/oscar/title.webp" alt="オスカーのガーデニングのスクリーンショット 1" width="1280" height="720">
                             </a>
                             <a href="images/oscar/water.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/oscar/water.webp" alt="じょうろが芽に水をかけているところ。左では白い花が 2 つ咲きそろい、右にはこれから水をやる芽が並んでいる。右上でオスカーが親指を立てている" width="1280" height="720">
+                                <img loading="lazy" decoding="async" src="images/oscar/water.webp" alt="オスカーのガーデニングのスクリーンショット 2" width="1280" height="720">
                             </a>
                             <a href="images/oscar/play.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/oscar/play.webp" alt="右端の種袋から種がまかれ、芽が判定線のじょうろへ向かって流れてくる本編の画面" width="1280" height="720">
+                                <img loading="lazy" decoding="async" src="images/oscar/play.webp" alt="オスカーのガーデニングのスクリーンショット 3" width="1280" height="720">
                             </a>
                             <a href="images/oscar/practice.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/oscar/practice.webp" alt="練習の場面。オスカーが「おしい！ もういちど。」と吹き出しで返し、畝の芽が消えてやり直しになっている" width="1280" height="720">
+                                <img loading="lazy" decoding="async" src="images/oscar/practice.webp" alt="オスカーのガーデニングのスクリーンショット 4" width="1280" height="720">
                             </a>
                             <a href="images/oscar/finale.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/oscar/finale.webp" alt="日が傾いて空が灰色がかった終盤。咲かなかった芽が畝に残り、Miss の文字が浮かんでいる" width="1280" height="720">
+                                <img loading="lazy" decoding="async" src="images/oscar/finale.webp" alt="オスカーのガーデニングのスクリーンショット 5" width="1280" height="720">
                             </a>
                             <a href="images/oscar/result.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/oscar/result.webp" alt="日暮れの庭で「もう一回、やる？」と聞かれ、右上に隠しステージの入り方が出ている結果の場面" width="1280" height="720">
+                                <img loading="lazy" decoding="async" src="images/oscar/result.webp" alt="オスカーのガーデニングのスクリーンショット 6" width="1280" height="720">
                             </a>
                         </div>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>どんなゲームか</h2>
+                    <h2>ゲームの内容</h2>
                     <div class="sec-body">
                         <p>
-                            タイトル画面はありません。暗い画面でのオスカーとの会話から始まって、音量を合わせて、庭が降りてきて、そのまま本編へ入ります。10 分に満たない短いゲームなので、遊ぶ前に選ぶものを置きたくありませんでした。
+                            暗い画面でのオスカーとの会話から始まり、音量調整を経て、庭が降りてきたまま本編へ移ります。プレイ時間が 10 分に満たないため、開始前の選択画面は置いていません。
                         </p>
                         <ul>
-                            <li><strong>呼びかけと応答</strong>。オスカーがまく小節と、プレイヤーが水をやる小節が交互に来ます。種は必ず 1 小節（4 拍）かけて判定線へ届くので、まいた位置と叩く拍が 1 対 1 で対応します</li>
-                            <li><strong>拍の割り方を変える</strong>。拍を数えるだけの作業にならないよう、食う・連打・溜め・長押し・2 レーンを小節ごとに混ぜています</li>
-                            <li><strong>手前と奥の畝</strong>。難しさの主役は 2 レーン。マウス＝手前 / キー＝奥の分担にしてあるので、同じフレームに来ても両方さばけます</li>
-                            <li><strong>一日が進む</strong>。空の色が本編の進みに沿って朝から日暮れへ動きます。速くなる終盤ほど日が沈む</li>
-                            <li><strong>結果は点数で言わない</strong>。「何本咲かせられたか」（＝咲かなかった本数）だけで 4 段に分かれ、結果は会話で伝えます</li>
+                            <li><strong>呼びかけと応答：</strong>オスカーが種をまく小節と、プレイヤーが水をやる小節が交互に来ます。種は 1 小節、4 拍で判定線へ届き、種をまいた位置と水をやる拍が 1 対 1 で対応します。</li>
+                            <li><strong>拍の変化：</strong>食う、連打、溜め、長押し、2 レーンを小節ごとに組み合わせています。</li>
+                            <li><strong>2 レーン：</strong>マウスで手前、キーで奥を操作します。同じフレームにノーツが来ても、両方を処理できます。</li>
+                            <li><strong>時間の進行：</strong>本編の進行に合わせて空の色が朝から日暮れへ変わり、速度が上がる終盤ほど日が沈みます。</li>
+                            <li><strong>結果表示：</strong>咲かなかった本数を基準に 4 段階へ分け、結果を会話で伝えます。</li>
                         </ul>
                         <p>
-                            隠しステージもあります。入り口は音量を合わせる画面でオスカーの顔を 10 回つつくこと。つつくたび合図音の音程が上がるだけで、回数はどこにも出しません。表が 26 ターン 131 ノーツ／約 1 分 33 秒、裏が 29 ターン 220 ノーツ。0.25 刻みの連打と長い走りは全部裏の主役にしてあります。
+                            通常ステージは 26 ターン、131 ノーツ、約 1 分 33 秒です。隠しステージは 29 ターン、220 ノーツで、0.25 刻みの連打と長い走りを中心にしています。
+                        </p>
+                        <p>
+                            隠しステージへ入る操作は、音量調整画面でオスカーの顔を 10 回つつくことです。回数は表示せず、つつくたびに合図音の音程が上がります。
                         </p>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>作るときに考えていたこと</h2>
+                    <h2>設計したこと</h2>
                     <div class="sec-body">
+                        <p class="sec-intro">音を基準にした判定</p>
                         <p>
-                            最初に決めたのは「<strong>音で合わせる遊びを、画面で合わせる遊びに変質させない</strong>」ということでした。リズムゲームは、判定の中心をプレイヤーの叩き方の平均へ寄せていく作りにすることがあります。ただそれをやると、画面を見て叩くほど基準が音から見た目へ移っていく。なのでこのゲームの判定補正は音声出力のレイテンシだけで決めています。プレイヤーの叩きグセは計測はしていますが、判定には一切使いません。
+                            判定補正は音声出力のレイテンシだけで決めています。プレイヤーが叩くタイミングの傾向は計測していますが、判定には使いません。画面への合わせ方によって、判定の基準が音から表示へ移ることを避けるためです。
+                        </p>
+
+                        <p class="sec-intro">速度の上げ方</p>
+                        <p>
+                            速度は 1.0 から 1.5 まで段階的に上がり、最後の 1.5 が最も速い構成です。以前は速度を上げたあとに戻していましたが、再加速のたびに違和感が出たため変更しました。高速帯は鏡写しの変種で構成し、テンポ感が崩れやすい、まばらな裏拍だけのパターンは配置していません。
+                        </p>
+
+                        <p class="sec-intro">効果音</p>
+                        <p>
+                            効果音は「散って落ちる」「ばしゃーっと広がる」といった場面の動きに合わせて作り直しました。長押し中は 1 つの音を継続して鳴らし、短い音をつないだ際の継ぎ目や、離した瞬間の急な切れを防いでいます。
                         </p>
                         <p>
-                            速さの上げ方も途中で考えを変えました。最初は速くしたり戻したりしていたんですが、戻すと次にまた速くなるたび違和感が出る。今は1.0 から 1.5 への一本坂で、締めの 1.5 が一番の山です。高速帯は鏡写しの変種で回して、まばらな裏拍だけのパターンは速い段に置かないようにしています。そこに置くとテンポ感が狂うからです。
+                            種まきと水やりでは別の音を使います。空振りではスコアを変えず、小さな水音だけを返します。しおれる音は鳴らしません。何も失っていない場面で音を出すと、損失が起きたように伝わるためです。
+                        </p>
+
+                        <p class="sec-intro">譜面と台本の編集</p>
+                        <p>
+                            譜面と台本は <code>assets/stage.txt</code> にまとめ、プログラムを変更せず編集できるようにしています。実行中に書き換えて R キーを押すと、再ビルドせず反映されます。
                         </p>
                         <p>
-                            音のほうもだいぶ直しました。効果音は「散って落ちる」「ばしゃーっと広い」というふうに、場面に忠実な音へ作り直しています。長押しの間は 1 つの音を鳴らしっぱなしにする（短い音を継ぎ足すと継ぎ目が聴こえて、離した瞬間にぶつっと切れる）。まく側と水やり側で鳴らす音を変える（同じ音だと小節を分けた意味がなくなる）。空振りにはスコアを動かさず水の音だけ小さく返して、しおれる音は鳴らさない。しおれたものは何も無いので、鳴らすと「何かを失った」と誤って伝わってしまう。
-                        </p>
-                        <p>
-                            譜面と台本は <code>assets/stage.txt</code> に全部出してあって、プログラムを触らずに書けます。走らせたまま書き換えて R キーを押すと、ビルドせずに反映されます。読めなかったときは既定値へ落とさずに理由を画面へ出す。黙って落とすと「書き換えたのに変わらない」になって、原因が分からなくなるからです。
+                            ファイルを読み込めなかった場合は既定値へ切り替えず、理由を画面に表示します。編集内容が反映されない原因を確認できるようにするためです。
                         </p>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>中でやっていること</h2>
+                    <h2>実装</h2>
                     <div class="sec-body">
-                        <p class="sec-intro">状態を 1 個の構造体に閉じ込める</p>
+                        <p class="sec-intro">全状態を 1 個の構造体にまとめる</p>
                         <p>
-                            ゲームの全状態は <code>OscarRhythm</code> という 1 個の構造体に入っていて、ポインタも <code>std::vector</code> も持ちません（丸ごとコピーできる、いわゆる flat POD です）。コンパイル時に <code>static_assert</code> で縛ってあります。テクスチャは内部に <code>std::vector</code> を持っていてこの縛りを破るので、状態の外へ追い出しました。
+                            ゲームの全状態は <code>OscarRhythm</code> という 1 個の構造体に入っています。ポインタと <code>std::vector</code> を含まず、構造体全体をコピーできる flat POD とし、コンパイル時に <code>static_assert</code> で制約を確認しています。内部に <code>std::vector</code> を持つテクスチャは、この構造体の外に置きました。
                         </p>
                         <p>
-                            この縛りひとつで、<a href="engine.html" class="soft-link">エンジン</a>側の機能がまとめて効くようになります。毎フレームの状態を丸ごと記録できるので巻き戻しができ、入力を記録すれば録画リプレイでき、構造を申告するだけで走らせたまま全フィールドを外から観測できる。履歴を貯めるコードは 1 行も書いていません。
+                            この構成により、<a href="engine.html" class="soft-link">MitiruEngine</a> の機能をそのまま利用できます。毎フレームの状態を記録して巻き戻す、入力を記録してリプレイする、構造を申告して実行中の全フィールドを外部から観測するといった処理です。このページ固有の履歴保存コードは書いていません。
                         </p>
-                        <p class="sec-intro">音は「先に予約する」</p>
+
+                        <p class="sec-intro">音声クロックへの予約再生</p>
                         <p>
-                            譜面で鳴る時刻が決まっている音（カウントイン、まき、手本の水やり）は、フレームの頭でまとめて鳴らすのではなく、<strong>音声クロックの上へ先に予約</strong>しています。フレーム境界とのズレは最大 16 ms あって、プレイヤーはその音を基準に叩くので、そのまま判定のばらつきになります。予約再生はサンプル単位で発火するので、これが消えます。逆に、プレイヤーの入力へ応える音は鳴る時刻が事前に分からないので、その場で鳴らします。
-                        </p>
-                        <p class="sec-intro">判定と救済</p>
-                        <p>
-                            Perfect は ±45 ms（1 拍の約 9 %）、Good は ±90 ms。ただし句の先頭と、句の<strong>末尾の遅れ押し</strong>だけは窓を 1.25 倍にしてあります。構えの遅れと、終わりぎわのあわて押しを拾うためです。長押しは押し始めと離しの悪いほうを採り、離しの窓だけ 1.6 倍に甘くしました。離しは押しより人の精度が落ちるうえ、まく音の減衰の尾につられて遅れる方向へずれるからです。
-                        </p>
-                        <p class="sec-intro">画面と HUD の分担</p>
-                        <p>
-                            庭・苗・じょうろ・判定演出は C++ が描き、会話・音量パネル・立て札・結果は HTML / CSS が持っています。<strong>C++ 側は文字を 1 文字も描きません</strong>（フォントアトラスの生成ごと切ってあります）。1 拍の画面幅は、長押しの畝の絵の実寸 203 px からそのまま決めました。ここを絵に合わせない限り、絵を伸縮させずに「帯の長さ」と「押す長さ」を一致させられません。
+                            カウントイン、種まき、手本の水やりなど、譜面で時刻が決まる音は音声クロック上へ事前に予約します。フレームの先頭で再生すると最大 16 ms のずれが生じ、音を基準にした入力判定にもばらつきが出るためです。予約した音はサンプル単位で再生されます。
                         </p>
                         <p>
-                            ノーツ数やパターン数の上限を超えたら、実行中ではなく<strong>読み込みの時点で落とします</strong>。実行中に気づく形だと、そのターンまで進めないと壊れているか分からないからです。
+                            プレイヤーの入力に応じる音は、再生時刻を前もって決められないため、その場で再生します。
                         </p>
-                        <p class="sec-intro">同じコードがブラウザでも動く</p>
+
+                        <p class="sec-intro">判定幅と入力の救済</p>
                         <p>
-                            デスクトップ版はゲームを DLL にして、エンジンのホストが読み込んで回します。ブラウザには DLL が無いので、ゲームとエンジンをまとめて 1 つの wasm に静的リンクして Emscripten + WebGL で回しています。<strong>ゲーム側のコードは、自分がブラウザで動いていることを知りません</strong>。ホストから渡ってくる入力も、返す描画依頼も、デスクトップと同じ形だからです。
+                            Perfect は ±45 msで、1 拍の約 9％です。Good は ±90 msです。句の先頭と、句の末尾を遅れて押した場合だけ、判定幅を 1.25 倍にしています。構えの遅れと、終わり際の入力を拾うためです。
                         </p>
+                        <p>
+                            長押しは、押し始めと離した時点のうち、低いほうの判定を採用します。離す判定の幅は 1.6 倍です。離す操作は押す操作より精度が下がり、種まき音の減衰につられて遅れる傾向があるためです。
+                        </p>
+
+                        <p class="sec-intro">C++ と HTML / CSS HUD</p>
+                        <p>
+                            庭、苗、じょうろ、判定演出は C++ で描画し、会話、音量パネル、立て札、結果表示は HTML と CSS で構成しています。C++ 側では文字を描画せず、フォントアトラスの生成も無効にしています。
+                        </p>
+                        <p>
+                            1 拍分の画面幅は、長押しに使う畝の画像の実寸 203 px に合わせました。画像を伸縮せず、表示される帯の長さと入力時間を一致させるためです。
+                        </p>
+                        <p>
+                            ノーツ数やパターン数が上限を超えた場合は、ステージの実行中ではなく読み込み時に停止します。該当ターンまで進めなくても、データの問題を確認できます。
+                        </p>
+
+                        <p class="sec-intro">デスクトップ版とブラウザ版で同じゲームコードを使う</p>
+                        <p>
+                            デスクトップ版ではゲームを DLL にして、MitiruEngine のホストから読み込みます。ブラウザ版ではゲームとゲームエンジンを 1 個の wasm に静的リンクし、Emscripten と WebGL で動かします。
+                        </p>
+                        <p>
+                            ゲーム側のコードは実行環境を判定しません。ホストから受け取る入力と、ホストへ返す描画依頼がデスクトップ版とブラウザ版で同じ形式になっているためです。
+                        </p>
+
                         <div class="link-row">
                             <a href="engine.html">MitiruEngine について →</a>
                             <a href="portfolio.html">← Works に戻る</a>

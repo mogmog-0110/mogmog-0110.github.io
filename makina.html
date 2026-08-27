@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fcfcfb">
     <title>Makina | Shiggy</title>
-    <meta name="description" content="CSG ソリッドモデラー Makina。距離場を直接レイマーチする DX12 レンダラを持ち、摩耗や汚れをテクスチャではなく形そのものから計算する。Java 製の教育ツール Grasp3D の C++ 移植から始まり、同じ形を 3 通りの独立実装で描いて突き合わせている。">
+    <meta name="description" content="形を組み合わせて立体を作り、汚れや摩耗を形そのものから計算する CSG ソリッドモデラー。Java 製の教育ツール Grasp3D の C++ 移植から始まり、3 通りの独立した実装で正しさを検証している。">
 
     <style>
         html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
@@ -17,7 +17,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shiggy's Portfolio">
     <meta property="og:title" content="Makina | Shiggy">
-    <meta property="og:description" content="形から摩耗を計算する CSG ソリッドモデラー。Grasp3D の移植から始まり、3 通りの独立実装で正しさを突き合わせている。">
+    <meta property="og:description" content="形から汚れや摩耗を計算する CSG ソリッドモデラー。Grasp3D の移植から始まり、3 通りの独立した実装で正しさを検証している。">
     <meta property="og:url" content="https://mogmog-0110.github.io/makina.html">
     <link rel="canonical" href="https://mogmog-0110.github.io/makina.html">
     <meta property="og:image" content="https://mogmog-0110.github.io/images/makina/flange.webp">
@@ -25,7 +25,7 @@
     <meta property="og:image:height" content="720">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Makina | Shiggy">
-    <meta name="twitter:description" content="形から摩耗を計算する CSG ソリッドモデラー。Grasp3D の移植から始まり、3 通りの独立実装で正しさを突き合わせている。">
+    <meta name="twitter:description" content="形から汚れや摩耗を計算する CSG ソリッドモデラー。Grasp3D の移植から始まり、3 通りの独立した実装で正しさを検証している。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/makina/flange.webp">
 
     <!-- Fonts -->
@@ -53,127 +53,156 @@
             </div>
         </header>
 
-                        <main id="main">
-                    <section class="page-head">
-                        <p class="file-line">/ works / makina</p>
-                        <h1>Makina</h1>
-                        <p class="lede">
-                            形を組み合わせて立体を作るモデラーです。球や円柱を足したり削ったりして形を決めるところは、よくある 3D ソフトと変わりません。違うのは、
-                            <strong>汚れや摩耗をあとから絵で描き足さない</strong>ところです。角が擦れて光り、窪みに埃が溜まるのを、形そのものから計算しています。
-                            形を変えると、汚れも同じフレームで付いて回ります。
+        <main id="main">
+            <section class="page-head">
+                <p class="file-line">/ works / makina</p>
+                <h1>Makina</h1>
+                <p class="lede">
+                    球や円柱を足したり削ったりして立体を作る、開発中のモデラーです。
+                    テクスチャを貼る代わりに、角の摩耗や窪みの汚れを形そのものから計算します。
+                    形を変えると、汚れや摩耗も追従します。
+                </p>
+                <div class="meta-line">
+                    <span>開発中</span>
+                    <span>2026年</span>
+                    <span>個人開発</span>
+                    <span>C++20</span>
+                    <span>DirectX 12</span>
+                    <span>SDF レイマーチ</span>
+                </div>
+            </section>
+
+            <div class="sections">
+                <section class="sec">
+                    <h2>できること</h2>
+                    <div class="sec-body">
+                        <p class="sec-intro">立体の作成、アニメーション、形に応じた質感表現</p>
+                        <p>
+                            左のツリー、中央のビューポート、右のプロパティ、下のタイムラインを備えています。
+                            UI は HTML と CSS で描画しています。
                         </p>
-                        <div class="meta-line">
-                            <span>開発中</span><span>2026年</span><span>個人開発</span><span>C++20</span><span>DirectX 12</span><span>SDF レイマーチ</span>
+
+                        <figure class="plate">
+                            <video autoplay loop muted playsinline preload="metadata"
+                                   poster="images/makina/viewport.webp" width="1280" height="720"
+                                   aria-label="Makina の操作画面を記録した動画">
+                                <source src="videos/makina_arm.mp4" type="video/mp4">
+                                <img src="images/makina/viewport.webp" alt="Makina の操作画面" loading="lazy" decoding="async" width="1280" height="720">
+                            </video>
+                            <figcaption>
+                                実際の操作画面。肘に設定したキーをタイムラインで再生しています。
+                            </figcaption>
+                        </figure>
+
+                        <figure class="plate">
+                            <img src="images/makina/flange.webp" alt="Makina のレンダリング結果" loading="lazy" decoding="async" width="1280" height="720">
+                            <figcaption>
+                                テクスチャを使わず、縁の摩耗と窪みの汚れを形から計算しています。
+                            </figcaption>
+                        </figure>
+
+                        <div class="plate-grid">
+                            <a href="images/makina/bottle.webp" target="_blank">
+                                <img src="images/makina/bottle.webp" alt="Makina のレンダリング結果" loading="lazy" decoding="async" width="1280" height="720">
+                            </a>
+                            <a href="images/makina/twist.webp" target="_blank">
+                                <img src="images/makina/twist.webp" alt="Makina のレンダリング結果" loading="lazy" decoding="async" width="1280" height="720">
+                            </a>
+                            <a href="images/makina/penrose.webp" target="_blank">
+                                <img src="images/makina/penrose.webp" alt="Makina のレンダリング結果" loading="lazy" decoding="async" width="1280" height="720">
+                            </a>
                         </div>
-                    </section>
-
-                    <div class="sections">
-
-                        <section class="sec">
-                            <h2>どんな絵が出るか</h2>
-                            <div class="sec-body">
-                                <figure class="plate">
-                                    <video autoplay loop muted playsinline preload="metadata"
-                                           poster="images/makina/viewport.webp" width="1280" height="720"
-                                           aria-label="モデラーの画面。左のツリーに arm の階層、中央に腕のモデル、下にタイムライン。再生すると肘の関節が曲がり、前腕と手が持ち上がっていく。">
-                                        <source src="videos/makina_arm.mp4" type="video/mp4">
-                                        <img src="images/makina/viewport.webp" alt="モデラーの画面。左にツリー、中央にビューポート、右にプロパティ、下にタイムライン。肘を曲げた腕のモデルが表示されている。" loading="lazy" decoding="async" width="1280" height="720">
-                                    </video>
-                                    <figcaption>実際の画面（録画）。肘に打ったキーを再生すると、腕が曲がる。左のツリー、下のタイムラインも同じウィンドウの一部で、HTML と CSS で描いている。</figcaption>
-                                </figure>
-                                <figure class="plate">
-                                    <img src="images/makina/flange.webp" alt="円盤状のフランジ部品。外周の縁とボルト穴のまわりが擦れて明るく光り、平らな面の窪みには汚れが溜まっている。" loading="lazy" decoding="async" width="1280" height="720">
-                                    <figcaption>フランジ。縁が擦れて光り、窪みに汚れが溜まる。テクスチャは 1 枚も貼っていない。</figcaption>
-                                </figure>
-                                <div class="plate-grid">
-                                    <a href="images/makina/bottle.webp" target="_blank">
-                                        <img loading="lazy" decoding="async" src="images/makina/bottle.webp" alt="透明なペットボトル。胴のリブと肩の絞りが距離場だけで表現され、光が内側を通っている。" width="1280" height="720">
-                                    </a>
-                                    <a href="images/makina/twist.webp" target="_blank">
-                                        <img loading="lazy" decoding="async" src="images/makina/twist.webp" alt="ねじった角柱。ねじれた稜線に沿って摩耗の筋が走っている。" width="1280" height="720">
-                                    </a>
-                                    <a href="images/makina/penrose.webp" target="_blank">
-                                        <img loading="lazy" decoding="async" src="images/makina/penrose.webp" alt="立方体を並べて組んだペンローズの三角形。ある角度から見ると輪が閉じて見える。" width="1280" height="720">
-                                    </a>
-                                </div>
-                                <p class="fine">3 枚とも実機のレンダリング結果です。ペットボトルとペンローズの三角形は Grasp3D の課題を移したもの。画面の配置は、ツリー・ビューポート・プロパティ・タイムラインという Grasp3D と同じ並びにしてあります。</p>
-                            </div>
-                        </section>
-
-                        <section class="sec">
-                            <h2>どこから始まったか</h2>
-                            <div class="sec-body">
-                                <p class="sec-intro">授業で使った Java のツールを、直して、移した</p>
-                                <p>
-                                    大学の授業で Grasp3D という 3DCG モデラーを使いました。Java 製の教育用ツールで、球や円柱を組み合わせて形を作り、POV-Ray に渡して絵にします。
-                                    使っているうちに直したいところが出てきたので、まず原典のバグを直し、機能を足した版を作りました。
-                                </p>
-                                <p>
-                                    そのあと、同じものを C++ で書き直そうと考えました。Java 版は形をポリゴンに変換してから描きますが、距離場のまま GPU でレイマーチすれば、
-                                    ポリゴンにしない絵が出せます。丸い面は本当に丸いままで、削った断面もそのまま出ます。書き直しの過程で出てきたのが Makina です。
-                                </p>
-                                <p>
-                                    移植なので、正しく移せたかを確かめる必要がありました。そこで <strong>同じ形を 3 通りの方法で表現して突き合わせています</strong>。
-                                    距離場（表面までの距離）、BSP による内外判定、POV-Ray に渡して出した画素。この 3 つは壊れ方が違うので、同じ間違いをしません。
-                                </p>
-                                <ul>
-                                    <li>距離場と Java 参照実装で、51,137 サンプルが一致</li>
-                                    <li>距離場と BSP の内外判定で、156,932 サンプルが一致</li>
-                                    <li>距離場と POV-Ray の絵で、シルエットの一致度が 0.9949 以上</li>
-                                </ul>
-                                <p>
-                                    シルエットを比べているのは、それが形・変換・カメラ・座標系の向きだけで決まるからです。1 つの数字で 4 つをまとめて検査できます。
-                                    座標系の向きを取り違えていれば、一致度はほぼ 0 になります。
-                                </p>
-                            </div>
-                        </section>
-
-                        <section class="sec">
-                            <h2>汚れを形から出す</h2>
-                            <div class="sec-body">
-                                <p class="sec-intro">貼るのではなく、その場で計算する</p>
-                                <p>
-                                    ふつうのゲームや CG では、汚れも摩耗も画像として用意して立体に貼ります。貼るには展開図（UV）が要り、形を変えたら貼り直しになります。
-                                    Makina は距離場を持っているので、その場で計算できます。
-                                </p>
-                                <ul>
-                                    <li>擦れて光る縁。角の尖り具合と、外から見えているかどうかで決まる</li>
-                                    <li>溜まる汚れ。窪んでいて、光が届きにくいところ</li>
-                                    <li>流れ落ちる汚れ。上が開いていて、面が寝ていないところ</li>
-                                    <li>積もる埃。上を向いていて、擦れていないところ</li>
-                                </ul>
-                                <p>
-                                    溝の半径を動かすと、汚れの溜まる場所も一緒に動きます。溝がボルト穴と交われば、その交点に汚れが溜まります。
-                                    貼った画像では、こうはいきません。
-                                </p>
-                            </div>
-                        </section>
-
-                        <section class="sec">
-                            <h2>エンジンと繋がっている</h2>
-                            <div class="sec-body">
-                                <figure class="plate">
-                                    <img src="images/makina/arm_engine.webp" alt="腕のモデルが 3 つの姿勢で並んでいる。肘が伸びた状態、直角に曲がった状態、上に上がった状態。ゲームエンジンの画面内に描かれている。" loading="lazy" decoding="async" width="796" height="260">
-                                    <figcaption>Makina で組んだ腕を、<a href="engine.html">MitiruEngine</a> の中で動かしたところ。肘に 3 つのキーを打ってあり、シェーダは 1 本のまま。</figcaption>
-                                </figure>
-                                <p>
-                                    Makina で作った形は、そのまま自作のゲームエンジンへ渡せます。距離場は絵を出すためにも、ぶつかったかどうかを調べるためにも使えるので、
-                                    描画用と当たり判定用に別々のデータを持つ必要がありません。同じ 1 つの式から両方が出ます。
-                                </p>
-                                <p>
-                                    形を評価する部分（<code>makina-core</code>）は GPU もエンジンも知らない、ヘッダーだけのライブラリにしてあります。
-                                    そのため、ウィンドウもグラフィックスデバイスも用意せずにテストできます。
-                                </p>
-                                <div class="link-row">
-                                    <a href="https://github.com/mogmog-0110/MakinaModeler" target="_blank" rel="noopener">GitHub →</a>
-                                    <a href="engine.html">MitiruEngine について →</a>
-                                    <a href="portfolio.html">← Works に戻る</a>
-                                </div>
-                            </div>
-                        </section>
-
+                        <p class="fine">
+                            3 枚とも実機でのレンダリング結果です。ペットボトルとペンローズの三角形は、Grasp3D の課題を移植したものです。
+                        </p>
                     </div>
-</main>
+                </section>
+
+                <section class="sec">
+                    <h2>開発の経緯</h2>
+                    <div class="sec-body">
+                        <p class="sec-intro">Java 製の教育ツールを修正し、C++ へ移植</p>
+                        <p>
+                            大学の授業で、Java 製の教育用 3DCG モデラー「Grasp3D」を使用しました。
+                            球や円柱を組み合わせて形を作り、POV-Ray に渡して描画するツールです。
+                            はじめに原典のバグを修正し、機能を追加した版を作りました。
+                        </p>
+                        <p>
+                            その後、同じ仕組みを C++ で書き直しました。
+                            Java 版のように形をポリゴンへ変換せず、距離場のまま GPU でレイマーチする構成です。
+                            この移植から Makina が生まれました。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>正しさの検証</h2>
+                    <div class="sec-body">
+                        <p class="sec-intro">同じ形を、独立した 3 通りの方法で比較</p>
+                        <p>
+                            移植が正しいことを確かめるため、距離場、BSP、POV-Ray という壊れ方の異なる実装を突き合わせています。
+                        </p>
+                        <ul>
+                            <li>距離場と Java 参照実装：51,137 サンプルが一致</li>
+                            <li>距離場と BSP の内外判定：156,932 サンプルが一致</li>
+                            <li>距離場と POV-Ray の画像：シルエットの一致度が 0.9949 以上</li>
+                        </ul>
+                        <p>
+                            シルエットの比較では、形、変換、カメラ、座標系の向きをまとめて検査できます。
+                            座標系の向きが異なる場合、一致度はほぼ 0 になります。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>汚れと摩耗の計算</h2>
+                    <div class="sec-body">
+                        <p class="sec-intro">画像を貼らず、形を評価して求める</p>
+                        <p>
+                            Makina は距離場を使い、次の表現をその場で計算します。
+                        </p>
+                        <ul>
+                            <li>角の尖り具合と外からの見え方で決まる、縁の摩耗</li>
+                            <li>窪みと光の届きにくさで決まる、溜まった汚れ</li>
+                            <li>上の開き方と面の傾きで決まる、流れ落ちる汚れ</li>
+                            <li>面の向きと摩耗の有無で決まる、積もった埃</li>
+                        </ul>
+                        <p>
+                            溝の半径を変えると、汚れの位置も一緒に変わります。
+                            溝とボルト穴が交わる場合は、その交点にも汚れが溜まります。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>自作エンジンとの連携</h2>
+                    <div class="sec-body">
+                        <figure class="plate">
+                            <img src="images/makina/arm_engine.webp" alt="MitiruEngine での動作結果" loading="lazy" decoding="async" width="796" height="260">
+                            <figcaption>
+                                Makina で組んだ腕を、<a href="engine.html">MitiruEngine</a> で動かした結果。
+                                肘に 3 つのキーを設定し、1 本のシェーダで描画しています。
+                            </figcaption>
+                        </figure>
+
+                        <p>
+                            Makina で作った形は、自作ゲームエンジンへ渡せます。
+                            距離場を描画と衝突判定の両方に使うため、それぞれに別の形状データを用意する必要はありません。
+                        </p>
+                        <p>
+                            形を評価する <code>makina-core</code> は、GPU やエンジンに依存しないヘッダーのみのライブラリです。
+                            ウィンドウやグラフィックスデバイスを用意せずにテストできます。
+                        </p>
+
+                        <div class="link-row">
+                            <a href="https://github.com/mogmog-0110/MakinaModeler" target="_blank" rel="noopener">GitHub →</a>
+                            <a href="engine.html">MitiruEngine について →</a>
+                            <a href="portfolio.html">← Works に戻る</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
 
         <footer class="site-foot">
             <p>&copy; 川村優弥 / Shiggy</p>

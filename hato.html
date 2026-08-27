@@ -56,82 +56,110 @@
         <main id="main">
             <section class="page-head">
                 <p class="file-line">/ works / hato</p>
-                <h1>ハトを育てよう（MitiruEngine リメイク）</h1>
+                <h1>ハトを育てよう</h1>
+                <p class="sub">MitiruEngine リメイク</p>
                 <p class="lede">
-                    2023 年に TyranoScript で書いた『ハトを育てよう』を、自作の <a href="engine.html" class="soft-link">MitiruEngine</a> 上で<strong>完全移植 + 追加要素</strong>を入れたリメイク版です。MitiruEngine が「実際にゲームを出せる道具」であることの実証作品でもあります。
+                    2023年にTyranoScriptで制作したゲームを、自作の
+                    <a href="engine.html" class="soft-link">MitiruEngine</a>
+                    へ完全移植し、新しい機能を加えた作品です。
                 </p>
                 <div class="meta-line">
-                    <span>Released (Remake)</span><span>MitiruEngine</span><span>CEF Hybrid</span><span>mitiru.novel</span>
+                    <span>リメイク作品</span>
+                    <span>MitiruEngine</span>
+                    <span>CEF + JavaScript</span>
+                    <span>mitiru.novel</span>
                 </div>
             </section>
 
             <div class="sections">
                 <section class="sec">
-                    <h2>SCREENS</h2>
+                    <h2>作品概要</h2>
+                    <div class="sec-body">
+                        <p>
+                            原作は、2023年に2日で制作したノベルゲームです。
+                            5種類の行動を選びながらハトを育て、状態に応じて5つのエンディングへ分岐します。
+                        </p>
+                        <p>
+                            リメイクでは原作のゲーム内容を再現しながら、バックログ、既読スキップ、セーブ・ロードなどを追加しました。
+                            自作エンジンで、ひとつのゲームを完成形まで動かせることを確かめた作品でもあります。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>ゲーム画面</h2>
                     <div class="sec-body">
                         <div class="plate-grid">
                             <a href="images/hato_1.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/hato_1.webp" alt="タイトル画面。手書き文字で「ハトを育てよう 製作・shiggy」、下に「やる」「やらない」の丸いボタン" width="1596" height="898">
+                                <img loading="lazy" decoding="async" src="images/hato_1.webp" alt="『ハトを育てよう』ゲーム画面 1" width="1596" height="898">
                             </a>
                             <a href="images/hato_2.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/hato_2.webp" alt="導入の会話。画面いっぱいに手描きのハトが立ち、下の帯に「ハト ……ホロ」の台詞。左上に「すきっぷ」" width="1596" height="899">
+                                <img loading="lazy" decoding="async" src="images/hato_2.webp" alt="『ハトを育てよう』ゲーム画面 2" width="1596" height="899">
                             </a>
                             <a href="images/hato_3.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/hato_3.webp" alt="育成画面。左に「あそぶ／べんきょう／ごはん／筋トレ／しかる」のボタン、中央にハト、右に「1 日目」と筋肉 0・知能 0・体重 350 のステータス" width="1599" height="895">
+                                <img loading="lazy" decoding="async" src="images/hato_3.webp" alt="『ハトを育てよう』ゲーム画面 3" width="1599" height="895">
                             </a>
                             <a href="images/hato_4.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/hato_4.webp" alt="結末のひとつ。リボンと首輪を着けたハトが餌皿の前に立ち、周りに本とダンベル。台詞は「あなた やっぱりふつうが一番だよね！」" width="1594" height="889">
+                                <img loading="lazy" decoding="async" src="images/hato_4.webp" alt="『ハトを育てよう』ゲーム画面 4" width="1594" height="889">
                             </a>
                         </div>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>なぜリメイクしたか</h2>
+                    <h2>リメイクの目的</h2>
                     <div class="sec-body">
                         <p>
-                            オリジナルは 2023 年に 2 日で作った TyranoScript 製のノベルゲームです。ゲームとしては成立していたものの、エンジンの中身を自分で書ける状態ではなかったので、改造や流用が利きませんでした。MitiruEngine の <code>mitiru.novel</code>（JSON 駆動のノベル VM）の最初の実利用先として、原作をそのまま再現することにしました。
+                            原作はゲームとして完成していましたが、エンジン自体を自分で書いたものではなく、改造や流用が利きませんでした。
+                            そこで、原作を自作のMitiruEngine上に移し、エンジン同梱のノベル機能
+                            <code>mitiru.novel</code>を初めて実作品で使用しました。
                         </p>
                         <p>
-                            「自作エンジンで何が作れるか」を確かめるのに、見知った仕様のゲームを再現するのはちょうど良いベンチマークでした。
+                            仕様を把握しているゲームを再現することで、自作エンジンが実際の制作に使えるかを検証しました。
                         </p>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>再現したもの</h2>
+                    <h2>再現した内容</h2>
                     <div class="sec-body">
                         <ul>
-                            <li>解像度 1280×720（原作座標準拠）</li>
-                            <li>パラメータ系: day / stress / yaruki / tinou / kinniku / taijuu / val / score</li>
-                            <li>5 種類のアクション: あそぶ / 勉強 / ごはん / 筋トレ / 叱る（原作 <code>.ks</code> のロジックを完全再現）</li>
-                            <li>立ち絵切替: normal / angry / tokeru / hutoru / garigari（stress / yaruki / taijuu に連動）</li>
-                            <li>5 エンディング: 逃亡 / 死亡 / ふくろう / ムキムキ / ふつう</li>
-                            <li>スコア計算式: <code>tinou*1000 + kinniku*1000 − stress*100 + yaruki*100 (+2000 end3/end4)</code></li>
-                            <li>BGM の <code>music.ogg</code> ループ再生</li>
+                            <li>原作に準拠した1280×720の画面と座標</li>
+                            <li>day、stress、yaruki、tinou、kinniku、taijuu、val、scoreの各パラメータ</li>
+                            <li>「あそぶ」「勉強」「ごはん」「筋トレ」「叱る」の5種類の行動</li>
+                            <li>stress、yaruki、taijuuに応じた立ち絵の切り替え</li>
+                            <li>「逃亡」「死亡」「ふくろう」「ムキムキ」「ふつう」の5エンディング</li>
+                            <li>原作のスコア計算</li>
+                            <li><code>music.ogg</code>のループ再生</li>
                         </ul>
+                        <p class="note">
+                            スコア計算式:
+                            <code>tinou*1000 + kinniku*1000 − stress*100 + yaruki*100 (+2000 end3/end4)</code>
+                        </p>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>追加した要素</h2>
+                    <h2>リメイクで追加した機能</h2>
                     <div class="sec-body">
-                        <p>原作にはなかった、エンジン側の機能を活かした追加分。</p>
                         <ul>
-                            <li>バックログ（履歴ボタン / L キー）</li>
+                            <li>バックログ（履歴ボタン／Lキー）</li>
                             <li>既読管理と既読スキップ</li>
-                            <li>セーブとロード（<code>novel.save(slot)</code> / <code>novel.restore(slot)</code>）</li>
-                            <li>タイプライター演出（<code>mitiru.novel</code> 組込、CPS 40）</li>
-                            <li>背景の 400ms クロスフェード</li>
+                            <li>セーブ・ロード（<code>novel.save(slot)</code>／<code>novel.restore(slot)</code>）</li>
+                            <li>毎秒40文字のタイプライター演出</li>
+                            <li>400msの背景クロスフェード</li>
                         </ul>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>技術構成</h2>
+                    <h2>仕組み</h2>
                     <div class="sec-body">
                         <p>
-                            MitiruEngine の Hybrid 動作（CEF + JS）で動かしています。シナリオは JSON に外出しして、<code>mitiru.novel</code>（エンジン同梱の JSON 駆動ノベル VM）が解釈する設計です。
+                            MitiruEngineのHybrid動作（CEF + JavaScript）を使用しています。
+                            シナリオはJSONファイルとしてゲーム本体から分離し、
+                            JSON駆動のノベル機能<code>mitiru.novel</code>が解釈します。
+                            同じデータをブラウザとCEFネイティブの両方で動かせます。
                         </p>
 
 <pre><code>原作 .ks の機能           →  MitiruEngine 側の対応
@@ -143,19 +171,22 @@
 [button role="skip"]       →  novel.setSkipMode('all')</code></pre>
 
                         <p>
-                            ブラウザでも CEF ネイティブでも同じデータで動きます。状態依存のアクションシーン（stress / yaruki / taijuu の値で分岐するもの）は、ランタイムで JSON を動的生成しています。
+                            stress、yaruki、taijuuの値で内容が分岐する行動シーンでは、
+                            実行時にJSONを動的に生成します。
                         </p>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>このプロジェクトの位置づけ</h2>
+                    <h2>位置づけ</h2>
                     <div class="sec-body">
                         <p>
-                            MitiruEngine にとって、最初の「外に出せる完成形のゲーム」です。自作エンジンが「動く」だけでなく、「実際にプレイ可能なゲームをまるごと載せられる」段階に来ていることを示しています。
+                            MitiruEngineで初めて完成形まで制作したゲームです。
+                            エンジン単体の動作だけでなく、プレイ可能なゲーム全体を載せられる段階に達したことを示しています。
                         </p>
-                        <p>
-                            クレジット: 原作『ハトを育てよう』(shiggy / TyranoScript Ver5.20) → 移植基盤 MitiruEngine CEF Hybrid + <code>mitiru.novel</code> VN VM。
+                        <p class="fine">
+                            原作『ハトを育てよう』: shiggy／TyranoScript Ver5.20<br>
+                            移植基盤: MitiruEngine CEF Hybrid／<code>mitiru.novel</code> VN VM
                         </p>
                         <div class="link-row">
                             <a href="portfolio.html">← Works に戻る</a>

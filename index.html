@@ -68,110 +68,130 @@
         </header>
 
         <main id="main">
-            <!-- Hero：名前 + リアルタイム図版 fig.0 -->
             <section class="hero">
                 <div class="hero-text">
                     <p class="file-line">/ portfolio</p>
                     <h1>
-                        <button type="button" class="name-open" id="profile-open" aria-haspopup="dialog">川村 優弥<span class="open-hint">profile +</span></button>
+                        <button type="button" class="name-open" id="profile-open" aria-haspopup="dialog" aria-controls="profile-modal">
+                            川村 優弥
+                            <span class="open-hint">profile +</span>
+                        </button>
                     </h1>
                     <p class="role">Shiggy / game / engine / physics-simulation</p>
+                    <p class="lede">
+                        C++とグラフィックスAPIを軸に、ゲーム、ゲームエンジン、物理シミュレーションを開発しています。
+                    </p>
                 </div>
+
                 <div class="hero-fig">
                     <div class="fig-stage">
-                        <canvas id="fig0" role="img" aria-label="SDF レイマーチングによるリアルタイム NPR 描画。輪郭線とハッチングのみで陰影を構成"></canvas>
+                        <canvas id="fig0" role="img" aria-label="SDFレイマーチングによるリアルタイム描画"></canvas>
                         <noscript>
-                            <img class="fig-fallback" src="images/sdf-face/threshold_maps.webp" alt="SDF 顔影のしきい値マップ" width="1200" height="600" loading="lazy">
+                            <img class="fig-fallback" src="images/sdf-face/threshold_maps.webp" alt="SDFレイマーチングの参考画像" width="1200" height="600" loading="lazy">
                         </noscript>
                     </div>
                     <p class="fig-caption">
-                        <b>fig.0</b>SDF raymarching。手続き生成形状を輪郭線＋ハッチングのみで描画（realtime / WebGL）。光源はカーソルに追従。
+                        <b>fig.0</b> SDF raymarching / realtime / WebGL。手続き生成形状を輪郭線とハッチングで描画し、光源がカーソルに追従します。
                     </p>
                 </div>
             </section>
 
-            <!-- 扉リンク -->
-            <nav class="doors" aria-label="主要セクション">
+            <nav class="doors" aria-label="ポートフォリオの主要セクション">
                 <a class="door" href="engine.html">
                     <span class="door-no">[01]</span>
                     <span>
                         <span class="door-name">engine</span>
-                        <span class="door-desc">C++20 / header-only の自作ゲームエンジン MitiruEngine</span>
+                        <span class="door-desc">C++20・header-onlyの自作ゲームエンジン「MitiruEngine」</span>
                     </span>
                 </a>
+
                 <a class="door" href="labs.html">
                     <span class="door-no">[02]</span>
                     <span>
                         <span class="door-name">lab</span>
-                        <span class="door-desc">3DCG・物理シミュレーションの問題を自作エンジンで解く実験集</span>
+                        <span class="door-desc">3DCGと物理シミュレーションの実験</span>
                     </span>
                 </a>
+
                 <a class="door" href="research.html">
                     <span class="door-no">[03]</span>
                     <span>
                         <span class="door-name">research</span>
-                        <span class="door-desc">剛体物理シミュレーションによる環状化合物の選択性解析（BDA 2025 / LNCS）</span>
+                        <span class="door-desc">剛体物理シミュレーションを用いた研究（BDA 2025 / Springer LNCS）</span>
                     </span>
                 </a>
+
                 <a class="door" href="portfolio.html">
                     <span class="door-no">[04]</span>
                     <span>
                         <span class="door-name">works</span>
-                        <span class="door-desc">学部から現在までのゲーム・ツール・創作</span>
+                        <span class="door-desc">学部から現在までに制作したゲーム、ツール、創作</span>
                     </span>
                 </a>
             </nav>
 
             <div class="sections">
-                <section class="sec">
-                    <h2>ABOUT</h2>
+                <section class="sec" aria-labelledby="about-title">
+                    <h2 id="about-title">ABOUT</h2>
                     <div class="sec-body">
-                        <p>
-                            会津大学大学院 修士1年。C++ とグラフィックス API を軸に、ゲーム・ゲームエンジン・物理シミュレーションを横断して開発しています。現在は CG をメインに、個人でも研究・開発を進めています。
+                        <p class="sec-intro">
+                            会津大学大学院 コンピュータ・情報システム学専攻の修士1年です。現在はCGを中心に研究・開発を進めています。
                         </p>
                         <p>
-                            2026年1月から株式会社 Live2D で Cubism SDK for Native（C++）まわりのアルバイトをしており、SDK の保守・不具合対応に携わっています。学部ではゲーム制作サークルの部長として、企画からシナリオ・イラスト・実装まで担当しながらチームでゲームを作ってきました。
+                            2026年1月から株式会社Live2Dで、Cubism SDK for Native（C++）の保守と不具合対応に携わっています。
+                        </p>
+                        <p>
+                            学部ではゲーム制作サークルの部長を務め、企画、シナリオ、イラスト、実装を担当しながら、チームでゲームを制作しました。
                         </p>
                     </div>
                 </section>
 
-                <section class="sec">
-                    <h2>HISTORY</h2>
+                <section class="sec" aria-labelledby="experience-title">
+                    <h2 id="experience-title">EXPERIENCE</h2>
                     <div class="sec-body">
-                        <ul class="profile">
-                            <li>
-                                <span class="k">2022 -</span>
-                                <span class="v">会津大学 コンピュータ理工学部。ゲーム制作サークルでコミックマーケット（C100 - C106）にゲームを頒布し、頒布する CD・パッケージ・ランチャーの制作も部員と手がける</span>
-                            </li>
-                            <li>
-                                <span class="k">2024</span>
-                                <span class="v">ゲーム制作サークルの部長を務める</span>
-                            </li>
-                            <li>
-                                <span class="k">2024 / 2025</span>
-                                <span class="v">全国の高校生が集まるプログラミングイベント「コンピュータサイエンスサマーキャンプ」で学生リーダーを務め、JavaScript でのゲームプログラミングと CG を指導</span>
-                            </li>
-                            <li>
-                                <span class="k">2025-12</span>
-                                <span class="v">国際会議 BDA 2025 にて第一著者として発表（Springer LNCS 収録、フルペーパー 17 頁）</span>
-                            </li>
-                            <li>
-                                <span class="k">2026-01 -</span>
-                                <span class="v">株式会社 Live2D で Cubism SDK for Native（C++）保守のアルバイトを開始</span>
-                            </li>
-                            <li>
-                                <span class="k">2026-04 -</span>
-                                <span class="v">会津大学大学院 コンピュータ・情報システム学専攻（M1）。CG をメインに研究・開発を継続</span>
-                            </li>
-                        </ul>
+                        <div class="lab-list">
+                            <article class="lab-entry">
+                                <p class="m-meta">2026.04 —</p>
+                                <h3>会津大学大学院</h3>
+                                <p>コンピュータ理工学研究科 コンピュータ・情報システム学専攻。CGを中心に研究・開発を継続しています。</p>
+                            </article>
+
+                            <article class="lab-entry">
+                                <p class="m-meta">2026.01 —</p>
+                                <h3>株式会社Live2D</h3>
+                                <p>Cubism SDK for Native（C++）の保守と不具合対応に携わっています。</p>
+                            </article>
+
+                            <article class="lab-entry">
+                                <p class="m-meta">2025.12</p>
+                                <h3>国際会議 BDA 2025</h3>
+                                <p>剛体物理シミュレーションによる環状化合物の選択性解析について、第一著者として発表しました。フルペーパー17頁がSpringer LNCSに収録されています。</p>
+                            </article>
+
+                            <article class="lab-entry">
+                                <p class="m-meta">2024 / 2025</p>
+                                <h3>コンピュータサイエンスサマーキャンプ</h3>
+                                <p>学生リーダーとして、全国から集まった高校生にJavaScriptによるゲームプログラミングとCGを指導しました。</p>
+                            </article>
+
+                            <article class="lab-entry">
+                                <p class="m-meta">2022 —</p>
+                                <h3>会津大学・ゲーム制作サークル</h3>
+                                <p>2024年に部長を務めました。コミックマーケットC100からC106でゲームを頒布し、CD、パッケージ、ランチャーも部員と制作しました。</p>
+                            </article>
+                        </div>
                     </div>
                 </section>
 
-                <section class="sec">
-                    <h2>CONTACT</h2>
+                <section class="sec" aria-labelledby="contact-title">
+                    <h2 id="contact-title">CONTACT</h2>
                     <div class="sec-body">
+                        <p class="sec-intro">ご連絡はメールまたはGitHubからお願いいたします。</p>
                         <div class="link-row">
-                            <span class="addr">fujimiya0110☆gmail.com<span class="addr-note">（☆ を @ に変えてください）</span></span>
+                            <span class="addr">
+                                fujimiya0110☆gmail.com
+                                <span class="addr-note">（☆を@に変えてください）</span>
+                            </span>
                             <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">github.com/mogmog-0110 →</a>
                         </div>
                     </div>
@@ -185,80 +205,81 @@
         </footer>
     </div>
 
-    <!-- PROFILE モーダル（hero の名前クリックで開く） -->
-    <div class="modal-overlay" id="profile-modal">
+    <div class="modal-overlay" id="profile-modal" aria-hidden="true">
         <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="profile-title">
-            <button type="button" class="modal-close" aria-label="閉じる">×</button>
+            <button type="button" class="modal-close" aria-label="プロフィールを閉じる">×</button>
             <h2 id="profile-title">PROFILE</h2>
             <p class="m-meta">kawamura yuya / shiggy</p>
-            <ul class="profile">
-                <li>
-                    <span class="k">name</span>
-                    <span class="v">川村優弥</span>
-                </li>
-                <li>
-                    <span class="k">hn</span>
-                    <span class="v">Shiggy（よく使うハンドルネーム）</span>
-                </li>
-                <li>
-                    <span class="k">affiliation</span>
-                    <span class="v">会津大学大学院 コンピュータ理工学研究科 コンピュータ・情報システム学専攻（M1）</span>
-                </li>
-                <li>
-                    <span class="k">github</span>
-                    <span class="v"><a href="https://github.com/mogmog-0110" target="_blank" rel="noopener" class="soft-link">mogmog-0110</a></span>
-                </li>
-                <li>
-                    <span class="k">hobby</span>
-                    <span class="v">小説を読む、書く</span>
-                </li>
-                <li>
-                    <span class="k">books</span>
-                    <span class="v">ハムレット（シェイクスピア）</span>
-                </li>
-                <li>
-                    <span class="k">games</span>
-                    <span class="v">グリザイアの果実 ／ この世の果てで恋を唄う少女~YUNO~ ／ オプーナ ／ ゼノギアス</span>
-                </li>
-                <li>
-                    <span class="k">obsessed</span>
-                    <span class="v">東方の同人CDを集めて聴く</span>
-                </li>
-            </ul>
+
+            <div class="m-block">
+                <p class="lbl">所属</p>
+                <p>会津大学大学院 コンピュータ理工学研究科 コンピュータ・情報システム学専攻（M1）</p>
+            </div>
+
+            <div class="m-block">
+                <p class="lbl">GitHub</p>
+                <p><a href="https://github.com/mogmog-0110" target="_blank" rel="noopener" class="soft-link">mogmog-0110</a></p>
+            </div>
+
+            <div class="m-block">
+                <p class="lbl">趣味</p>
+                <p>小説を読む、書く</p>
+            </div>
+
+            <div class="m-block">
+                <p class="lbl">本</p>
+                <p>『ハムレット』（シェイクスピア）</p>
+            </div>
+
+            <div class="m-block">
+                <p class="lbl">ゲーム</p>
+                <p>グリザイアの果実 ／ この世の果てで恋を唄う少女~YUNO~ ／ オプーナ ／ ゼノギアス</p>
+            </div>
+
+            <div class="m-block">
+                <p class="lbl">最近夢中なこと</p>
+                <p>東方の同人CDを集めて聴くこと</p>
+            </div>
         </div>
     </div>
 
     <script src="assets/js/back-to-top.js"></script>
     <script src="assets/js/fig0.js"></script>
     <script>
-    /* PROFILE モーダルの開閉 */
     (function () {
         var overlay = document.getElementById('profile-modal');
         var opener = document.getElementById('profile-open');
         if (!overlay || !opener) return;
+
         var closeBtn = overlay.querySelector('.modal-close');
         var lastFocus = null;
 
-        function open() {
+        function openProfile() {
             lastFocus = document.activeElement;
             overlay.classList.add('open');
+            overlay.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
             closeBtn.focus();
         }
 
-        function close() {
+        function closeProfile() {
             overlay.classList.remove('open');
+            overlay.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
             if (lastFocus) lastFocus.focus();
         }
 
-        opener.addEventListener('click', open);
-        closeBtn.addEventListener('click', close);
-        overlay.addEventListener('click', function (e) {
-            if (e.target === overlay) close();
+        opener.addEventListener('click', openProfile);
+        closeBtn.addEventListener('click', closeProfile);
+
+        overlay.addEventListener('click', function (event) {
+            if (event.target === overlay) closeProfile();
         });
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && overlay.classList.contains('open')) {
+                closeProfile();
+            }
         });
     })();
     </script>

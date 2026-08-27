@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fcfcfb">
     <title>写真から作った 3D をアニメ塗りにする：Gaussian Splatting のセルシェーディング | Shiggy</title>
-    <meta name="description" content="写真群から再構成した 3D (Gaussian Splatting) にアニメ調の陰影 (セルシェーディング) を安定して乗せる実験。陰影を決める形を見た目から分離し、ちらつきを定量計測した。">
+    <meta name="description" content="写真群から再構成した 3D（Gaussian Splatting）に、安定したアニメ調の陰影を加える実験。陰影を決める形を表示用データから分離し、ちらつきを計測した。">
 
     <style>
         html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
@@ -16,7 +16,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shiggy's Portfolio">
     <meta property="og:title" content="写真から作った 3D をアニメ塗りにする：Gaussian Splatting のセルシェーディング | Shiggy">
-    <meta property="og:description" content="Gaussian Splatting にセルシェーディングを安定して乗せる実験。陰影を決める形を見た目から分離する。">
+    <meta property="og:description" content="Gaussian Splatting に安定したセルシェーディングを加える実験。陰影を決める形を表示用データから分離する。">
     <meta property="og:url" content="https://mogmog-0110.github.io/gsplat-toon.html">
     <link rel="canonical" href="https://mogmog-0110.github.io/gsplat-toon.html">
     <meta property="og:image" content="https://mogmog-0110.github.io/images/ogp.webp">
@@ -24,7 +24,7 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="写真から作った 3D をアニメ塗りにする：Gaussian Splatting のセルシェーディング | Shiggy">
-    <meta name="twitter:description" content="Gaussian Splatting にセルシェーディングを安定して乗せる実験。">
+    <meta name="twitter:description" content="Gaussian Splatting に安定したセルシェーディングを加える実験。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ogp.webp">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,107 +55,117 @@
                 <p class="file-line">/ lab</p>
                 <h1>写真から作った 3D をアニメ塗りにする</h1>
                 <p class="lede">
-                    <strong>写真群から再構成した 3D (Gaussian Splatting) に、アニメ調の陰影（はっきりした明暗の帯・ベタ塗り・輪郭線）を安定して乗せる実験です。</strong>
+                    <strong>写真群から再構成した 3D（Gaussian Splatting）に、明暗を段階化した陰影、色のベタ塗り、輪郭線を加える実験です。</strong>
                 </p>
-                <p class="lede" style="margin-top: 0.8rem;">
-                    Gaussian Splatting は「半透明の粒」を何十万個も重ねて本物そっくりの 3D を作る手法ですが、粒の向き (法線) はノイズだらけで、そのままアニメ調の陰影を計算すると帯がガタつき、カメラを動かすと画面全体がちらつきます。この実験では<strong>陰影を決める形を、見た目の粒とは別に持つ</strong>ことでこれを解き、ちらつきを数値でも比較しました。
+                <p class="lede">
+                    Gaussian Splatting を構成する粒の向きをそのまま陰影計算に使うと、明暗の帯が崩れ、カメラの移動時にちらつきます。そこで、表示する粒とは別に陰影計算用の滑らかな形を用意しました。結果は画像による比較に加え、ちらついた画素の割合でも検証しています。
                 </p>
-                <div class="meta-line" style="margin-top: 1.6rem; margin-bottom: 0;">
-                    <span>Experiment</span><span>C++20 / HLSL</span><span>DirectX 12</span><span>3D Gaussian Splatting</span><span>2026</span>
+                <div class="meta-line">
+                    <span>Experiment</span>
+                    <span>C++20 / HLSL</span>
+                    <span>DirectX 12</span>
+                    <span>3D Gaussian Splatting</span>
+                    <span>2026</span>
                 </div>
             </section>
 
             <div class="sections">
                 <section class="sec">
-                    <h2>作ったもの</h2>
+                    <h2>結果</h2>
                     <div class="sec-body">
                         <p>
-                            下は粒で作ったテストシーン (毛の生えた球・柱・床・輪) に光を一周させた比較です。
-                            左が素朴なやり方 (粒の向きをそのまま使う)、右がこの実験の方式。
-                            左は陰影の帯が崩れてまだらに明滅し、右は帯が形に沿って静かに掃いていきます。
+                            粒で構成したテストシーンに光を一周させ、粒の向きを使う方式と、陰影計算用の形を使う方式を比較しました。
                         </p>
+
                         <figure class="plate">
-                            <img src="images/gspt/hero_light_synthetic.webp" alt="光を一周させた比較。左は帯が崩れ、右は帯が形に沿って動く" width="1028" height="288" loading="lazy">
-                            <figcaption>光を一周させた比較 (実機レンダリング)。左 = 粒の向きをそのまま使用、右 = 本方式。</figcaption>
+                            <img src="images/gspt/hero_light_synthetic.webp" alt="テストシーンに光を一周させた二方式の比較" width="1028" height="288" loading="lazy">
+                            <figcaption>光を一周させた実機レンダリング。左は粒の向きを使用し、右は陰影計算用の形を使用。</figcaption>
                         </figure>
+
                         <p>
-                            写真から再構成した実データでも動きます。下は研究でよく使われる盆栽の撮影データ (MipNeRF360) を切り出してアニメ塗りにしたもの。
+                            写真から再構成されたデータでも試しました。使用したのは、研究で使われる MipNeRF360 の盆栽データです。
                         </p>
+
                         <figure class="plate">
-                            <img src="images/gspt/hero_light.webp" alt="盆栽の実データに光を一周させた比較" width="1028" height="288" loading="lazy">
-                            <figcaption>実データ (盆栽) で光を一周。左 = 素朴なやり方は画面全体が明滅する。右 = 本方式。</figcaption>
+                            <img src="images/gspt/hero_light.webp" alt="盆栽データに光を一周させた二方式の比較" width="1028" height="288" loading="lazy">
+                            <figcaption>盆栽データでの比較。左は粒の向きを使用し、右は陰影計算用の形を使用。</figcaption>
                         </figure>
+
                         <figure class="plate">
-                            <img src="images/gspt/bonsai_30000_cam2_flat.webp" alt="盆栽をベタ塗り化した静止画" width="1280" height="720" loading="lazy">
-                            <figcaption>盆栽の静止画。明暗の帯 + 色のベタ化 + 輪郭線を合成した状態。</figcaption>
+                            <img src="images/gspt/bonsai_30000_cam2_flat.webp" alt="盆栽データに明暗の段階化、色のベタ塗り、輪郭線を適用した静止画" width="1280" height="720" loading="lazy">
+                            <figcaption>明暗の段階化、色のベタ塗り、輪郭線を合成した静止画。</figcaption>
                         </figure>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>何が難しいか</h2>
+                    <h2>課題</h2>
                     <div class="sec-body">
                         <p>
-                            アニメ調の陰影は「明るい / 影」を段差で塗り分けます。段差はわずかな向きの違いを白黒の反転に増幅するので、
-                            粒の向きがノイズだらけの Gaussian Splatting とは根本的に相性が悪い。粒ごとに塗り分けてから重ねると、
-                            今度は半透明の混ざり合いで段差そのものが溶けて消えます。ゲームのアニメ調 3D が顔の法線を手作業で編集したり
-                            専用の影テクスチャを描いたりするのは、この増幅と戦うためです。写真から自動で作られる再構成データには、
-                            その手作業の入り口がありません。
+                            アニメ調の陰影では、明るい部分と影を段階的に塗り分けます。この処理は、わずかな向きの違いを明暗の反転として表示します。そのため、粒の向きに含まれるノイズが、帯の崩れやちらつきとして現れます。
                         </p>
+                        <p>
+                            一方、粒ごとに塗り分けてから重ねると、半透明の合成によって明暗の段差が混ざります。写真から自動生成された再構成データでは、ゲーム用モデルのように法線や影用テクスチャを手作業で調整する方法も取りにくいという問題があります。
+                        </p>
+
                         <figure class="plate">
-                            <img src="images/gspt/hero_synthetic.webp" alt="素朴なやり方と本方式の比較" width="1928" height="360" loading="lazy">
-                            <figcaption>左 = 粒の向きをそのまま段差に通した結果 (帯が崩れる)。中 = 本方式 (帯と輪郭線)。右 = さらにベタ塗り化。</figcaption>
+                            <img src="images/gspt/hero_synthetic.webp" alt="粒の向きを使う方式と陰影計算用の形を使う方式の比較" width="1928" height="360" loading="lazy">
+                            <figcaption>左は粒の向きによる陰影。中央は陰影計算用の形と輪郭線。右はさらに色をベタ塗り化した結果。</figcaption>
                         </figure>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>仕組み：陰影を決める形を分離する</h2>
+                    <h2>実装した方法</h2>
                     <div class="sec-body">
                         <p>
-                            粒の集まりを一度 3D の格子に写して大きくぼかし、物体を包む滑らかな面を作ります。
-                            陰影の帯はこの面の向きから画素ごとに計算し、色は元の粒から取る。つまり
-                            「<strong>見た目は元の粒のまま、陰影だけ滑らかな分身が担当する</strong>」という分業です。
-                            ぼかしの強さがそのまま「陰影の形をどこまで単純化するか」の調整つまみになります。
-                            仕上げに、色のまだらを均すベタ塗り化、面の切れ目から引く輪郭線、撮影時に写り込んだ照明を割り戻す補正を重ねています。
+                            粒の集まりを 3D の格子へ写し、ぼかして滑らかな面を作ります。明暗の帯は、その面の向きから画素ごとに計算します。表示する色には元の粒の情報を使います。
                         </p>
                         <p>
-                            必要なら球やカプセルを手で置いて、その部分だけ陰影の形を差し替えることもできます
-                            (ゲームが顔だけ専用の影を持つのと同じ役割分担)。
+                            これにより、元の粒による表示を保ちながら、陰影だけを滑らかな形から計算できます。ぼかしの強さによって、陰影に使う形の単純化も調整できます。
+                        </p>
+                        <p>
+                            さらに、色のばらつきを均す処理、面の切れ目から作る輪郭線、撮影時の照明が色に含まれた状態を補正する処理を組み合わせました。必要な部分には球やカプセルを配置し、陰影計算に使う形を差し替えることもできます。
                         </p>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>ちらつきを数値で分ける</h2>
+                    <h2>ちらつきの計測</h2>
                     <div class="sec-body">
                         <p>
-                            「帯が安定した」を目視で終わらせないため、カメラを一定速度で回しながら
-                            陰影の帯が反転した画素の割合を毎フレーム数えました。さらに回転速度を半分にしてもう一度計測すると、
-                            光と形の関係で正しく動いた分は半分になり、ノイズによるちらつきはそのまま残る。この差から
-                            ちらつきの成分だけを取り出せます。実データ (盆栽) では、素朴なやり方のちらつき成分が 2.1% / フレームなのに対し、
-                            本方式は 0.19% でした (約 11 分の 1)。
+                            カメラを一定速度で回し、陰影の帯が反転した画素の割合をフレームごとに数えました。続いて回転速度を半分にして同じ計測しました。
                         </p>
+                        <p>
+                            光と形の関係による変化は回転速度に応じて減りますが、ノイズによるちらつきは残ります。この差を使って、ちらつきの成分を分けました。
+                        </p>
+                        <p>
+                            盆栽データで計測した結果、粒の向きを使う方式は 1 フレームあたり 2.1%、陰影計算用の形を使う方式は 0.19% でした。約 11 分の 1 です。
+                        </p>
+
                         <figure class="plate">
-                            <img src="images/gspt/bonsai_30000_stability_flips_splat.webp" alt="素朴なやり方の反転ヒートマップ" width="1280" height="720" loading="lazy">
-                            <figcaption>カメラ回転中に帯が反転した場所の累積 (明るいほど頻繁)。素朴なやり方は画面のほぼ全域が明滅している。</figcaption>
+                            <img src="images/gspt/bonsai_30000_stability_flips_splat.webp" alt="粒の向きを使う方式で陰影が反転した画素の累積" width="1280" height="720" loading="lazy">
+                            <figcaption>粒の向きを使う方式。カメラ回転中に陰影が反転した場所を累積し、頻度を明るさで示した結果。</figcaption>
                         </figure>
+
                         <figure class="plate">
-                            <img src="images/gspt/bonsai_30000_stability_flips_proxy.webp" alt="本方式の反転ヒートマップ" width="1280" height="720" loading="lazy">
-                            <figcaption>本方式の同じ計測。反転は帯の境界が正しく動いた細い筋に限られる。</figcaption>
+                            <img src="images/gspt/bonsai_30000_stability_flips_proxy.webp" alt="陰影計算用の形を使う方式で陰影が反転した画素の累積" width="1280" height="720" loading="lazy">
+                            <figcaption>陰影計算用の形を使う方式による同じ計測。</figcaption>
                         </figure>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>学びと限界</h2>
+                    <h2>分かったことと限界</h2>
                     <div class="sec-body">
                         <p>
-                            帯の安定という目的は数値で達成できた一方、「アニメのイラストに見えるか」には距離が残りました。
-                            拾ってきた撮影データは色に照明が焼き付いていて、割り戻し補正では取り切れません。
-                            出力は「アニメ絵」というより「陰影処理を通した写真」に留まり、その先はアルゴリズムよりも
-                            被写体選びと絵作りの領域だと分かったのが、この実験の一番の収穫です。
-                            ちらつきを速度の違う 2 回の計測で分解する評価方法は、他のスタイル描画の検証にもそのまま使えます。
+                            陰影の帯を安定させる目的は、計測結果でも確認できました。一方で、出力をアニメのイラストに近づける課題は残りました。
+                        </p>
+                        <p>
+                            使用した撮影データの色には照明の影響が含まれており、補正だけでは取り切れませんでした。結果はアニメの絵というより、写真由来の色に陰影処理を加えた表示に留まりました。この先には、処理方法だけでなく、被写体の選択と絵作りも必要だと分かりました。
+                        </p>
+                        <p>
+                            回転速度を変えた二回の計測からちらつきを分ける方法は、ほかのスタイル描画の検証にも利用できます。
                         </p>
                     </div>
                 </section>
@@ -163,8 +173,8 @@
                 <section class="sec">
                     <h2>リンク</h2>
                     <div class="sec-body">
-                        <ul>
-                            <li><a href="https://github.com/mogmog-0110/gs-proxy-toon" target="_blank" rel="noopener">コード一式 (GitHub)</a></li>
+                        <ul class="link-list">
+                            <li><a href="https://github.com/mogmog-0110/gs-proxy-toon" target="_blank" rel="noopener">コード一式（GitHub）</a></li>
                         </ul>
                     </div>
                 </section>
