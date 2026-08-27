@@ -59,7 +59,7 @@
                 <p class="file-line">/ engine</p>
                 <h1>MitiruEngine</h1>
                 <p class="lede">
-                    ゲームを作るための道具を、自分で作っています。2022 年から学園祭やコミックマーケットでゲームを出してきて、そのうちゲームそのものより、それを作る道具のほうに興味が移りました。MitiruEngine はその延長で書いているものです。いまは自分のゲームもツールも、これで動かしています。
+                    ゲームエンジンを自分で書いています。2022 年から学園祭やコミックマーケットでゲームを出してきて、そのうちゲームそのものより、その下で動いているエンジンのほうに興味が移りました。MitiruEngine はその延長で書いているものです。いまは自分のゲームもツールも、これで動かしています。
                 </p>
                 <p class="lede">
                     このページでは、実際に動いている画面と図で、中で何をしているのかを順に見せます。後半ほど技術的な話になります。使い方や導入の手順は<a href="https://mogmog-0110.github.io/MitiruEngine/">エンジンの紹介サイト</a>にまとめてあります。
@@ -75,13 +75,13 @@
                 <section class="sec">
                     <h2>MitiruEngine とは</h2>
                     <div class="sec-body">
-                        <p class="sec-intro">1 つのゲームを、得意な道具で分けて書く</p>
+                        <p class="sec-intro">中身は C++、画面は HTML と CSS</p>
                         <figure class="plate">
                             <img src="images/engine/beko_gameplay.webp" alt="赤べこの横スクロールアクションの実機の録画。赤べこが石畳の上を走り、宙に浮いた古銭を拾い、起き上がり小法師の間を跳んでいく。左上に取得数のカウンタが出ている。" loading="lazy" decoding="async" width="680" height="382">
                             <figcaption>このエンジンで動かしているゲームの一例（実機の録画）。赤べこ・小法師・古銭・石畳はスプライト、空はグラデーション、左上のカウンタは HTML / CSS です。</figcaption>
                         </figure>
                         <p>
-                            ゲームは「動くルール」と「見せる画面」でできています。MitiruEngine はそれを別々の言葉で書きます。ルールは速くて壊れにくい C++、画面はレイアウトが得意な HTML / CSS。データ（セリフや設定）は JSON。境界はうすく、状態の持ち主は常に C++ 側です。
+                            ゲームの中身は C++ で書きます。プレイヤーの動き、当たり判定、スコアの計算。画面に出す HUD やメニューは HTML と CSS で書きます。Web ページを作るのと同じ書き方です。セリフや設定の数値は JSON に置きます。C++ と HTML の間を行き来するのは表示用の値だけで、ゲームの状態そのものは C++ が持ったままです。
                         </p>
                         <figure class="dgm-wrap">
                             <svg class="dgm" viewBox="0 0 760 150" role="img" aria-label="1 つのゲームを 3 つの言葉で分担する図。C++ がゲームの中身（状態・動き・当たり判定・物理・描画）、HTML/CSS が画面（HUD・メニュー・演出）、JSON がデータ（セリフ・設定・バランス）を担当する。">
@@ -99,7 +99,7 @@
                                 <text class="sub" x="630" y="90" text-anchor="middle">セリフ・設定</text>
                                 <text class="sub" x="630" y="108" text-anchor="middle">バランス表</text>
                             </svg>
-                            <figcaption>同じ 1 つのゲームを、得意な言葉で分けて書く。状態（ゲームの真実）は常に C++ が持つ。</figcaption>
+                            <figcaption>1 つのゲームを、C++ と HTML/CSS と JSON に分けて書く。状態を持つのは C++ だけ。</figcaption>
                         </figure>
                         <p>
                             下は実際にこのエンジンで作った小さなゲームです。プレイヤーを左右に動かし、落ちてくる星をキャッチしてスコアを伸ばします。プレイヤーや星は C++ が描き、スコアの表示は HTML / CSS です。
@@ -118,7 +118,7 @@
                     <div class="sec-body">
                         <p class="sec-intro">状態のまとまりと、毎フレームの処理</p>
                         <p>
-                            書くのは「状態のまとまり（<code>struct</code>）」と「毎フレームの処理（<code>update</code> / <code>draw</code>）」。エンジンは毎フレーム入力を読んで <code>update</code> を呼び、続けて <code>draw</code> で画面を描く。これを 1 秒に 60 回くり返します。最後の 1 行でエンジンに繋がります。
+                            ゲームを 1 つ作るのに書くのは、<code>struct</code> が 1 個と、その中の関数が 2 つだけです。<code>struct</code> にはゲームの状態、つまりプレイヤーの位置やスコアといった数値を入れます。<code>update</code> でその数値を進めて、<code>draw</code> で画面に描く。エンジンはこの 2 つを 1 秒に 60 回呼びます。
                         </p>
                         <figure class="dgm-wrap">
                             <svg class="dgm" viewBox="0 0 760 170" role="img" aria-label="ゲームループの図。状態 struct（数値）を update(入力, dt) が更新し、draw(Screen) が描き、画面に出る。次のフレームでまた状態へ戻る、という繰り返し。">
@@ -231,7 +231,7 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                             <figcaption>実機の録画（左＝エディタ / 中央＝ゲーム / 右＝観察ウィンドウ）。1 行で観察ウィンドウが開き、状態がライブで映る。</figcaption>
                         </figure>
                         <p>
-                            なぜ巻き戻しや録画リプレイが、こんなに素直にできるのでしょうか。その秘密は、ゲームの状態を「ポインタも <code>std::vector</code> も持たない、丸ごとコピーできる 1 個の構造体」（flat POD）に置く、という設計の約束にあります。次のセクションで、その原理を。
+                            巻き戻しと録画リプレイが成り立つ理由は 1 つです。ゲームの状態を「ポインタも <code>std::vector</code> も持たない、丸ごとコピーできる 1 個の構造体」（flat POD）に置く、という設計の約束にあります。次のセクションで、その原理を。
                         </p>
                     </div>
                 </section>
@@ -388,7 +388,7 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                             <img src="images/engine/breakout.webp" alt="MitiruEngine で作ったブロック崩しのプレイ画面。カラフルなブロックの壁とボール、上部にスコア・残機・レベルの表示。" loading="lazy" width="1280" height="720">
                             <figcaption>同じエンジンで作った 2D のブロック崩し。ゲーム本体は C++、上部の HUD は HTML/CSS。</figcaption>
                         </figure>
-                        <p class="fine">大量ポリゴンや凝ったシェーダーを前提にした本格 3D は対象外です。あくまで「2D に 3D を混ぜる」「小〜中規模の 3D を出す」ための道具です。</p>
+                        <p class="fine">大量ポリゴンや凝ったシェーダーを前提にした本格 3D は対象外です。2D に 3D を混ぜたい場面と、小〜中規模の 3D を出す場面を想定しています。</p>
                     </div>
                 </section>
 
@@ -397,7 +397,7 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                     <h2>このエンジンで作ったもの</h2>
                     <div class="sec-body">
                         <p>
-                            エンジンは、実際にゲームを出せて初めて道具になります。このエンジンの上で動いている作品を並べておきます。
+                            エンジンは、実際にゲームが出せて初めて意味があります。このエンジンの上で動いている作品を並べておきます。
                         </p>
                         <figure class="plate">
                             <video autoplay loop muted playsinline preload="metadata"
@@ -433,7 +433,7 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                     <h2>向いていること・いないこと</h2>
                     <div class="sec-body">
                         <p>
-                            目的はエンジンそのものではなく、ゲームを深く作れる人間でいるための足場です。Unity / Godot のような全部入りエディタは作らず、逆に振っています。<strong>道具は 1 つにつき 1 ウィンドウ、ふだんは何も開かない、操作はコマンドから</strong>。エディタは Visual Studio でも VS Code でもメモ帳でも構いません。
+                            エンジンを作ること自体が目的ではありません。ゲームの中で何が起きているかを自分で説明できる人間でいるために書いています。Unity / Godot のような全部入りエディタは作らず、逆に振っています。<strong>デバッグ画面は 1 つにつき 1 ウィンドウ、ふだんは何も開かない、操作はコマンドから</strong>。エディタは Visual Studio でも VS Code でもメモ帳でも構いません。
                         </p>
                         <ul>
                             <li><strong>向いている</strong>。2D + HTML/CSS UI のゲーム／巻き戻し・録画リプレイ・観察が効く決定論的なゲーム／2D に 3D を混ぜる</li>
