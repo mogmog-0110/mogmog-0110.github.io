@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja" style="background-color: #fcfcfb;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fcfcfb">
+    <title>ブラウザで遊ぶ | Shiggy</title>
+    <meta name="description" content="作ったゲームをブラウザで遊べます。インストールは要りません。">
+
+    <style>
+        html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
+    </style>
+
+    <!-- meta:social -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shiggy's Portfolio">
+    <meta property="og:title" content="ブラウザで遊ぶ | Shiggy">
+    <meta property="og:description" content="作ったゲームをブラウザで遊べます。インストールは要りません。">
+    <meta property="og:url" content="https://mogmog-0110.github.io/play.html">
+    <link rel="canonical" href="https://mogmog-0110.github.io/play.html">
+    <meta property="og:image" content="https://mogmog-0110.github.io/images/oscar/title.webp">
+    <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="720">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ブラウザで遊ぶ | Shiggy">
+    <meta name="twitter:description" content="作ったゲームをブラウザで遊べます。インストールは要りません。">
+    <meta name="twitter:image" content="https://mogmog-0110.github.io/images/oscar/title.webp">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/site.css">
+    <style>
+        /* 遊ぶ場所。画面の縦横比を保ったまま、視野に入る最大の大きさで置く。
+           16:9 を前提にせず、登録表の寸法から比率を作る。 */
+        .stage {
+            position: relative;
+            width: 100%;
+            max-width: calc((100vh - 320px) * var(--game-aspect, 1.7778));
+            margin: 0 auto;
+            aspect-ratio: var(--game-aspect, 1.7778);
+            background: #0a0c12;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .stage iframe { display: block; width: 100%; height: 100%; border: 0; }
+
+        /* 起動前の覆い。ここを押させることには意味がある。ブラウザは操作を
+           受け取るまで音を鳴らさないので、最初の一押しが音の解錠を兼ねる。 */
+        .stage__cover {
+            position: absolute; inset: 0;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 18px;
+            background: #0a0c12 center / cover no-repeat;
+            color: #ded8c8; text-align: center; padding: 24px;
+        }
+        .stage__cover::after {
+            content: ""; position: absolute; inset: 0; background: rgba(6, 8, 12, .58);
+        }
+        .stage__cover > * { position: relative; z-index: 1; }
+        .stage__title { font-size: 26px; font-weight: 700; margin: 0; }
+        .stage__note { font-size: 14px; opacity: .78; margin: 0; max-width: 30em; line-height: 1.7; }
+        .stage__go {
+            border: 0; border-radius: 999px; cursor: pointer;
+            padding: 14px 38px; font: inherit; font-size: 18px; font-weight: 700;
+            background: #46b24a; color: #fff;
+        }
+        .stage__go:hover { background: #39963d; }
+        .stage__go:focus-visible { outline: 3px solid #005fcc; outline-offset: 3px; }
+
+        .stage-bar {
+            display: flex; flex-wrap: wrap; gap: 10px 18px;
+            align-items: center; justify-content: space-between;
+            margin: 14px auto 0; max-width: 100%;
+        }
+        .stage-bar button {
+            border: 1px solid currentColor; border-radius: 999px; background: none;
+            cursor: pointer; padding: 6px 16px; font: inherit; font-size: 14px; color: inherit;
+        }
+        .keys { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0; padding: 0; list-style: none; font-size: 14px; }
+        .keys b { font-weight: 600; }
+        .keys kbd {
+            font-family: 'IBM Plex Mono', monospace; font-size: 13px;
+            border: 1px solid rgba(0, 0, 0, .28); border-bottom-width: 2px;
+            border-radius: 5px; padding: 1px 7px;
+        }
+        .missing { padding: 40px 0; }
+    </style>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
+
+    <div class="frame">
+        <header class="site-head">
+            <div class="inner">
+                <a class="brand" href="index.html">mogmog-0110.github.io</a>
+                <ul class="menu">
+                    <li><a href="engine.html">engine</a></li>
+                    <li><a href="labs.html">lab</a></li>
+                    <li><a href="research.html">research</a></li>
+                    <li><a href="portfolio.html">works</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <main id="main">
+            <section class="page-head">
+                <p class="file-line" id="crumb">/ play</p>
+                <h1 id="head">ブラウザで遊ぶ</h1>
+                <p class="lede" id="lede">インストールは要りません。読み込みが終わると、そのまま遊べます。</p>
+            </section>
+
+            <div class="sections">
+                <section class="sec">
+                    <div class="sec-body" id="body"></div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="site-foot">
+            <p>&copy; 川村優弥 / Shiggy</p>
+            <p>fujimiya0110☆gmail.com（☆→@） · <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">github</a></p>
+        </footer>
+    </div>
+
+    <script>
+        "use strict";
+
+        // 遊べるものの登録表。1 本増やすときはここへ 1 項目足す。
+        // width / height は論理解像度。縦横比は割り算で出すので 16:9 に限らない。
+        var GAMES = {
+            oscar: {
+                title: "オスカーのガーデニング",
+                path: "play/oscar/",
+                width: 1280,
+                height: 720,
+                cover: "images/oscar/title.webp",
+                page: "oscar-gardening.html",
+                download: "https://github.com/mogmog-0110/oscars-gardening-releases/releases/latest",
+                note: "読み込みに 6 MB ほど使います。音が出ます。",
+                keys: [
+                    ["手前の土", "クリック / A / ← / ↓"],
+                    ["奥の土", "Space / D / → / ↑"],
+                    ["一時停止", "Esc"]
+                ]
+            }
+        };
+
+        var params = new URLSearchParams(location.search);
+        var id = params.get("game") || "oscar";
+        var game = GAMES[id];
+        var body = document.getElementById("body");
+
+        function esc(s) {
+            return String(s).replace(/[&<>"]/g, function (c) {
+                return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+            });
+        }
+
+        if (!game) {
+            document.getElementById("lede").textContent =
+                "指定されたゲームが見つかりませんでした。";
+            body.innerHTML = '<p class="missing"><a href="portfolio.html">Works の一覧へ戻る</a></p>';
+        } else {
+            document.title = game.title + " | ブラウザで遊ぶ";
+            document.getElementById("crumb").textContent = "/ play / " + id;
+            document.getElementById("head").textContent = game.title;
+            document.getElementById("lede").textContent =
+                "インストールは要りません。" + game.note;
+
+            var keys = game.keys.map(function (k) {
+                return "<li><b>" + esc(k[0]) + "</b> <kbd>" + esc(k[1]) + "</kbd></li>";
+            }).join("");
+
+            var links = ['<a href="' + esc(game.page) + '">作品ページ →</a>'];
+            if (game.download) {
+                links.push('<a href="' + esc(game.download) +
+                    '" target="_blank" rel="noopener">Windows 版をダウンロード →</a>');
+            }
+            links.push('<a href="portfolio.html">← Works に戻る</a>');
+
+            body.innerHTML =
+                '<div class="stage" id="stage" style="--game-aspect:' +
+                (game.width / game.height) + '">' +
+                '<div class="stage__cover" id="cover"' +
+                (game.cover ? ' style="background-image:url(' + esc(game.cover) + ')"' : "") + '>' +
+                '<p class="stage__title">' + esc(game.title) + "</p>" +
+                '<p class="stage__note">' + esc(game.note) + "</p>" +
+                '<button class="stage__go" id="go">はじめる</button>' +
+                "</div></div>" +
+                '<div class="stage-bar">' +
+                '<ul class="keys">' + keys + "</ul>" +
+                '<button id="full" hidden>全画面にする</button>' +
+                "</div>" +
+                '<div class="link-row">' + links.join("") + "</div>";
+
+            var stage = document.getElementById("stage");
+            var cover = document.getElementById("cover");
+            var full = document.getElementById("full");
+
+            document.getElementById("go").addEventListener("click", function () {
+                var f = document.createElement("iframe");
+                f.src = game.path;
+                f.title = game.title;
+                // 親で押した操作を中の文書へ渡す。これが無いと、中の音が
+                // 解錠されないまま始まる場合がある。
+                f.allow = "autoplay; fullscreen";
+                stage.appendChild(f);
+                cover.remove();
+                if (stage.requestFullscreen) { full.hidden = false; }
+                f.focus();
+            });
+
+            full.addEventListener("click", function () {
+                if (document.fullscreenElement) { document.exitFullscreen(); }
+                else { stage.requestFullscreen(); }
+            });
+            document.addEventListener("fullscreenchange", function () {
+                full.textContent = document.fullscreenElement ? "全画面をやめる" : "全画面にする";
+            });
+        }
+    </script>
+</body>
+
+</html>
