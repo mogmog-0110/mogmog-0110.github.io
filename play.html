@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fcfcfb">
     <title>ブラウザで遊ぶ | Shiggy</title>
-    <meta name="description" content="作ったゲームをブラウザで遊べます。インストールは要りません。">
+    <meta name="description" content="作ったゲームをブラウザで遊べます。ダウンロードやインストールは不要です。">
 
     <style>
         html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
@@ -17,7 +17,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shiggy's Portfolio">
     <meta property="og:title" content="ブラウザで遊ぶ | Shiggy">
-    <meta property="og:description" content="作ったゲームをブラウザで遊べます。インストールは要りません。">
+    <meta property="og:description" content="作ったゲームをブラウザで遊べます。ダウンロードやインストールは不要です。">
     <meta property="og:url" content="https://mogmog-0110.github.io/play.html">
     <link rel="canonical" href="https://mogmog-0110.github.io/play.html">
     <meta property="og:image" content="https://mogmog-0110.github.io/images/oscar/title.webp">
@@ -25,7 +25,7 @@
     <meta property="og:image:height" content="720">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ブラウザで遊ぶ | Shiggy">
-    <meta name="twitter:description" content="作ったゲームをブラウザで遊べます。インストールは要りません。">
+    <meta name="twitter:description" content="作ったゲームをブラウザで遊べます。ダウンロードやインストールは不要です。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/oscar/title.webp">
 
     <!-- Fonts -->
@@ -51,27 +51,18 @@
         .stage iframe { display: block; width: 100%; height: 100%; border: 0; }
 
         /* 起動前の覆い。ここを押させることには意味がある。ブラウザは操作を
-           受け取るまで音を鳴らさないので、最初の一押しが音の解錠を兼ねる。 */
+           受け取るまで音を鳴らさないので、最初の一押しが音の解錠を兼ねる。
+           絵は敷かない。ゲームの題字の上に説明が重なって、どちらも読めなくなる。 */
         .stage__cover {
             position: absolute; inset: 0;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center; gap: 18px;
-            background: #0a0c12 center / cover no-repeat;
-            color: #ded8c8; text-align: center; padding: 24px;
+            display: flex; align-items: center; justify-content: center;
+            border: 0; width: 100%; padding: 24px;
+            background: #0a0c12; color: #ded8c8;
+            font: inherit; font-size: 18px; font-weight: 700;
+            cursor: pointer;
         }
-        .stage__cover::after {
-            content: ""; position: absolute; inset: 0; background: rgba(6, 8, 12, .58);
-        }
-        .stage__cover > * { position: relative; z-index: 1; }
-        .stage__title { font-size: 26px; font-weight: 700; margin: 0; }
-        .stage__note { font-size: 14px; opacity: .78; margin: 0; max-width: 30em; line-height: 1.7; }
-        .stage__go {
-            border: 0; border-radius: 999px; cursor: pointer;
-            padding: 14px 38px; font: inherit; font-size: 18px; font-weight: 700;
-            background: #46b24a; color: #fff;
-        }
-        .stage__go:hover { background: #39963d; }
-        .stage__go:focus-visible { outline: 3px solid #005fcc; outline-offset: 3px; }
+        .stage__cover:hover { color: #fff; }
+        .stage__cover:focus-visible { outline: 3px solid #005fcc; outline-offset: -6px; }
 
         .stage-bar {
             display: flex; flex-wrap: wrap; gap: 10px 18px;
@@ -113,7 +104,7 @@
             <section class="page-head">
                 <p class="file-line" id="crumb">/ play</p>
                 <h1 id="head">ブラウザで遊ぶ</h1>
-                <p class="lede" id="lede">インストールは要りません。読み込みが終わると、そのまま遊べます。</p>
+                <p class="lede" id="lede">ダウンロードやインストールは不要です。読み込み後、ブラウザですぐに遊べます。</p>
             </section>
 
             <div class="sections">
@@ -140,10 +131,9 @@
                 path: "play/oscar/",
                 width: 1280,
                 height: 720,
-                cover: "images/oscar/title.webp",
                 page: "oscar-gardening.html",
                 download: "https://github.com/mogmog-0110/oscars-gardening-releases/releases/latest",
-                note: "読み込みに 6 MB ほど使います。音が出ます。",
+                note: "約 6 MB を読み込みます。音が出ます。",
                 keys: [
                     ["手前の土", "クリック / A / ← / ↓"],
                     ["奥の土", "Space / D / → / ↑"],
@@ -172,7 +162,7 @@
             document.getElementById("crumb").textContent = "/ play / " + id;
             document.getElementById("head").textContent = game.title;
             document.getElementById("lede").textContent =
-                "インストールは要りません。" + game.note;
+                "ダウンロードやインストールは不要です。" + game.note;
 
             var keys = game.keys.map(function (k) {
                 return "<li><b>" + esc(k[0]) + "</b> <kbd>" + esc(k[1]) + "</kbd></li>";
@@ -188,12 +178,8 @@
             body.innerHTML =
                 '<div class="stage" id="stage" style="--game-aspect:' +
                 (game.width / game.height) + '">' +
-                '<div class="stage__cover" id="cover"' +
-                (game.cover ? ' style="background-image:url(' + esc(game.cover) + ')"' : "") + '>' +
-                '<p class="stage__title">' + esc(game.title) + "</p>" +
-                '<p class="stage__note">' + esc(game.note) + "</p>" +
-                '<button class="stage__go" id="go">はじめる</button>' +
-                "</div></div>" +
+                '<button class="stage__cover" id="go" type="button">ゲームを始める</button>' +
+                "</div>" +
                 '<div class="stage-bar">' +
                 '<ul class="keys">' + keys + "</ul>" +
                 '<button id="full" hidden>全画面にする</button>' +
@@ -201,7 +187,6 @@
                 '<div class="link-row">' + links.join("") + "</div>";
 
             var stage = document.getElementById("stage");
-            var cover = document.getElementById("cover");
             var full = document.getElementById("full");
 
             document.getElementById("go").addEventListener("click", function () {
@@ -212,7 +197,7 @@
                 // 解錠されないまま始まる場合がある。
                 f.allow = "autoplay; fullscreen";
                 stage.appendChild(f);
-                cover.remove();
+                document.getElementById("go").remove();
                 if (stage.requestFullscreen) { full.hidden = false; }
                 f.focus();
             });
