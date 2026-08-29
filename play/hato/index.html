@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>ハトを育てよう</title>
+	<meta name="viewport" content="width=1280,initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="mitiru_runtime/mitiru_base.css">
+	<link rel="stylesheet" href="mitiru_runtime/mitiru_tokens.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="stage">
+		<div id="novel-root" class="novel-root" hidden></div>
+
+		<div id="game-scene" class="game-scene" hidden>
+			<img id="bg" class="layer" alt="">
+			<img id="chara" class="layer chara-layer" alt="">
+
+			<div id="hud" class="hud">
+				<div class="hud-day">
+					<span id="hud-day-num">1</span>
+					<span class="hud-day-label">日目</span>
+				</div>
+				<div class="hud-stats">
+					<div><span class="hud-stat-label">筋肉:</span><span id="hud-kinniku">0</span></div>
+					<div><span class="hud-stat-label">知能:</span><span id="hud-tinou">0</span></div>
+					<div><span class="hud-stat-label">体重:</span><span id="hud-taijuu">350</span></div>
+				</div>
+			</div>
+
+			<div id="actions" class="actions">
+				<button class="action-btn" data-action="asobu">
+					<img src="assets/button/asobu_btn.png" alt="遊ぶ">
+				</button>
+				<button class="action-btn" data-action="benkyou">
+					<img src="assets/button/benkyou_btn.png" alt="勉強">
+				</button>
+				<button class="action-btn" data-action="gohan">
+					<img src="assets/button/gohan_btn.png" alt="ごはん">
+				</button>
+				<button class="action-btn" data-action="kinntore">
+					<img src="assets/button/kintore_btn.png" alt="筋トレ">
+				</button>
+				<button class="action-btn" data-action="sikaru">
+					<img src="assets/button/sikaru_btn.png" alt="叱る">
+				</button>
+			</div>
+		</div>
+
+		<div id="title-scene" class="title-scene" hidden>
+			<img id="title-bg" class="layer" src="assets/bg/title.png" alt="">
+			<div id="title-buttons" class="title-buttons">
+				<button class="title-btn" data-title="start">
+					<img src="assets/title/yaru_btn.png" alt="やる">
+				</button>
+				<button class="title-btn" data-title="end">
+					<img src="assets/title/yaranai_btn.png" alt="やらない">
+				</button>
+			</div>
+			<button id="hatodrop-title-btn" class="hatodrop-title-btn" hidden>
+				<span class="label">ハトドロップ</span>
+				<span class="highscore" id="hatodrop-highscore"></span>
+			</button>
+		</div>
+
+		<div id="day-splash" class="day-splash" hidden>
+			<div class="sun"></div>
+			<div class="day-splash-text" id="day-splash-text">Day 1</div>
+		</div>
+
+		<div id="credits-scene" class="credits-scene" hidden>
+			<div class="credits-layout">
+				<div id="minigame-slot" class="minigame-slot"></div>
+				<div id="credits-column" class="credits-column">
+					<div id="credits-scroll" class="credits-scroll"></div>
+					<div id="credits-fade-top" class="credits-fade credits-fade-top"></div>
+					<div id="credits-fade-bot" class="credits-fade credits-fade-bot"></div>
+				</div>
+			</div>
+
+			<button id="credits-skip" class="overlay-btn credits-skip" hidden>スキップ</button>
+		</div>
+
+		<div id="solo-hatodrop-scene" class="solo-hatodrop-scene" hidden>
+			<div id="solo-hatodrop-slot" class="solo-hatodrop-slot"></div>
+			<div class="solo-hatodrop-hud">
+				<div class="solo-hatodrop-title">ハトドロップ</div>
+				<div class="solo-hatodrop-highscore">
+					High Score: <span id="solo-hatodrop-hs">0</span>
+				</div>
+				<button id="solo-hatodrop-exit" class="solo-hatodrop-exit">タイトルに戻る</button>
+			</div>
+		</div>
+
+		<div id="continue-prompt" class="continue-prompt" hidden>
+			<div class="continue-prompt-text">続けてプレイしますか？</div>
+			<div class="continue-prompt-buttons">
+				<button class="continue-btn" data-continue="yes">はい</button>
+				<button class="continue-btn" data-continue="no">いいえ</button>
+			</div>
+		</div>
+
+		<div id="score-display" class="score-display" hidden>
+			<div class="score-label">今回のスコアは……</div>
+			<div class="score-value" id="score-value">0</div>
+			<div class="score-label">でした！</div>
+		</div>
+
+		<button id="backlog-btn" class="overlay-btn backlog-btn" title="バックログ (L)" hidden>履歴</button>
+		<button id="skip-novel-btn" class="overlay-btn skip-novel-btn" title="スキップ (S)" hidden>スキップ</button>
+	</div>
+
+	<audio id="bgm" src="assets/bgm/music.ogg" loop></audio>
+
+	<script src="mitiru_runtime/mitiru_runtime.js"></script>
+	<script src="mitiru_runtime/mitiru_debug.js"></script>
+	<script src="mitiru_runtime/mitiru_state.js"></script>
+	<script src="mitiru_runtime/mitiru_novel.js"></script>
+	<script src="mitiru_runtime/mitiru_physics.js"></script>
+	<script src="se.js"></script>
+	<script src="hatodrop.js"></script>
+	<script type="module" src="main.js"></script>
+</body>
+</html>

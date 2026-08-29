@@ -1,0 +1,130 @@
+/*!
+ * mitiru_tokens.css — MitiruEngine design tokens
+ *
+ * デフォルトの palette / typography / shadow / radius / z-index を CSS custom
+ * properties として公開する。ゲーム側はこのファイルを読み込むだけでデフォルト
+ * デザイン言語を獲得し、必要な変数だけ `--mitiru-*` を overrideすれば再着色できる。
+ *
+ * 使用例 (games/<name>/assets/ui/index.html 内):
+ *
+ *   <link rel="stylesheet" href="../mitiru_runtime/mitiru_base.css">
+ *   <link rel="stylesheet" href="../mitiru_runtime/mitiru_tokens.css">
+ *   <style>
+ *     :root { --mitiru-accent: #ff5a7a; }
+ *     .card { background: var(--mitiru-surface); color: var(--mitiru-text); }
+ *   </style>
+ *
+ * palette は KaeruCrape "Warm Physical Objects" をデフォルトに据えている。
+ * Murehikari 等の cool-tone 系ゲームは :root レベルで上書きすること。
+ */
+:root
+{
+	/* ── Base palette: Warm Physical Objects ─────────────────── */
+	--mitiru-cherry:   #c0392b;   /* アクセント赤 */
+	--mitiru-rose:     #e8a0a0;   /* ハイライト薄赤 */
+	--mitiru-mint:     #a8d4c4;   /* アクセント緑 */
+	--mitiru-cream:    #faf3e7;   /* 背景薄黄 */
+	--mitiru-caramel:  #8b5e3c;   /* 強調茶 */
+
+	/* ── Semantic aliases (好みの palette を指し直せば一括変更可) ── */
+	--mitiru-bg:        var(--mitiru-cream);
+	--mitiru-surface:   #ffffff;
+	--mitiru-text:      #2b2118;
+	--mitiru-text-mute: #8a7865;
+	--mitiru-accent:    var(--mitiru-cherry);
+	--mitiru-success:   var(--mitiru-mint);
+	--mitiru-warning:   #e0a028;
+	--mitiru-danger:    var(--mitiru-cherry);
+	--mitiru-focus:     #4fc3f7;
+	--mitiru-border:    #d8cbb8;
+
+	/* ── Typography stack ────────────────────────────────────── */
+	--mitiru-font-display: "Pacifico", "Kosugi Maru", cursive, system-ui;
+	--mitiru-font-body:    "Varela Round", "Noto Sans JP", "Yu Gothic", system-ui, sans-serif;
+	--mitiru-font-mono:    "Courier Prime", "Consolas", "MS Gothic", monospace;
+
+	/* スケール (1rem = 16px 想定) */
+	--mitiru-text-xs:   0.75rem;
+	--mitiru-text-sm:   0.875rem;
+	--mitiru-text-md:   1rem;
+	--mitiru-text-lg:   1.25rem;
+	--mitiru-text-xl:   1.5rem;
+	--mitiru-text-2xl:  2rem;
+	--mitiru-text-3xl:  3rem;
+
+	--mitiru-leading-tight:  1.2;
+	--mitiru-leading-normal: 1.5;
+	--mitiru-leading-loose:  1.75;
+
+	/* ── Spacing (8px grid; UI 開発ルール準拠) ────────────────── */
+	--mitiru-space-0:  0;
+	--mitiru-space-1:  4px;    /* コンポーネント内部の隙間のみ */
+	--mitiru-space-2:  8px;
+	--mitiru-space-3:  16px;
+	--mitiru-space-4:  24px;
+	--mitiru-space-5:  32px;
+	--mitiru-space-6:  48px;
+	--mitiru-space-7:  64px;
+
+	/* ── Corner radius ──────────────────────────────────────── */
+	--mitiru-radius-sm: 4px;
+	--mitiru-radius-md: 8px;
+	--mitiru-radius-lg: 16px;
+	--mitiru-radius-pill: 999px;
+
+	/* ── Elevation / shadow ─────────────────────────────────── */
+	--mitiru-shadow-1: 0 1px 2px rgba(43, 33, 24, 0.08),
+	                   0 1px 1px rgba(43, 33, 24, 0.04);
+	--mitiru-shadow-2: 0 2px 6px rgba(43, 33, 24, 0.10),
+	                   0 1px 2px rgba(43, 33, 24, 0.05);
+	--mitiru-shadow-3: 0 6px 16px rgba(43, 33, 24, 0.14),
+	                   0 2px 4px rgba(43, 33, 24, 0.08);
+	--mitiru-shadow-4: 0 12px 28px rgba(43, 33, 24, 0.20),
+	                   0 4px 8px rgba(43, 33, 24, 0.10);
+
+	/* backdrop blur (CEF / modern browser) */
+	--mitiru-blur-sm: blur(4px);
+	--mitiru-blur-md: blur(12px);
+	--mitiru-blur-lg: blur(24px);
+
+	/* ── Z-index ladder ─────────────────────────────────────── */
+	--mitiru-z-base:     0;
+	--mitiru-z-hud:      100;
+	--mitiru-z-overlay:  200;
+	--mitiru-z-modal:    300;
+	--mitiru-z-toast:    400;
+	--mitiru-z-drag:     500;    /* ドラッグ中の ghost は最上段 */
+
+	/* ── Transition ──────────────────────────────────────────── */
+	--mitiru-ease:          cubic-bezier(0.4, 0, 0.2, 1);
+	--mitiru-ease-bounce:   cubic-bezier(0.34, 1.56, 0.64, 1);
+	--mitiru-duration-fast: 120ms;
+	--mitiru-duration-mid:  240ms;
+	--mitiru-duration-slow: 480ms;
+}
+
+/* ── Dark-tone base (Murehikari 系、opt-in) ───────────────────
+ * :root に class="mitiru-theme-abyss" を付けると cool-tone palette に
+ * 切り替わる。ゲーム側が必要に応じて付与する。
+ */
+:root.mitiru-theme-abyss
+{
+	--mitiru-bg:        #07111f;
+	--mitiru-surface:   #11203a;
+	--mitiru-text:      #d8e6ff;
+	--mitiru-text-mute: #7086a4;
+	--mitiru-accent:    #4fc3f7;
+	--mitiru-border:    #1d2e4a;
+}
+
+/* ── body 既定を token 経由に ───────────────────────────────── */
+/* --mitiru-locale-font is set by mitiru.i18n.setFontMap() (F-07) when the
+ * active locale changes; absent locales fall back to --mitiru-font-body. */
+body
+{
+	background: var(--mitiru-bg);
+	color: var(--mitiru-text);
+	font-family: var(--mitiru-locale-font, var(--mitiru-font-body));
+	font-size: var(--mitiru-text-md);
+	line-height: var(--mitiru-leading-normal);
+}

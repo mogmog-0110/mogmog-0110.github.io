@@ -1,0 +1,7 @@
+{
+	"id": "hato-ending-death",
+	"lines": [
+		{"type": "bg", "path": "assets/bg/sousiki.png"},
+		{"speaker": "", "text": "ご冥福をお祈りします"}
+	]
+}

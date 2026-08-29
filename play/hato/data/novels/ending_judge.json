@@ -1,0 +1,10 @@
+{
+	"id": "hato-ending-judge",
+	"lines": [
+		{"type": "bg", "path": "assets/bg/kirakira.png"},
+		{"type": "wait", "ms": 1500},
+		{"speaker": "あなた", "text": "あれから、もう一週間が経ったのか……"},
+		{"speaker": "あなた", "text": "はやかったなぁ"},
+		{"speaker": "あなた", "text": "いったいどんな風に育ったんだろう……わくわく"}
+	]
+}

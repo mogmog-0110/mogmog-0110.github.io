@@ -1,0 +1,8 @@
+{
+	"id": "hato-ending-owl",
+	"lines": [
+		{"type": "bg", "path": "assets/bg/hukurou.png"},
+		{"speaker": "あなた", "text": "わぁ、なんかすごく賢そうに育ったね～。やったぁ"},
+		{"speaker": "ハト", "text": "ホウホウ"}
+	]
+}

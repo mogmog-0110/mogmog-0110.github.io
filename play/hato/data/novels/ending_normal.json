@@ -1,0 +1,8 @@
+{
+	"id": "hato-ending-normal",
+	"lines": [
+		{"type": "bg", "path": "assets/bg/hutuu.png"},
+		{"speaker": "あなた", "text": "やっぱりふつうが一番だよね！"},
+		{"speaker": "ハト", "text": "くるっぽー"}
+	]
+}
