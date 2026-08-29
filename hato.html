@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fcfcfb">
-    <title>ハトを育てよう（MitiruEngine リメイク）| Shiggy</title>
-    <meta name="description" content="TyranoScript で書いた『ハトを育てよう』を、自作の MitiruEngine 上で完全移植 + 追加要素を入れたリメイク版。">
+    <title>ハトを育てよう | Shiggy</title>
+    <meta name="description" content="ゲームの作り方を教えるために作ったハト育成ノベルゲーム。行動を選ぶと状態と結末が変わります。後に自作の MitiruEngine で再現しました。">
 
     <style>
         html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
@@ -16,16 +16,16 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shiggy's Portfolio">
-    <meta property="og:title" content="ハトを育てよう（MitiruEngine リメイク）| Shiggy">
-    <meta property="og:description" content="TyranoScript で書いた原作を、自作 MitiruEngine 上で完全移植 + 追加要素を入れたリメイク版。">
+    <meta property="og:title" content="ハトを育てよう | Shiggy">
+    <meta property="og:description" content="ゲームの作り方を教えるために作ったハト育成ノベルゲーム。行動を選ぶと状態と結末が変わります。後に自作の MitiruEngine で再現しました。">
     <meta property="og:url" content="https://mogmog-0110.github.io/hato.html">
     <link rel="canonical" href="https://mogmog-0110.github.io/hato.html">
     <meta property="og:image" content="https://mogmog-0110.github.io/images/hato_3.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ハトを育てよう（MitiruEngine リメイク）| Shiggy">
-    <meta name="twitter:description" content="TyranoScript で書いた原作を、自作 MitiruEngine 上で完全移植 + 追加要素を入れたリメイク版。">
+    <meta name="twitter:title" content="ハトを育てよう | Shiggy">
+    <meta name="twitter:description" content="ゲームの作り方を教えるために作ったハト育成ノベルゲーム。行動を選ぶと状態と結末が変わります。後に自作の MitiruEngine で再現しました。">
     <meta name="twitter:image" content="https://mogmog-0110.github.io/images/hato_3.webp">
 
     <!-- Fonts -->
@@ -57,14 +57,14 @@
             <section class="page-head">
                 <p class="file-line">/ works / hato</p>
                 <h1>ハトを育てよう</h1>
-                <p class="sub">MitiruEngine リメイク</p>
                 <p class="lede">
-                    2023年にTyranoScriptで制作したゲームを、自作の
-                    <a href="engine.html" class="soft-link">MitiruEngine</a>
-                    へ完全移植し、新しい機能を加えた作品です。
+                    ゲームの作り方を教えるために制作したノベルゲームです。
+                    ハトへの行動を選ぶことで、その状態と結末が変化します。
+                    後に自作の <a href="engine.html" class="soft-link">MitiruEngine</a> で再現しました。
                 </p>
                 <div class="meta-line">
-                    <span>リメイク作品</span>
+                    <span>2023年</span>
+                    <span>個人開発</span>
                     <span>MitiruEngine</span>
                     <span>CEF + JavaScript</span>
                     <span>mitiru.novel</span>
@@ -73,15 +73,16 @@
 
             <div class="sections">
                 <section class="sec">
-                    <h2>作品概要</h2>
+                    <h2>作品について</h2>
                     <div class="sec-body">
                         <p>
-                            原作は、2023年に2日で制作したノベルゲームです。
-                            5種類の行動を選びながらハトを育て、状態に応じて5つのエンディングへ分岐します。
+                            企画開発部には、シナリオ制作を学ぶ「シナリオ部」という活動があり、私は教える側として参加していました。ティラノスクリプトを使ったゲーム制作を教える際、実際に動くサンプルとして本作を制作しました。そのための教材です。
                         </p>
                         <p>
-                            リメイクでは原作のゲーム内容を再現しながら、バックログ、既読スキップ、セーブ・ロードなどを追加しました。
-                            自作エンジンで、ひとつのゲームを完成形まで動かせることを確かめた作品でもあります。
+                            プレイヤーはハトに対する五種類の行動を選び、その状態に応じた結末を迎えます。結末は五つです。後に自作のMitiruEngineで再現し、バックログや既読スキップ、セーブとロードを備えました。
+                        </p>
+                        <p>
+                            時間をかけずに作った作品でしたが、学祭やOBから好評を得ました。蒼翔祭2023では、子供たちが実際に遊び、楽しそうにしている姿を見ることができました。作ってよかったと感じました。
                         </p>
                     </div>
                 </section>
@@ -107,29 +108,27 @@
                 </section>
 
                 <section class="sec">
-                    <h2>リメイクの目的</h2>
+                    <h2>MitiruEngineで作り直した理由</h2>
                     <div class="sec-body">
                         <p>
-                            原作はゲームとして完成していましたが、エンジン自体を自分で書いたものではなく、改造や流用が利きませんでした。
-                            そこで、原作を自作のMitiruEngine上に移し、エンジン同梱のノベル機能
-                            <code>mitiru.novel</code>を初めて実作品で使用しました。
+                            ティラノスクリプト版はゲームとして完成していましたが、エンジンを自分で書いたわけではないので、改造や流用が利きませんでした。そこで自作のMitiruEngine上へ移し、エンジン同梱のノベル機能<code>mitiru.novel</code>を初めて実作品で使いました。
                         </p>
                         <p>
-                            仕様を把握しているゲームを再現することで、自作エンジンが実際の制作に使えるかを検証しました。
+                            仕様を隅まで把握しているゲームを選んだのは、自作エンジンが実際の制作に使えるかを確かめるためです。
                         </p>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>再現した内容</h2>
+                    <h2>ゲームの中身</h2>
                     <div class="sec-body">
                         <ul>
-                            <li>原作に準拠した1280×720の画面と座標</li>
+                            <li>1280×720の画面と座標</li>
                             <li>day、stress、yaruki、tinou、kinniku、taijuu、val、scoreの各パラメータ</li>
                             <li>「あそぶ」「勉強」「ごはん」「筋トレ」「叱る」の5種類の行動</li>
                             <li>stress、yaruki、taijuuに応じた立ち絵の切り替え</li>
                             <li>「逃亡」「死亡」「ふくろう」「ムキムキ」「ふつう」の5エンディング</li>
-                            <li>原作のスコア計算</li>
+                            <li>スコア計算</li>
                             <li><code>music.ogg</code>のループ再生</li>
                         </ul>
                         <p class="note">
@@ -140,7 +139,7 @@
                 </section>
 
                 <section class="sec">
-                    <h2>リメイクで追加した機能</h2>
+                    <h2>MitiruEngine版で足した機能</h2>
                     <div class="sec-body">
                         <ul>
                             <li>バックログ（履歴ボタン／Lキー）</li>
@@ -162,7 +161,7 @@
                             同じデータをブラウザとCEFネイティブの両方で動かせます。
                         </p>
 
-<pre><code>原作 .ks の機能           →  MitiruEngine 側の対応
+<pre><code>ティラノスクリプト .ks   →  MitiruEngine 側の対応
 ─────────────────────────────────────────────────
 #キャラ名 + テキスト       →  { speaker, text }
 @bg storage=...            →  { type: 'bg', path }
@@ -185,8 +184,8 @@
                             エンジン単体の動作だけでなく、プレイ可能なゲーム全体を載せられる段階に達したことを示しています。
                         </p>
                         <p class="fine">
-                            原作『ハトを育てよう』: shiggy／TyranoScript Ver5.20<br>
-                            移植基盤: MitiruEngine CEF Hybrid／<code>mitiru.novel</code> VN VM
+『ハトを育てよう』: shiggy／初出は TyranoScript Ver5.20<br>
+                            MitiruEngine 版: CEF Hybrid／<code>mitiru.novel</code> VN VM
                         </p>
                         <div class="link-row">
                             <a href="portfolio.html">← Works に戻る</a>
