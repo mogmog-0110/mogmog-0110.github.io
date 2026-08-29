@@ -58,9 +58,9 @@
                 <p class="file-line">/ works / fluid-drop</p>
                 <h1>FLUID DROP</h1>
                 <p class="lede">
-                    積んだブロックが、ゼリーや液体へ変化していく落ちものパズルです。
-                    流体シミュレーションの結果が、ブロックの消し方に直接影響します。
-                    自作の <a href="engine.html" class="soft-link">MitiruEngine</a> で開発しました。ブラウザで遊べます。
+                    流体シミュレーションを落ちものパズルのルールに取り入れた作品です。
+                    形を保っていたブロックが崩れ、流れ、その変化が消去条件や得点にも影響します。技術がルールです。
+                    自作の <a href="engine.html" class="soft-link">MitiruEngine</a> で開発しました。
                 </p>
                 <div class="meta-line">
                     <span>Released v1.1.0</span>
@@ -93,31 +93,44 @@
                 </section>
 
                 <section class="sec">
-                    <h2>ゲームの特徴</h2>
+                    <h2>はじまり</h2>
                     <div class="sec-body">
-                        <p class="sec-intro">
-                            ブロックの材質は、プレイ中に80秒周期で変化します。変化は止められず、材質に応じて消し方も変わります。
-                        </p>
-                        <div class="plate-grid">
-                            <div class="plate">
-                                <p class="lbl">カチカチ・25秒</p>
-                                <p>横一列をそろえると消える、通常の落ちものパズルです。</p>
-                            </div>
-                            <div class="plate">
-                                <p class="lbl">硬いゼリー・30秒</p>
-                                <p>盤面が揺れ始めます。形を保っている間は、ラインをそろえて消せます。</p>
-                            </div>
-                            <div class="plate">
-                                <p class="lbl">柔らかいゼリー・15秒／液体・5秒</p>
-                                <p>積んだブロックが溶けて流れます。同じ色を壁から壁までつなぐと消せます。</p>
-                            </div>
-                            <div class="plate">
-                                <p class="lbl">再び固まる</p>
-                                <p>流れた地形は灰色の「大地」になります。大地の得点は半分ですが、固まった直後の数秒は得点が3倍になります。</p>
-                            </div>
-                        </div>
                         <p>
-                            溶ける前に消すか、流してから固め直すか。時間と材質の変化を見ながら、積み方を選ぶゲームにしました。
+                            Electronic Artsが公開している流体シミュレーションの技術を知り、これをゲームに活かせたら面白いのではないかと考えました。FLUID DROPは、その可能性を試すところから始まっています。
+                        </p>
+                        <p>
+                            いろいろな題材を考えるなかで、誰もがルールを知っているテトリスと組み合わせれば、変化の大きな仕組みでも遊びやすくなるのではないかと考えました。馴染みのある遊びを土台にすることで、流体による形の変化をゲームとして楽しめると考えたからです。こうして題材が決まりました。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>流体をルールに使う</h2>
+                    <div class="sec-body">
+                        <p>
+                            使っている技術は、<a href="https://github.com/electronicarts/pbmpm" target="_blank" rel="noopener" class="soft-link">Electronic Artsが公開している流体シミュレーションのPB-MPM</a>です。砂や水を細かな粒の集まりとして扱い、それぞれの動きから全体の変形や流れを表現します。
+                        </p>
+                        <p>
+                            着地したブロックは最大65,536個の粒に変わり、それ以降は物理に従って動きます。崩れたり流れたりした結果は、ブロックを消す条件に直接影響します。演出だけではありません。
+                        </p>
+                        <p>
+                            この計算を動かすため、自作の<a href="engine.html" class="soft-link">MitiruEngine</a>ではDirectX 12、ブラウザ版ではWebGPUを使い、同じ数式を二つのAPIに実装しました。ブラウザ版はダウンロードせずに遊べ、画面のUIはHTMLとCSSで作っています。また、同じプレイを記録して再生し、変更のたびに動きが変わっていないかを確かめています。再現性も重視しました。
+                        </p>
+                        <div class="link-row">
+                            <a href="play.html?game=fluiddrop">ブラウザで遊ぶ →</a>
+                            <a href="https://github.com/mogmog-0110/fluid-drop-releases/releases/latest" target="_blank" rel="noopener">ダウンロード（Releases）→</a>
+                            <a href="portfolio.html">← Works に戻る</a>
+                        </div>
+                    </div>
+                </section>
+                <section class="sec">
+                    <h2>遊び方</h2>
+                    <div class="sec-body">
+                        <p>
+                            ゲームは80秒で1周し、カチカチの25秒、硬いゼリーの30秒、柔らかいゼリーの15秒、液体の5秒、再び固まるまでの5秒という順に変化します。この変化は止められません。カチカチの間は通常の落ちものパズルとして遊び、横1列をそろえると消せます。
+                        </p>
+                        <p>
+                            ゼリーになると盤面が揺れ、形が崩れて垂れてきますが、消去条件は引き続き横1列です。液体になるとすべてが溶けて流れ、同じ色を左の壁から右の壁までつなぐことで消せます。冷えて固まると、流れた地形は灰色の「大地」になり、大地を消したときの得点は半分になります。固まった直後の数秒は得点が3倍になり、続けて消すと連鎖になります。変化が得点を生みます。
                         </p>
                     </div>
                 </section>
@@ -143,46 +156,17 @@
                 </section>
 
                 <section class="sec">
-                    <h2>制作で重視したこと</h2>
+                    <h2>振り返り</h2>
                     <div class="sec-body">
                         <p>
-                            当初は「砂で遊ぶテトリス」として始めました。試作を重ね、固いブロックが溶け、流れ、再び固まる変化を主役にしました。
+                            流体シミュレーションを見た目の演出にとどめず、消去条件や盤面の変化に組み込めたことで、技術としては面白いものになったと思っています。二つのAPIへの実装やプレイの再現も含め、試したかったことを形にできました。技術的な手応えはあります。
                         </p>
                         <p>
-                            揺れる動きや流れる速さ、着地時の跳ね方を調整しています。感触を磨きました。
-                        </p>
-                        <p>
-                            画面は濃い色を基調とした賑やかな構成から、白基調の静かな構成へ作り直しました。5か所に散っていた進行状況は右側の縦のレールにまとめ、危険なときだけ盤面の縁が反応します。文言も漢字まじりの短い形に改めました。
-                        </p>
-                        <p>
-                            盤面が柔らかくなるほど、BGMのテンポと音程が徐々にずれます。
+                            一方で、ゲーム単体として見ると、それぞれの変化をどう楽しめばよいのかが伝わりにくく、楽しさを見出しにくい構成になったと思っています。技術の面白さを、遊びの分かりやすさや手応えへ十分につなげられませんでした。ここは今後の課題です。
                         </p>
                     </div>
                 </section>
 
-                <section class="sec">
-                    <h2>実装</h2>
-                    <div class="sec-body">
-                        <p>
-                            流体部分には、砂や水を細かな粒の集まりとして扱うPB-MPMを使用しています。
-                            <a href="https://github.com/electronicarts/pbmpm" target="_blank" rel="noopener" class="soft-link">Electronic Artsが研究として公開している実装</a>
-                            がもとです。
-                        </p>
-                        <p>
-                            着地したブロックは最大65,536個の粒になって流れ、その結果が消去条件に影響します。Windows版ではDirectX 12を使い、ブラウザ版では同じ数式をWebGPUへ移植しました。ダウンロードは不要です。
-                        </p>
-                        <p>
-                            描画や音などの基盤には、自作の
-                            <a href="engine.html" class="soft-link">MitiruEngine</a>
-                            を使用しています。同じプレイを記録して再生できるようにし、変更のたびに以前と動きが変わっていないか確かめています。
-                        </p>
-                        <div class="link-row">
-                            <a href="play.html?game=fluiddrop">ブラウザで遊ぶ →</a>
-                            <a href="https://github.com/mogmog-0110/fluid-drop-releases/releases/latest" target="_blank" rel="noopener">ダウンロード（Releases）→</a>
-                            <a href="portfolio.html">← Works に戻る</a>
-                        </div>
-                    </div>
-                </section>
             </div>
         </main>
 
