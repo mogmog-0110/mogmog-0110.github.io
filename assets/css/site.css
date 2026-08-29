@@ -1253,50 +1253,65 @@ pre code { background: none; padding: 0; }
 
 .play-actions .sub:hover { color: var(--ink); border-color: var(--ink); }
 
-/* ── Works：スクショの折りたたみ ───────────── */
+/* ── Works：サムネ帯 → 詳細モーダル ───────────── */
 /* 1 作品 4 枚が全幅で縦積みになり、ページが読めない長さになっていた。
-   既定は畳んでおき、開いたときだけ 2 列で並べる */
+   一覧にはサムネだけ置き、押すと詳細をモーダルのカードで出す */
 
-.shots { margin: 0.2rem 0 0.4rem; }
-
-.shots > summary {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    color: var(--ink-sub);
-    cursor: pointer;
-    list-style: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.35rem 0;
-    user-select: none;
-}
-
-.shots > summary::-webkit-details-marker { display: none; }
-
-/* 開閉の向きだけで状態を示す。文言は変えない */
-.shots > summary::before {
-    content: "";
-    width: 0; height: 0;
-    border-left: 5px solid currentColor;
-    border-top: 4px solid transparent;
-    border-bottom: 4px solid transparent;
-    transition: transform 0.12s ease;
-}
-
-.shots[open] > summary::before { transform: rotate(90deg); }
-.shots > summary:hover { color: var(--ink); }
-
-.shots > .figures {
+.thumbs {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.6rem;
-    margin: 0.5rem 0 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    width: 100%;
+    margin-top: auto;
+    padding: 0;
+    background: none;
+    border: 1px solid var(--rule-soft);
+    cursor: pointer;
+    font: inherit;
 }
 
-@media (max-width: 560px) {
-    .shots > .figures { grid-template-columns: 1fr; }
+.thumbs img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
 }
 
-.shots > .figures img { border: 1px solid var(--rule-soft); }
+.thumbs:hover { border-color: var(--ink); }
+.thumbs:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* サムネが 4 枚に満たない作品は、残りを詰めずに幅いっぱいへ伸ばす */
+.thumbs:has(img:only-child) { grid-template-columns: 1fr; }
+.thumbs:has(img:nth-child(2):last-child) { grid-template-columns: repeat(2, 1fr); }
+.thumbs:has(img:nth-child(3):last-child) { grid-template-columns: repeat(3, 1fr); }
+
+/* ── モーダル内の作品詳細 ── */
+
+.modal-panel .m-tags {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    margin: 0.9rem 0;
+}
+
+.modal-panel .m-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin: 0.9rem 0 1.4rem;
+}
+
+.modal-panel .m-shots {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.modal-panel .m-shots img {
+    width: 100%;
+    /* 一覧側の .m-shots は 4:3 で切り抜くが、詳細では全体を見せる */
+    aspect-ratio: auto;
+    object-fit: contain;
+    height: auto;
+    border: 1px solid var(--rule-soft);
+}
