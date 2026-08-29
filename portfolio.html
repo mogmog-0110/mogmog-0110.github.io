@@ -59,25 +59,47 @@
 
             <div class="sections">
                 <section class="sec">
+                    <h2>ブラウザで遊べる作品</h2>
+                    <div class="sec-body">
+                        <p class="sec-intro">ダウンロードせずブラウザですぐに遊べる2作品を、先頭で紹介します。</p>
+                    </div>
+
+                    <div class="play-list">
+                        <article class="play-card">
+                            <img loading="lazy" decoding="async" src="images/fluiddrop_card.webp" alt="FLUID DROP のゲーム画面" width="960" height="540">
+                            <div>
+                                <h3>FLUID DROP</h3>
+                                <p class="work-meta">Released v1.1.0 · 2026年 · 個人開発 · MitiruEngine / DirectX 12 + WebGPU / PB-MPM</p>
+                                <p>積んだブロックが80秒周期でカチカチ、ゼリー、液体へ変化する落ちものパズルです。流体シミュレーションの結果が、ブロックの消し方に直接影響します。</p>
+                            </div>
+                            <div class="play-actions">
+                                <a class="play-cta" href="play.html?game=fluiddrop">ブラウザで遊ぶ</a>
+                                <a class="sub" href="fluid-drop.html">詳細を見る →</a>
+                            </div>
+                        </article>
+
+                        <article class="play-card">
+                            <img loading="lazy" decoding="async" src="images/oscar/water.webp" alt="オスカーのガーデニングのゲーム画面" width="1280" height="720">
+                            <div>
+                                <h3>オスカーのガーデニング</h3>
+                                <p class="work-meta">COMITIA157 頒布 · 2026年 · 2人制作 · MitiruEngine / C++20 / DirectX 12</p>
+                                <p>後輩のキャラクターを知ってもらうために2人で制作したリズムゲームです。種まきのタイミングを覚え、次の小節で同じリズムに合わせて水をやります。</p>
+                            </div>
+                            <div class="play-actions">
+                                <a class="play-cta" href="play.html?game=oscar">ブラウザで遊ぶ</a>
+                                <a class="sub" href="oscar-gardening.html">詳細を見る →</a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="sec">
                     <h2>主な作品</h2>
                     <div class="sec-body">
                         <p class="sec-intro">自作ゲームエンジン MitiruEngine を使った作品と、描画技術に関する開発です。各作品の詳細は専用ページで紹介しています。</p>
                     </div>
 
                     <div class="work-list">
-                        <article class="work">
-                            <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/oscar/water.webp" alt="オスカーのガーデニングのゲーム画面" width="1280" height="720">
-                            </div>
-                            <div class="work-body">
-                                <h3>オスカーのガーデニング</h3>
-                                <p class="work-meta">COMITIA157 頒布 · 2026年 · 2人制作 · MitiruEngine / C++20 / DirectX 12</p>
-                                <p>後輩のオリジナルキャラクター「オスカー」の魅力を知ってもらうために作り、2026 年 8 月 23 日の COMITIA157 で頒布しました。種まきのタイミングを覚え、次の小節で同じリズムで水をやるゲームです。会話の音や音量あわせの鼻歌、時間帯で変わる空の色が雰囲気を彩ります。</p>
-                                <p class="tags">MitiruEngine / C++20 / DirectX 12 / HTML+CSS HUD / Rhythm</p>
-                                <a href="oscar-gardening.html">詳細を見る →</a>
-                            </div>
-                        </article>
-
                         <article class="work">
                             <div class="work-media">
                                 <img loading="lazy" decoding="async" src="images/live2d/haru.webp" alt="Live2D モデルを Direct3D 12 で表示した画面" width="960" height="539">
@@ -88,19 +110,6 @@
                                 <p>Live2D Cubism SDK の Direct3D 11 向けレンダラーを読み解き、描画処理を Direct3D 12 で再実装しました。クリッピングマスク、オフスクリーン、advanced blend を含みます。</p>
                                 <p class="tags">MitiruEngine / DirectX 12 / Live2D Cubism 5 / Renderer</p>
                                 <a href="live2d-d3d12.html">詳細を見る →</a>
-                            </div>
-                        </article>
-
-                        <article class="work">
-                            <div class="work-media">
-                                <img loading="lazy" decoding="async" src="images/fluiddrop_card.webp" alt="FLUID DROP のゲーム画面" width="960" height="720">
-                            </div>
-                            <div class="work-body">
-                                <h3>FLUID DROP</h3>
-                                <p class="work-meta">Released v1.0.2 · 2026年 · 個人開発 · MitiruEngine / DirectX 12 / PB-MPM</p>
-                                <p>積んだブロックがゼリーや液体へ変化する落ちものパズルです。流体シミュレーションの PB-MPM を、ブロックを消す仕組みに組み込みました。</p>
-                                <p class="tags">MitiruEngine / DirectX 12 / PB-MPM / CEF / Puzzle</p>
-                                <a href="fluid-drop.html">詳細を見る →</a>
                             </div>
                         </article>
 

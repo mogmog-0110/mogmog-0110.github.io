@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>FLUID DROP HUD</title>
+<link rel="stylesheet" href="hud.css">
+<style>
+/* ── ブラウザ用の追記（CEF では要らなかった分）── */
+html { background: #f2f2f0; }
+body { position: relative; margin: 0 auto; }
+#canvas {
+  position: absolute; left: 0; top: 0; width: 960px; height: 720px;
+  display: block; z-index: 0;
+}
+/* HUD は canvas の上。ただしクリックは canvas へ通す（操作はキーと canvas 側） */
+body > *:not(#canvas) { z-index: 1; }
+#paneL, #paneR, #paneT, #paneB, #frame { pointer-events: none; }
+</style>
+</head>
+<body>
+  <canvas id="canvas" width="960" height="720" tabindex="0"></canvas>  <div id="paneL" class="pane"></div>
+  <div id="paneR" class="pane"></div>
+  <div id="paneT" class="pane"></div>
+  <div id="paneB" class="pane"></div>
+
+  <div id="colL">
+    <div class="box"><div class="cap cap-r">SCORE</div><div id="score" class="val">0</div></div>
+    <div class="box stat"><span class="cap cap-y">BEST</span><span id="hudbest" class="val">0</span></div>
+    <div class="box stat"><span class="cap cap-b">LINES</span><span id="lines" class="val">0</span></div>
+    <div class="box stat"><span class="cap cap-g">LEVEL</span><span id="lv" class="val">0</span></div>
+    <div class="box stat"><span class="cap cap-y">TIME</span><span id="time" class="val">0:00</span></div>
+    <div class="box"><div class="cap cap-p">HOLD</div><div id="hold" class="mino"></div></div>
+  </div>
+
+  <div id="colR">
+    <div class="box"><div class="cap cap-k">NEXT</div>
+      <div id="nextRow">
+        <div id="next" class="mino"></div>
+        <div id="next2" class="mino mino-s"></div>
+      </div>
+    </div>
+    <div class="box" id="wave">
+      <div class="cap">WAVE</div>
+      <div id="waveRail">
+        <div class="wseg" id="ws0"></div>
+        <div class="wseg" id="ws1"></div>
+        <div class="wseg" id="ws2"></div>
+        <div class="wseg" id="ws3"></div>
+        <div id="waveMark"></div>
+        <div class="wlab" id="wl0">カチカチ</div>
+        <div class="wlab" id="wl1">硬ゼリー</div>
+        <div class="wlab" id="wl2">柔ゼリー</div>
+        <div class="wlab" id="wl3">液体</div>
+        <div id="waveSec"></div>
+      </div>
+    </div>
+  </div>
+  <div id="remix">REMIX ×3</div>
+  <div id="combo"></div>
+  <div id="chain"></div>
+
+  <!-- パッド側の表記は接続中の機種（PS / Xbox）で JS が出し分ける -->
+  <div id="helpBox">
+    <div class="cap cap-b">操作</div>
+    <div class="hrow"><span class="hact">移動</span>
+      <span class="hkeys"><span class="key">←</span><span class="key">→</span>
+        <span class="hsep padonly">/</span><span class="pf padonly" id="gmove"></span></span></div>
+    <div class="hrow"><span class="hact">右回転</span>
+      <span class="hkeys"><span class="key">↑</span><span class="key">X</span>
+        <span class="hsep padonly">/</span><span class="pf padonly" id="grotr"></span></span></div>
+    <div class="hrow"><span class="hact">左回転</span>
+      <span class="hkeys"><span class="key">Z</span>
+        <span class="hsep padonly">/</span><span class="pf padonly" id="grotl"></span></span></div>
+    <div class="hrow"><span class="hact">ホールド</span>
+      <span class="hkeys"><span class="key">C</span>
+        <span class="hsep padonly">/</span><span class="pf padonly" id="ghold"></span></span></div>
+    <div class="hrow"><span class="hact">ソフト落下</span>
+      <span class="hkeys"><span class="key">↓</span>
+        <span class="hsep padonly">/</span><span class="pf padonly" id="gsoft"></span></span></div>
+    <div class="hrow"><span class="hact">ハード落下</span>
+      <span class="hkeys"><span class="key">SPACE</span>
+        <span class="hsep padonly">/</span><span class="pf padonly" id="ghard"></span></span></div>
+    <div class="hrow"><span class="hact">ポーズ</span>
+      <span class="hkeys"><span class="key">ESC</span>
+        <span class="hsep padonly">/</span><span class="pf padonly" id="gpause"></span></span></div>
+  </div>
+
+  </div>
+  <div id="tspinPop">T-SPIN!</div>
+  <div id="lvUpPop">LEVEL UP!</div>
+
+
+  <div id="title">
+    <div id="titleBox">
+      <h1>FLUID&nbsp;DROP</h1>
+      <div class="menu">
+        <div class="menuItem" id="tm0">はじめる</div>
+        <div class="menuItem" id="tm1">オプション</div>
+      </div>
+    </div>
+  </div>
+  <!-- 確認: 本編前に「遊び方を見る？」を聞く -->
+  <div id="ask">
+    <div id="askBox">
+      <h1>遊ぶ前に</h1>
+      <div class="lead">初めてなら遊び方を確認</div>
+      <div class="askBtns">
+        <div class="askBtn" id="ab0">すぐ始める</div>
+        <div class="askBtn" id="ab1">遊び方を見る</div>
+      </div>
+    </div>
+  </div>
+  <!-- 操作説明: 本編に入る直前に簡単な操作を案内 -->
+  <div id="ctrl">
+    <div id="ctrlBox">
+      <h1>操作方法</h1>
+      <div class="lead">このボタンで動かす</div>
+      <div id="ctrlGrid">
+        <div class="cc"><span class="lab">移動</span><span class="keys"><span class="key">←</span><span class="key">→</span><span class="pf padonly" id="tcmove"></span></span></div>
+        <div class="cc"><span class="lab">右回転</span><span class="keys"><span class="key">↑</span><span class="key">X</span><span class="pf padonly" id="tcrotr"></span></span></div>
+        <div class="cc"><span class="lab">左回転</span><span class="keys"><span class="key">Z</span><span class="pf padonly" id="tcrotl"></span></span></div>
+        <div class="cc"><span class="lab">ホールド</span><span class="keys"><span class="key">C</span><span class="pf padonly" id="tchold"></span></span></div>
+        <div class="cc"><span class="lab">ソフト落下</span><span class="keys"><span class="key">↓</span><span class="pf padonly" id="tcsoft"></span></span></div>
+        <div class="cc"><span class="lab">ハード落下</span><span class="keys"><span class="key">SPACE</span><span class="pf padonly" id="tchard"></span></span></div>
+        <div class="cc"><span class="lab">ポーズ</span><span class="keys"><span class="key">ESC</span><span class="pf padonly" id="tcpause"></span></span></div>
+      </div>
+      <div class="ctrlGo">▶ スタート<span class="key">SPACE</span><span class="pf padonly" id="gok5"></span></div>
+    </div>
+  </div>
+  <div id="tut">
+    <div id="tutDots"></div>
+    <div id="tutBox">
+      <div id="tutName">遊び方</div>
+      <div id="tutText"></div>
+      <div class="next">Z・ESC <span class="pf padonly" id="tutBackG"></span> で戻る</div>
+    </div>
+  </div>
+  <div id="options">
+    <div id="optBox">
+      <h1>オプション</h1>
+      <div class="orow" id="orow0">
+        <span>BGM 音量</span>
+        <span class="obar"><div id="obarBgm"></div></span>
+        <span class="oval" id="ovalBgm">80</span>
+      </div>
+      <div class="orow" id="orow1">
+        <span>SE 音量</span>
+        <span class="obar"><div id="obarSe"></div></span>
+        <span class="oval" id="ovalSe">90</span>
+      </div>
+      <div class="orow" id="orow2">
+        <span>画面の揺れ</span>
+        <span class="oval" id="ovalShake" style="min-width:140px;">ON</span>
+      </div>
+    </div>
+  </div>
+  <div id="pause">
+    <div id="pauseBox">
+      <h1>休憩中</h1>
+      <div id="phint">
+        <span class="key">SPACE</span><span class="pf padonly" id="gok3"></span> 続ける<br>
+        <span class="key">Z</span><span class="pf padonly" id="gback3"></span> タイトルへ
+        　<span class="key">ESC</span><span class="pf padonly" id="gquit3"></span> やめる
+      </div>
+    </div>
+  </div>
+  <div id="result">
+    <div id="confetti"></div>
+    <div id="resultBox">
+      <h1>結果</h1>
+      <div id="newrec">★ NEW RECORD!! ★</div>
+      <div id="rscore">0</div>
+      <div class="rrow"><span>ライン</span><b id="rlines">0</b></div>
+      <div class="rrow"><span>タイム</span><b id="rtime">0:00</b></div>
+      <div class="rrow"><span>ベスト</span><b id="rbest">0</b></div>
+      <div id="rhint">
+        <span class="key">SPACE</span><span class="pf padonly" id="gok2"></span> もう一回<br>
+        <span class="key">Z</span><span class="pf padonly" id="gback2"></span> タイトルへ
+      </div>
+    </div>
+  </div>
+<script src="hud.js"></script>
+  <script src="fluiddrop.js"></script>
+</body>
+</html>

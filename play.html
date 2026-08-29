@@ -126,6 +126,22 @@
         // 遊べるものの登録表。1 本増やすときはここへ 1 項目足す。
         // width / height は論理解像度。縦横比は割り算で出すので 16:9 に限らない。
         var GAMES = {
+            fluiddrop: {
+                title: "FLUID DROP",
+                path: "play/fluiddrop/",
+                width: 960,
+                height: 720,
+                page: "fluid-drop.html",
+                download: "https://github.com/mogmog-0110/fluid-drop-releases/releases/latest",
+                note: "約 9 MB を読み込みます。音が出ます。WebGPU 対応のブラウザが必要です。",
+                keys: [
+                    ["移動", "← →"],
+                    ["回転", "↑ / X · Z"],
+                    ["ホールド", "C"],
+                    ["ハード落下", "Space"],
+                    ["一時停止", "Esc"]
+                ]
+            },
             oscar: {
                 title: "オスカーのガーデニング",
                 path: "play/oscar/",

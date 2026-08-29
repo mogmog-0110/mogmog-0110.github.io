@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fcfcfb">
     <title>FLUID DROP | Shiggy</title>
-    <meta name="description" content="積んだブロックがゼリーや液体に変わっていく落ちものパズル。GPU の流体シミュレーション（PB-MPM）を消し方そのものに組み込んだ、自作エンジン MitiruEngine 製のゲームです。">
+    <meta name="description" content="積んだブロックがゼリーや液体に変わっていく落ちものパズル。GPU の流体シミュレーション（PB-MPM）を消し方そのものに組み込んだ、自作エンジン MitiruEngine 製のゲームです。ブラウザで遊べます。">
 
     <style>
         html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
@@ -17,16 +17,16 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Shiggy's Portfolio">
     <meta property="og:title" content="FLUID DROP | Shiggy">
-    <meta property="og:description" content="積んだブロックがゼリーや液体に変わっていく落ちものパズル。流体シミュレーション（PB-MPM）を消し方に組み込んだ、自作エンジン MitiruEngine 製のゲームです。">
+    <meta property="og:description" content="積んだブロックがゼリーや液体に変わっていく落ちものパズル。流体シミュレーション（PB-MPM）を消し方に組み込んだ、自作エンジン MitiruEngine 製のゲームです。ブラウザで遊べます。">
     <meta property="og:url" content="https://mogmog-0110.github.io/fluid-drop.html">
     <link rel="canonical" href="https://mogmog-0110.github.io/fluid-drop.html">
-    <meta property="og:image" content="https://mogmog-0110.github.io/images/fluiddrop_1.webp">
+    <meta property="og:image" content="https://mogmog-0110.github.io/images/fluiddrop_card.webp">
     <meta property="og:image:width" content="960">
-    <meta property="og:image:height" content="720">
+    <meta property="og:image:height" content="540">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="FLUID DROP | Shiggy">
-    <meta name="twitter:description" content="積んだブロックがゼリーや液体に変わっていく落ちものパズル。流体シミュレーション（PB-MPM）を消し方に組み込んだ、自作エンジン MitiruEngine 製のゲームです。">
-    <meta name="twitter:image" content="https://mogmog-0110.github.io/images/fluiddrop_1.webp">
+    <meta name="twitter:description" content="積んだブロックがゼリーや液体に変わっていく落ちものパズル。流体シミュレーション（PB-MPM）を消し方に組み込んだ、自作エンジン MitiruEngine 製のゲームです。ブラウザで遊べます。">
+    <meta name="twitter:image" content="https://mogmog-0110.github.io/images/fluiddrop_card.webp">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,20 +59,21 @@
                 <h1>FLUID DROP</h1>
                 <p class="lede">
                     積んだブロックが、ゼリーや液体へ変化していく落ちものパズルです。
-                    流体シミュレーションを演出だけでなく、ブロックの消し方に組み込みました。
-                    自作の <a href="engine.html" class="soft-link">MitiruEngine</a> で開発しています。
+                    流体シミュレーションの結果が、ブロックの消し方に直接影響します。
+                    自作の <a href="engine.html" class="soft-link">MitiruEngine</a> で開発しました。ブラウザで遊べます。
                 </p>
                 <div class="meta-line">
-                    <span>Released v1.0.2</span>
+                    <span>Released v1.1.0</span>
                     <span>2026年</span>
                     <span>個人開発</span>
                     <span>MitiruEngine</span>
                     <span>DirectX 12</span>
+                    <span>WebGPU</span>
                     <span>PB-MPM</span>
                 </div>
                 <div class="link-row">
-                    <a href="https://github.com/mogmog-0110/Fluid-Drop/releases" target="_blank" rel="noopener">ゲームをダウンロード →</a>
-                    <a href="https://github.com/mogmog-0110/Fluid-Drop" target="_blank" rel="noopener">ソースを見る →</a>
+                    <a href="play.html?game=fluiddrop">ブラウザで遊ぶ →</a>
+                    <a href="https://github.com/mogmog-0110/fluid-drop-releases/releases/latest" target="_blank" rel="noopener">Windows 版をダウンロード →</a>
                 </div>
             </section>
 
@@ -81,13 +82,13 @@
                     <h2>プレイ映像</h2>
                     <div class="sec-body">
                         <video controls preload="none" playsinline
-                               poster="images/fluiddrop_2.webp"
+                               poster="images/fluiddrop_1.webp"
                                width="960" height="720"
                                style="width:100%;height:auto;border-radius:8px;">
                             <source src="videos/fluiddrop_trailer.mp4" type="video/mp4">
                             お使いのブラウザは動画再生に対応していません。<a href="videos/fluiddrop_trailer.mp4">動画をダウンロード</a>
                         </video>
-                        <p class="note">開発中に記録したプレイを再生し、その様子を収録した映像です。</p>
+                        <p class="note">開発中に記録したプレイを再生し、その様子を収録した映像です。カチカチ、硬いゼリー、液体、再び固まるまでを順に収めています。</p>
                     </div>
                 </section>
 
@@ -125,17 +126,17 @@
                     <h2>画面</h2>
                     <div class="sec-body">
                         <div class="plate-grid">
-                            <a href="images/fluiddrop_title.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/fluiddrop_title.webp" alt="FLUID DROPのタイトル画面" width="960" height="720">
+                            <a href="images/fluiddrop_1.webp" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/fluiddrop_1.webp" alt="カチカチ状態のゲーム画面" width="960" height="720">
                             </a>
                             <a href="images/fluiddrop_2.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/fluiddrop_2.webp" alt="カチカチ状態のゲーム画面" width="960" height="720">
-                            </a>
-                            <a href="images/fluiddrop_1.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/fluiddrop_1.webp" alt="ゼリー状態のゲーム画面" width="960" height="720">
+                                <img loading="lazy" decoding="async" src="images/fluiddrop_2.webp" alt="硬いゼリー状態のゲーム画面" width="960" height="720">
                             </a>
                             <a href="images/fluiddrop_3.webp" target="_blank">
-                                <img loading="lazy" decoding="async" src="images/fluiddrop_3.webp" alt="再び固まった後のゲーム画面" width="960" height="720">
+                                <img loading="lazy" decoding="async" src="images/fluiddrop_3.webp" alt="液体になり盤面が流れたゲーム画面" width="960" height="720">
+                            </a>
+                            <a href="images/fluiddrop_4.webp" target="_blank">
+                                <img loading="lazy" decoding="async" src="images/fluiddrop_4.webp" alt="再び固まり大地ができたゲーム画面" width="960" height="720">
                             </a>
                         </div>
                     </div>
@@ -145,13 +146,16 @@
                     <h2>制作で重視したこと</h2>
                     <div class="sec-body">
                         <p>
-                            当初は「砂で遊ぶテトリス」のようなゲームとして始めました。試作を重ねるうちに、固いブロックが溶け、流れ、再び固まる変化そのものを主役にしました。
+                            当初は「砂で遊ぶテトリス」として始めました。試作を重ね、固いブロックが溶け、流れ、再び固まる変化を主役にしました。
                         </p>
                         <p>
-                            特に調整したのは、ブロックが揺れる動き、流れる速さ、着地時の跳ね方です。材質の状態を数字だけに頼らず伝えるため、ブロックの見た目とマスコットの表情も変化させています。
+                            揺れる動きや流れる速さ、着地時の跳ね方を調整しています。感触を磨きました。
                         </p>
                         <p>
-                            音にも状態の変化を反映し、盤面が柔らかくなるほどBGMのテンポや音程が徐々にずれるようにしました。
+                            画面は濃い色を基調とした賑やかな構成から、白基調の静かな構成へ作り直しました。5か所に散っていた進行状況は右側の縦のレールにまとめ、危険なときだけ盤面の縁が反応します。文言も漢字まじりの短い形に改めました。
+                        </p>
+                        <p>
+                            盤面が柔らかくなるほど、BGMのテンポと音程が徐々にずれます。
                         </p>
                     </div>
                 </section>
@@ -162,19 +166,19 @@
                         <p>
                             流体部分には、砂や水を細かな粒の集まりとして扱うPB-MPMを使用しています。
                             <a href="https://github.com/electronicarts/pbmpm" target="_blank" rel="noopener" class="soft-link">Electronic Artsが研究として公開している実装</a>
-                            をベースに、落ちものパズルのルールへ組み込み、ゲームとして調整しました。
+                            がもとです。
                         </p>
                         <p>
-                            着地したブロックは粒になって流れ、その結果が消去条件に直接影響します。描画、音、ウィンドウなどの基盤には、自作の
+                            着地したブロックは最大65,536個の粒になって流れ、その結果が消去条件に影響します。Windows版ではDirectX 12を使い、ブラウザ版では同じ数式をWebGPUへ移植しました。ダウンロードは不要です。
+                        </p>
+                        <p>
+                            描画や音などの基盤には、自作の
                             <a href="engine.html" class="soft-link">MitiruEngine</a>
-                            を使用しています。
-                        </p>
-                        <p>
-                            開発中は同じプレイを記録・再生できるようにし、コードを変更するたびに、以前と動きが変わっていないか確認しました。
+                            を使用しています。同じプレイを記録して再生できるようにし、変更のたびに以前と動きが変わっていないか確かめています。
                         </p>
                         <div class="link-row">
-                            <a href="https://github.com/mogmog-0110/Fluid-Drop" target="_blank" rel="noopener">GitHub（ソース）→</a>
-                            <a href="https://github.com/mogmog-0110/Fluid-Drop/releases" target="_blank" rel="noopener">ダウンロード（Releases）→</a>
+                            <a href="play.html?game=fluiddrop">ブラウザで遊ぶ →</a>
+                            <a href="https://github.com/mogmog-0110/fluid-drop-releases/releases/latest" target="_blank" rel="noopener">ダウンロード（Releases）→</a>
                             <a href="portfolio.html">← Works に戻る</a>
                         </div>
                     </div>
