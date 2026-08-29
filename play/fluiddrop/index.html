@@ -15,6 +15,9 @@ body { position: relative; margin: 0 auto; }
 /* HUD は canvas の上。ただしクリックは canvas へ通す（操作はキーと canvas 側） */
 body > *:not(#canvas) { z-index: 1; }
 #paneL, #paneR, #paneT, #paneB, #frame { pointer-events: none; }
+/* タイトルは最初の描画から出しておく。HUD の更新は 6 フレームに 1 回なので、
+   既定の display:none のままだと、それまで素の盤面が見えてしまう */
+#title { display: flex; }
 </style>
 </head>
 <body>
