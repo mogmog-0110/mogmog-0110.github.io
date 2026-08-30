@@ -1,8 +1,0 @@
-{
-	"id": "hato-ending-muscle",
-	"lines": [
-		{"type": "bg", "path": "assets/bg/mukimuki.png"},
-		{"speaker": "あなた", "text": "すご～い！ ムキムキだぁ！！"},
-		{"speaker": "ハト", "text": "ぽう（パワーーーーーーーーーーーーーーーー！！）"}
-	]
-}

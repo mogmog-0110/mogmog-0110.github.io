@@ -155,23 +155,13 @@
                     <h2>仕組み</h2>
                     <div class="sec-body">
                         <p>
-                            MitiruEngineのHybrid動作（CEF + JavaScript）を使用しています。
-                            シナリオはJSONファイルとしてゲーム本体から分離し、
-                            JSON駆動のノベル機能<code>mitiru.novel</code>が解釈します。
-                            同じデータをブラウザとCEFネイティブの両方で動かせます。
+                            育成の規則、日の進行、結末の判定、得点の計算はC++にあります。画面はHTMLとCSSで作り、C++は文字も絵も描きません。値の受け渡しはHTMLの属性で宣言し、C++が押し出した値をdata-m-textが受け取り、data-m-actionを持つボタンが操作をC++へ返すため、つなぎのJavaScriptは書いていません。
                         </p>
-
-<pre><code>ティラノスクリプト .ks   →  MitiruEngine 側の対応
-─────────────────────────────────────────────────
-#キャラ名 + テキスト       →  { speaker, text }
-@bg storage=...            →  { type: 'bg', path }
-[wait time=N]              →  { type: 'wait', ms }
-[delay speed=10]           →  mitiru.novel 組込（CPS 40）
-[button role="skip"]       →  novel.setSkipMode('all')</code></pre>
-
                         <p>
-                            stress、yaruki、taijuuの値で内容が分岐する行動シーンでは、
-                            実行時にJSONを動的に生成します。
+                            本文の送り、履歴、既読スキップは、エンジン同梱のノベル機能が担います。台本はJSONでゲーム本体から分離し、読み込み時にページへ同梱します。行動の反応だけは台本ファイルを使わず、背景1枚と条件つきの台詞1行で組み、数値が伸びると台詞が変わります。
+                        </p>
+                        <p>
+                            Windows版ではCEFがHTMLを重ね、ブラウザ版では同じC++をWebAssemblyへ書き出して、ページ自体を画面にします。画面の定義は1つで、両方が同じものを使います。同じ行動の並びを自動で流し、日ごとの数値、結末、得点を照合して、5つの結末をすべて通します。移行前の版、Windows版、ブラウザ版で同じ数値になることも確かめました。
                         </p>
                     </div>
                 </section>
@@ -189,7 +179,7 @@
                         </p>
                         <div class="link-row">
                             <a href="play.html?game=hato">ブラウザで遊ぶ →</a>
-                            <a href="https://drive.google.com/drive/folders/1dFSFwuPCTnQW0YqZxIDM-JfFe8dWzBm9?usp=sharing" target="_blank" rel="noopener">ダウンロード（ティラノスクリプト版）→</a>
+                            <a href="https://github.com/mogmog-0110/hato-releases/releases/latest" target="_blank" rel="noopener">Windows 版をダウンロード →</a>
                             <a href="portfolio.html">← Works に戻る</a>
                         </div>
                     </div>

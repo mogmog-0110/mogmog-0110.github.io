@@ -1,7 +1,0 @@
-{
-	"id": "hato-ending-escape",
-	"lines": [
-		{"type": "bg", "path": "assets/bg/nigeru.png"},
-		{"speaker": "", "text": "あ！ ストレスの溜めすぎでハトが逃げちゃった！"}
-	]
-}
