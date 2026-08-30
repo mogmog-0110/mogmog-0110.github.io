@@ -4,14 +4,13 @@
  * (mitiru.novel) が持つ。その間をつなぐのがこのファイル。
  *
  * 受け取る値:
- *   view.novel.seq    増えたら新しい台本を流す合図
- *   view.novel.kind   台本の URL。行動の反応だけは "act"
- *   view.novel.bg     "act" のときの背景
- *   view.novel.line   "act" のときのハトの台詞
- *   view.novel.extra  ふつうの結末で太りすぎのときだけ足す一言
+ *   view.novel.cue      seq と台本の指示を \x1f で連ねた 1 本の文字列。
+ *                       seq / kind / bg / line / extra の順。購読値の配信順は
+ *                       保証されないので、1 本にまとめて同時に受け取る
+ *   view.novel.advance  増えたら 1 行送る
  *
  * 返す値:
- *   novel.done        台本を最後まで送り終えた
+ *   novel.done          台本を最後まで送り終えた
  */
 (function () {
 	'use strict';
@@ -23,7 +22,11 @@
 	var root = document.getElementById('novel-root');
 	var mounted = false;
 	var lastSeq = 0;
-	var latest = { kind: '', bg: '', line: '', extra: '' };
+	var lastAdvance = 0;
+
+	// 中を外から見えるようにしておく。C++ と VM のどちら側で値が落ちたかを
+	// probe.py から 1 行で確かめられる
+	window.hatoNovel = { cue: null, plays: 0, lastError: '' };
 
 	function ensureMounted() {
 		if (mounted || !window.mitiru || !window.mitiru.novel) { return mounted; }
@@ -41,78 +44,62 @@
 		return true;
 	}
 
+	function parseCue(raw) {
+		var p = String(raw || '').split('\x1f');
+		return { seq: parseInt(p[0], 10) || 0, kind: p[1] || '',
+		         bg: p[2] || '', line: p[3] || '', extra: p[4] || '' };
+	}
+
 	/// 行動の反応は台本ファイルを持たない。背景 1 枚と台詞 1 行から組む。
-	function actScript() {
+	function actScript(cue) {
 		return {
 			id: 'hato-act',
 			lines: [
-				{ type: 'bg', path: latest.bg },
-				{ speaker: 'ハト', text: latest.line },
+				{ type: 'bg', path: cue.bg },
+				{ speaker: 'ハト', text: cue.line },
 			],
 		};
 	}
 
 	/// 同梱した台本を返す。実行時に取りに行かないのは、Release の CEF が
-	/// file:// の fetch と XHR を塞ぐため（配布物だけ導入で止まる）。
-	function loadScript(path) {
+	/// file:// の fetch と XHR を塞ぐため。
+	function resolveScript(cue) {
+		if (cue.kind === 'act') { return actScript(cue); }
 		var all = window.hatoScripts || {};
-		return all[path] ? JSON.parse(JSON.stringify(all[path])) : null;
-	}
-
-	function resolveScript() {
-		if (latest.kind === 'act') { return actScript(); }
-		var script = loadScript(latest.kind);
-		if (!script) {
-			window.hatoNovel.lastError = '台本が同梱されていない: ' + latest.kind;
+		if (!all[cue.kind]) {
+			window.hatoNovel.lastError = '台本が同梱されていない: ' + cue.kind;
 			return null;
 		}
-		if (latest.extra) {
+		var script = JSON.parse(JSON.stringify(all[cue.kind]));
+		if (cue.extra) {
 			script.lines = script.lines.concat([
-				{ speaker: 'あなた', text: latest.extra },
+				{ speaker: 'あなた', text: cue.extra },
 			]);
 		}
 		return script;
 	}
 
-	// 中を外から見えるようにしておく。C++ と VM の間で値が落ちたとき、
-	// どちらの側で止まったかを probe.py から 1 行で確かめられる
-	window.hatoNovel = { latest: latest, plays: 0, lastError: '', seqSeen: 0 };
-
-	/// 台本名が届くのを待ってから流す。onStateChange の保持値は購読した順に
-	/// 配信されるとは限らないので、seq が先に来て kind が空のことがある。
-	/// 順序に頼らず、揃うまで短く待つ
-	function playWhenReady(tries) {
-		if (!latest.kind) {
-			if (tries > 0) { setTimeout(function () { playWhenReady(tries - 1); }, 30); }
-			else { window.hatoNovel.lastError = '台本名が来ない'; }
-			return;
-		}
-		play();
-	}
-
-	function play() {
+	function play(cue) {
 		window.hatoNovel.plays += 1;
 		if (!ensureMounted()) {
 			window.hatoNovel.lastError = 'mount できない';
 			return;
 		}
-		var script = resolveScript();
+		var script = resolveScript(cue);
 		if (!script) { return; }
 		mitiru.novel.setSkipMode('off');
-		Promise.resolve(mitiru.novel.load(script)).catch(function (e) {
-			window.hatoNovel.lastError = 'load: ' + e;
-		}).then(function () {
+		// 読み込みに失敗したときは送らない。VM には前の台本が残っているので、
+		// 送るとそちらが先頭から流れ直す
+		Promise.resolve(mitiru.novel.load(script)).then(function () {
 			var onEnd = function () {
 				root.removeEventListener('novel:script:end', onEnd);
 				mitiru.dispatch('novel.done');
 			};
 			root.addEventListener('novel:script:end', onEnd);
 			mitiru.novel.advance();
+		}, function (e) {
+			window.hatoNovel.lastError = 'load: ' + e;
 		});
-	}
-
-	function watch(key, field) {
-		mitiru.onStateChange(key, function (v) { latest[field] = v || ''; });
 	}
 
 	function boot() {
@@ -120,23 +107,19 @@
 			setTimeout(boot, 30);
 			return;
 		}
-		watch('view.novel.kind',  'kind');
-		watch('view.novel.bg',    'bg');
-		watch('view.novel.line',  'line');
-		watch('view.novel.extra', 'extra');
 		// 送りも C++ から来る。ページ内のクリックではなくこちらを正にすると、
 		// 入力台本だけで頭から終わりまで流せる
-		var lastAdvance = 0;
 		mitiru.onStateChange('view.novel.advance', function (n) {
 			if (n === lastAdvance) { return; }
 			lastAdvance = n;
 			if (mounted) { mitiru.novel.advance(); }
 		});
-		mitiru.onStateChange('view.novel.seq', function (seq) {
-			if (seq === lastSeq) { return; }
-			lastSeq = seq;
-			window.hatoNovel.seqSeen = seq;
-			playWhenReady(20);
+		mitiru.onStateChange('view.novel.cue', function (raw) {
+			var cue = parseCue(raw);
+			window.hatoNovel.cue = cue;
+			if (cue.seq === lastSeq || cue.seq === 0) { return; }
+			lastSeq = cue.seq;
+			play(cue);
 		});
 		document.getElementById('backlog-btn')
 			.addEventListener('click', function () { mitiru.novel.openBacklog(); });
