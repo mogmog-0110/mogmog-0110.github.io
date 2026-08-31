@@ -58,7 +58,7 @@
                 <p class="file-line">/ works / live2d-d3d12</p>
                 <h1>Live2D × Direct3D 12</h1>
                 <p class="lede">
-                    Live2D の公式 SDK が対応していない Direct3D 12 で、モデルを描画する仕組みを実装しました。公式の D3D11 レンダラを読み解き、クリッピングマスク、オフスクリーングループ、advanced blend を含む描画手順を D3D12 で再現しています。
+                    Live2Dの公式SDKが対応していないDirect3D 12で、モデルを描画する仕組みを実装しました。公式のD3D11レンダラを読み解き、クリッピングマスク、オフスクリーングループ、advanced blendを含む描画手順をD3D12で再現しています。
                 </p>
                 <div class="meta-line">
                     <span>2026年</span>
@@ -77,10 +77,10 @@
                             <img loading="lazy" decoding="async" src="images/live2d/haru.webp" alt="Direct3D 12 上で動作する Live2D モデル" width="960" height="539" style="width:100%;height:auto;border-radius:8px;">
                         </a>
                         <p>
-                            自作の <a href="engine.html" class="soft-link">MitiruEngine</a> 上で、8体の公式モデル（Haru / Hiyori / Mao / Mark / Natori / Ren / Rice / Wanko）が動作します。
+                            自作の<a href="engine.html" class="soft-link">MitiruEngine</a>上で、8体の公式モデル（Haru / Hiyori / Mao / Mark / Natori / Ren / Rice / Wanko）が動作します。
                         </p>
                         <p>
-                            背景ステージ、公式相当のフレーミング、マウス追従、タップモーション、物理、目パチ、呼吸に対応しました。クリッピングマスク、オフスクリーン、advanced blend を使うモデルも表示できます。
+                            背景ステージ、公式相当のフレーミング、マウス追従、タップモーション、物理、目パチ、呼吸に対応しました。クリッピングマスク、オフスクリーン、advanced blendを使うモデルも表示できます。
                         </p>
                     </div>
                 </section>
@@ -89,13 +89,13 @@
                     <h2>取り組んだ課題</h2>
                     <div class="sec-body">
                         <p>
-                            MitiruEngine は Direct3D 12 製ですが、Live2D 公式 SDK の対応先は OpenGL、D3D11、D3D9、Metal、Vulkanで、D3D12 は含まれていません。
+                            MitiruEngineはDirect3D 12製ですが、Live2D公式SDKの対応先はOpenGL、D3D11、D3D9、Metal、Vulkanで、D3D12は含まれていません。
                         </p>
                         <p>
-                            そこで、公式の <code>CubismRenderer_D3D11</code> がモデルを描く手順を調べ、同じ処理を D3D12 の API で一つずつ実装しました。
+                            そこで、公式の<code>CubismRenderer_D3D11</code>がモデルを描く手順を調べ、同じ処理をD3D12のAPIで一つずつ実装しました。
                         </p>
                         <p>
-                            Live2D のモデルは、テクスチャを貼った複数のメッシュから成ります。それぞれの描画順、不透明度、ブレンドモード、マスク、所属するオフスクリーングループは、モーションに応じて毎フレーム変化します。この変化を反映しながら正しい順序と合成方法で描く必要がありました。
+                            Live2Dのモデルは、テクスチャを貼った複数のメッシュから成ります。それぞれの描画順、不透明度、ブレンドモード、マスク、所属するオフスクリーングループは、モーションに応じて毎フレーム変化します。この変化を反映しながら正しい順序と合成方法で描く必要がありました。
                         </p>
                     </div>
                 </section>
@@ -106,11 +106,11 @@
                         <ul>
                             <li>
                                 <strong>描画順の処理</strong><br>
-                                ドロウアブルとオフスクリーンを <code>csmGetRenderOrders</code> の順に走査します。描画順は毎フレーム並べ替え、モーションによる重なり順の変化を反映します。
+                                ドロウアブルとオフスクリーンを<code>csmGetRenderOrders</code>の順に走査します。描画順は毎フレーム並べ替え、モーションによる重なり順の変化を反映します。
                             </li>
                             <li>
                                 <strong>クリッピングマスク</strong><br>
-                                マスク形状を専用バッファへ先に描き、その結果を使ってモデルの一部を切り抜きます。被クリップごとに 256² のマスクバッファを使う高精度経路を実装しました。
+                                マスク形状を専用バッファへ先に描き、その結果を使ってモデルの一部を切り抜きます。被クリップごとに256² のマスクバッファを使う高精度経路を実装しました。
                             </li>
                             <li>
                                 <strong>オフスクリーングループ</strong><br>
@@ -118,34 +118,34 @@
                             </li>
                             <li>
                                 <strong>advanced blend</strong><br>
-                                固定機能だけでは表せない合成のため、描画先をコピーし、専用シェーダでピクセルごとに計算します。公式シェーダ <code>CubismBlendMode.fx</code> の18種類のカラー合成と5種類のアルファ合成を HLSL へ移植しました。
+                                固定機能だけでは表せない合成のため、描画先をコピーし、専用シェーダでピクセルごとに計算します。公式シェーダ<code>CubismBlendMode.fx</code>の18種類のカラー合成と5種類のアルファ合成をHLSLへ移植しました。
                             </li>
                         </ul>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>D3D12 での設計</h2>
+                    <h2>D3D12での設計</h2>
                     <div class="sec-body">
                         <p>
-                            D3D11 では内部で処理される部分も、D3D12 では明示的に管理する必要があります。
+                            D3D11では内部で処理される部分も、D3D12では明示的に管理する必要があります。
                         </p>
                         <ul>
                             <li>
                                 <strong>三重バッファリング</strong><br>
-                                エンジンは3フレームを同時進行させます。GPU が前のフレームを参照している間に CPU がデータを上書きしないよう、頂点バッファと定数バッファを三重に持たせました。
+                                エンジンは3フレームを同時進行させます。GPUが前のフレームを参照している間にCPUがデータを上書きしないよう、頂点バッファと定数バッファを三重に持たせました。
                             </li>
                             <li>
                                 <strong>リソース状態の管理</strong><br>
-                                レンダーターゲットとシェーダリソースの切り替えや、advanced blend のコピーに必要な <code>COPY_SOURCE</code>、<code>COPY_DEST</code> への遷移を、描画処理の境界で管理します。
+                                レンダーターゲットとシェーダリソースの切り替えや、advanced blendのコピーに必要な<code>COPY_SOURCE</code>、<code>COPY_DEST</code>への遷移を、描画処理の境界で管理します。
                             </li>
                             <li>
                                 <strong>描画状態の事前準備</strong><br>
-                                マスク用と下地コピー用の SRV を含むルートシグネチャを設計し、ブレンド種別とカリングの組み合わせに応じた PSO を事前に生成しました。
+                                マスク用と下地コピー用のSRVを含むルートシグネチャを設計し、ブレンド種別とカリングの組み合わせに応じたPSOを事前に生成しました。
                             </li>
                             <li>
                                 <strong>公式実装との規約合わせ</strong><br>
-                                頂点、乗算済みアルファ、ブレンドステート、MVP、UV の Y 反転、テクスチャフォーマットを公式 D3D11 レンダラと突き合わせました。
+                                頂点、乗算済みアルファ、ブレンドステート、MVP、UVのY反転、テクスチャフォーマットを公式D3D11レンダラと突き合わせました。
                             </li>
                         </ul>
                     </div>
@@ -156,11 +156,11 @@
                     <div class="sec-body">
                         <div class="link-row">
                             <a href="https://github.com/mogmog-0110/live2d-cubism-d3d12" target="_blank" rel="noopener">GitHub（ソース）→</a>
-                            <a href="https://www.live2d.com/sdk/about/" target="_blank" rel="noopener">Cubism SDK について →</a>
-                            <a href="portfolio.html">← Works に戻る</a>
+                            <a href="https://www.live2d.com/sdk/about/" target="_blank" rel="noopener">Cubism SDKについて →</a>
+                            <a href="portfolio.html">← Worksに戻る</a>
                         </div>
                         <p class="fine">
-                            <strong>クレジット</strong>：本実装は Live2D Cubism SDK を使用しています（© Live2D Inc.）。掲載スクリーンショットのモデルは Live2D Inc. の無償提供サンプルモデルで、<a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_jp.html" target="_blank" rel="noopener" class="soft-link">Live2D Free Material License Agreement</a> に基づき表示しています。リポジトリには SDK 本体・モデルファイルを同梱していません。Cubism SDK / Core の利用は <a href="https://www.live2d.com/eula/live2d-open-software-license-agreement_jp.html" target="_blank" rel="noopener" class="soft-link">SDK 使用許諾</a> に従います。
+                            <strong>クレジット</strong>：本実装はLive2D Cubism SDKを使用しています（© Live2D Inc.）。掲載スクリーンショットのモデルはLive2D Inc. の無償提供サンプルモデルで、<a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_jp.html" target="_blank" rel="noopener" class="soft-link">Live2D Free Material License Agreement</a>に基づき表示しています。リポジトリにはSDK本体・モデルファイルを同梱していません。Cubism SDK / Coreの利用は<a href="https://www.live2d.com/eula/live2d-open-software-license-agreement_jp.html" target="_blank" rel="noopener" class="soft-link">SDK使用許諾</a> に従います。
                         </p>
                     </div>
                 </section>

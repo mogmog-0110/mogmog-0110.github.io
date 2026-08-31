@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fcfcfb">
-    <title>Work Graphs による GPU 再帰プロシージャル生成 | Shiggy</title>
+    <title>Work GraphsによるGPU再帰プロシージャル生成 | Shiggy</title>
     <meta name="description" content="DirectX 12 Work Graphs を使い、GPU 上で枝を再帰生成するデモ。樹・珊瑚・藪・稲妻を生成し、SDF レイマーチで描画します。">
 
     <style>
@@ -53,12 +53,12 @@
         <main id="main">
             <section class="page-head">
                 <p class="file-line">/ lab</p>
-                <h1>Work Graphs で枝を再帰生成する</h1>
+                <h1>Work Graphsで枝を再帰生成する</h1>
                 <p class="lede">
-                    <strong>GPU が枝分かれを繰り返し、樹・珊瑚・藪・稲妻を生成するプロシージャル生成デモです。</strong>
+                    <strong>GPUが枝分かれを繰り返し、樹・珊瑚・藪・稲妻を生成するプロシージャル生成デモです。</strong>
                 </p>
                 <p class="lede">
-                    2024 年に DirectX 12 に導入された Work Graphs を使用しました。GPU 上のシェーダが次の処理を起動する機能により、枝の生成を GPU 内で再帰的に進めます。生成した形状は SDF レイマーチで描画します。
+                    2024年にDirectX 12に導入されたWork Graphsを使用しました。GPU上のシェーダが次の処理を起動する機能により、枝の生成をGPU内で再帰的に進めます。生成した形状はSDFレイマーチで描画します。
                 </p>
                 <div class="meta-line">
                     <span>Experiment</span>
@@ -74,7 +74,7 @@
                     <h2>完成したデモ</h2>
                     <div class="sec-body">
                         <p>
-                            1 本の種から枝を分岐させ、根元から先端へ伸びる構造を生成します。分岐数、広がり、長さ比、ねじれ、深さ、色を変更することで、同じ再帰グラフから複数の形を作れます。
+                            1本の種から枝を分岐させ、根元から先端へ伸びる構造を生成します。分岐数、広がり、長さ比、ねじれ、深さ、色を変更することで、同じ再帰グラフから複数の形を作れます。
                         </p>
 
                         <figure class="plate">
@@ -84,19 +84,19 @@
 
                         <figure class="plate">
                             <img src="images/wg/presets.webp" alt="樹、珊瑚、藪、稲妻の各プリセット" loading="lazy" width="728" height="728">
-                            <figcaption>同じ Work Graph のパラメータを変更して生成した、樹・珊瑚・藪・稲妻のプリセット。</figcaption>
+                            <figcaption>同じWork Graphのパラメータを変更して生成した、樹・珊瑚・藪・稲妻のプリセット。</figcaption>
                         </figure>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>Work Graphs を使った理由</h2>
+                    <h2>Work Graphsを使った理由</h2>
                     <div class="sec-body">
                         <p>
-                            従来の GPU 実行では、CPU がシェーダの実行回数を決めて処理を並べます。Work Graphs では、GPU 上のシェーダノードが次のノードを起動できます。
+                            従来のGPU実行では、CPUがシェーダの実行回数を決めて処理を並べます。Work Graphsでは、GPU上のシェーダノードが次のノードを起動できます。
                         </p>
                         <p>
-                            枝の数は実行中の分岐によって増えます。親の枝が子の枝を作り、その子がさらに枝を作る処理を、CPU に戻さず GPU 内で進めるために Work Graphs を採用しました。
+                            枝の数は実行中の分岐によって増えます。親の枝が子の枝を作り、その子がさらに枝を作る処理を、CPUに戻さずGPU内で進めるためにWork Graphsを採用しました。
                         </p>
                     </div>
                 </section>
@@ -107,11 +107,11 @@
                         <ul>
                             <li>
                                 <strong>枝の生成：</strong>
-                                Work Graph の <code>Branch</code> ノードが、枝を表す capsule をバッファへ atomic append します。残りの深さに応じて子 record を同じノードへ emit し、<code>NodeMaxRecursionDepth</code> を使って再帰処理を制御します。
+                                Work Graphの<code>Branch</code>ノードが、枝を表すcapsuleをバッファへatomic appendします。残りの深さに応じて子recordを同じノードへemitし、<code>NodeMaxRecursionDepth</code>を使って再帰処理を制御します。
                             </li>
                             <li>
                                 <strong>描画：</strong>
-                                compute shader で capsule 群の union SDF をスフィアトレースします。法線、soft shadow、AO で陰影を付け、発光プリセットには emissive と bloom を使います。
+                                compute shaderでcapsule群のunion SDFをスフィアトレースします。法線、soft shadow、AOで陰影を付け、発光プリセットにはemissiveとbloomを使います。
                             </li>
                             <li>
                                 <strong>アニメーション：</strong>
@@ -130,7 +130,7 @@
                     <h2>操作できる項目</h2>
                     <div class="sec-body">
                         <p>
-                            実行ファイルを起動すると、樹・珊瑚・藪・稲妻のプリセットを選択できます。分岐数、深さ、広がり、ねじれ、色、発光も画面内で変更でき、変更のたびに Work Graph が構造を再生成します。
+                            実行ファイルを起動すると、樹・珊瑚・藪・稲妻のプリセットを選択できます。分岐数、深さ、広がり、ねじれ、色、発光も画面内で変更でき、変更のたびにWork Graphが構造を再生成します。
                         </p>
                         <p>
                             ドラッグによる回転、ホイールによるズーム、成長アニメーションの再生とリセットに対応しています。内部描画解像度はウィンドウの大きさとは別に調整できます。通常の起動にコマンド引数は不要で、画像や動画を書き出す場合のみフラグを使います。
@@ -143,7 +143,7 @@
                     <div class="sec-body">
                         <div class="link-row">
                             <a href="https://github.com/mogmog-0110/wggrow" target="_blank" rel="noopener">ソースコード：GitHub (wggrow) →</a>
-                            <a href="https://devblogs.microsoft.com/directx/d3d12-work-graphs/" target="_blank" rel="noopener">DirectX 公式記事：D3D12 Work Graphs (Microsoft, 2024) →</a>
+                            <a href="https://devblogs.microsoft.com/directx/d3d12-work-graphs/" target="_blank" rel="noopener">DirectX公式記事：D3D12 Work Graphs (Microsoft, 2024) →</a>
                         </div>
                     </div>
                 </section>

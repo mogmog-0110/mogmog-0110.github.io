@@ -55,10 +55,10 @@
                 <p class="file-line">/ lab</p>
                 <h1>Radiance Cascades：ノイズ無しのリアルタイム大域照明</h1>
                 <p class="lede">
-                    <strong>2D シーンに配置した光源と壁から、光の回り込み、色のにじみ、柔らかい半影をリアルタイムに計算する実装です。</strong>
+                    <strong>2Dシーンに配置した光源と壁から、光の回り込み、色のにじみ、柔らかい半影をリアルタイムに計算する実装です。</strong>
                 </p>
                 <p class="lede" style="margin-top: 0.8rem;">
-                    2024 年に発表された Radiance Cascades を、レイトレ専用コアを使わず、すべて DX12 のコンピュートシェーダで実装しました。処理は<a href="engine.html" class="soft-link">自作の MitiruEngine</a>上に構築しています。
+                    2024年に発表されたRadiance Cascadesを、レイトレ専用コアを使わず、すべてDX12のコンピュートシェーダで実装しました。処理は<a href="engine.html" class="soft-link">自作のMitiruEngine</a>上に構築しています。
                 </p>
                 <div class="meta-line" style="margin-top: 1.6rem; margin-bottom: 0;">
                     <span>Experiment</span>
@@ -74,7 +74,7 @@
                     <h2>実装した内容</h2>
                     <div class="sec-body">
                         <p>
-                            光源や壁を配置すると、大域照明と影が光源の移動に追従します。各ピクセルから全方位へレイを飛ばす方法で発生するノイズや縞を、Radiance Cascades の階層構造によって抑えています。
+                            光源や壁を配置すると、大域照明と影が光源の移動に追従します。各ピクセルから全方位へレイを飛ばす方法で発生するノイズや縞を、Radiance Cascadesの階層構造によって抑えています。
                         </p>
 
                         <figure class="plate">
@@ -84,7 +84,7 @@
 
                         <figure class="plate">
                             <img src="images/rc/compare.webp" alt="2 種類の大域照明計算の比較" loading="lazy" width="1034" height="334">
-                            <figcaption>各ピクセルから全方位へレイを飛ばす方法と、Radiance Cascades の結果を同じシーンで比較しています。</figcaption>
+                            <figcaption>各ピクセルから全方位へレイを飛ばす方法と、Radiance Cascadesの結果を同じシーンで比較しています。</figcaption>
                         </figure>
                     </div>
                 </section>
@@ -93,13 +93,13 @@
                     <h2>計算の流れ</h2>
                     <div class="sec-body">
                         <p>
-                            近距離では空間を細かく、角度を粗く扱います。遠距離では角度を細かく、空間を粗く扱います。この配分を段階的に変えた階層を cascade として構成します。
+                            近距離では空間を細かく、角度を粗く扱います。遠距離では角度を細かく、空間を粗く扱います。この配分を段階的に変えた階層をcascadeとして構成します。
                         </p>
 
                         <ul>
-                            <li>各 cascade で、指定した距離区間のレイキャストする</li>
-                            <li>各 cascade の要素数をそろえ、probe と方向の情報を 1 枚のテクスチャへ格納する</li>
-                            <li>遠い cascade から近い cascade へ、probe をバイリニア補間しながらマージする</li>
+                            <li>各cascadeで、指定した距離区間のレイキャストする</li>
+                            <li>各cascadeの要素数をそろえ、probeと方向の情報を1枚のテクスチャへ格納する</li>
+                            <li>遠いcascadeから近いcascadeへ、probeをバイリニア補間しながらマージする</li>
                             <li>最下段の結果を画面の照明として使用し、HDR、ブルーム、トーンマップを適用する</li>
                         </ul>
 
@@ -118,7 +118,7 @@
                     <h2>使用技術と参考資料</h2>
                     <div class="sec-body">
                         <p>
-                            C++20、HLSL、DirectX 12 Compute を使用しています。参照した手法は Alexander Sannikov による「Radiance Cascades」（2024 年）です。
+                            C++20、HLSL、DirectX 12 Computeを使用しています。参照した手法はAlexander Sannikovによる「Radiance Cascades」（2024年）です。
                         </p>
                         <div class="link-row" style="margin-top: 0.8rem;">
                             <a href="https://github.com/mogmog-0110/radiancecascades" target="_blank" rel="noopener">GitHub (radiancecascades) →</a>

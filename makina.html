@@ -68,7 +68,7 @@
                     <span>個人開発</span>
                     <span>C++20</span>
                     <span>DirectX 12</span>
-                    <span>SDF レイマーチ</span>
+                    <span>SDFレイマーチ</span>
                 </div>
             </section>
 
@@ -79,7 +79,7 @@
                         <p class="sec-intro">立体の作成、アニメーション、形に応じた質感表現</p>
                         <p>
                             左のツリー、中央のビューポート、右のプロパティ、下のタイムラインを備えています。
-                            UI は HTML と CSS で描画しています。
+                            UIはHTMLとCSSで描画しています。
                         </p>
 
                         <figure class="plate">
@@ -113,7 +113,7 @@
                             </a>
                         </div>
                         <p class="fine">
-                            3 枚とも実機でのレンダリング結果です。ペットボトルとペンローズの三角形は、Grasp3D の課題を移植したものです。
+                            3枚とも実機でのレンダリング結果です。ペットボトルとペンローズの三角形は、Grasp3Dの課題を移植したものです。
                         </p>
                     </div>
                 </section>
@@ -121,16 +121,16 @@
                 <section class="sec">
                     <h2>開発の経緯</h2>
                     <div class="sec-body">
-                        <p class="sec-intro">Java 製の教育ツールを修正し、C++ へ移植</p>
+                        <p class="sec-intro">Java製の教育ツールを修正し、C++へ移植</p>
                         <p>
-                            大学の授業で、Java 製の教育用 3DCG モデラー「Grasp3D」を使用しました。
-                            球や円柱を組み合わせて形を作り、POV-Ray に渡して描画するツールです。
+                            大学の授業で、Java製の教育用3DCGモデラー「Grasp3D」を使用しました。
+                            球や円柱を組み合わせて形を作り、POV-Rayに渡して描画するツールです。
                             はじめに原典のバグを修正し、機能を追加した版を作りました。
                         </p>
                         <p>
-                            その後、同じ仕組みを C++ で書き直しました。
-                            Java 版のように形をポリゴンへ変換せず、距離場のまま GPU でレイマーチする構成です。
-                            この移植から Makina が生まれました。
+                            その後、同じ仕組みをC++で書き直しました。
+                            Java版のように形をポリゴンへ変換せず、距離場のままGPUでレイマーチする構成です。
+                            この移植からMakinaが生まれました。
                         </p>
                     </div>
                 </section>
@@ -138,18 +138,18 @@
                 <section class="sec">
                     <h2>正しさの検証</h2>
                     <div class="sec-body">
-                        <p class="sec-intro">同じ形を、独立した 3 通りの方法で比較</p>
+                        <p class="sec-intro">同じ形を、独立した3通りの方法で比較</p>
                         <p>
-                            移植が正しいことを確かめるため、距離場、BSP、POV-Ray という壊れ方の異なる実装を突き合わせています。
+                            移植が正しいことを確かめるため、距離場、BSP、POV-Rayという壊れ方の異なる実装を突き合わせています。
                         </p>
                         <ul>
-                            <li>距離場と Java 参照実装：51,137 サンプルが一致</li>
-                            <li>距離場と BSP の内外判定：156,932 サンプルが一致</li>
-                            <li>距離場と POV-Ray の画像：シルエットの一致度が 0.9949 以上</li>
+                            <li>距離場とJava参照実装：51,137サンプルが一致</li>
+                            <li>距離場とBSPの内外判定：156,932サンプルが一致</li>
+                            <li>距離場とPOV-Rayの画像：シルエットの一致度が0.9949以上</li>
                         </ul>
                         <p>
                             シルエットの比較では、形、変換、カメラ、座標系の向きをまとめて検査できます。
-                            座標系の向きが異なる場合、一致度はほぼ 0 になります。
+                            座標系の向きが異なる場合、一致度はほぼ0になります。
                         </p>
                     </div>
                 </section>
@@ -159,7 +159,7 @@
                     <div class="sec-body">
                         <p class="sec-intro">画像を貼らず、形を評価して求める</p>
                         <p>
-                            Makina は距離場を使い、次の表現をその場で計算します。
+                            Makinaは距離場を使い、次の表現をその場で計算します。
                         </p>
                         <ul>
                             <li>角の尖り具合と外からの見え方で決まる、縁の摩耗</li>
@@ -180,24 +180,24 @@
                         <figure class="plate">
                             <img src="images/makina/arm_engine.webp" alt="MitiruEngine での動作結果" loading="lazy" decoding="async" width="796" height="260">
                             <figcaption>
-                                Makina で組んだ腕を、<a href="engine.html">MitiruEngine</a> で動かした結果。
-                                肘に 3 つのキーを設定し、1 本のシェーダで描画しています。
+                                Makinaで組んだ腕を、<a href="engine.html">MitiruEngine</a>で動かした結果。
+                                肘に3つのキーを設定し、1本のシェーダで描画しています。
                             </figcaption>
                         </figure>
 
                         <p>
-                            Makina で作った形は、自作ゲームエンジンへ渡せます。
+                            Makinaで作った形は、自作ゲームエンジンへ渡せます。
                             距離場を描画と衝突判定の両方に使うため、それぞれに別の形状データを用意する必要はありません。
                         </p>
                         <p>
-                            形を評価する <code>makina-core</code> は、GPU やエンジンに依存しないヘッダーのみのライブラリです。
+                            形を評価する<code>makina-core</code>は、GPUやエンジンに依存しないヘッダーのみのライブラリです。
                             ウィンドウやグラフィックスデバイスを用意せずにテストできます。
                         </p>
 
                         <div class="link-row">
                             <a href="https://github.com/mogmog-0110/MakinaModeler" target="_blank" rel="noopener">GitHub →</a>
-                            <a href="engine.html">MitiruEngine について →</a>
-                            <a href="portfolio.html">← Works に戻る</a>
+                            <a href="engine.html">MitiruEngineについて →</a>
+                            <a href="portfolio.html">← Worksに戻る</a>
                         </div>
                     </div>
                 </section>

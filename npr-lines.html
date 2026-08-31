@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fcfcfb">
-    <title>NPR 輪郭線の時間安定化 | Shiggy</title>
+    <title>NPR輪郭線の時間安定化 | Shiggy</title>
     <meta name="description" content="トゥーン輪郭線のちらつきを抑える時間安定化を、MitiruEngine に実装した実験。">
 
     <style>
@@ -56,12 +56,12 @@
         <main id="main">
             <section class="page-head">
                 <p class="file-line">/ lab</p>
-                <h1>NPR 輪郭線の時間安定化</h1>
+                <h1>NPR輪郭線の時間安定化</h1>
                 <p class="lede">
-                    <strong>3D モデルから生成したトゥーン輪郭線のちらつきを抑える実験です。</strong>
+                    <strong>3Dモデルから生成したトゥーン輪郭線のちらつきを抑える実験です。</strong>
                 </p>
                 <p class="lede">
-                    TAA で使われる、motion vector によって前フレームを再投影し、現在のフレームと合成する方法を輪郭線へ応用しました。必要な描画処理、比較デモ、定量計測を<a href="engine.html" class="soft-link">自作ゲームエンジン MitiruEngine</a>に実装しています。
+                    TAAで使われる、motion vectorによって前フレームを再投影し、現在のフレームと合成する方法を輪郭線へ応用しました。必要な描画処理、比較デモ、定量計測を<a href="engine.html" class="soft-link">自作ゲームエンジンMitiruEngine</a>に実装しています。
                 </p>
                 <div class="meta-line">
                     <span>Experiment</span>
@@ -77,13 +77,13 @@
                     <h2>成果</h2>
                     <div class="sec-body">
                         <p>
-                            前フレームの情報を利用して輪郭線を安定させ、フレーム間のちらつきを 63%、線幅の変動を 67% 減らしました。数値は自動テストで計測しています。
+                            前フレームの情報を利用して輪郭線を安定させ、フレーム間のちらつきを63%、線幅の変動を67%減らしました。数値は自動テストで計測しています。
                         </p>
 
                         <figure class="plate">
                             <img src="images/npr/flicker_heatmap.webp" alt="安定化前後の輪郭線とフレーム間残差の比較" loading="lazy" width="1292" height="180">
                             <figcaption>
-                                左から、安定化前の輪郭線、安定化後の輪郭線、安定化前のフレーム間残差、安定化後のフレーム間残差。残差は赤色で 4 倍に強調しています。右端の輪状の残差は、既定の処理で発生する halo です。<code>floorRawGate</code> を加えると解消できます。
+                                左から、安定化前の輪郭線、安定化後の輪郭線、安定化前のフレーム間残差、安定化後のフレーム間残差。残差は赤色で4倍に強調しています。右端の輪状の残差は、既定の処理で発生するhaloです。<code>floorRawGate</code>を加えると解消できます。
                             </figcaption>
                         </figure>
                     </div>
@@ -93,24 +93,24 @@
                     <h2>実装</h2>
                     <div class="sec-body">
                         <ul>
-                            <li>G-buffer への motion vector と objectId の追加</li>
-                            <li>前フレームを保持する double-buffer</li>
-                            <li>深度の差と法線の折れを使う screen-space 輪郭抽出</li>
+                            <li>G-bufferへのmotion vectorとobjectIdの追加</li>
+                            <li>前フレームを保持するdouble-buffer</li>
+                            <li>深度の差と法線の折れを使うscreen-space輪郭抽出</li>
                             <li>再投影と履歴検証による時間安定化</li>
-                            <li>EMA 方式と、線の中心を保つ dropout-filling 方式</li>
-                            <li>両方式の CPU 版と GPU 版</li>
+                            <li>EMA方式と、線の中心を保つdropout-filling方式</li>
+                            <li>両方式のCPU版とGPU版</li>
                             <li>変形メッシュの頂点単位の速度計算</li>
-                            <li>glTF / VRM 読み込み</li>
+                            <li>glTF / VRM読み込み</li>
                             <li>線幅などを調整する後処理</li>
                         </ul>
                     </div>
                 </section>
 
                 <section class="sec">
-                    <h2>VRM モデルでの比較</h2>
+                    <h2>VRMモデルでの比較</h2>
                     <div class="sec-body">
                         <p>
-                            ニコニ立体ちゃん（©dwango）を VRM から読み込み、背面法のアウトラインと screen-space の内側線を組み合わせました。ピッチとヨーを変えた複数の視点を事前にレンダリングし、ドラッグによる回転とズームができるブラウザ用ビューアも制作しました。
+                            ニコニ立体ちゃん（©dwango）をVRMから読み込み、背面法のアウトラインとscreen-spaceの内側線を組み合わせました。ピッチとヨーを変えた複数の視点を事前にレンダリングし、ドラッグによる回転とズームができるブラウザ用ビューアも制作しました。
                         </p>
 
                         <figure class="plate">
@@ -126,20 +126,20 @@
                     <h2>リアルタイム布デモ</h2>
                     <div class="sec-body">
                         <p>
-                            Verlet 法による質点ばねモデルの布へランダムな突風を当て、変形によって現れる線を描画します。MitiruEngine の Game DLL として実装し、安定化前後の輪郭線を並べました。
+                            Verlet法による質点ばねモデルの布へランダムな突風を当て、変形によって現れる線を描画します。MitiruEngineのGame DLLとして実装し、安定化前後の輪郭線を並べました。
                         </p>
 
                         <figure class="plate">
                             <img src="images/npr/windy_cloth_demo.png" alt="windy_cloth リアルタイムデモ" loading="lazy" width="920" height="560">
                             <figcaption>
-                                windy_cloth。Space キーで突風を発生させます。布のシミュレーションと輪郭線の描画処理を実装しました。
+                                windy_cloth。Spaceキーで突風を発生させます。布のシミュレーションと輪郭線の描画処理を実装しました。
                             </figcaption>
                         </figure>
 
                         <figure class="plate">
                             <video src="images/npr/cloth_demo.webm" autoplay loop muted playsinline width="968" height="320"></video>
                             <figcaption>
-                                72 フレームのループ。左は背面法のみ、中央は背面法と安定化前のシワ線、右は背面法と安定化後のシワ線です。
+                                72フレームのループ。左は背面法のみ、中央は背面法と安定化前のシワ線、右は背面法と安定化後のシワ線です。
                             </figcaption>
                         </figure>
                     </div>
@@ -149,9 +149,9 @@
                     <h2>関連リンク</h2>
                     <div class="sec-body">
                         <div class="link-row">
-                            <a href="engine.html">MitiruEngine の紹介 →</a>
+                            <a href="engine.html">MitiruEngineの紹介 →</a>
                             <a href="https://github.com/mogmog-0110/npr-line-stabilization" target="_blank" rel="noopener">実験のコード →</a>
-                            <a href="https://github.com/mogmog-0110/MitiruEngine" target="_blank" rel="noopener">MitiruEngine のコード →</a>
+                            <a href="https://github.com/mogmog-0110/MitiruEngine" target="_blank" rel="noopener">MitiruEngineのコード →</a>
                         </div>
                     </div>
                 </section>

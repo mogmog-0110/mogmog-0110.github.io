@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fcfcfb">
-    <title>3D 煙・炎リアルタイム GPU シミュレーション | Shiggy</title>
+    <title>3D煙・炎リアルタイムGPUシミュレーション | Shiggy</title>
     <meta name="description" content="3D グリッド上で Navier-Stokes 方程式を GPU で解き、密度場と温度場をボリュームレイマーチで描画するリアルタイムデモです。">
 
     <style>
@@ -56,12 +56,12 @@
         <main id="main">
             <section class="page-head">
                 <p class="file-line">/ lab</p>
-                <h1>3D 煙・炎リアルタイム GPU シミュレーション</h1>
+                <h1>3D煙・炎リアルタイムGPUシミュレーション</h1>
                 <p class="lede">
                     <strong>128³ の3Dグリッドで煙と炎の動きを計算し、毎フレーム描画するデモです。</strong>
                 </p>
                 <p class="lede">
-                    流体計算、炎の発光、ボリューム描画、煙の自己影、調整用 UI を、<a href="engine.html" class="soft-link">自作ゲームエンジン MitiruEngine</a>の DirectX 12 コンピュート機能に実装しました。
+                    流体計算、炎の発光、ボリューム描画、煙の自己影、調整用UIを、<a href="engine.html" class="soft-link">自作ゲームエンジンMitiruEngine</a>のDirectX 12コンピュート機能に実装しました。
                 </p>
                 <div class="meta-line">
                     <span>個人制作</span>
@@ -77,7 +77,7 @@
                     <h2>概要</h2>
                     <div class="sec-body">
                         <p>
-                            速度、煙の密度、温度、圧力を3Dテクスチャに保存し、GPU上で更新します。計算結果を CPU に戻さず、そのままボリュームレイマーチで描画します。
+                            速度、煙の密度、温度、圧力を3Dテクスチャに保存し、GPU上で更新します。計算結果をCPUに戻さず、そのままボリュームレイマーチで描画します。
                         </p>
                         <p>
                             浮力、冷却、乱流、発光、色はウィンドウ内のスライダーから変更できます。複数の設定を横に並べ、同時に比較する機能も用意しました。
@@ -94,13 +94,13 @@
                     <div class="sec-body">
                         <h3>グリッド流体計算</h3>
                         <p>
-                            Stable Fluids を用い、速度場を「移流、外力、圧力射影」の順に更新します。移流には semi-Lagrangian 法を使用しました。
+                            Stable Fluidsを用い、速度場を「移流、外力、圧力射影」の順に更新します。移流にはsemi-Lagrangian法を使用しました。
                         </p>
                         <p>
-                            体積を保つ流れにするため、速度の発散からポアソン方程式を作り、Jacobi 法を40回反復して圧力を求めます。その圧力勾配を速度から引き、煙の密度と温度を更新します。
+                            体積を保つ流れにするため、速度の発散からポアソン方程式を作り、Jacobi法を40回反復して圧力を求めます。その圧力勾配を速度から引き、煙の密度と温度を更新します。
                         </p>
 
-                        <h3>渦 confinement</h3>
+                        <h3>渦confinement</h3>
                         <p>
                             グリッド計算による数値拡散で細かな渦が失われるため、速度場から渦度を計算し、渦を強める力を加えています。
                         </p>
@@ -112,7 +112,7 @@
 
                         <h3>ボリュームレイマーチと自己影</h3>
                         <p>
-                            カメラから伸ばした光線に沿って3Dグリッドをサンプリングし、煙による吸収と炎による発光を積算します。吸収には Beer–Lambert の法則を使います。
+                            カメラから伸ばした光線に沿って3Dグリッドをサンプリングし、煙による吸収と炎による発光を積算します。吸収にはBeer–Lambertの法則を使います。
                         </p>
                         <p>
                             各サンプル位置から光源方向も調べ、届く光の量を求めることで煙の自己影を描画します。
@@ -133,7 +133,7 @@
                         </p>
                         <figure class="plate">
                             <video src="images/volsmoke/compare.mp4" autoplay loop muted playsinline width="1500" height="720"></video>
-                            <figcaption>3つの独立した 128³ シミュレーションを同時に動かした実機レンダリング録画</figcaption>
+                            <figcaption>3つの独立した128³ シミュレーションを同時に動かした実機レンダリング録画</figcaption>
                         </figure>
                     </div>
                 </section>
@@ -142,7 +142,7 @@
                     <h2>参照した手法</h2>
                     <div class="sec-body">
                         <p>
-                            グリッド流体には Stam の Stable Fluids（1999）、煙と渦 confinement には Fedkiw ら（2001）、炎には Nguyen ら（2002）、GPU によるリアルタイム3D計算には GPU Gems 3（2007）を参照しました。
+                            グリッド流体にはStamのStable Fluids（1999）、煙と渦confinementにはFedkiwら（2001）、炎にはNguyenら（2002）、GPUによるリアルタイム3D計算にはGPU Gems 3（2007）を参照しました。
                         </p>
                     </div>
                 </section>
