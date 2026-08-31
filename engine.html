@@ -59,13 +59,13 @@
                 <p class="file-line">/ engine</p>
                 <h1>MitiruEngine</h1>
                 <p class="lede">
-                    ゲームエンジンを自分で書いています。2022 年から学園祭やコミックマーケットでゲームを出してきて、そのうちゲームそのものより、その下で動いているエンジンのほうに興味が移りました。MitiruEngine はその延長で書いているものです。いまは自分のゲームもツールも、これで動かしています。
+                    MitiruEngineは、描画、音、入力、シーン管理、物理など基本機能をひととおり備え、そのうえでテストとデバッグのしやすさを重視し、私がC++20で開発しているゲームエンジンです。全状態をポインタのない一つの構造体に集約して毎フレーム保存するため、過去の任意の場面へ戻り、記録した入力から同じプレイを再現できます。単一のゲームコードがWindowsではDirectX 12、macOSではMetal、ブラウザではWebGLで動きます。状態を名前つきJSONとして外部から読み取り、操作できるため、AIによるコーディングやデバッグの支援も受けやすくしています。
                 </p>
                 <p class="lede">
-                    このページでは、実際に動いている画面と図で、中で何をしているのかを順に見せます。後半ほど技術的な話になります。使い方や導入の手順は<a href="https://mogmog-0110.github.io/MitiruEngine/">エンジンの紹介サイト</a>にまとめてあります。
+                    このページでは、実際に動いている画面と図を使い、MitiruEngineで何ができ、そのために中で何をしているのかを順に紹介します。後半ほど技術的な内容です。使い方や導入の手順は<a href="https://mogmog-0110.github.io/MitiruEngine/">エンジンの紹介サイト</a>にまとめてあります。
                 </p>
                 <div class="meta-line">
-                    <span>開発中 (v0.31)</span><span>C++20</span><span>Windows</span><span>独自ライセンス（使用自由 / 改変・再配布不可）</span>
+                    <span>開発中(v0.32)</span><span>C++20</span><span>Windows / macOS / ブラウザ</span><span>独自ライセンス（使用自由 / 改変・再配布不可）</span>
                 </div>
             </section>
 
@@ -73,19 +73,19 @@
 
                 <!-- ── §1 これは何か ─────────────────────────── -->
                 <section class="sec">
-                    <h2>MitiruEngine とは</h2>
+                    <h2>MitiruEngineとは</h2>
                     <div class="sec-body">
-                        <p class="sec-intro">中身は C++、画面は HTML と CSS</p>
+                        <p class="sec-intro">中身はC++、画面はHTMLとCSS</p>
                         <figure class="plate">
                             <img src="images/engine/beko_gameplay.webp" alt="赤べこの横スクロールアクションの実機の録画。赤べこが石畳の上を走り、宙に浮いた古銭を拾い、起き上がり小法師の間を跳んでいく。左上に取得数のカウンタが出ている。" loading="lazy" decoding="async" width="680" height="382">
-                            <figcaption>このエンジンで動かしているゲームの一例（実機の録画）。赤べこ・小法師・古銭・石畳はスプライト、空はグラデーション、左上のカウンタは HTML / CSS です。</figcaption>
+                            <figcaption>このエンジンで動かしているゲームの一例（実機の録画）。赤べこ・小法師・古銭・石畳はスプライト、空はグラデーション、左上のカウンタはHTML / CSSです。</figcaption>
                         </figure>
                         <p>
-                            ゲームの中身は C++ で書きます。プレイヤーの動き、当たり判定、スコアの計算。画面に出す HUD やメニューは HTML と CSS で書きます。Web ページを作るのと同じ書き方です。セリフや設定の数値は JSON に置きます。C++ と HTML の間を行き来するのは表示用の値だけで、ゲームの状態そのものは C++ が持ったままです。
+                            ゲームの中身はC++で書きます。プレイヤーの動き、当たり判定、スコアの計算。画面に出すHUDやメニューはHTMLとCSSで書きます。Webページを作るのと同じ書き方です。セリフや設定の数値はJSONに置きます。C++とHTMLの間を行き来するのは表示用の値だけで、ゲームの状態そのものはC++が持ったままです。
                         </p>
                         <figure class="dgm-wrap">
                             <svg class="dgm" viewBox="0 0 760 150" role="img" aria-label="1 つのゲームを 3 つの言葉で分担する図。C++ がゲームの中身（状態・動き・当たり判定・物理・描画）、HTML/CSS が画面（HUD・メニュー・演出）、JSON がデータ（セリフ・設定・バランス）を担当する。">
-                                <text class="mono" x="380" y="20" text-anchor="middle">1 つのゲーム</text>
+                                <text class="mono" x="380" y="20" text-anchor="middle">1つのゲーム</text>
                                 <rect class="boxy" x="14"  y="40" width="232" height="92" rx="5"/>
                                 <text class="lbl" x="130" y="68" text-anchor="middle">C++</text>
                                 <text class="sub" x="130" y="90" text-anchor="middle">状態・動き・当たり判定</text>
@@ -99,46 +99,46 @@
                                 <text class="sub" x="630" y="90" text-anchor="middle">セリフ・設定</text>
                                 <text class="sub" x="630" y="108" text-anchor="middle">バランス表</text>
                             </svg>
-                            <figcaption>1 つのゲームを、C++ と HTML/CSS と JSON に分けて書く。状態を持つのは C++ だけ。</figcaption>
+                            <figcaption>1つのゲームを、C++とHTML/CSSとJSONに分けて書く。状態を持つのはC++だけ。</figcaption>
                         </figure>
                         <p>
-                            下は実際にこのエンジンで作った小さなゲームです。プレイヤーを左右に動かし、落ちてくる星をキャッチしてスコアを伸ばします。プレイヤーや星は C++ が描き、スコアの表示は HTML / CSS です。
+                            下は実際にこのエンジンで作った小さなゲームです。プレイヤーを左右に動かし、落ちてくる星をキャッチしてスコアを伸ばします。プレイヤーや星はC++が描き、スコアの表示はHTML / CSSです。
                         </p>
                         <figure class="plate">
                             <img src="images/engine/catch_gameplay.webp" alt="スター・キャッチのプレイの様子。下のプレイヤーを左右に動かし、落ちてくる星をキャッチしてスコアが伸びていく実機の録画。" loading="lazy" decoding="async" width="900" height="506">
-                            <figcaption>実機の録画。プレイヤー・星はスプライト（C++）、左上のスコアは HTML / CSS の HUD。</figcaption>
+                            <figcaption>実機の録画。プレイヤー・星はスプライト（C++）、左上のスコアはHTML / CSSのHUD。</figcaption>
                         </figure>
-                        <p class="fine">描画は DirectX 12 を主軸に、DirectX 11 フォールバックを備えます。バックエンドは内部で <code>IDevice</code> として抽象化していて OpenGL / Vulkan / WebGL / WebGPU の実装も持ちますが、ゲームを通して安定して描けるのは現状 DirectX 12 / 11 です。</p>
+                        <p class="fine">描画を<code>IDevice</code>で抽象化し、WindowsのDirectX 12、macOSのMetal、ブラウザのWebGLでゲームが動きます。DirectX 11へフォールバックでき、OpenGL、Vulkan、WebGPUも実装し、通し動作は未確認です。</p>
                     </div>
                 </section>
 
                 <!-- ── §2 書くのは 2 つだけ ──────────────────────── -->
                 <section class="sec">
-                    <h2>書くのは 2 つだけ</h2>
+                    <h2>書くのは2つだけ</h2>
                     <div class="sec-body">
                         <p class="sec-intro">状態のまとまりと、毎フレームの処理</p>
                         <p>
-                            ゲームを 1 つ作るのに書くのは、<code>struct</code> が 1 個と、その中の関数が 2 つだけです。<code>struct</code> にはゲームの状態、つまりプレイヤーの位置やスコアといった数値を入れます。<code>update</code> でその数値を進めて、<code>draw</code> で画面に描く。エンジンはこの 2 つを 1 秒に 60 回呼びます。
+                            ゲームを1つ作るのに書くのは、<code>struct</code>が1個と、その中の関数が2つだけです。<code>struct</code>にはゲームの状態、つまりプレイヤーの位置やスコアといった数値を入れます。<code>update</code>でその数値を進めて、<code>draw</code>で画面に描く。エンジンはこの2つを1秒に60回呼びます。
                         </p>
                         <figure class="dgm-wrap">
                             <svg class="dgm" viewBox="0 0 760 170" role="img" aria-label="ゲームループの図。状態 struct（数値）を update(入力, dt) が更新し、draw(Screen) が描き、画面に出る。次のフレームでまた状態へ戻る、という繰り返し。">
                                 <defs><marker id="a1" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#6e7077"/></marker></defs>
                                 <rect class="boxy" x="20"  y="34" width="150" height="56" rx="5"/>
-                                <text class="lbl" x="95"  y="58" text-anchor="middle">状態 struct</text>
+                                <text class="lbl" x="95"  y="58" text-anchor="middle">状態struct</text>
                                 <text class="sub" x="95"  y="76" text-anchor="middle">数値だけ</text>
                                 <rect class="box"  x="230" y="34" width="150" height="56" rx="5"/>
                                 <text class="lbl" x="305" y="58" text-anchor="middle">update</text>
-                                <text class="sub" x="305" y="76" text-anchor="middle">入力・dt で更新</text>
+                                <text class="sub" x="305" y="76" text-anchor="middle">入力・dtで更新</text>
                                 <rect class="box"  x="440" y="34" width="150" height="56" rx="5"/>
                                 <text class="lbl" x="515" y="58" text-anchor="middle">draw</text>
-                                <text class="sub" x="515" y="76" text-anchor="middle">Screen に描く</text>
+                                <text class="sub" x="515" y="76" text-anchor="middle">Screenに描く</text>
                                 <rect class="boxy" x="630" y="34" width="110" height="56" rx="5"/>
                                 <text class="lbl" x="685" y="65" text-anchor="middle">画面</text>
                                 <line class="arr" x1="170" y1="62" x2="228" y2="62" marker-end="url(#a1)"/>
                                 <line class="arr" x1="380" y1="62" x2="438" y2="62" marker-end="url(#a1)"/>
                                 <line class="arr" x1="590" y1="62" x2="628" y2="62" marker-end="url(#a1)"/>
                                 <path class="arr" d="M685,90 L685,128 L95,128 L95,92" marker-end="url(#a1)"/>
-                                <text class="mono" x="390" y="148" text-anchor="middle">次のフレーム（毎秒 60 回）</text>
+                                <text class="mono" x="390" y="148" text-anchor="middle">次のフレーム（毎秒60回）</text>
                             </svg>
                             <figcaption>状態 → 更新 → 描画 → 画面、を毎フレームくり返すだけ。状態は数値だけに保つのが約束。</figcaption>
                         </figure>
@@ -157,18 +157,18 @@ struct StarCatch {
 MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋がる</span></code></pre>
                         <figure class="plate">
                             <img src="images/engine/catch_sprite.webp" alt="左にコードエディタ、右に動いているゲームの 2 画面。draw の中で四角を描いていた行を s.sprite に書き換えると、右のゲームのプレイヤーと星が画像に変わる実機の録画。" loading="lazy" decoding="async" width="1600" height="530">
-                            <figcaption>左＝エディタ / 右＝ゲーム。<code>draw</code> の中の 1 行を書き換えると、四角だった見た目が画像に変わります。</figcaption>
+                            <figcaption>左＝エディタ / 右＝ゲーム。<code>draw</code>の中の1行を書き換えると、四角だった見た目が画像に変わります。</figcaption>
                         </figure>
                     </div>
                 </section>
 
                 <!-- ── §3 画面は HTML/CSS で ───────────────────── -->
                 <section class="sec">
-                    <h2>画面は HTML / CSS で</h2>
+                    <h2>画面はHTML / CSSで</h2>
                     <div class="sec-body">
-                        <p class="sec-intro">UI を Web ページのように書く</p>
+                        <p class="sec-intro">UIをWebページのように書く</p>
                         <p>
-                            HUD やメニューは <code>scene.html</code> に HTML / CSS で書きます。C++ が送った値は <code>&lt;span data-m-text="view.hud.score"&gt;</code> のように属性で受けるだけです。つなぎの JavaScript は書きません。やり取りは「信号」だけで、状態の持ち主は C++ のまま。見た目（CSS）とルール（C++）が混ざりません。
+                            HUDやメニューは<code>scene.html</code>にHTML / CSSで書きます。C++が送った値は <code>&lt;span data-m-text="view.hud.score"&gt;</code> のように属性で受けるだけです。つなぎのJavaScriptは書きません。やり取りは「信号」だけで、状態の持ち主はC++のまま。見た目（CSS）とルール（C++）が混ざりません。
                         </p>
                         <figure class="dgm-wrap">
                             <svg class="dgm" viewBox="0 0 760 130" role="img" aria-label="C++ と HTML/CSS のやり取りの図。C++ から HTML へは値の push（hud.set / data-m-text）、HTML から C++ へは操作の通知（data-m-action / in.action）。信号だけが行き来し、状態は C++ が持つ。">
@@ -180,15 +180,15 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                                 <text class="lbl" x="616" y="60" text-anchor="middle">HTML / CSS（画面）</text>
                                 <text class="sub" x="616" y="80" text-anchor="middle">表示・入力</text>
                                 <line class="arr" x1="266" y1="52" x2="494" y2="52" marker-end="url(#a2)"/>
-                                <text class="mono" x="380" y="44" text-anchor="middle">値を push（hud.set）</text>
+                                <text class="mono" x="380" y="44" text-anchor="middle">値をpush（hud.set）</text>
                                 <line class="arr" x1="494" y1="80" x2="266" y2="80" marker-end="url(#a2)"/>
                                 <text class="mono" x="380" y="98" text-anchor="middle">操作を通知（in.action）</text>
                             </svg>
-                            <figcaption>行き来するのは「信号」だけ。ゲームの状態は JS に持たせず、C++ に集約する。</figcaption>
+                            <figcaption>行き来するのは「信号」だけ。ゲームの状態はJSに持たせず、C++に集約する。</figcaption>
                         </figure>
                         <figure class="plate">
                             <img src="images/engine/catch_htmlhud.webp" alt="左に scene.html のエディタ、右にゲーム。空の scene.html に SCORE を表示する HUD の div を 1 行足して保存すると、再ビルドせずゲームの右上に HTML/CSS の HUD がその場で出る実機の録画。" loading="lazy" decoding="async" width="1600" height="466">
-                            <figcaption>実機の録画（左＝エディタ / 右＝ゲーム）。<code>scene.html</code> に HUD を 1 行足して保存すると、再ビルドせずその場で画面に出る。</figcaption>
+                            <figcaption>実機の録画（左＝エディタ / 右＝ゲーム）。<code>scene.html</code>にHUDを1行足して保存すると、再ビルドせずその場で画面に出る。</figcaption>
                         </figure>
                     </div>
                 </section>
@@ -202,7 +202,7 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                             ゲームのコードを保存すると、動いているゲームを止めずに反映されます。プレイヤーの速度・落下のはやさ・背景色を書き換えると、走ったまま変わり、スコアなどの状態は保たれます。「ちょっと速すぎる」を、止めて・直して・立ち上げ直す、を待たずに詰められます。
                         </p>
                         <p>
-                            走らせたまま直すこと自体は Visual Studio にもあります（Edit and Continue）。違うのは条件のほうです。こちらはデバッガを付けず、最適化を切らず、<code>/ZI</code> や <code>/INCREMENTAL</code> といったビルド設定も要求しません（<code>mitiru watch --release</code>）。ゲーム状態はホストが預かっているので、DLL だけが差し替わって値は残ります。構造体そのものを書き換えたときは、黙って壊さず「状態をリセットした」と知らせて新しいコードで続きます。
+                            走らせたまま直すこと自体はVisual Studioにもあります（Edit and Continue）。違うのは条件のほうです。こちらはデバッガを付けず、最適化を切らず、<code>/ZI</code>や <code>/INCREMENTAL</code>といったビルド設定も要求しません（<code>mitiru watch --release</code>）。ゲーム状態はホストが預かっているので、DLLだけが差し替わって値は残ります。構造体そのものを書き換えたときは、黙って壊さず「状態をリセットした」と知らせて新しいコードで続きます。
                         </p>
                         <figure class="plate">
                             <img src="images/engine/catch_hotreload.webp" alt="左にコードエディタ、右にゲーム。先頭の定数 kPlayerSpeed・kFallSpeed・背景色を上から順に書き換えて保存すると、走っているゲームのプレイヤー速度・落下速度・背景色がその場で変わり、SCORE はそのまま保たれる実機の録画。" loading="lazy" decoding="async" width="1600" height="530">
@@ -213,39 +213,39 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
 
                 <!-- ── §5 5 秒前まで戻せる ───────────────────── -->
                 <section class="sec">
-                    <h2>5 秒前まで戻せる</h2>
+                    <h2>5秒前まで戻せる</h2>
                     <div class="sec-body">
                         <p class="sec-intro">グラフの過去をクリックすると、その瞬間に戻る</p>
                         <p>
-                            プレイ中の状態は毎フレーム自動で記録されています。開発ツールの巻き戻しウィンドウ（ゲームとは別の窓）で値の履歴がグラフになり、グラフの過去をクリックすると、ゲームが<strong>その瞬間の状態へまるごと巻き戻ります</strong>。「なぜか HP が減った」を、その手前まで戻って目で確かめられます。
+                            プレイ中の状態は毎フレーム自動で記録されています。開発ツールの巻き戻しウィンドウ（ゲームとは別の窓）で値の履歴がグラフになり、グラフの過去をクリックすると、ゲームが<strong>その瞬間の状態へまるごと巻き戻ります</strong>。「なぜかHPが減った」を、その手前まで戻って目で確かめられます。
                         </p>
                         <figure class="plate">
                             <img src="images/engine/catch_timetravel.webp" alt="左にゲーム、右に巻き戻しウィンドウ。ふつうに遊ぶと右の窓に playerX の履歴グラフが伸び、グラフの過去をクリックするとゲームがその瞬間の状態へ巻き戻り、プレイヤーの位置も画面もその時のまま再現される実機の録画。" loading="lazy" decoding="async" width="1500" height="618">
                             <figcaption>実機の録画（左＝ゲーム / 右＝巻き戻しウィンドウ）。履歴グラフの過去をクリック → ゲームがその瞬間へ巻き戻る。</figcaption>
                         </figure>
                         <p>
-                            同じ仕組みで、走らせたまま観察ウィンドウを開けば、<code>playerX</code> や <code>score</code> といった状態をライブで覗けます。さらに、プレイ中の入力はすべて記録されているので、<strong>同じプレイをあとからそっくり再生</strong>できます。「たまにしか出ないバグ」を録画して何度でも再現する、テストとして毎回流す、といった使い方ができます。
+                            同じ仕組みで、走らせたまま観察ウィンドウを開けば、<code>playerX</code>や<code>score</code>といった状態をライブで覗けます。さらに、プレイ中の入力はすべて記録されているので、<strong>同じプレイをあとからそっくり再生</strong>できます。「たまにしか出ないバグ」を録画して何度でも再現する、テストとして毎回流す、といった使い方ができます。
                         </p>
                         <figure class="plate">
                             <img src="images/engine/catch_inspector.webp" alt="左にコードエディタ、中央にゲーム、右に観察ウィンドウの 3 画面。走らせたまま update に hud.open(Tool::Inspector) を 1 行打って保存すると、その場で右の観察ウィンドウが開き、playerX・score・frame などの状態がライブで映る実機の録画。" loading="lazy" decoding="async" width="1680" height="506">
-                            <figcaption>実機の録画（左＝エディタ / 中央＝ゲーム / 右＝観察ウィンドウ）。1 行で観察ウィンドウが開き、状態がライブで映る。</figcaption>
+                            <figcaption>実機の録画（左＝エディタ / 中央＝ゲーム / 右＝観察ウィンドウ）。1行で観察ウィンドウが開き、状態がライブで映る。</figcaption>
                         </figure>
                         <p>
-                            巻き戻しと録画リプレイが成り立つ理由は 1 つです。ゲームの状態を「ポインタも <code>std::vector</code> も持たない、丸ごとコピーできる 1 個の構造体」（flat POD）に置く、という設計の約束にあります。次のセクションで、その原理を。
+                            巻き戻しと録画リプレイが成り立つ理由は1つです。ゲームの状態を「ポインタも<code>std::vector</code>も持たない、丸ごとコピーできる1個の構造体」（flat POD）に置く、という設計の約束にあります。次のセクションで、その原理を。
                         </p>
                     </div>
                 </section>
 
                 <!-- ── flat POD の原理 ────────────────────────── -->
                 <section class="sec">
-                    <h2>状態を 1 個の flat POD に置く</h2>
+                    <h2>状態を1個のflat PODに置く</h2>
                     <div class="sec-body">
-                        <p class="sec-intro">巻き戻し・録画・観察が成り立つ、たった 1 つの約束</p>
+                        <p class="sec-intro">巻き戻し・録画・観察が成り立つ、たった1つの約束</p>
                         <p>
-                            前のセクションの「巻き戻し」「録画リプレイ」「ライブ観察」は、<strong>1 つの約束</strong>から生まれています。ゲームの状態を flat POD（Plain Old Data）にまとめておくこと、それだけです。
+                            前のセクションの「巻き戻し」「録画リプレイ」「ライブ観察」は、<strong>1つの約束</strong>から生まれています。ゲームの状態をflat POD（Plain Old Data）にまとめておくこと、それだけです。
                         </p>
                         <p>
-                            flat POD とは、ざっくり言えば「ポインタも可変長コンテナも持たない、固定サイズの数値のかたまり」です。<code>int</code> / <code>float</code> と固定長配列だけで作った <code>struct</code> です。<code>std::string</code> や <code>std::vector</code>、ヒープへのポインタは入れません。すると、その状態は<strong>メモリ上で 1 本の連続したバイト列</strong>になります。ここがすべての鍵です。
+                            flat PODとは、ざっくり言えば「ポインタも可変長コンテナも持たない、固定サイズの数値のかたまり」です。<code>int</code> / <code>float</code>と固定長配列だけで作った<code>struct</code>です。<code>std::string</code>や<code>std::vector</code>、ヒープへのポインタは入れません。すると、その状態は<strong>メモリ上で1本の連続したバイト列</strong>になります。ここがすべての鍵です。
                         </p>
                         <figure class="dgm-wrap">
                             <svg class="dgm" viewBox="0 0 760 220" role="img" aria-label="左は『散らばった状態』。状態オブジェクトがポインタで Player・敵配列・Item 配列をヒープ上のあちこちに参照していて、まるごと保存するには参照を辿った深いコピーが要る。右は『flat POD』。t・playerX・score・stars が 1 本の連続したバイト列に並んでいて、memcpy 一発でコピー・比較・復元できる、という対比の図。">
@@ -267,7 +267,7 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                                 <!-- 仕切り -->
                                 <line class="ln" x1="384" y1="30" x2="384" y2="196"/>
                                 <!-- 右パネル：flat POD -->
-                                <text class="mono" x="574" y="20" text-anchor="middle">flat POD（1 かたまり）</text>
+                                <text class="mono" x="574" y="20" text-anchor="middle">flat POD（1かたまり）</text>
                                 <rect class="boxy" x="412" y="92" width="80" height="46"/>
                                 <text class="mono" x="452" y="119" text-anchor="middle">t</text>
                                 <rect class="boxy" x="492" y="92" width="80" height="46"/>
@@ -277,58 +277,58 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                                 <rect class="boxy" x="652" y="92" width="86" height="46"/>
                                 <text class="mono" x="695" y="119" text-anchor="middle">stars[ ]</text>
                                 <text class="sub" x="574" y="166" text-anchor="middle">連続したバイト列（固定長・ポインタ無し）</text>
-                                <text class="sub" x="574" y="204" text-anchor="middle">memcpy 一発でコピー・比較・復元</text>
+                                <text class="sub" x="574" y="204" text-anchor="middle">memcpy一発でコピー・比較・復元</text>
                             </svg>
-                            <figcaption>左は参照を辿らないと全体が分からない（深いコピーが要る）。右は 1 本のバイト列なので、状態をまるごと扱う操作がただのバイト操作になる。</figcaption>
+                            <figcaption>左は参照を辿らないと全体が分からない（深いコピーが要る）。右は1本のバイト列なので、状態をまるごと扱う操作がただのバイト操作になる。</figcaption>
                         </figure>
                         <p>
-                            連続したバイト列であることが効いてきます。状態が「あちこちのヒープに散らばったオブジェクトをポインタで辿る」形だと、全体を保存するには参照を 1 つずつ追って深いコピーが要ります。でも flat POD なら、こうなります。
+                            連続したバイト列であることが効いてきます。状態が「あちこちのヒープに散らばったオブジェクトをポインタで辿る」形だと、全体を保存するには参照を1つずつ追って深いコピーが要ります。でもflat PODなら、こうなります。
                         </p>
                         <ul>
-                            <li><strong>保存</strong> ＝ そのバイト列を <code>memcpy</code> で 1 回コピーするだけ</li>
-                            <li><strong>差分</strong> ＝ <code>memcmp</code> でフレーム間の変化が取れる</li>
-                            <li><strong>巻き戻し</strong> ＝ 過去のバイト列を現在へ <code>memcpy</code> で書き戻すだけ</li>
-                            <li><strong>JSON 化（観察）</strong> ＝ フィールドのオフセットを読むだけ</li>
+                            <li><strong>保存</strong> ＝ そのバイト列を<code>memcpy</code>で1回コピーするだけ</li>
+                            <li><strong>差分</strong> ＝ <code>memcmp</code>でフレーム間の変化が取れる</li>
+                            <li><strong>巻き戻し</strong> ＝ 過去のバイト列を現在へ<code>memcpy</code>で書き戻すだけ</li>
+                            <li><strong>JSON化（観察）</strong> ＝ フィールドのオフセットを読むだけ</li>
                         </ul>
                         <p>
-                            つまり「状態をまるごと扱う」が、特別な仕掛けではなくただのバイト操作になります。だから巻き戻しも録画も観察も、同じ 1 つの土台の上に乗ります。
+                            つまり「状態をまるごと扱う」が、特別な仕掛けではなくただのバイト操作になります。だから巻き戻しも録画も観察も、同じ1つの土台の上に乗ります。
                         </p>
                         <p>
-                            動き方はこうです。<code>MITIRU_GAME(struct)</code> はコンパイル時に「その <code>struct</code> が本当に flat POD か」を <code>static_assert</code> で検査します（違反するとビルドが通りません）。実行中、ホストは毎フレーム状態のバイト列をリングバッファに記録。巻き戻しは過去のバイト列を書き戻すだけ。録画リプレイは「ある時点のスナップショット＋それ以降の入力（これも記録済み）」を流し直すと、決定論的に<strong>同じ結果が bit 単位で再現</strong>されます。観察は <code>MITIRU_REFLECT</code> でフィールドを名前付きの JSON にして覗きます。
+                            動き方はこうです。<code>MITIRU_GAME(struct)</code>はコンパイル時に「その<code>struct</code>が本当にflat PODか」を<code>static_assert</code>で検査します（違反するとビルドが通りません）。実行中、ホストは毎フレーム状態のバイト列をリングバッファに記録。巻き戻しは過去のバイト列を書き戻すだけ。録画リプレイは「ある時点のスナップショット＋それ以降の入力（これも記録済み）」を流し直すと、決定論的に<strong>同じ結果がbit単位で再現</strong>されます。観察は<code>MITIRU_REFLECT</code>でフィールドを名前付きのJSONにして覗きます。
                         </p>
                         <p>
-                            この縛りは全部のゲームにかかるわけではありません。DLL の入口を自分で書けば、<code>std::vector</code> でも <code>std::string</code> でも持ったまま動きます。エンジン付属のランチャー自身がその書き方です。ただしそのとき、ホストから見た状態は中身の分からないかたまりになるので、巻き戻しも録画リプレイも観察も効きません。
+                            この縛りは全部のゲームにかかるわけではありません。DLLの入口を自分で書けば、<code>std::vector</code>でも<code>std::string</code>でも持ったまま動きます。エンジン付属のランチャー自身がその書き方です。ただしそのとき、ホストから見た状態は中身の分からないかたまりになるので、巻き戻しも録画リプレイも観察も効きません。
                         </p>
                         <figure class="dgm-wrap">
                             <svg class="dgm" viewBox="0 0 760 170" role="img" aria-label="flat POD の状態を毎フレーム ring buffer に記録すると、巻き戻し・録画リプレイ・観察（AI 可視化）の 3 つが同じ仕組みから生まれる、という図。">
                                 <defs><marker id="a3" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#6e7077"/></marker></defs>
                                 <rect class="boxy" x="20"  y="56" width="170" height="58" rx="5"/>
-                                <text class="lbl" x="105" y="80" text-anchor="middle">flat POD 状態</text>
-                                <text class="sub" x="105" y="98" text-anchor="middle">数値 1 かたまり</text>
+                                <text class="lbl" x="105" y="80" text-anchor="middle">flat POD状態</text>
+                                <text class="sub" x="105" y="98" text-anchor="middle">数値1かたまり</text>
                                 <rect class="box"  x="250" y="56" width="170" height="58" rx="5"/>
                                 <text class="lbl" x="335" y="80" text-anchor="middle">ring buffer</text>
-                                <text class="sub" x="335" y="98" text-anchor="middle">毎フレーム memcpy</text>
+                                <text class="sub" x="335" y="98" text-anchor="middle">毎フレームmemcpy</text>
                                 <line class="arr" x1="190" y1="85" x2="248" y2="85" marker-end="url(#a3)"/>
                                 <rect class="box" x="500" y="16" width="240" height="40" rx="5"/>
                                 <text class="lbl" x="620" y="41" text-anchor="middle">巻き戻し（書き戻す）</text>
                                 <rect class="box" x="500" y="66" width="240" height="40" rx="5"/>
-                                <text class="lbl" x="620" y="91" text-anchor="middle">録画リプレイ（bit 一致）</text>
+                                <text class="lbl" x="620" y="91" text-anchor="middle">録画リプレイ（bit一致）</text>
                                 <rect class="box" x="500" y="116" width="240" height="40" rx="5"/>
-                                <text class="lbl" x="620" y="141" text-anchor="middle">ライブ観察（AI 可視化）</text>
+                                <text class="lbl" x="620" y="141" text-anchor="middle">ライブ観察（AI可視化）</text>
                                 <path class="arr" d="M420,85 L460,85 L460,36 L498,36" marker-end="url(#a3)"/>
                                 <path class="arr" d="M420,85 L460,85 L460,86 L498,86" marker-end="url(#a3)"/>
                                 <path class="arr" d="M420,85 L460,85 L460,136 L498,136" marker-end="url(#a3)"/>
                             </svg>
-                            <figcaption>1 個の状態を毎フレーム記録するだけ。巻き戻し・録画リプレイ・観察が同じ源から生まれる。</figcaption>
+                            <figcaption>1個の状態を毎フレーム記録するだけ。巻き戻し・録画リプレイ・観察が同じ源から生まれる。</figcaption>
                         </figure>
                         <p class="sec-intro">ついでに、速くもなる</p>
                         <p>
-                            flat POD の縛りには、決定性とは別の御利益が付いてきます。<strong>キャッシュ効率</strong>です。状態が連続したバイト列だと、
+                            flat PODの縛りには、決定性とは別の御利益が付いてきます。<strong>キャッシュ効率</strong>です。状態が連続したバイト列だと、
                         </p>
                         <ul>
                             <li><strong>ポインタ追跡が消える</strong>。データキャッシュミスの最大の原因は、参照を辿ってヒープのあちこちへ飛ぶこと。この構造体はそれをしません</li>
-                            <li><strong>毎フレームのヒープ確保がゼロ</strong>。<code>FixedVec</code> はインライン領域なので、確保のヒッチも断片化も出ません</li>
-                            <li><strong>小さな状態が常駐する</strong>。数 KB の状態を毎フレーム舐めるので、キャッシュにホットなまま居座ります（時間的・空間的局所性）</li>
+                            <li><strong>毎フレームのヒープ確保がゼロ</strong>。<code>FixedVec</code>はインライン領域なので、確保のヒッチも断片化も出ません</li>
+                            <li><strong>小さな状態が常駐する</strong>。数KBの状態を毎フレーム舐めるので、キャッシュにホットなまま居座ります（時間的・空間的局所性）</li>
                         </ul>
                         <figure class="dgm-wrap">
                             <svg class="dgm" viewBox="0 0 760 185" role="img" aria-label="キャッシュライン上のアクセスパターンの対比。上『ポインタ追跡（飛び飛び）』は同じ 4 回のアクセスでも離れたセル（別々のキャッシュライン）を引くのでミスしやすい。下『連続アクセス（flat POD / SoA）』は隣り合うセルに順番にアクセスし、1 ライン読むと隣も乗りプリフェッチが先読みするのでミスしにくい。">
@@ -341,7 +341,7 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                                 <rect class="boxy" x="442" y="34" width="56" height="30"/>
                                 <rect class="box"  x="502" y="34" width="56" height="30"/>
                                 <rect class="boxy" x="562" y="34" width="56" height="30"/>
-                                <text class="sub" x="380" y="84" text-anchor="middle">同じ 4 回でも別々のラインを引く → ミスしやすい</text>
+                                <text class="sub" x="380" y="84" text-anchor="middle">同じ4回でも別々のラインを引く → ミスしやすい</text>
                                 <text class="mono" x="380" y="114" text-anchor="middle">連続アクセス（flat POD / SoA）</text>
                                 <rect class="boxy" x="142" y="126" width="56" height="30"/>
                                 <rect class="boxy" x="202" y="126" width="56" height="30"/>
@@ -351,26 +351,96 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                                 <rect class="box"  x="442" y="126" width="56" height="30"/>
                                 <rect class="box"  x="502" y="126" width="56" height="30"/>
                                 <rect class="box"  x="562" y="126" width="56" height="30"/>
-                                <text class="sub" x="380" y="176" text-anchor="middle">1 ライン読むと隣も乗る・プリフェッチ → ミスしにくい</text>
+                                <text class="sub" x="380" y="176" text-anchor="middle">1ライン読むと隣も乗る・プリフェッチ → ミスしにくい</text>
                             </svg>
-                            <figcaption>塗りつぶしが「触ったデータ」。飛び飛び（上）は毎回ちがうキャッシュラインを引くが、連続（下）は 1 ラインに複数のデータが乗り、先読みも効く。</figcaption>
+                            <figcaption>塗りつぶしが「触ったデータ」。飛び飛び（上）は毎回ちがうキャッシュラインを引くが、連続（下）は1ラインに複数のデータが乗り、先読みも効く。</figcaption>
                         </figure>
                         <p>
-                            ただし flat POD が保証するのは「連続」までで、自動で最適ではありません。<code>FixedVec&lt;Enemy, N&gt;</code> のような配列の構造体（AoS）だと、敵 1 体の座標だけ舐めたくても構造体まるごとがラインに乗ります。大量エンティティのホットループを本気で詰めるなら、次の一手は SoA（構造体の配列）です。座標は座標、HP は HP を別々の連続配列に分け、SIMD とプリフェッチが 100% 効く形にします。Unity DOTS / Unreal Mass のような ECS や、data-oriented design が突き詰めている領域です。
+                            ただしflat PODが保証するのは「連続」までで、自動で最適ではありません。<code>FixedVec&lt;Enemy, N&gt;</code> のような配列の構造体（AoS）だと、敵1体の座標だけ舐めたくても構造体まるごとがラインに乗ります。大量エンティティのホットループを本気で詰めるなら、次の一手はSoA（構造体の配列）です。座標は座標、HPはHPを別々の連続配列に分け、SIMDとプリフェッチが100%効く形にします。Unity DOTS / Unreal MassのようなECSや、data-oriented designが突き詰めている領域です。
                         </p>
                         <p class="fine">
-                            代償は「トップの <code>struct</code> に <code>std::string</code> / <code>std::vector</code> / ポインタ / 画像を直接持てない」こと。長さの要る所は固定長の <code>FixedString</code> / <code>FixedVec</code> を使い、画像などはグローバル／別オブジェクトに分けます。この縛りこそが、上の力を生みます。
+                            代償は「トップの<code>struct</code>に<code>std::string</code> / <code>std::vector</code> / ポインタ / 画像を直接持てない」こと。長さの要る所は固定長の<code>FixedString</code> / <code>FixedVec</code>を使い、画像などはグローバル／別オブジェクトに分けます。この縛りこそが、上の力を生みます。
                         </p>
-                        <div class="note"><strong>これが差別化の核です。</strong> 状態が数千のオブジェクトに散らばったエンジンでは、「全状態をまるごと読む／戻す」が原理的に作れません。最初から状態を 1 個の flat POD に縛ったからこそ、巻き戻し・録画リプレイ・AI 観測が同じ仕組みで成立します。</div>
+                        <div class="note"><strong>これが差別化の核です。</strong> 状態が数千のオブジェクトに散らばったエンジンでは、「全状態をまるごと読む／戻す」が原理的に作れません。最初から状態を1個のflat PODに縛ったからこそ、巻き戻し・録画リプレイ・AI観測が同じ仕組みで成立します。</div>
                     </div>
                 </section>
 
                 <!-- ── §6 2D も 3D も ─────────────────────────── -->
+                <!-- ── 1 つのコードが 3 つの環境で ──────────────── -->
                 <section class="sec">
-                    <h2>2D も、GPU 3D も</h2>
+                    <h2>1つのコードが、3つの環境で動く</h2>
+                    <div class="sec-body">
+                        <p class="sec-intro">描画の違いをゲームから隠す</p>
+                        <p>
+                            環境ごとに描画の書き方が異なるため、対応先が増えるほどゲーム側に条件分岐が散らばります。私は描画バックエンドを<code>IDevice</code>として抽象化しました。ゲーム側は実行環境を知りません。
+                        </p>
+                        <figure class="dgm-wrap">
+                            <svg class="dgm" viewBox="0 0 760 210" role="img" aria-label="1 つのゲームコードが IDevice という抽象を挟んで、Windows の DirectX 12、macOS の Metal、ブラウザの WebGL という 3 つの描画バックエンドへ分かれる図。">
+                                <rect class="boxy" x="264" y="10" width="232" height="42" rx="5"/>
+                                <text class="lbl" x="380" y="36" text-anchor="middle">1つのゲームコード</text>
+                                <path class="arr" d="M380 52 L380 76"/>
+                                <rect class="boxy" x="264" y="76" width="232" height="42" rx="5"/>
+                                <text class="lbl" x="380" y="102" text-anchor="middle">IDevice</text>
+                                <path class="arr" d="M380 118 L380 134 M130 134 L630 134 M130 134 L130 152 M380 134 L380 152 M630 134 L630 152"/>
+                                <rect class="box" x="14" y="152" width="232" height="48" rx="5"/>
+                                <text class="lbl" x="130" y="174" text-anchor="middle">Windows</text>
+                                <text class="sub" x="130" y="192" text-anchor="middle">DirectX 12 / 11</text>
+                                <rect class="box" x="264" y="152" width="232" height="48" rx="5"/>
+                                <text class="lbl" x="380" y="174" text-anchor="middle">macOS</text>
+                                <text class="sub" x="380" y="192" text-anchor="middle">Metal</text>
+                                <rect class="box" x="514" y="152" width="232" height="48" rx="5"/>
+                                <text class="lbl" x="630" y="174" text-anchor="middle">ブラウザ</text>
+                                <text class="sub" x="630" y="192" text-anchor="middle">WebGL / WebAssembly</text>
+                            </svg>
+                            <figcaption>ゲーム側は<code>IDevice</code>にだけ触る。どの環境で動いているかは、ゲームのコードからは見えない。</figcaption>
+                        </figure>
+                        <p>
+                            WindowsではDirectX12とDirectX11のフォールバック、macOSではMetal、ブラウザではWebGLを使います。ブラウザ版はゲームとエンジンを一つのWebAssemblyに固めました。「<a href="oscar-gardening.html">オスカーのガーデニング</a>」は同じコードでWindows版とブラウザ版を公開しています。OpenGL、Vulkan、WebGPUも実装していますが、ゲームでの動作は未確認です。
+                        </p>
+                    </div>
+                </section>
+
+                <!-- ── 外部から読む、外部から試す ──────────────── -->
+                <section class="sec">
+                    <h2>外部から読む、外部から試す</h2>
+                    <div class="sec-body">
+                        <p class="sec-intro">遊び直さず、状態を確かめる</p>
+                        <p>
+                            実行中のゲームを覗けないと、値を知るたびに<code>print</code>文を足し、同じ場面まで遊び直すことになります。画面の結果だけでは判定の理由も分かりません。そこで私は、指定した値を名前つきJSONとしてHTTP経由で読めるようにしました。差分だけでも取れます。
+                        </p>
+                        <p>
+                            キーの並びとフレーム数を渡すと、入力後の状態が返ります。試行前に状態を退避し、結果作成後にバイト単位で戻すため、本編の状態は変わりません。描画も音も外へ出しません。上限は600フレーム、60fpsで10秒です。
+                        </p>
+                        <figure class="dgm-wrap">
+                            <svg class="dgm" viewBox="0 0 760 170" role="img" aria-label="入力を試すときの流れの図。遊んでいる状態を退避し、その状態のまま入力を N フレーム流し、結果の状態を JSON で返したあと、退避しておいたバイト列を書き戻して元に戻す。">
+                                <rect class="boxy" x="14" y="24" width="180" height="48" rx="5"/>
+                                <text class="lbl" x="104" y="46" text-anchor="middle">遊んでいる状態</text>
+                                <text class="sub" x="104" y="64" text-anchor="middle">live</text>
+                                <path class="arr" d="M194 48 L246 48"/>
+                                <text class="mono" x="220" y="40" text-anchor="middle">退避</text>
+                                <rect class="box" x="246" y="24" width="200" height="48" rx="5"/>
+                                <text class="lbl" x="346" y="46" text-anchor="middle">入力をNフレーム流す</text>
+                                <text class="sub" x="346" y="64" text-anchor="middle">最大600フレーム</text>
+                                <path class="arr" d="M446 48 L498 48"/>
+                                <rect class="box" x="498" y="24" width="248" height="48" rx="5"/>
+                                <text class="lbl" x="622" y="46" text-anchor="middle">結果の状態をJSONで返す</text>
+                                <text class="sub" x="622" y="64" text-anchor="middle">描画も音も外へ出さない</text>
+                                <path class="arr" d="M622 72 L622 110 L104 110 L104 84"/>
+                                <text class="mono" x="363" y="128" text-anchor="middle">退避しておいたバイト列を書き戻す（本編の状態は変わらない）</text>
+                            </svg>
+                            <figcaption>試した結果だけを受け取り、遊んでいるほうは元へ戻す。</figcaption>
+                        </figure>
+                        <p>
+                            スクリーンショットに加え、描画と音のログも取れます。手作業のデバッグ確認を外部プログラムへ任せた結果、コーディング支援AIからも同じ口で扱えます。入力後の判定を数値で確かめたり、到達してほしくない状態への入力を自動で探したりできます。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>2Dも、GPU 3Dも</h2>
                     <div class="sec-body">
                         <p>
-                            正面は 2D + HTML/CSS ですが、3D も同じ書き方で出せます。<code>draw</code> の中で <code>s.camera3D</code> でカメラを決め、<code>s.drawMesh</code> でメッシュ（立方体・球・板・読み込んだモデル）を置くだけ。あとはエンジンの GPU 3D レンダラーが、影（シャドウマップ）とアンチエイリアス（MSAA）付きで描きます。文字（HUD）は 2D でその上に重なります。
+                            正面は2D + HTML/CSSですが、3Dも同じ書き方で出せます。<code>draw</code>の中で<code>s.camera3D</code>でカメラを決め、<code>s.drawMesh</code>でメッシュ（立方体・球・板・読み込んだモデル）を置くだけ。あとはエンジンのGPU 3Dレンダラーが、影（シャドウマップ）とアンチエイリアス（MSAA）付きで描きます。文字（HUD）は2Dでその上に重なります。
                         </p>
                         <figure class="plate">
                             <video autoplay loop muted playsinline preload="metadata"
@@ -379,16 +449,16 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                                 <source src="videos/hello3d.mp4" type="video/mp4">
                                 <img src="images/engine/hello3d.webp" alt="MitiruEngine で動く GPU 3D デモ。足場の上に回転する立方体と追従して周回する球、奥に色とりどりのピラーが並び、それぞれが地面にやわらかい影を落としている。" loading="lazy" decoding="async" width="960" height="540">
                             </video>
-                            <figcaption>実機の録画。GPU 3D を影・MSAA 付きで描画。<code>s.light3D</code> で光の向きを変えると影もその向きに伸びる。</figcaption>
+                            <figcaption>実機の録画。GPU 3Dを影・MSAA付きで描画。<code>s.light3D</code>で光の向きを変えると影もその向きに伸びる。</figcaption>
                         </figure>
                         <p>
-                            もちろん 2D も同じエンジン・同じ書き方です。下はブロック崩しで、ボールやブロックの動きは C++、上部のスコア・残機・レベルの表示は HTML / CSS です。
+                            もちろん2Dも同じエンジン・同じ書き方です。下はブロック崩しで、ボールやブロックの動きはC++、上部のスコア・残機・レベルの表示はHTML / CSSです。
                         </p>
                         <figure class="plate">
                             <img src="images/engine/breakout.webp" alt="MitiruEngine で作ったブロック崩しのプレイ画面。カラフルなブロックの壁とボール、上部にスコア・残機・レベルの表示。" loading="lazy" width="1280" height="720">
-                            <figcaption>同じエンジンで作った 2D のブロック崩し。ゲーム本体は C++、上部の HUD は HTML/CSS。</figcaption>
+                            <figcaption>同じエンジンで作った2Dのブロック崩し。ゲーム本体はC++、上部のHUDはHTML/CSS。</figcaption>
                         </figure>
-                        <p class="fine">大量ポリゴンや凝ったシェーダーを前提にした本格 3D は対象外です。2D に 3D を混ぜたい場面と、小〜中規模の 3D を出す場面を想定しています。</p>
+                        <p class="fine">重い3Dも、このエンジンの上で動かしています。仮想ジオメトリやRadiance Cascadesの実装は<a href="labs.html">Lab</a>に置きました。ゲームとして出すときは、2Dに3Dを混ぜる場面と、小〜中規模の3Dを想定しています。</p>
                     </div>
                 </section>
 
@@ -410,34 +480,43 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                         </figure>
                         <ul>
                             <li>
-                                <a href="oscar-gardening.html">オスカーのガーデニング</a>。まいたリズムを次の小節で返すタイミングゲーム。ゲームの全状態を 1 個の構造体に閉じ込めてあるので、下で説明した巻き戻し・録画リプレイ・観察がそのまま効きます
+                                <a href="oscar-gardening.html">オスカーのガーデニング</a>。まいたリズムを次の小節で返すタイミングゲーム。ゲームの全状態を1個の構造体に閉じ込めてあるので、下で説明した巻き戻し・録画リプレイ・観察がそのまま効きます
                             </li>
                             <li>
-                                <a href="hato.html">ハトを育てよう</a>。2023 年に教材として作ったノベルゲームを、このエンジン上で再現。セーブ・ロードやバックログも備えています
+                                <a href="hato.html">ハトを育てよう</a>。2023年に教材として作ったノベルゲームを、このエンジン上で再現。セーブ・ロードやバックログも備えています
                             </li>
                             <li>
-                                <a href="kaerucrape.html">かえるくれーぷ（Kaeru Crepe）</a>。UI をすべて HTML / CSS で組んだクッキング × ノベル。調理の中核を実機で遊べる形まで仕上げ済み
+                                <a href="kaerucrape.html">かえるくれーぷ（Kaeru Crepe）</a>。UIをすべてHTML / CSSで組んだクッキング × ノベル。調理の中核を実機で遊べる形まで仕上げ済み
                             </li>
                             <li>
-                                <a href="fluid-drop.html">FLUID DROP</a>。積んだブロックがゼリーや液体に変わる落ちものパズル。EA SEED の流体シミュレーション（PB-MPM）を DirectX 12 と WebGPU へ移植して仕込んでいます
+                                <a href="fluid-drop.html">FLUID DROP</a>。積んだブロックがゼリーや液体に変わる落ちものパズル。EA SEEDの流体シミュレーション（PB-MPM）をDirectX 12とWebGPUへ移植して仕込んでいます
                             </li>
                             <li>
-                                同梱の章立てサンプル。巻き戻し（rewind）・観察（observe）・HTML/CSS の UI などを、1 機能ずつ実機で触れる機能のショーケース
+                                同梱の章立てサンプル。巻き戻し（rewind）・観察（observe）・HTML/CSSのUIなどを、1機能ずつ実機で触れる機能のショーケース
                             </li>
                         </ul>
+                        <figure class="plate">
+                            <video controls preload="none" playsinline
+                                   poster="images/fluiddrop_1.webp" width="960" height="720"
+                                   aria-label="FLUID DROP のプレイの録画。積み上げたブロックがゼリーのように揺れ、溶けて液体になり、また固まっていく。">
+                                <source src="videos/fluiddrop_trailer.mp4" type="video/mp4">
+                                <img src="images/fluiddrop_1.webp" alt="FLUID DROP のプレイ画面。積み上げたブロックが液体に変わっている。" loading="lazy" decoding="async" width="960" height="720">
+                            </video>
+                            <figcaption>「FLUID DROP」の実機の録画。カチカチのブロックから、ゼリー、液体、再び固まるまで。流体の計算もこのエンジンの上で動いています。<a href="fluid-drop.html">くわしい説明</a>。</figcaption>
+                        </figure>
                     </div>
                 </section>
 
                 <!-- ── §8 向き・不向き ────────────────────────── -->
                 <section class="sec">
-                    <h2>向いていること・いないこと</h2>
+                    <h2>向いていること</h2>
                     <div class="sec-body">
                         <p>
-                            エンジンを作ること自体が目的ではありません。ゲームの中で何が起きているかを自分で説明できる人間でいるために書いています。Unity / Godot のような全部入りエディタは作らず、逆に振っています。<strong>デバッグ画面は 1 つにつき 1 ウィンドウ、ふだんは何も開かない、操作はコマンドから</strong>。エディタは Visual Studio でも VS Code でもメモ帳でも構いません。
+                            エンジンを作ること自体が目的ではありません。ゲームの中で何が起きているかを自分で説明できる人間でいるために書いています。Unity / Godotのような全部入りエディタは作らず、逆に振っています。<strong>デバッグ画面は1つにつき1ウィンドウ、ふだんは何も開かない、操作はコマンドから</strong>。エディタはVisual StudioでもVS Codeでもメモ帳でも構いません。
                         </p>
                         <ul>
-                            <li><strong>向いている</strong>。2D + HTML/CSS UI のゲーム／巻き戻し・録画リプレイ・観察が効く決定論的なゲーム／2D に 3D を混ぜる</li>
-                            <li><strong>向いていない</strong>。大量ポリゴンや凝ったシェーダー前提の本格 3D。そこは別のエンジンの方が向いています</li>
+                            <li>向いているのは、2DとHTML/CSS UIを組み合わせたゲーム、巻き戻し・録画リプレイ・観察が効く決定論的なゲーム、2Dに3Dを混ぜるゲームです。</li>
+                            <li>重い3D描画も自分で実装しており、<a href="labs.html">886億三角形を0.51ミリ秒で描く仮想ジオメトリやRadiance Cascades</a>などが動きます。ただし、UnityやUnreal Engineのように誰でもすぐ使える形には整えていません。</li>
                         </ul>
                     </div>
                 </section>
@@ -451,7 +530,7 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                             <a href="engine-story.html">制作の記（なぜ・どう作ったか） →</a>
                             <a href="https://mogmog-0110.github.io/MitiruEngine/">紹介サイト（ドキュメント） →</a>
                             <a href="https://github.com/mogmog-0110/MitiruEngine" target="_blank" rel="noopener">GitHub →</a>
-                            <a href="https://github.com/mogmog-0110/mitiru-cli" target="_blank" rel="noopener">mitiru-cli（Go 製コマンドツール） →</a>
+                            <a href="https://github.com/mogmog-0110/mitiru-cli" target="_blank" rel="noopener">mitiru-cli（Go製コマンドツール） →</a>
                         </div>
                     </div>
                 </section>
