@@ -930,6 +930,22 @@ pre code { background: none; padding: 0; }
     color: var(--ink-sub);
 }
 
+/* EXPERIENCE は図版を持たない。左列を年月、右列を本文に割り当てる */
+.exp-entry {
+    cursor: default;
+    align-items: start;
+}
+
+.exp-entry .m-meta {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+}
+
+.exp-entry h3 { margin-bottom: 0.5rem; }
+
 @media (max-width: 720px) {
     .lab-entry { grid-template-columns: 1fr; gap: 1rem; }
 }
