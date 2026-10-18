@@ -515,6 +515,10 @@ svg.dgm { display: block; width: 100%; height: auto; }
     margin: 1.6rem 0;
 }
 
+.plate-grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.plate-grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.plate-grid figure.plate { margin: 0; }
+
 .plate-grid a { display: block; }
 
 .plate-grid img {
@@ -1142,6 +1146,8 @@ pre code { background: none; padding: 0; }
     .page-head .lede { font-size: 0.92rem; }
 
     .plate-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.7rem; }
+    .plate-grid.cols-2 { grid-template-columns: 1fr; }
+    .plate-grid.cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .art-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 0.5rem; }
 
     pre { font-size: 0.7rem; padding: 0.9rem 1rem; }

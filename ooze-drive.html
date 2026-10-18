@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja" style="background-color: #fcfcfb;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fcfcfb">
+    <title>OOZE DRIVE | Shiggy</title>
+    <meta name="description" content="スライムが街を走り、壁を登り、触手で振り子のように飛ぶ 3D アクションです。自作ゲームエンジン MitiruEngine で制作しています。">
+
+    <style>
+        html, body { background-color: #fcfcfb !important; margin: 0; padding: 0; }
+    </style>
+
+    <!-- meta:social -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shiggy's Portfolio">
+    <meta property="og:title" content="OOZE DRIVE | Shiggy">
+    <meta property="og:description" content="スライムが街を走り、壁を登り、触手で振り子のように飛ぶ 3D アクションです。自作ゲームエンジン MitiruEngine で制作しています。">
+    <meta property="og:url" content="https://mogmog-0110.github.io/ooze-drive.html">
+    <link rel="canonical" href="https://mogmog-0110.github.io/ooze-drive.html">
+    <meta property="og:image" content="https://mogmog-0110.github.io/images/ooze/play.webp">
+    <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="720">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OOZE DRIVE | Shiggy">
+    <meta name="twitter:description" content="スライムが街を走り、壁を登り、触手で振り子のように飛ぶ 3D アクションです。自作ゲームエンジン MitiruEngine で制作しています。">
+    <meta name="twitter:image" content="https://mogmog-0110.github.io/images/ooze/play.webp">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/site.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
+
+    <div class="frame">
+        <header class="site-head">
+            <div class="inner">
+                <a class="brand" href="index.html">mogmog-0110.github.io</a>
+                <ul class="menu">
+                    <li><a href="engine.html">engine</a></li>
+                    <li><a href="labs.html">lab</a></li>
+                    <li><a href="research.html">research</a></li>
+                    <li><a href="portfolio.html" class="current">works</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <main id="main">
+            <section class="page-head">
+                <p class="file-line">/ works / ooze-drive</p>
+                <h1>OOZE DRIVE</h1>
+                <p class="lede">
+                    触って気持ちいい、楽しい操作感を目指すうえで「スライム」に焦点をあててゲームを制作しました。ぷるぷる震えて走る魅力的なキャラクター要素と、止まらずに走り続ける気持ちよさを目指しています。
+                </p>
+                <div class="meta-line">
+                    <span>3D アクション</span>
+                    <span>2026年</span>
+                    <span>自分 + α</span>
+                    <span>MitiruEngine</span>
+                    <span>C++20</span>
+                    <span>DirectX 12</span>
+                    <span>Windows 11</span>
+                </div>
+            </section>
+
+            <div class="sections">
+                <section class="sec">
+                    <h2>概要</h2>
+                    <div class="sec-body">
+                        <ul class="profile">
+                            <li><span class="k">ジャンル</span><span class="v">3D アクション</span></li>
+                            <li><span class="k">対象年齢</span><span class="v">全年齢向け (想定)</span></li>
+                            <li><span class="k">対応 PC</span><span class="v">Windows 11、DirectX 12 対応 GPU</span></li>
+                            <li><span class="k">開発環境</span><span class="v">MitiruEngine (自作エンジン)</span></li>
+                            <li><span class="k">開発体制</span><span class="v">自分 + α (デバッグ、音楽素材提供)</span></li>
+                        </ul>
+                        <p>
+                            蒼翔祭 (会津大学の学園祭、10/10・10/11) で展示し、「操作が爽快」「スライムが可愛い」「作り込みが細かい」という感想をもらいました。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>プレイ</h2>
+                    <div class="sec-body">
+                        <figure class="plate">
+                            <video controls preload="none" playsinline
+                                   poster="images/ooze/intro.webp"
+                                   width="1280" height="720"
+                                   aria-label="OOZE DRIVE の紹介映像。スライムが街を走り、壁を登り、触手でつかまって振り子のように飛ぶ。">
+                                <source src="videos/ooze_intro.mp4" type="video/mp4">
+                                お使いのブラウザは動画再生に対応していません。<a href="videos/ooze_intro.mp4">ダウンロード</a>
+                            </video>
+                            <figcaption>紹介映像 (60秒)。</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>アクション</h2>
+                    <div class="sec-body">
+                        <div class="plate-grid cols-2">
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/wallrun.webp" alt="スライムがビルの壁を走って登る連続画像" width="1280" height="529">
+                                <figcaption>ウォールラン。ビルの壁を走って登る。</figcaption>
+                            </figure>
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/swing.webp" alt="スライムが触手でつかまり、振り子のように飛ぶ連続画像" width="1280" height="529">
+                                <figcaption>スイング。触手でつかまって振り子で飛ぶ。</figcaption>
+                            </figure>
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/grind.webp" alt="スライムがレールに乗って滑る連続画像" width="1280" height="529">
+                                <figcaption>グラインド。レールに乗って滑る。</figcaption>
+                            </figure>
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/spring.webp" alt="スライムがばねの上に乗り、ばねの形になった姿" width="1280" height="529">
+                                <figcaption>変身。物を取り込んでボールやばねになる。</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>ゲームの流れ</h2>
+                    <div class="sec-body">
+                        <div class="plate-grid cols-2">
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/hub.webp" alt="ハブの画面。球形の培養装置が並ぶ緑の空間にスライムがいる" width="1280" height="720">
+                                <figcaption>1. ハブ。研究室の培養装置をイメージした場所。</figcaption>
+                            </figure>
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/select.webp" alt="ステージ選択の画面。「ステージ 1-1」が表示されている" width="1280" height="720">
+                                <figcaption>2. ステージを選ぶ。</figcaption>
+                            </figure>
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/stage.webp" alt="ステージの画面。暗い青の空間を光る床が伸び、速度計と残り時間が出ている" width="1280" height="720">
+                                <figcaption>3. ゴールを目指す。電脳世界をイメージしたステージ。</figcaption>
+                            </figure>
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/freerun.webp" alt="フリーランの画面。昼の街を、触手で狙いを定めながら走る" width="1280" height="720">
+                                <figcaption>フリーラン (実装中)。街を自由に走り回れるステージ。</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>キャラクター</h2>
+                    <div class="sec-body">
+                        <p>
+                            以前から、流体を使ったゲームを作れないかと考えていました。EA の研究 (PB-MPM) をもとに、ブロックが溶けだしたら見た目が面白いと思って、2D の落ちものパズル「<a href="fluid-drop.html">FLUID DROP</a>」を作りました。この経験から、3D のゲームにも取り込めないかと考えたのが、このスライムです。
+                        </p>
+                        <div class="plate-grid cols-4">
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/fd1.webp" alt="FLUID DROP のブロックが積み上がった画面" width="370" height="375">
+                            </figure>
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/fd2.webp" alt="FLUID DROP のブロックが崩れかけている画面" width="370" height="375">
+                            </figure>
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/fd3.webp" alt="FLUID DROP のブロックが溶けて液体になった画面" width="370" height="375">
+                            </figure>
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/slime.webp" alt="OOZE DRIVE のスライム" width="703" height="714">
+                            </figure>
+                        </div>
+                        <p class="fine">PB-MPM: Chris Lewin, A Position Based Material Point Method, ACM SIGGRAPH 2024 (EA SEED)</p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>モデリング</h2>
+                    <div class="sec-body">
+                        <p>粒子の流体から、毎フレーム体の表面を作っています。</p>
+                        <div class="plate-grid">
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/particles.webp" alt="スライムの体を作る粒子の集まり" width="800" height="650">
+                                <figcaption>粒子</figcaption>
+                            </figure>
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/mesh.webp" alt="粒子から作った、格子状の表面" width="800" height="692">
+                                <figcaption>粒子から作った表面</figcaption>
+                            </figure>
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/slime.webp" alt="ゲームの中のスライム" width="703" height="714">
+                                <figcaption>ゲームの中のスライム</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>MitiruEngine</h2>
+                    <div class="sec-body">
+                        <p>
+                            MitiruEngine は、自作のC++20 で書いているゲームエンジンです。Unity や Unreal Engine のような全部入りのエディターの代わりに、ゲームはコードで書き、必要な所だけ小さな内製ツールで触ります。コードで使うゲームライブラリと、開発を助ける内製ツール群をまとめて MitiruEngine と呼んでいます。
+                        </p>
+                        <figure class="plate">
+                            <img loading="lazy" decoding="async" src="images/ooze/engine.webp" alt="ゲームは DLL としてエンジンに載せ、内製ツールはゲームとは別のウィンドウで開く構成の図。エンジンは描画に DirectX 12、UI に RmlUi (HTML と CSS)、物理に Jolt Physics、音に miniaudio など、OSS を借りて束ねている。" width="1280" height="455">
+                        </figure>
+                        <p>
+                            エンジンの詳細は<a href="engine.html">MitiruEngine のページ</a>にまとめています。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>特徴</h2>
+                    <div class="sec-body">
+                        <p>
+                            ゲームの状態をすべてメモリ上のデータで持ち、入力も外から渡すことができます。そのため、スクリプトやボットに操作させたり、毎フレームの状態を記録して巻き戻したり、同じプレイを再現したりでき、テストと QA など様々な用途に使っています。
+                        </p>
+                        <figure class="plate">
+                            <img loading="lazy" decoding="async" src="images/ooze/memory.webp" alt="入力 (プレイヤー、スクリプト、AI) が 1 フレームの状態 (ゲームの状態とワールド) を動かし、その状態を毎フレーム記録して、巻き戻しのシークバーで過去へ戻れることを示す図" width="1280" height="484">
+                        </figure>
+
+                        <p class="sec-intro">1. 自動テスト</p>
+                        <p>
+                            全ステージを、スクリプトで毎回最後まで遊ばせて、ゴールに着くか、コインを全部取れるかを確かめます。
+                        </p>
+                        <div class="plate-grid">
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/qa_stages.webp" alt="全ステージの画面を並べ、すべてゴールに着いたことを示す一覧。26 / 26 と表示されている" width="1280" height="888">
+                            </figure>
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/qa_coins.webp" alt="ステージの上を通った経路を色で示した図。コイン 166 / 166 と表示されている" width="1280" height="960">
+                            </figure>
+                        </div>
+
+                        <p class="sec-intro">2. 自動 QA</p>
+                        <p>
+                            ボットに、想定されるアクションのみの入力や、でたらめな入力やごり押しで遊ばせて、想定外の近道や不具合を探します。また描画上の不具合がないかも同じ仕組みを利用して発見することができ、画面の明るさの変化から、タイトル画面のちらつきも見つけ修正することができました。
+                        </p>
+                        <div class="plate-grid">
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/route.webp" alt="ステージを上から見た図に、ゴールまで行けた経路 (緑) と失敗した経路 (赤、×) を重ねた画像" width="840" height="380">
+                                <figcaption>成功ルートと失敗ルート。</figcaption>
+                            </figure>
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/flicker.webp" alt="タイトル画面のちらつきを見つけた前後の画面の比較" width="990" height="1110" style="width:62%">
+                                <figcaption>タイトル画面のちらつき。修正の前と後。</figcaption>
+                            </figure>
+                        </div>
+
+                        <p class="sec-intro">3. モーションの計算</p>
+                        <p>
+                            スライムは通常のモデルと違い、粒子の集まりなのでボーンを持ちません。そこで、歩き・走り・跳びと着地のモーションを、ばねの強さやつぶれる割合などの数値から毎フレーム計算するプレビズのツールを作り、動きを見て数値を決めました。
+                        </p>
+                        <figure class="plate">
+                            <img loading="lazy" decoding="async" src="images/ooze/motion.webp" alt="プレビズのツールで計算した歩き出し、走り、跳びと着地のモーションの連続画像と、プレビズとゲームの動きを上下に並べた比較" width="1280" height="505">
+                        </figure>
+                        <p>
+                            プレビズで決めた数値は、ゲームを動かしたまま内製ツールで変えて試し、残すか捨てるかを選べます。
+                        </p>
+                        <figure class="plate">
+                            <img loading="lazy" decoding="async" src="images/ooze/tool_body.webp" alt="モーション調整の内製ツール。体の数値のスライダーが並び、右にジャンプの軌跡のグラフが出ている" width="1280" height="847">
+                        </figure>
+
+                        <figure class="plate">
+                            <video controls preload="none" playsinline
+                                   poster="images/ooze/engine_poster.webp"
+                                   width="1280" height="720"
+                                   aria-label="MitiruEngine の機能の映像。巻き戻し、ステージエディタ、モーション調整、自動テスト、ボットによる総当たりのプレイを順に映している。">
+                                <source src="videos/ooze_engine.mp4" type="video/mp4">
+                                お使いのブラウザは動画再生に対応していません。<a href="videos/ooze_engine.mp4">ダウンロード</a>
+                            </video>
+                            <figcaption>エンジンの機能の映像 (64秒)。巻き戻し、ステージエディタ、モーション調整、自動テスト、ボットのプレイ。</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>学園祭でのフィードバック</h2>
+                    <div class="sec-body">
+                        <p>
+                            蒼翔祭で遊んでもらう様子を見て、左スティックで移動、右スティックで視点操作というコントローラーの操作が思ったより難しそうだと分かり、初めての人向けの操作の補助を作りました。
+                        </p>
+                        <div class="plate-grid">
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/assist_off.webp" alt="アシストなしの画面。ステージを上から見た図で、赤い経路が×で途切れている" width="1280" height="849">
+                                <figcaption>アシストなし</figcaption>
+                            </figure>
+                            <figure class="plate">
+                                <img loading="lazy" decoding="async" src="images/ooze/assist_on.webp" alt="アシストありの画面。同じステージで、緑の経路がゴールの枠まで続いている" width="1280" height="849">
+                                <figcaption>アシストあり</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <h2>アシスト機能</h2>
+                    <div class="sec-body">
+                        <p>
+                            かんたん操作では、カメラと触手の狙いを補助することでゲームが苦手な方でも遊びやすくなるようにしています。
+                        </p>
+                        <ul>
+                            <li>カメラ: 走っている前方へカメラが自動で向く</li>
+                            <li>エイムアシスト: 目的のオブジェクトへ自動で照準を定めることが可能</li>
+                        </ul>
+                        <figure class="plate">
+                            <img loading="lazy" decoding="async" src="images/ooze/aim.webp" alt="エイムアシストのなし (左) とあり (右) を比べた画面。右では触手が目的のオブジェクトへ伸びている" width="1280" height="573">
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="sec">
+                    <div class="sec-body">
+                        <div class="link-row">
+                            <a href="engine.html">MitiruEngineについて →</a>
+                            <a href="fluid-drop.html">FLUID DROP →</a>
+                            <a href="portfolio.html">← Worksに戻る</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="site-foot">
+            <p>&copy; 川村優弥 / Shiggy</p>
+            <p>fujimiya0110☆gmail.com（☆→@） · <a href="https://github.com/mogmog-0110" target="_blank" rel="noopener">github</a></p>
+        </footer>
+    </div>
+
+    <script src="assets/js/back-to-top.js"></script>
+</body>
+
+</html>
