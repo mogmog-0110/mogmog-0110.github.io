@@ -65,7 +65,7 @@
                     このページでは、実際に動いている画面と図を使い、MitiruEngineで何ができ、そのために中で何をしているのかを順に紹介します。後半ほど技術的な内容です。使い方や導入の手順は<a href="https://mogmog-0110.github.io/MitiruEngine/">エンジンの紹介サイト</a>にまとめてあります。
                 </p>
                 <div class="meta-line">
-                    <span>開発中(v0.33)</span><span>C++20</span><span>Windows / macOS / ブラウザ</span><span>独自ライセンス（使用自由 / 改変・再配布不可）</span>
+                    <span>開発中(v0.43)</span><span>C++20</span><span>Windows / macOS / ブラウザ</span><span>独自ライセンス（使用自由 / 改変・再配布不可）</span>
                 </div>
             </section>
 
@@ -81,7 +81,7 @@
                             <figcaption>このエンジンで動かしているゲームの一例（実機の録画）。赤べこ・小法師・古銭・石畳はスプライト、空はグラデーション、左上のカウンタはHTML / CSSです。</figcaption>
                         </figure>
                         <p>
-                            ゲームの中身はC++で書きます。プレイヤーの動き、当たり判定、スコアの計算。画面に出すHUDやメニューはHTMLとCSSで書きます。Webページを作るのと同じ書き方です。セリフや設定の数値はJSONに置きます。C++とHTMLの間を行き来するのは表示用の値だけで、ゲームの状態そのものはC++が持ったままです。
+                            ゲームの中身はC++で書きます。プレイヤーの動き、当たり判定、スコアの計算。画面に出すHUDやメニューはHTMLとCSSの方言（RML / RCSS）で書きます。Webページに近い書き方です。セリフや設定の数値はJSONに置きます。C++とHTMLの間を行き来するのは表示用の値だけで、ゲームの状態そのものはC++が持ったままです。
                         </p>
                         <figure class="dgm-wrap">
                             <svg class="dgm" viewBox="0 0 760 150" role="img" aria-label="1 つのゲームを 3 つの言葉で分担する図。C++ がゲームの中身（状態・動き・当たり判定・物理・描画）、HTML/CSS が画面（HUD・メニュー・演出）、JSON がデータ（セリフ・設定・バランス）を担当する。">
@@ -150,7 +150,7 @@ struct StarCatch {
     void update(Input in, Hud hud, float dt) {
         if (in.down(Key::Left))  playerX -= 480 * dt;   <span class="c">// ← キーで左へ</span>
         if (in.down(Key::Right)) playerX += 480 * dt;
-        hud.set("view.hud.score", score);               <span class="c">// スコアを画面へ送る</span>
+        hud.set("view.score", score);                      <span class="c">// スコアを画面へ送る</span>
     }
     void draw(Screen&amp; s) { /* プレイヤーや星を描く */ }
 };
@@ -168,10 +168,10 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                     <div class="sec-body">
                         <p class="sec-intro">UIをWebページのように書く</p>
                         <p>
-                            HUDやメニューは<code>scene.html</code>にHTML / CSSで書きます。C++が送った値は <code>&lt;span data-m-text="view.hud.score"&gt;</code> のように属性で受けるだけです。つなぎのJavaScriptは書きません。やり取りは「信号」だけで、状態の持ち主はC++のまま。見た目（CSS）とルール（C++）が混ざりません。
+                            HUDやメニューは<code>assets/ui/main.rml</code>にRML / RCSSで書きます。C++が<code>hud.set("view.score", score)</code>で送った値は、<code>&lt;span&gt;{{ score }}&lt;/span&gt;</code>のように二重の波かっこで受けるだけです。JavaScriptは使えません。やり取りは「信号」だけで、状態の持ち主はC++のまま。見た目（CSS）とルール（C++）が混ざりません。
                         </p>
                         <figure class="dgm-wrap">
-                            <svg class="dgm" viewBox="0 0 760 130" role="img" aria-label="C++ と HTML/CSS のやり取りの図。C++ から HTML へは値の push（hud.set / data-m-text）、HTML から C++ へは操作の通知（data-m-action / in.action）。信号だけが行き来し、状態は C++ が持つ。">
+                            <svg class="dgm" viewBox="0 0 760 130" role="img" aria-label="C++ と HTML/CSS のやり取りの図。C++ から HTML へは値の push（hud.set / {{ }}）、HTML から C++ へは操作の通知（dispatch / in.action）。信号だけが行き来し、状態は C++ が持つ。">
                                 <defs><marker id="a2" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#6e7077"/></marker></defs>
                                 <rect class="boxy" x="24"  y="34" width="240" height="62" rx="5"/>
                                 <text class="lbl" x="144" y="60" text-anchor="middle">C++（状態を持つ）</text>
@@ -184,11 +184,11 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                                 <line class="arr" x1="494" y1="80" x2="266" y2="80" marker-end="url(#a2)"/>
                                 <text class="mono" x="380" y="98" text-anchor="middle">操作を通知（in.action）</text>
                             </svg>
-                            <figcaption>行き来するのは「信号」だけ。ゲームの状態はJSに持たせず、C++に集約する。</figcaption>
+                            <figcaption>行き来するのは「信号」だけ。ゲームの状態はUI側に持たせず、C++に集約する。</figcaption>
                         </figure>
                         <figure class="plate">
                             <img src="images/engine/catch_htmlhud.webp" alt="左に scene.html のエディタ、右にゲーム。空の scene.html に SCORE を表示する HUD の div を 1 行足して保存すると、再ビルドせずゲームの右上に HTML/CSS の HUD がその場で出る実機の録画。" loading="lazy" decoding="async" width="1600" height="466">
-                            <figcaption>実機の録画（左＝エディタ / 右＝ゲーム）。<code>scene.html</code>にHUDを1行足して保存すると、再ビルドせずその場で画面に出る。</figcaption>
+                            <figcaption>実機の録画（左＝エディタ / 右＝ゲーム）。<code>scene.html</code>にHUDを1行足して保存すると、再ビルドせずその場で画面に出る。録画した時点のファイル名で、いまは<code>assets/ui/main.rml</code>です。</figcaption>
                         </figure>
                     </div>
                 </section>
@@ -462,6 +462,59 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                     </div>
                 </section>
 
+                <!-- ── 更新 ───────────────────────────────────── -->
+                <section class="sec">
+                    <h2>v0.33からの更新</h2>
+                    <div class="sec-body">
+                        <p class="sec-intro">画面の部品、トゥーンの金属、内製ツール</p>
+                        <p>
+                            v0.33から現在のv0.43までに、次の変更を入れました。全文は<a href="https://github.com/mogmog-0110/MitiruEngine/releases/tag/v0.43.0" target="_blank" rel="noopener">GitHubのリリースノート</a>にあります。
+                        </p>
+
+                        <p class="sec-intro">画面の部品をRmlUiへ</p>
+                        <p>
+                            HUDやメニューを描く部品を、ブラウザを組み込むCEFから、C++のライブラリRmlUiへ替えました。書くのはHTMLとCSSの方言のRML / RCSSです。エンジンのDirectX 12デバイスの上に、ゲームと同じフレームで合成します。そのため、画面の撮影や録画リプレイに、HUDやメニューまで写ります。ゲームが呼ぶ<code>hud.set</code>と、操作を受ける<code>in.action</code>は変えていません。
+                        </p>
+
+                        <p class="sec-intro">トゥーンの見た目を物ごとに、金属も</p>
+                        <p>
+                            トゥーン調の段数、輪郭線、平らな2色の粒、場面を明るさで2色に塗り分けるインパクトフレームを、描画ごとに指定できます。v0.43ではトゥーンの金属（ToonMetal）を足しました。空・地平・地面の3色の勾配を、反射ベクトルの向きから引いて段に刻み、塗った色で染めます。反射は視点と法線だけで決まるため、周りの物は映りません。<code>amount</code>が0の描画は、これまでと同じ絵のままです。
+                        </p>
+
+                        <p class="sec-intro">内製ツールを3つ足し、見た目をそろえた</p>
+                        <p>
+                            ツールのウィンドウは、Windows 11の標準アプリに近い見た目にそろえました。ライトとダークはWindowsのテーマに従い、ツールの中の言葉は英語です。
+                        </p>
+                        <ul>
+                            <li><strong>statemachine</strong>。ゲームの状態機械を図で見ます。今の状態、遷移の回数、直近の経過を出します</li>
+                            <li><strong>stage_edit</strong>。ステージのJSONを、上からの図と3Dの図で組みます。触った結果を試してから、残すか捨てるかを選べます</li>
+                            <li><strong>motion_tune</strong>。調整値をスライダーで変え、記録した入力で軌跡を流しなおして、前の値と重ねます</li>
+                        </ul>
+                        <figure class="plate" style="max-width:340px">
+                            <img src="images/engine/tool_statemachine.webp" alt="statemachine のウィンドウ。Movement の状態機械が、Ground、Air、Swing の 3 つの状態を矢印でつなぐ図で出ている。下に遷移の一覧と回数がある。" loading="lazy" decoding="async" width="604" height="1000">
+                            <figcaption>statemachine。</figcaption>
+                        </figure>
+                        <figure class="plate" style="max-width:720px">
+                            <img src="images/engine/tool_stage_edit.webp" alt="stage_edit のウィンドウ。上からの図と3Dの図にステージの箱とレールが並び、右に置ける物の一覧と、選んだ箱の数値の欄がある。" loading="lazy" decoding="async" width="1000" height="729">
+                            <figcaption>stage_edit。上の「Keep」を押すと残し、「Discard」を押すと捨てる。</figcaption>
+                        </figure>
+                        <figure class="plate" style="max-width:720px">
+                            <img src="images/engine/tool_motion_tune.webp" alt="motion_tune のウィンドウ。調整値のスライダーが左に並び、右に元の値と調整した値のジャンプの軌跡が重なって出ている。" loading="lazy" decoding="async" width="1000" height="661">
+                            <figcaption>motion_tune。</figcaption>
+                        </figure>
+
+                        <p class="sec-intro">そのほか</p>
+                        <ul>
+                            <li>粒で流れる体（ソフトボディ）の部品を足しました</li>
+                            <li>カメラと的の間にある面を網点で透かす<code>fadeOccluders3D</code>を足しました</li>
+                            <li>1フレームに鳴らせる音を8本から32本にしました</li>
+                            <li>ゲームからウィンドウと枠なし全画面を頼めるようにしました</li>
+                            <li>起動に失敗したときは理由を文で知らせ、フレームが3秒止まったときは全スレッドのスタックをminidumpに残します</li>
+                        </ul>
+                        <p class="fine">ABIはv57になりました。ゲームのDLLは作り直しが必要です。</p>
+                    </div>
+                </section>
+
                 <!-- ── §7 実際に出せる ────────────────────────── -->
                 <section class="sec">
                     <h2>このエンジンで作ったもの</h2>
@@ -481,6 +534,9 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                         <ul>
                             <li>
                                 <a href="oscar-gardening.html">オスカーのガーデニング</a>。まいたリズムを次の小節で返すタイミングゲーム。ゲームの全状態を1個の構造体に閉じ込めてあるので、下で説明した巻き戻し・録画リプレイ・観察がそのまま効きます
+                            </li>
+                            <li>
+                                <a href="ooze-drive.html">OOZE DRIVE</a>。スライムが街を走り、壁を登り、触手で振り子のように飛ぶ3Dアクション。全ステージをスクリプトで最後まで遊ばせる自動テストや、ボットによる自動QAに、状態の記録と入力の再生を使っています
                             </li>
                             <li>
                                 <a href="hato.html">ハトを育てよう</a>。2023年に教材として作ったノベルゲームを、このエンジン上で再現。セーブ・ロードやバックログも備えています
