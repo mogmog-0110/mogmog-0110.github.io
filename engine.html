@@ -65,7 +65,7 @@
                     このページでは、実際に動いている画面と図を使い、MitiruEngineで何ができ、そのために中で何をしているのかを順に紹介します。後半ほど技術的な内容です。使い方や導入の手順は<a href="https://mogmog-0110.github.io/MitiruEngine/">エンジンの紹介サイト</a>にまとめてあります。
                 </p>
                 <div class="meta-line">
-                    <span>開発中(v0.43)</span><span>C++20</span><span>Windows / macOS / ブラウザ</span><span>独自ライセンス（使用自由 / 改変・再配布不可）</span>
+                    <span>開発中(v0.44)</span><span>C++20</span><span>Windows / macOS / ブラウザ</span><span>独自ライセンス（使用自由 / 改変・再配布不可）</span>
                 </div>
             </section>
 
@@ -468,7 +468,7 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
                     <div class="sec-body">
                         <p class="sec-intro">画面の部品、トゥーンの金属、内製ツール</p>
                         <p>
-                            v0.33から現在のv0.43までに、次の変更を入れました。全文は<a href="https://github.com/mogmog-0110/MitiruEngine/releases/tag/v0.43.0" target="_blank" rel="noopener">GitHubのリリースノート</a>にあります。
+                            v0.33から現在のv0.44までに、次の変更を入れました。全文は<a href="https://github.com/mogmog-0110/MitiruEngine/releases" target="_blank" rel="noopener">GitHubのリリースノート</a>にあります。
                         </p>
 
                         <p class="sec-intro">画面の部品をRmlUiへ</p>
@@ -505,13 +505,14 @@ MITIRU_GAME(StarCatch)   <span class="c">// この 1 行でエンジンに繋が
 
                         <p class="sec-intro">そのほか</p>
                         <ul>
+                            <li>どのゲームでも使えるデバッグメニューを足しました。ゲームは項目を返すだけで、見た目と操作はエンジンが受け持ちます</li>
                             <li>粒で流れる体（ソフトボディ）の部品を足しました</li>
                             <li>カメラと的の間にある面を網点で透かす<code>fadeOccluders3D</code>を足しました</li>
                             <li>1フレームに鳴らせる音を8本から32本にしました</li>
                             <li>ゲームからウィンドウと枠なし全画面を頼めるようにしました</li>
                             <li>起動に失敗したときは理由を文で知らせ、フレームが3秒止まったときは全スレッドのスタックをminidumpに残します</li>
                         </ul>
-                        <p class="fine">ABIはv57になりました。ゲームのDLLは作り直しが必要です。</p>
+                        <p class="fine">ABIはv59になりました。ゲームのDLLは作り直しが必要です。</p>
                     </div>
                 </section>
 
